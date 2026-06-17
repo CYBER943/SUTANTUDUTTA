@@ -138,6 +138,46 @@ export default function Projects() {
           </div>
         )}
 
+        {/* Featured CodePen / GitHub Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-20 bg-gradient-to-r from-app-card via-app-card to-white/5 border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-app-primary/10 via-transparent to-transparent pointer-events-none" />
+          
+          <h3 className="text-2xl md:text-4xl font-display font-bold text-white mb-4 relative z-10">
+            Explore 500+ Projects on My CodePen
+          </h3>
+          <p className="text-app-muted max-w-2xl mx-auto mb-8 relative z-10">
+            Discover a wide variety of interactive experiments, creative UI concepts, and fully functional mini-applications built from scratch.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+            <a
+              href="https://codepen.io/SDM-TECH-KNOW"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-medium hover:from-blue-500 hover:to-indigo-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all"
+            >
+              <ExternalLink size={18} />
+              <span>Visit CodePen</span>
+            </a>
+            
+            <a
+              href="https://github.com/Sdm940"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-all"
+            >
+              <ExternalLink size={18} />
+              <span>View GitHub Repository</span>
+            </a>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

@@ -47,7 +47,9 @@ export default function Hero() {
             AI Enthusiast <span className="mx-2 text-white/20">•</span> 
             Creative Builder
             <br className="my-2" />
-            Exploring technology, design, and innovation one project at a time.
+            Built 500+ projects and experiments while exploring web development, AI, UI/UX design, and digital innovation.
+            <br className="my-2" />
+            Passionate about learning, building, and turning ideas into real-world solutions.
           </motion.p>
 
           <motion.div
@@ -98,7 +100,8 @@ export default function Hero() {
               &nbsp;&nbsp;role: <span className="text-green-300">'Student Developer & AI Enthusiast'</span>,<br />
               &nbsp;&nbsp;stats: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;projectsBuilt: <span className="text-orange-400">500</span><span className="text-app-muted">+</span>,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;certifications: [<span className="text-green-300">'SOF'</span>, <span className="text-green-300">'MyGov'</span>]<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;certifications: [<span className="text-green-300">'SOF'</span>, <span className="text-green-300">'MyGov'</span>],<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;activeOn: [<span className="text-green-300">'CodePen'</span>, <span className="text-green-300">'GitHub'</span>]<br />
               &nbsp;&nbsp;{'}'},<br />
               &nbsp;&nbsp;mission: <span className="text-green-300">'Build tools that matter.'</span><br />
               {'}'};<br />

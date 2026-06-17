@@ -35,15 +35,16 @@ export default function Tools() {
               </h3>
               <div className="space-y-4">
                 {category.items.map((item) => (
-                  <div
+                  <motion.div
                     key={item.name}
-                    className="flex items-center space-x-4 p-3 rounded-2xl hover:bg-white/5 transition-colors cursor-default"
+                    whileHover={{ scale: 1.02, x: 4 }}
+                    className="flex items-center space-x-4 p-3 rounded-2xl hover:bg-white/10 hover:shadow-lg transition-all cursor-default group"
                   >
-                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 text-white shadow-sm border border-white/5">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/5 text-white shadow-sm border border-white/5 group-hover:bg-app-primary/20 group-hover:text-app-primary group-hover:border-app-primary/30 transition-all">
                       <item.icon size={18} />
                     </div>
-                    <span className="font-medium text-white">{item.name}</span>
-                  </div>
+                    <span className="font-medium text-white group-hover:text-app-primary transition-colors">{item.name}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>

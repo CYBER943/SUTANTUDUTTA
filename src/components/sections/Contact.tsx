@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2 } from 'lucide-react';
 
 const SOCIALS = [
-  { name: 'GitHub', icon: Github, href: '#' },
-  { name: 'CodePen', icon: Codepen, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'X / Twitter', icon: Twitter, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
+  { name: 'GitHub', icon: Github, href: 'https://github.com/Sdm940', color: 'hover:text-white hover:border-white hover:bg-white/10' },
+  { name: 'CodePen', icon: Codepen, href: 'https://codepen.io/SDM-TECH-KNOW', color: 'hover:text-white hover:border-white hover:bg-white/10' },
+  { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'hover:text-blue-400 hover:border-blue-400 hover:bg-blue-400/10' },
+  { name: 'X / Twitter', icon: Twitter, href: '#', color: 'hover:text-white hover:border-white hover:bg-white/10' },
+  { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-500 hover:border-red-500 hover:bg-red-500/10' },
 ];
 
 export default function Contact() {
@@ -76,10 +76,12 @@ export default function Contact() {
                 <a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-app-muted hover:text-white hover:border-white hover:bg-white/5 transition-all"
+                  className={`w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-app-muted transition-all duration-300 shadow-lg hover:-translate-y-1 ${social.color}`}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={24} />
                 </a>
               ))}
             </div>
