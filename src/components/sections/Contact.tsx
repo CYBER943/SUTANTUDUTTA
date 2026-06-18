@@ -37,10 +37,10 @@ export default function Contact() {
           
           {/* Contact Details */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
               Let's build something together.
@@ -50,17 +50,17 @@ export default function Contact() {
             </p>
 
             <div className="space-y-6 mb-12 text-white">
-              <a href="mailto:outlook@example.com" className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all group">
+              <a href="mailto:sutantudutta@outlook.com" className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all group">
                 <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Mail size={20} />
                 </div>
                 <div>
                   <p className="text-sm text-app-muted">Outlook Email</p>
-                  <p className="font-medium">contact@sutantu.dev</p>
+                  <p className="font-medium">sutantudutta@outlook.com</p>
                 </div>
               </a>
               
-              <a href="mailto:gmail@example.com" className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all group">
+              <a href="mailto:sutantu.dutta@gmail.com" className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all group">
                 <div className="w-12 h-12 bg-red-500/10 text-red-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Mail size={20} />
                 </div>
@@ -89,10 +89,10 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="bg-app-card border border-white/10 rounded-3xl p-8 relative overflow-hidden"
           >
             <AnimatePresence mode='wait'>

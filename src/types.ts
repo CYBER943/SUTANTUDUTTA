@@ -9,7 +9,10 @@ export interface Project {
 
 export interface ToolItem {
   name: string;
-  icon: any; // Lucide icon reference
+  icon: any; // Lucide or React Icon reference
+  url?: string;
+  color?: string;
+  description?: string;
 }
 
 export interface ToolCategory {

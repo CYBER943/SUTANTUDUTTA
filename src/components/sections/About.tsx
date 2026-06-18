@@ -13,10 +13,10 @@ export default function About() {
     <section id="about" className="py-24 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
@@ -28,10 +28,10 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Story */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="space-y-6 text-app-muted font-light text-lg leading-relaxed"
           >
             <p>
@@ -53,10 +53,10 @@ export default function About() {
             {STATS.map((stat, idx) => (
               <motion.div
                 key={stat.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 + idx * 0.1 }}
                 className="bg-app-card border border-white/5 p-6 rounded-2xl hover:bg-white/5 transition-colors group"
               >
                 <div className="w-10 h-10 bg-app-primary/10 rounded-xl flex items-center justify-center text-app-primary mb-4 group-hover:scale-110 transition-transform">
@@ -71,10 +71,10 @@ export default function About() {
             
             {/* Certifications Card spanning full width */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
               className="col-span-2 bg-gradient-to-br from-app-card to-white/5 border border-white/10 p-6 rounded-2xl flex items-center justify-between"
             >
               <div>
@@ -90,10 +90,10 @@ export default function About() {
 
         {/* Professional Profiles Integration */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
           className="mt-24"
         >
           <h3 className="text-2xl font-display font-bold text-white mb-8 text-center md:text-left">

@@ -11,8 +11,22 @@ import {
   Cpu,
   Zap,
   Mail,
-  MessageSquare
+  MessageSquare,
+  Terminal,
+  Globe
 } from 'lucide-react';
+import {
+  SiOpenai,
+  SiAnthropic,
+  SiGooglegemini,
+  SiGithubcopilot,
+  SiCodepen,
+  SiVercel,
+  SiGooglechrome,
+  SiNotion,
+  SiTodoist,
+  SiGmail
+} from 'react-icons/si';
 import { Project, ToolCategory } from './types';
 
 export const CATEGORIES = [
@@ -77,36 +91,38 @@ export const PROJECTS: Project[] = [
 
 export const TOOLS: ToolCategory[] = [
   {
+    category: "AI & Research",
+    items: [
+      { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Advanced conversational AI by OpenAI." },
+      { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Helpful and harmless AI assistant by Anthropic." },
+      { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "Google's most capable AI model for multimodal tasks." },
+      { name: "Copilot", icon: SiGithubcopilot, url: "https://copilot.microsoft.com", color: "#188038", description: "Your everyday AI companion by Microsoft." },
+      { name: "Grok", icon: Globe, url: "https://grok.com", color: "#ffffff", description: "Real-time AI by xAI with a sense of humor." },
+      { name: "NoteGPT", icon: Zap, url: "https://notegpt.io", color: "#facc15", description: "AI-powered note-taking and summarization." }
+    ]
+  },
+  {
     category: "Development",
     items: [
-      { name: "CodePen", icon: Code2 },
-      { name: "Vercel", icon: Triangle },
-      { name: "Chrome", icon: Chrome },
-      { name: "B12.io", icon: Layout }
+      { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Social development environment for front-end designers." },
+      { name: "Windsurf", icon: Terminal, url: "https://windsurf.com", color: "#3b82f6", description: "The world's first agentic IDE." },
+      { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Frontend cloud platform for seamless deployment." },
+      { name: "B12", icon: Layout, url: "https://b12.io", color: "#8b5cf6", description: "AI website builder for professional services." },
+      { name: "Chrome", icon: SiGooglechrome, url: "https://www.google.com/chrome", color: "#4285F4", description: "Fast, secure, and powerful web browser." }
     ]
   },
   {
     category: "Productivity",
     items: [
-      { name: "Notion", icon: FileText },
-      { name: "Todoist", icon: CheckSquare }
-    ]
-  },
-  {
-    category: "AI",
-    items: [
-      { name: "ChatGPT", icon: Bot },
-      { name: "Claude", icon: Sparkles },
-      { name: "Gemini", icon: BrainCircuit },
-      { name: "Copilot", icon: Cpu },
-      { name: "NoteGPT", icon: Zap }
+      { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "The all-in-one workspace for your notes and tasks." },
+      { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "The world's #1 task manager and to-do list app." }
     ]
   },
   {
     category: "Communication",
     items: [
-      { name: "Outlook", icon: Mail },
-      { name: "Gmail", icon: MessageSquare }
+      { name: "Outlook", icon: Mail, url: "https://outlook.com", color: "#0078d4", description: "Secure email and calendar from Microsoft." },
+      { name: "Gmail", icon: SiGmail, url: "https://gmail.com", color: "#ea4335", description: "Secure, smart, and easy-to-use email by Google." }
     ]
   }
 ];
