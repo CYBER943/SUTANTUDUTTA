@@ -27,7 +27,50 @@ import {
   SiTodoist,
   SiGmail
 } from 'react-icons/si';
-import { Project, ToolCategory } from './types';
+import { Project, ToolCategory, BlogPost } from './types';
+
+export const BLOG_CATEGORIES = [
+  "All",
+  "AI & Technology",
+  "Web Development",
+  "Learning & Productivity",
+  "Project Breakdowns"
+];
+
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "Building an AI-Powered Markdown Editor",
+    excerpt: "A deep dive into integrating the Gemini API and crafting a seamless, real-time typing experience for content creators.",
+    category: "AI & Technology",
+    readTime: "6 min read",
+    date: "June 12, 2026",
+  },
+  {
+    id: 2,
+    title: "How I Built 500+ Projects",
+    excerpt: "My journey through continuous experimentation, learning curves, and the systematic approach I use to ship code consistently.",
+    category: "Learning & Productivity",
+    readTime: "8 min read",
+    date: "May 28, 2026",
+  },
+  {
+    id: 3,
+    title: "Mastering Tailwind CSS & Framer Motion",
+    excerpt: "Techniques for building premium, micro-interactive user interfaces that feel native and highly responsive.",
+    category: "Web Development",
+    readTime: "5 min read",
+    date: "May 15, 2026",
+  },
+  {
+    id: 4,
+    title: "Project Breakdown: Student Task Manager",
+    excerpt: "Architecting a productivity application from scratch: Database schemas, local storage strategies, and state management.",
+    category: "Project Breakdowns",
+    readTime: "10 min read",
+    date: "April 02, 2026",
+  }
+];
 
 export const CATEGORIES = [
   "All",

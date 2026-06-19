@@ -3,6 +3,7 @@ import Footer from './components/layout/Footer';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Projects from './components/sections/Projects';
+import Blog from './components/sections/Blog';
 import Tools from './components/sections/Tools';
 import Contact from './components/sections/Contact';
 import { Toaster } from 'sonner';
@@ -16,6 +17,7 @@ export default function App() {
         <Hero />
         <About />
         <Projects />
+        <Blog />
         <Tools />
         <Contact />
       </main>

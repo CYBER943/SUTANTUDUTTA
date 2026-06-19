@@ -19,3 +19,14 @@ export interface ToolCategory {
   category: string;
   items: ToolItem[];
 }
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content?: string;
+  category: string;
+  readTime: string;
+  date: string;
+  image?: string;
+}
