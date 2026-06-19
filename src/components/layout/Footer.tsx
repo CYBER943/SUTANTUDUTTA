@@ -5,10 +5,11 @@ import { TOOLS } from '../../data';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#050810] pt-32 pb-12 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-[#020817] pt-32 pb-12 overflow-hidden border-t border-[#3B82F6]/15">
       {/* Background Effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-app-primary/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-app-primary/50 to-transparent opacity-50" />
+      <div className="absolute top-0 left-1/4 w-[600px] h-[300px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(59,130,246,0.12)' }} />
+      <div className="absolute top-0 right-1/4 w-[600px] h-[300px] bg-purple-500/10 blur-[120px] rounded-full pointer-events-none" style={{ backgroundColor: 'rgba(139,92,246,0.08)' }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-[#3B82F6]/30 to-transparent opacity-50" />
       
       {/* Animated Top Border Line */}
       <motion.div 
@@ -16,7 +17,7 @@ export default function Footer() {
         whileInView={{ scaleX: 1, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: "circOut" }}
-        className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent origin-left"
+        className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#3B82F6]/20 to-transparent origin-left"
       />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -33,8 +34,7 @@ export default function Footer() {
           {/* Branding Column */}
           <div className="lg:col-span-4 flex flex-col items-start">
             <a href="#home" className="inline-block text-2xl font-display font-bold tracking-tight text-white group mb-6 hover:opacity-80 transition-opacity">
-              Sutantu<span className="text-app-primary">.</span>
-              <span className="text-app-muted">dev</span>
+              Sutantu Dutta
             </a>
             
             <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-medium text-app-muted mb-8 hover:bg-white/10 transition-colors cursor-default">

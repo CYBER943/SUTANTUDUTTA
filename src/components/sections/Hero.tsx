@@ -32,7 +32,7 @@ export default function Hero() {
             className="text-5xl md:text-7xl font-display font-bold tracking-tight text-white leading-[1.1]"
           >
             Hi, I'm <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-app-primary to-app-secondary">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] via-[#8B5CF6] to-[#06B6D4] bg-[length:200%_auto] animate-gradient">
               Sutantu Dutta.
             </span>
           </motion.h1>
@@ -60,14 +60,14 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="flex items-center space-x-2 bg-white text-app-bg px-6 py-3 rounded-full font-medium hover:bg-gray-200 transition-colors"
+              className="flex items-center space-x-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white px-6 py-3 rounded-full font-medium transition-colors border border-transparent"
             >
               <span>View Projects</span>
               <ArrowRight size={18} />
             </a>
             <a
               href="#contact"
-              className="flex items-center space-x-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors"
+              className="flex items-center space-x-2 bg-transparent border border-[#3B82F6] text-white px-6 py-3 rounded-full font-medium hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-shadow"
             >
               <span>Contact Me</span>
             </a>
@@ -81,9 +81,9 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
           className="relative hidden md:block"
         >
-          <div className="absolute inset-0 bg-gradient-to-tr from-app-primary/20 to-transparent rounded-2xl blur-xl" />
-          <div className="relative bg-app-card border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
-            <div className="flex items-center px-4 py-3 bg-white/5 border-b border-white/10">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#3B82F6]/20 to-transparent rounded-2xl blur-xl" />
+          <div className="relative bg-[#111827] border border-[#1F2937] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="flex items-center px-4 py-3 bg-[#0B1120] border-b border-[#1F2937]">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />

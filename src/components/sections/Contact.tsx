@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2, Copy } from 'lucide-react';
+import { toast } from 'sonner';
 
 const SOCIALS = [
   { name: 'GitHub', icon: Github, href: 'https://github.com/Sdm940', color: 'hover:text-white hover:border-white hover:bg-white/10' },
@@ -25,9 +26,15 @@ export default function Contact() {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
+      toast.success('Message sent successfully!');
       setFormData({ name: '', email: '', message: '' });
       setTimeout(() => setIsSuccess(false), 5000);
     }, 1500);
+  };
+
+  const copyToClipboard = (text: string, type: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success(`${type} copied to clipboard`);
   };
 
   return (
@@ -50,25 +57,43 @@ export default function Contact() {
             </p>
 
             <div className="space-y-6 mb-12 text-white">
-              <a href="mailto:sutantudutta@outlook.com" className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all group">
-                <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-app-muted">Outlook Email</p>
-                  <p className="font-medium">sutantudutta@outlook.com</p>
-                </div>
-              </a>
+              <div className="flex items-center space-x-4 p-4 rounded-2xl bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6] hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all group relative">
+                <a href="mailto:sutantudutta@outlook.com" className="flex items-center space-x-4 flex-1">
+                  <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-app-muted">Outlook Email</p>
+                    <p className="font-medium">sutantudutta@outlook.com</p>
+                  </div>
+                </a>
+                <button
+                  onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Outlook Email')}
+                  className="p-2 text-app-muted hover:text-white hover:bg-white/10 rounded-lg transition-colors absolute right-4 opacity-0 group-hover:opacity-100"
+                  aria-label="Copy to clipboard"
+                >
+                  <Copy size={18} />
+                </button>
+              </div>
               
-              <a href="mailto:sutantu.dutta@gmail.com" className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 hover:bg-white/10 transition-all group">
-                <div className="w-12 h-12 bg-red-500/10 text-red-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Mail size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-app-muted">Gmail Account</p>
-                  <p className="font-medium">sutantu.dutta@gmail.com</p>
-                </div>
-              </a>
+              <div className="flex items-center space-x-4 p-4 rounded-2xl bg-[#111827] border border-[#1F2937] hover:border-red-400 hover:shadow-[0_0_15px_rgba(239,68,68,0.15)] transition-all group relative">
+                <a href="mailto:sutantu.dutta@gmail.com" className="flex items-center space-x-4 flex-1">
+                  <div className="w-12 h-12 bg-red-500/10 text-red-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-app-muted">Gmail Account</p>
+                    <p className="font-medium">sutantu.dutta@gmail.com</p>
+                  </div>
+                </a>
+                <button
+                  onClick={() => copyToClipboard('sutantu.dutta@gmail.com', 'Gmail Address')}
+                  className="p-2 text-app-muted hover:text-white hover:bg-white/10 rounded-lg transition-colors absolute right-4 opacity-0 group-hover:opacity-100"
+                  aria-label="Copy to clipboard"
+                >
+                  <Copy size={18} />
+                </button>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
@@ -79,7 +104,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className={`w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-app-muted transition-all duration-300 shadow-lg hover:-translate-y-1 ${social.color}`}
+                  className={`w-14 h-14 rounded-full bg-[#111827] border border-[#1F2937] flex items-center justify-center text-app-muted transition-all duration-300 shadow-lg hover:-translate-y-1 ${social.color}`}
                 >
                   <social.icon size={24} />
                 </a>
@@ -93,7 +118,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="bg-app-card border border-white/10 rounded-3xl p-8 relative overflow-hidden"
+            className="bg-[#111827] border border-[#1F2937] rounded-3xl p-8 relative overflow-hidden"
           >
             <AnimatePresence mode='wait'>
               {isSuccess ? (
@@ -102,9 +127,9 @@ export default function Contact() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-app-card"
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-[#111827]"
                 >
-                  <div className="w-16 h-16 bg-green-500/20 text-green-400 rounded-full flex items-center justify-center mb-6">
+                  <div className="w-16 h-16 bg-green-500/20 text-[#10B981] rounded-full flex items-center justify-center mb-6">
                     <CheckCircle2 size={32} />
                   </div>
                   <h3 className="text-2xl font-display font-bold text-white mb-2">Message Sent!</h3>
@@ -127,7 +152,7 @@ export default function Contact() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-app-primary focus:bg-white/10 transition-all"
+                      className="w-full bg-[#1E293B]/50 border border-[#1F2937] rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] focus:bg-[#1E293B] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all"
                       placeholder="John Doe"
                     />
                   </div>
@@ -139,7 +164,7 @@ export default function Contact() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-app-primary focus:bg-white/10 transition-all"
+                      className="w-full bg-[#1E293B]/50 border border-[#1F2937] rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] focus:bg-[#1E293B] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -151,14 +176,14 @@ export default function Contact() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-app-primary focus:bg-white/10 transition-all resize-none"
+                      className="w-full bg-[#1E293B]/50 border border-[#1F2937] rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] focus:bg-[#1E293B] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all resize-none"
                       placeholder="Tell me about your project..."
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-white text-app-bg font-medium rounded-xl px-4 py-3 flex items-center justify-center space-x-2 hover:bg-gray-200 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full bg-[#3B82F6] text-white font-medium rounded-xl px-4 py-3 flex items-center justify-center space-x-2 hover:bg-[#2563EB] transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                     {!isSubmitting && <Send size={18} />}

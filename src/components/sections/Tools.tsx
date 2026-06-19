@@ -53,7 +53,7 @@ function TiltCard({ item, index }: { item: ToolItem; index: number }) {
         rotateY,
         transformStyle: "preserve-3d",
       }}
-      className="group relative flex flex-col items-center justify-center p-8 rounded-3xl bg-app-card border border-white/10 hover:border-white/20 transition-colors cursor-pointer w-full h-full"
+      className="group relative flex flex-col items-center justify-center p-8 rounded-3xl bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6] hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] transition-all cursor-pointer w-full h-full"
     >
       <div 
         className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none" 
@@ -61,10 +61,10 @@ function TiltCard({ item, index }: { item: ToolItem; index: number }) {
       />
       <div
         style={{ transform: "translateZ(30px)" }}
-        className="flex flex-col items-center gap-5 relative z-10"
+        className="flex flex-col items-center gap-5 relative z-10 group-hover:-translate-y-1 transition-transform"
       >
         <div 
-          className="w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-2 bg-white/5 border border-white/10 group-hover:border-transparent group-hover:bg-white/10"
+          className="w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-white/5 border border-white/10 group-hover:border-transparent group-hover:bg-white/10"
           style={{ 
             color: isHovered ? (item.color || '#ffffff') : '#9ca3af',
             filter: isHovered ? `drop-shadow(0 0 12px ${item.color || '#ffffff'}66)` : 'none'
@@ -84,12 +84,12 @@ function TiltCard({ item, index }: { item: ToolItem; index: number }) {
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
             style={{ transform: "translateZ(50px)" }}
-            className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-56 p-3 bg-[#0B1020] border border-white/20 rounded-xl shadow-2xl z-[100] text-center pointer-events-none"
+            className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-56 p-3 bg-[#1E293B] border border-[#1F2937] rounded-xl shadow-2xl z-[100] text-center pointer-events-none"
           >
             <p className="text-xs text-gray-300 leading-relaxed font-light">
               {item.description}
             </p>
-            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0B1020] border-t border-l border-white/20 rotate-45" />
+            <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#1E293B] border-t border-l border-[#1F2937] rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -117,8 +117,8 @@ export default function Tools() {
 
           {/* Animated Marquee */}
           <div className="relative flex overflow-hidden mb-24 select-none">
-            <div className="absolute top-0 left-0 w-24 md:w-32 h-full bg-gradient-to-r from-[#0B1020] to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-24 md:w-32 h-full bg-gradient-to-l from-[#0B1020] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-24 md:w-32 h-full bg-gradient-to-r from-[#020817] to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-24 md:w-32 h-full bg-gradient-to-l from-[#020817] to-transparent z-10 pointer-events-none" />
             
             <motion.div
               animate={{ x: ["0%", "-50%"] }}

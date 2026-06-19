@@ -57,12 +57,12 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 + idx * 0.1 }}
-                className="bg-app-card border border-white/5 p-6 rounded-2xl hover:bg-white/5 transition-colors group"
+                className="bg-[#111827] border border-[#1F2937] p-6 rounded-2xl hover:border-[#3B82F6] hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all group"
               >
-                <div className="w-10 h-10 bg-app-primary/10 rounded-xl flex items-center justify-center text-app-primary mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 bg-[#3B82F6]/10 rounded-xl flex items-center justify-center text-[#3B82F6] mb-4 group-hover:scale-110 transition-transform">
                   <stat.icon size={20} />
                 </div>
-                <h3 className="text-3xl font-display font-bold text-white mb-1 group-hover:text-app-primary transition-colors">
+                <h3 className="text-3xl font-display font-bold text-white mb-1 group-hover:text-[#06B6D4] transition-colors">
                   {stat.value}
                 </h3>
                 <p className="text-sm text-app-muted">{stat.label}</p>
@@ -75,13 +75,13 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
-              className="col-span-2 bg-gradient-to-br from-app-card to-white/5 border border-white/10 p-6 rounded-2xl flex items-center justify-between"
+              className="col-span-2 bg-gradient-to-br from-[#111827] to-[#0B1120] border border-[#1F2937] p-6 rounded-2xl flex items-center justify-between"
             >
               <div>
                 <h4 className="text-white font-medium mb-1">Certifications & Honors</h4>
                 <p className="text-sm text-app-muted">Recognized by SOF & MyGov India</p>
               </div>
-              <div className="w-12 h-12 bg-app-secondary/20 rounded-full flex items-center justify-center text-app-secondary">
+              <div className="w-12 h-12 bg-[#8B5CF6]/20 rounded-full flex items-center justify-center text-[#8B5CF6]">
                 <Award size={24} />
               </div>
             </motion.div>
@@ -102,7 +102,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-6">
             
             {/* CodePen Card */}
-            <div className="group relative bg-app-card border border-white/10 p-8 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-500">
+            <div className="group relative bg-[#111827] border border-[#1F2937] p-8 rounded-3xl overflow-hidden hover:border-[#3B82F6] hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-500 hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <div className="absolute -right-8 -top-8 w-32 h-32 bg-blue-500/20 blur-3xl rounded-full group-hover:bg-blue-500/30 transition-colors pointer-events-none" />
               
@@ -112,7 +112,7 @@ export default function About() {
                     <path d="M15 8a7 7 0 100 10m0-10v10M15 8l-7 5 7 5M15 8l7 5-7 5"></path>
                   </svg>
                 </div>
-                <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors flex items-center space-x-2">
+                <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="bg-[#3B82F6] hover:bg-[#2563EB] text-white text-sm font-medium px-4 py-2 rounded-full transition-colors flex items-center space-x-2">
                   <span>Visit Profile</span>
                   <BookOpen size={14} className="hidden sm:block" />
                 </a>
@@ -136,9 +136,9 @@ export default function About() {
             </div>
 
             {/* GitHub Card */}
-            <div className="group relative bg-app-card border border-white/10 p-8 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-500">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-white/10 blur-3xl rounded-full group-hover:bg-white/20 transition-colors pointer-events-none" />
+            <div className="group relative bg-[#111827] border border-[#1F2937] p-8 rounded-3xl overflow-hidden hover:border-[#10B981] hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all duration-500 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-green-500/10 blur-3xl rounded-full group-hover:bg-green-500/20 transition-colors pointer-events-none" />
               
               <div className="flex justify-between items-start mb-6 relative z-10">
                 <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white group-hover:bg-white/10 transition-colors">
@@ -146,7 +146,7 @@ export default function About() {
                     <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path>
                   </svg>
                 </div>
-                <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors flex items-center space-x-2">
+                <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="bg-[#10B981] hover:bg-green-600 text-white text-sm font-medium px-4 py-2 rounded-full transition-colors flex items-center space-x-2">
                   <span>Visit Profile</span>
                   <Code size={14} className="hidden sm:block" />
                 </a>

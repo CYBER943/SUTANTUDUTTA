@@ -86,26 +86,26 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 key={project.id}
-                className="group flex flex-col bg-app-card border border-white/10 rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-300"
+                className="group flex flex-col bg-[#111827] border border-[#1F2937] rounded-2xl overflow-hidden hover:border-[#3B82F6] hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Visual Placeholder for Project Image */}
-                <div className="h-48 bg-white/5 relative overflow-hidden">
-                   <div className="absolute inset-0 bg-gradient-to-t from-app-card to-transparent z-10" />
+                <div className="h-48 relative overflow-hidden bg-[#0B1120] border-b border-[#1F2937]">
+                   <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10" />
                    {/* Abstract pattern to make it look premium without an image */}
-                   <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-app-primary via-transparent to-transparent blur-xl group-hover:scale-110 transition-transform duration-700" />
+                   <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#3B82F6] via-transparent to-transparent blur-xl group-hover:scale-110 group-hover:from-[#8B5CF6] transition-transform duration-700" />
                 </div>
 
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="text-xs font-medium text-app-secondary bg-app-secondary/10 px-3 py-1 rounded-full">
+                    <span className="text-xs font-medium text-[#8B5CF6] bg-[#8B5CF6]/10 px-3 py-1 rounded-full border border-[#8B5CF6]/20">
                       {project.category}
                     </span>
-                    <a href={project.link} className="text-app-muted hover:text-white transition-colors">
+                    <a href={project.link} className="text-app-muted hover:text-[#06B6D4] transition-colors">
                       <ExternalLink size={20} />
                     </a>
                   </div>
                   
-                  <h3 className="text-xl font-display font-bold text-white mb-2 group-hover:text-app-primary transition-colors">
+                  <h3 className="text-xl font-display font-bold text-white mb-2 group-hover:text-[#3B82F6] transition-colors">
                     {project.title}
                   </h3>
                   
@@ -115,7 +115,7 @@ export default function Projects() {
                   
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tech.map((t, idx) => (
-                      <span key={idx} className="text-xs text-app-muted bg-white/5 px-2 py-1 rounded">
+                      <span key={idx} className="text-xs text-app-muted bg-[#1E293B] border border-[#1F2937] px-2 py-1 rounded">
                         {t}
                       </span>
                     ))}
@@ -131,7 +131,7 @@ export default function Projects() {
             <p>No projects found matching your criteria.</p>
             <button 
               onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
-              className="mt-4 text-app-primary hover:underline"
+              className="mt-4 text-[#3B82F6] hover:underline"
             >
               Clear filters
             </button>
@@ -144,9 +144,9 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-          className="mt-20 bg-gradient-to-r from-app-card via-app-card to-white/5 border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
+          className="mt-20 bg-gradient-to-br from-[#111827] to-[#0B1120] border border-[#1F2937] hover:border-[#8B5CF6]/50 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden group transition-all duration-500"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-app-primary/10 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#3B82F6]/10 via-transparent to-transparent pointer-events-none group-hover:from-[#8B5CF6]/10 transition-colors duration-500" />
           
           <h3 className="text-2xl md:text-4xl font-display font-bold text-white mb-4 relative z-10">
             Explore 500+ Projects on My CodePen
@@ -160,7 +160,7 @@ export default function Projects() {
               href="https://codepen.io/SDM-TECH-KNOW"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-medium hover:from-blue-500 hover:to-indigo-500 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-[#3B82F6] text-white px-8 py-4 rounded-full font-medium hover:bg-[#2563EB] hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all"
             >
               <ExternalLink size={18} />
               <span>Visit CodePen</span>
@@ -170,7 +170,7 @@ export default function Projects() {
               href="https://github.com/Sdm940"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-transparent border border-[#3B82F6] text-white px-8 py-4 rounded-full font-medium hover:bg-white/5 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all"
             >
               <ExternalLink size={18} />
               <span>View GitHub Repository</span>
