@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2, Copy } from 'lucide-react';
 import { toast } from 'sonner';
@@ -53,50 +53,47 @@ export default function Contact() {
               Let's build something together.
             </h2>
             <p className="text-app-muted text-lg mb-12 max-w-md">
-              Whether you have a project in mind, a question about my work, or just want to say hi, my inbox is always open.
+              Whether you have a project in mind, a question about my work, or just want to say hi, my inbox is always open. Connect with Sutantu Dutta today.
             </p>
 
             <div className="space-y-6 mb-12 text-white">
-              <div className="flex items-center space-x-4 p-4 rounded-2xl bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6] hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all group relative">
-                <a href="mailto:sutantudutta@outlook.com" className="flex items-center space-x-4 flex-1">
-                  <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Mail size={20} />
+              <div className="flex flex-col md:flex-row md:items-center p-6 rounded-3xl bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6]/50 shadow-[0_0_20px_rgba(59,130,246,0.05)] hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] transition-all group relative">
+                <div className="flex items-center space-x-4 flex-1 mb-4 md:mb-0">
+                  <div className="w-14 h-14 bg-blue-500/10 text-[#3B82F6] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <p className="text-sm text-app-muted">Outlook Email</p>
-                    <p className="font-medium">sutantudutta@outlook.com</p>
+                    <div className="flex items-center space-x-2 mb-1">
+                      <p className="text-sm text-app-muted font-medium">Primary Contact</p>
+                      <span className="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse relative">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3B82F6] opacity-75"></span>
+                      </span>
+                    </div>
+                    <p className="text-xl font-medium text-white group-hover:text-[#3B82F6] transition-colors break-all">sutantudutta@outlook.com</p>
                   </div>
-                </a>
-                <button
-                  onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Outlook Email')}
-                  className="p-2 text-app-muted hover:text-white hover:bg-white/10 rounded-lg transition-colors absolute right-4 opacity-0 group-hover:opacity-100"
-                  aria-label="Copy to clipboard"
-                >
-                  <Copy size={18} />
-                </button>
-              </div>
-              
-              <div className="flex items-center space-x-4 p-4 rounded-2xl bg-[#111827] border border-[#1F2937] hover:border-red-400 hover:shadow-[0_0_15px_rgba(239,68,68,0.15)] transition-all group relative">
-                <a href="mailto:sutantu.dutta@gmail.com" className="flex items-center space-x-4 flex-1">
-                  <div className="w-12 h-12 bg-red-500/10 text-red-400 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-app-muted">Gmail Account</p>
-                    <p className="font-medium">sutantu.dutta@gmail.com</p>
-                  </div>
-                </a>
-                <button
-                  onClick={() => copyToClipboard('sutantu.dutta@gmail.com', 'Gmail Address')}
-                  className="p-2 text-app-muted hover:text-white hover:bg-white/10 rounded-lg transition-colors absolute right-4 opacity-0 group-hover:opacity-100"
-                  aria-label="Copy to clipboard"
-                >
-                  <Copy size={18} />
-                </button>
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                  <button
+                    onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Outlook Email')}
+                    className="flex-1 md:flex-none flex items-center justify-center space-x-2 px-4 py-2 border border-[#1F2937] rounded-xl text-app-muted hover:text-white hover:bg-white/5 transition-all"
+                    aria-label="Copy to clipboard"
+                  >
+                    <Copy size={16} />
+                    <span className="text-sm font-medium">Copy</span>
+                  </button>
+                  <a 
+                    href="mailto:sutantudutta@outlook.com"
+                    className="flex-1 md:flex-none flex items-center justify-center space-x-2 px-4 py-2 bg-[#3B82F6] text-white rounded-xl hover:bg-[#2563EB] shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all"
+                  >
+                    <Send size={16} />
+                    <span className="text-sm font-medium">Send Email</span>
+                  </a>
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               {SOCIALS.map((social) => (
                 <a
                   key={social.name}

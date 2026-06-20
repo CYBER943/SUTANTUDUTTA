@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from
 import React, { useRef, useState } from 'react';
 import { ToolItem } from '../../types';
 
-function TiltCard({ item, index }: { item: ToolItem; index: number }) {
+function TiltCard({ item, index }: { item: ToolItem; index: number; key?: string }) {
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);

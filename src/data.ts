@@ -13,7 +13,8 @@ import {
   Mail,
   MessageSquare,
   Terminal,
-  Globe
+  Globe,
+  BookOpen
 } from 'lucide-react';
 import {
   SiOpenai,
@@ -24,16 +25,77 @@ import {
   SiVercel,
   SiGooglechrome,
   SiNotion,
-  SiTodoist,
-  SiGmail
+  SiTodoist
 } from 'react-icons/si';
-import { Project, ToolCategory, BlogPost } from './types';
+import { Project, ToolCategory, BlogPost, TimelineEvent, CaseStudy, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
+
+export const TIMELINE_EVENTS: TimelineEvent[] = [
+  { id: 1, year: "The Beginning", title: "Started exploring technology", description: "Fell in love with computers and began understanding how the digital world operates." },
+  { id: 2, year: "First Steps", title: "Learned HTML & CSS", description: "Wrote my very first lines of code. It was simple, but seeing text appear on a screen felt like magic." },
+  { id: 3, year: "Building", title: "Built first website", description: "Put together a fully functional static website. The spark for frontend development was ignited." },
+  { id: 4, year: "Experimentation", title: "Started using CodePen", description: "Began creating bite-sized UI/UX experiments and sharing them with the community." },
+  { id: 5, year: "Momentum", title: "Built 100+ projects", description: "Consistent daily coding led to shipping over a hundred micro-projects and interactive components." },
+  { id: 6, year: "Competition", title: "Participated in SOF", description: "Challenged my problem-solving skills in competitive logical and technical Olympiads." },
+  { id: 7, year: "Recognition", title: "Completed MyGov Certifications", description: "Validated my technical understanding through official digital literacy and technology programs." },
+  { id: 8, year: "Milestone", title: "Reached 500+ projects", description: "A massive milestone embodying absolute dedication to learning through consistent building." },
+  { id: 9, year: "Present", title: "Exploring AI & Modern Web", description: "Currently diving deep into artificial intelligence, LLMs, and modern scalable web architectures." }
+];
+
+export const CASE_STUDIES: CaseStudy[] = [
+  {
+    id: 1,
+    title: "AI-Powered Task Manager",
+    category: "Full-Stack Development",
+    problem: "Traditional task managers are too static and require manual organizing which reduces overall productivity.",
+    solution: "Developed an intelligent platform that auto-prioritizes tasks using AI based on deadlines, context, and complexity.",
+    technologies: ["React", "TypeScript", "Node.js", "Gemini API", "Tailwind CSS"],
+    challenges: "Handling real-time AI latency and managing complex application state during dynamic re-sorting.",
+    learnings: "Deepened my understanding of optimistic UI updates and effectively prompting external LLMs for structured data output."
+  },
+  {
+    id: 2,
+    title: "Interactive Geometry Visualizer",
+    category: "Educational Tech",
+    problem: "Class 10 students struggle to understand abstract 3D geometry concepts purely from 2D textbooks.",
+    solution: "Built a WebGL-powered interactive canvas allowing students to manipulate, rotate, and construct geometric shapes directly in the browser.",
+    technologies: ["Next.js", "Three.js", "Framer Motion"],
+    challenges: "Optimizing WebGL rendering performance on low-end school devices.",
+    learnings: "Mastered 3D spatial mathematics and efficient rendering loops in the browser."
+  }
+];
+
+export const CURRENT_INTERESTS: CurrentInterest[] = [
+  { id: 1, title: "Portfolio Improvements", icon: Layout, status: "Active" },
+  { id: 2, title: "AI Experiments", icon: Bot, status: "Exploring" },
+  { id: 3, title: "UI Components", icon: Sparkles, status: "Building" },
+  { id: 4, title: "Educational Tools", icon: BookOpen, status: "Ideating" },
+  { id: 5, title: "Productivity Systems", icon: CheckSquare, status: "Refining" }
+];
+
+export const LEARNING_SKILLS: LearningSkill[] = [
+  { id: 1, title: "JavaScript", level: 90, icon: Code2 },
+  { id: 2, title: "UI/UX Design", level: 85, icon: Layout },
+  { id: 3, title: "Artificial Intelligence", level: 75, icon: BrainCircuit },
+  { id: 4, title: "Problem Solving", level: 88, icon: Zap },
+  { id: 5, title: "System Design", level: 70, icon: Cpu },
+  { id: 6, title: "Productivity Systems", level: 95, icon: CheckSquare }
+];
+
+export const PROJECT_CATEGORIES_DATA: ProjectCategoryData[] = [
+  { id: 0, title: "All", count: 500, description: "View all projects and experiments built over time.", icon: Code2 },
+  { id: 1, title: "AI Experiments", count: 42, description: "Exploring LLMs, prompt engineering, and intelligent agents.", icon: Bot },
+  { id: 2, title: "Web Applications", count: 128, description: "Full-stack scalable solutions addressing real-world problems.", icon: Globe },
+  { id: 3, title: "UI/UX Concepts", count: 215, description: "Micro-interactions, animations, and premium interface designs.", icon: Sparkles },
+  { id: 4, title: "Educational Tools", count: 35, description: "Interactive platforms designed to make learning intuitive.", icon: BookOpen },
+  { id: 5, title: "Productivity Apps", count: 80, description: "Tools and systems designed to boost focus and output.", icon: CheckSquare }
+];
 
 export const BLOG_CATEGORIES = [
   "All",
   "AI & Technology",
   "Web Development",
-  "Learning & Productivity",
+  "Productivity",
+  "Learning Journey",
   "Project Breakdowns"
 ];
 
@@ -50,7 +112,7 @@ export const BLOG_POSTS: BlogPost[] = [
     id: 2,
     title: "How I Built 500+ Projects",
     excerpt: "My journey through continuous experimentation, learning curves, and the systematic approach I use to ship code consistently.",
-    category: "Learning & Productivity",
+    category: "Learning Journey",
     readTime: "8 min read",
     date: "May 28, 2026",
   },
@@ -136,36 +198,25 @@ export const TOOLS: ToolCategory[] = [
   {
     category: "AI & Research",
     items: [
-      { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Advanced conversational AI by OpenAI." },
-      { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Helpful and harmless AI assistant by Anthropic." },
-      { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "Google's most capable AI model for multimodal tasks." },
-      { name: "Copilot", icon: SiGithubcopilot, url: "https://copilot.microsoft.com", color: "#188038", description: "Your everyday AI companion by Microsoft." },
-      { name: "Grok", icon: Globe, url: "https://grok.com", color: "#ffffff", description: "Real-time AI by xAI with a sense of humor." },
-      { name: "NoteGPT", icon: Zap, url: "https://notegpt.io", color: "#facc15", description: "AI-powered note-taking and summarization." }
+      { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Research, brainstorming, and learning" },
+      { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Deep analysis and structured thinking" },
+      { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "Research and exploration" },
     ]
   },
   {
     category: "Development",
     items: [
-      { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Social development environment for front-end designers." },
-      { name: "Windsurf", icon: Terminal, url: "https://windsurf.com", color: "#3b82f6", description: "The world's first agentic IDE." },
-      { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Frontend cloud platform for seamless deployment." },
-      { name: "B12", icon: Layout, url: "https://b12.io", color: "#8b5cf6", description: "AI website builder for professional services." },
-      { name: "Chrome", icon: SiGooglechrome, url: "https://www.google.com/chrome", color: "#4285F4", description: "Fast, secure, and powerful web browser." }
+      { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experiments and prototypes" },
+      { name: "Windsurf", icon: Terminal, url: "https://windsurf.com", color: "#3b82f6", description: "Development workflow" },
+      { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment and hosting" },
+      { name: "B12", icon: Layout, url: "https://b12.io", color: "#8b5cf6", description: "Website creation" },
     ]
   },
   {
     category: "Productivity",
     items: [
-      { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "The all-in-one workspace for your notes and tasks." },
-      { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "The world's #1 task manager and to-do list app." }
-    ]
-  },
-  {
-    category: "Communication",
-    items: [
-      { name: "Outlook", icon: Mail, url: "https://outlook.com", color: "#0078d4", description: "Secure email and calendar from Microsoft." },
-      { name: "Gmail", icon: SiGmail, url: "https://gmail.com", color: "#ea4335", description: "Secure, smart, and easy-to-use email by Google." }
+      { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management" },
+      { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "Task management" }
     ]
   }
 ];

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Github, Codepen, ArrowUpRight, CheckCircle2, ChevronRight, Activity, Award, BookOpen, Fingerprint } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SiGithub, SiCodepen } from 'react-icons/si';

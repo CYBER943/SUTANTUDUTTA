@@ -30,3 +30,43 @@ export interface BlogPost {
   date: string;
   image?: string;
 }
+
+export interface TimelineEvent {
+  id: number;
+  year: string;
+  title: string;
+  description: string;
+}
+
+export interface CaseStudy {
+  id: number;
+  title: string;
+  category: string;
+  problem: string;
+  solution: string;
+  technologies: string[];
+  challenges: string;
+  learnings: string;
+}
+
+export interface CurrentInterest {
+  id: number;
+  title: string;
+  icon: any;
+  status: string;
+}
+
+export interface LearningSkill {
+  id: number;
+  title: string;
+  level: number;
+  icon: any;
+}
+
+export interface ProjectCategoryData {
+  id: number;
+  title: string;
+  count: number;
+  description: string;
+  icon: any;
+}

@@ -35,7 +35,7 @@ export default function About() {
             className="space-y-6 text-app-muted font-light text-lg leading-relaxed"
           >
             <p>
-              I am a student developer who enjoys creating websites, experimenting with technology, and learning through hands-on projects.
+              I am Sutantu Dutta, a student developer who enjoys creating websites, experimenting with technology, and learning through hands-on projects.
             </p>
             <p>
               My journey into technology started with a simple curiosity about how things work on the internet. Since then, it has evolved into a deep-seated passion—focusing on web development, artificial intelligence, user experience design, and creative problem-solving.
