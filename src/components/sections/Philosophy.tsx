@@ -7,7 +7,7 @@ export default function Philosophy() {
       <div className="absolute inset-0 bg-[#0B1120]/50" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-[400px] bg-gradient-to-tr from-[#3B82F6]/10 via-[#8B5CF6]/10 to-[#06B6D4]/10 blur-[120px] rounded-full pointer-events-none" />
       
-      <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-center">
+      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10 text-center">
         <motion.div
            initial={{ opacity: 0, scale: 0.8 }}
            whileInView={{ opacity: 1, scale: 1 }}

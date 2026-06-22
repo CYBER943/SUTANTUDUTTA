@@ -15,10 +15,10 @@ import { Toaster } from 'sonner';
 
 export default function App() {
   return (
-    <div className="min-h-screen selection:bg-[#3B82F6]/30 selection:text-white bg-[#020817]">
+    <div className="min-h-screen selection:bg-[#3B82F6]/30 selection:text-white bg-[#020817] w-full overflow-hidden">
       <Toaster theme="dark" toastOptions={{ style: { background: '#111827', border: '1px solid #1F2937', color: '#F8FAFC' } }} />
       <Navbar />
-      <main>
+      <main style={{ paddingTop: 'calc(72px + env(safe-area-inset-top))' }}>
         <Hero />
         <StatsDashboard />
         <About />

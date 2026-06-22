@@ -4,7 +4,7 @@ import { CURRENT_INTERESTS, LEARNING_SKILLS } from '../../data';
 export default function Knowledge() {
   return (
     <section id="knowledge" className="py-24 relative overflow-hidden bg-[#0B1120]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16">
         
         {/* Currently Building */}
         <motion.div

@@ -21,7 +21,7 @@ export default function Blog() {
     <section id="blog" className="py-24 relative overflow-hidden bg-[#020817]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#3B82F6]/5 via-transparent to-transparent pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export default function Blog() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
                       key={post.id}
-                      className="group flex flex-col bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6]/30 rounded-2xl overflow-hidden hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-1"
+                      className="w-full max-w-[400px] md:max-w-none mx-auto overflow-x-hidden group flex flex-col bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6]/30 rounded-2xl overflow-hidden hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-1"
                     >
                       <div className="p-6 md:p-8 flex-1 flex flex-col">
                         <div className="flex items-center justify-between mb-4">

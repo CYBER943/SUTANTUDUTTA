@@ -11,7 +11,7 @@ const STATS = [
 export default function About() {
   return (
     <section id="about" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="w-full max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

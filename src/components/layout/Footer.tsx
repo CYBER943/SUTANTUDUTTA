@@ -21,7 +21,7 @@ export default function Footer() {
         className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#3B82F6]/20 to-transparent origin-left"
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10">
         
         {/* Main Footer Content */}
         <motion.div 

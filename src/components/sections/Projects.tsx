@@ -16,7 +16,7 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-24 relative bg-[#020817]">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="w-full max-w-[1200px] mx-auto px-6">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <motion.div
@@ -96,7 +96,7 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 key={project.id}
-                className="group flex flex-col bg-[#111827] border border-[#1F2937] rounded-2xl overflow-hidden hover:border-[#3B82F6] hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:-translate-y-1 transition-all duration-300"
+                className="w-full max-w-[400px] md:max-w-none mx-auto overflow-x-hidden group flex flex-col bg-[#111827] border border-[#1F2937] rounded-2xl overflow-hidden hover:border-[#3B82F6] hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Visual Placeholder for Project Image */}
                 <div className="h-48 relative overflow-hidden bg-[#0B1120] border-b border-[#1F2937]">

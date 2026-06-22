@@ -100,7 +100,7 @@ function TiltCard({ item, index }: { item: ToolItem; index: number; key?: string
 export default function Tools() {
   return (
     <section id="tools" className="py-24 relative overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -6,7 +6,7 @@ export default function StatsDashboard() {
     <section className="py-16 md:py-24 relative overflow-hidden bg-[#020817] border-y border-[#3B82F6]/10">
       <div className="absolute top-0 right-1/4 w-[500px] h-[300px] bg-[#3B82F6]/5 blur-[120px] rounded-full pointer-events-none" />
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
