@@ -12,13 +12,13 @@ const SOCIALS = [
 ];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) return;
     
     setIsSubmitting(true);
     
@@ -27,7 +27,7 @@ export default function Contact() {
       setIsSubmitting(false);
       setIsSuccess(true);
       toast.success('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setIsSuccess(false), 5000);
     }, 1500);
   };
@@ -163,6 +163,18 @@ export default function Contact() {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-[#1E293B]/50 border border-[#1F2937] rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] focus:bg-[#1E293B] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all"
                       placeholder="john@example.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="subject" className="text-sm font-medium text-app-muted">Subject</label>
+                    <input
+                      id="subject"
+                      type="text"
+                      required
+                      value={formData.subject || ''}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full bg-[#1E293B]/50 border border-[#1F2937] rounded-xl px-4 py-3 text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] focus:bg-[#1E293B] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all"
+                      placeholder="Project Inquiry"
                     />
                   </div>
                   <div className="space-y-2">

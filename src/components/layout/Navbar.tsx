@@ -6,8 +6,8 @@ const NAV_LINKS = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Blog', href: '#blog' },
-  { name: 'Tools', href: '#tools' },
+  { name: 'Skills', href: '#tools' },
+  { name: 'Experience', href: '#knowledge' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -29,11 +29,12 @@ export default function Navbar() {
       setScrollProgress(scrolled);
       
       // Determine active section
-      const sections = NAV_LINKS.map(link => link.name.toLowerCase());
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
+      for (let i = NAV_LINKS.length - 1; i >= 0; i--) {
+        const link = NAV_LINKS[i];
+        const sectionId = link.href.substring(1);
+        const section = document.getElementById(sectionId);
         if (section && window.scrollY >= section.offsetTop - 150) {
-          setActiveSection(sections[i]);
+          setActiveSection(link.name.toLowerCase());
           break;
         }
       }

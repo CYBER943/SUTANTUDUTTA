@@ -42,11 +42,11 @@ export interface CaseStudy {
   id: number;
   title: string;
   category: string;
-  problem: string;
-  solution: string;
+  situation: string;
+  task: string;
+  action: string;
+  result: string;
   technologies: string[];
-  challenges: string;
-  learnings: string;
 }
 
 export interface CurrentInterest {

@@ -100,9 +100,23 @@ export default function Projects() {
               >
                 {/* Visual Placeholder for Project Image */}
                 <div className="h-48 relative overflow-hidden bg-[#0B1120] border-b border-[#1F2937]">
-                   <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10" />
-                   {/* Abstract pattern to make it look premium without an image */}
-                   <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#3B82F6] via-transparent to-transparent blur-xl group-hover:scale-110 group-hover:from-[#8B5CF6] transition-transform duration-700" />
+                  {project.link.includes('codepen.io') ? (
+                    <iframe 
+                      src={project.link.replace('/pen/', '/embed/preview/') + '?default-tab=result&theme-id=dark'} 
+                      title={project.title}
+                      loading="lazy"
+                      className="w-full h-full pointer-events-none"
+                      style={{ border: 'none' }}
+                      sandbox="allow-scripts allow-same-origin"
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent z-10" />
+                      {/* Abstract pattern to make it look premium without an image */}
+                      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#3B82F6] via-transparent to-transparent blur-xl group-hover:scale-110 group-hover:from-[#8B5CF6] transition-transform duration-700" />
+                    </>
+                  )}
+                   <div className="absolute inset-0 bg-transparent z-20" /> {/* Prevents iframe stealing click */}
                 </div>
 
                 <div className="p-6 flex-1 flex flex-col">
@@ -110,9 +124,6 @@ export default function Projects() {
                     <span className="text-xs font-medium text-[#8B5CF6] bg-[#8B5CF6]/10 px-3 py-1 rounded-full border border-[#8B5CF6]/20">
                       {project.category}
                     </span>
-                    <a href={project.link} className="text-app-muted hover:text-[#06B6D4] transition-colors">
-                      <ExternalLink size={20} />
-                    </a>
                   </div>
                   
                   <h3 className="text-xl font-display font-bold text-white mb-2 group-hover:text-[#3B82F6] transition-colors">
@@ -123,13 +134,23 @@ export default function Projects() {
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mt-auto">
+                  <div className="flex flex-wrap gap-2 mt-auto mb-6">
                     {project.tech.map((t, idx) => (
                       <span key={idx} className="text-xs text-app-muted bg-[#1E293B] border border-[#1F2937] px-2 py-1 rounded">
                         {t}
                       </span>
                     ))}
                   </div>
+
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex justify-center items-center py-2 px-4 rounded-xl border border-white/10 hover:border-[#3B82F6] text-app-muted hover:text-white transition-colors bg-white/5 bg-opacity-10 backdrop-blur-md font-medium text-sm gap-2"
+                  >
+                    <span>Visit Project</span>
+                    <ExternalLink size={16} />
+                  </a>
                 </div>
               </motion.div>
             ))}

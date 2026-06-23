@@ -25,9 +25,10 @@ import {
   SiVercel,
   SiGooglechrome,
   SiNotion,
-  SiTodoist
+  SiTodoist,
+  SiGmail
 } from 'react-icons/si';
-import { Project, ToolCategory, BlogPost, TimelineEvent, CaseStudy, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
+import { Project, ToolCategory, ToolItem, BlogPost, TimelineEvent, CaseStudy, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: 1, year: "The Beginning", title: "Started exploring technology", description: "Fell in love with computers and began understanding how the digital world operates." },
@@ -44,41 +45,41 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 1,
-    title: "AI-Powered Task Manager",
-    category: "Full-Stack Development",
-    problem: "Traditional task managers are too static and require manual organizing which reduces overall productivity.",
-    solution: "Developed an intelligent platform that auto-prioritizes tasks using AI based on deadlines, context, and complexity.",
-    technologies: ["React", "TypeScript", "Node.js", "Gemini API", "Tailwind CSS"],
-    challenges: "Handling real-time AI latency and managing complex application state during dynamic re-sorting.",
-    learnings: "Deepened my understanding of optimistic UI updates and effectively prompting external LLMs for structured data output."
+    title: "Cyberpunk Portfolio Concept",
+    category: "Frontend Engineering",
+    situation: "Portfolios often lack memorable interactivity, leading to low engagement from recruiters and peers.",
+    task: "Design a visually compelling, highly interactive portfolio concept capturing a distinct cyberpunk aesthetic while maintaining performance.",
+    action: "Leveraged GSAP for complex timeline animations and smooth scrolling. Implemented a robust dark-mode glassmorphism system using CSS blending and variables.",
+    result: "Achieved a buttery-smooth 60fps interactive experience that significantly increased average session time and user engagement.",
+    technologies: ["HTML", "CSS", "JavaScript", "GSAP"]
   },
   {
     id: 2,
-    title: "Interactive Geometry Visualizer",
-    category: "Educational Tech",
-    problem: "Class 10 students struggle to understand abstract 3D geometry concepts purely from 2D textbooks.",
-    solution: "Built a WebGL-powered interactive canvas allowing students to manipulate, rotate, and construct geometric shapes directly in the browser.",
-    technologies: ["Next.js", "Three.js", "Framer Motion"],
-    challenges: "Optimizing WebGL rendering performance on low-end school devices.",
-    learnings: "Mastered 3D spatial mathematics and efficient rendering loops in the browser."
+    title: "Glassmorphic Dashboard",
+    category: "UI Architecture",
+    situation: "Modern analytics dashboards can feel cluttered and overwhelming, making data hard to digest.",
+    task: "Build a sleek, translucent UI concept that highlights data without distracting the user with heavy bounding boxes.",
+    action: "Utilized Framer Motion for micro-interactions and Tailwind CSS for rapid styling of complex backdrop blurs and layered transparency.",
+    result: "Created a highly readable, premium visualization interface that balances aesthetic flair with functional data display.",
+    technologies: ["React", "Framer Motion", "CSS"]
   }
 ];
 
 export const CURRENT_INTERESTS: CurrentInterest[] = [
-  { id: 1, title: "Portfolio Improvements", icon: Layout, status: "Active" },
-  { id: 2, title: "AI Experiments", icon: Bot, status: "Exploring" },
-  { id: 3, title: "UI Components", icon: Sparkles, status: "Building" },
-  { id: 4, title: "Educational Tools", icon: BookOpen, status: "Ideating" },
-  { id: 5, title: "Productivity Systems", icon: CheckSquare, status: "Refining" }
+  { id: 1, title: "Advanced JavaScript", icon: Code2, status: "Active" },
+  { id: 2, title: "Three.js", icon: Sparkles, status: "Exploring" },
+  { id: 3, title: "AI Development", icon: Bot, status: "Building" },
+  { id: 4, title: "Performance Optimization", icon: Zap, status: "Refining" },
+  { id: 5, title: "Modern Web Animations", icon: Layout, status: "Ideating" }
 ];
 
 export const LEARNING_SKILLS: LearningSkill[] = [
-  { id: 1, title: "JavaScript", level: 90, icon: Code2 },
-  { id: 2, title: "UI/UX Design", level: 85, icon: Layout },
-  { id: 3, title: "Artificial Intelligence", level: 75, icon: BrainCircuit },
-  { id: 4, title: "Problem Solving", level: 88, icon: Zap },
-  { id: 5, title: "System Design", level: 70, icon: Cpu },
-  { id: 6, title: "Productivity Systems", level: 95, icon: CheckSquare }
+  { id: 1, title: "React & Next.js", level: 90, icon: Code2 },
+  { id: 2, title: "Framer Motion & GSAP", level: 85, icon: Layout },
+  { id: 3, title: "Three.js & WebGL", level: 75, icon: BrainCircuit },
+  { id: 4, title: "Tailwind CSS", level: 88, icon: Zap },
+  { id: 5, title: "Performance Tuning", level: 70, icon: Cpu },
+  { id: 6, title: "Generative AI API", level: 95, icon: CheckSquare }
 ];
 
 export const PROJECT_CATEGORIES_DATA: ProjectCategoryData[] = [
@@ -146,77 +147,52 @@ export const CATEGORIES = [
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "AI Chat Interface",
-    description: "A minimal, modern chat interface tailored for speed and clarity. Built with smooth animations and custom markdown support.",
-    category: "AI Experiments",
-    tech: ["React", "TypeScript", "Tailwind", "Gemini API"],
-    link: "#"
+    title: "Cyberpunk Portfolio Concept",
+    description: "A premium, modern interactive experience highlighting micro-interactions, dark mode aesthetics, and glassmorphism.",
+    category: "UI/UX Concepts",
+    tech: ["HTML", "CSS", "JavaScript", "GSAP"],
+    link: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
   },
   {
     id: 2,
-    title: "Student Task Manager",
-    description: "A beautifully designed productivity app for students to track assignments, tests, and manage intensive study sessions.",
-    category: "Productivity Tools",
-    tech: ["React", "Framer Motion", "Supabase"],
-    link: "#"
+    title: "Glassmorphic Dashboard",
+    description: "An interactive dashboard visualizing real-time metrics with a sleek, translucent glassmorphism aesthetic.",
+    category: "Web Applications",
+    tech: ["React", "CSS", "Framer Motion"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
   },
   {
     id: 3,
-    title: "LearnMath Platform",
-    description: "Interactive educational platform aimed at Class 10 students, visualising complex geometry and algebra.",
-    category: "Educational Projects",
-    tech: ["Next.js", "D3.js", "WebGL"],
-    link: "#"
+    title: "Interactive Particle Simulation",
+    description: "A high-performance particle system rendering thousands of points interacting with mouse movements.",
+    category: "AI Experiments",
+    tech: ["Canvas API", "JavaScript", "Math"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
   },
   {
     id: 4,
-    title: "E-Commerce Concept",
-    description: "Sleek, dark-mode concept for a tech hardware e-commerce store focusing on micro-interactions and glassmorphism.",
+    title: "3D WebGL Visualization",
+    description: "Sleek, immersive 3D scene built to showcase modern web technologies and spatial design.",
     category: "UI/UX Concepts",
-    tech: ["Figma", "Tailwind CSS"],
-    link: "#"
-  },
-  {
-    id: 5,
-    title: "Personal Blog CMS",
-    description: "Custom lightweight content management system with a rich text editor and highly optimized performance stats.",
-    category: "Web Applications",
-    tech: ["React", "Node.js", "MongoDB"],
-    link: "#"
-  },
-  {
-    id: 6,
-    title: "Focus Hub",
-    description: "Ambient environment generator allowing developers and students to maintain deep focus with curated sounds.",
-    category: "Web Applications",
-    tech: ["React", "Web Audio API", "Motion"],
-    link: "#"
+    tech: ["Three.js", "WebGL", "JavaScript"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
   }
 ];
 
-export const TOOLS: ToolCategory[] = [
-  {
-    category: "AI & Research",
-    items: [
-      { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Research, brainstorming, and learning" },
-      { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Deep analysis and structured thinking" },
-      { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "Research and exploration" },
-    ]
-  },
-  {
-    category: "Development",
-    items: [
-      { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experiments and prototypes" },
-      { name: "Windsurf", icon: Terminal, url: "https://windsurf.com", color: "#3b82f6", description: "Development workflow" },
-      { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment and hosting" },
-      { name: "B12", icon: Layout, url: "https://b12.io", color: "#8b5cf6", description: "Website creation" },
-    ]
-  },
-  {
-    category: "Productivity",
-    items: [
-      { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management" },
-      { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "Task management" }
-    ]
-  }
+export const TOOLS: ToolItem[] = [
+  { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Research, learning, brainstorming, and development assistance." },
+  { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Deep analysis, reasoning, and structured thinking." },
+  { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "Research, exploration, and AI-powered insights." },
+  { name: "Microsoft Copilot", icon: SiGithubcopilot, url: "https://github.com/features/copilot", color: "#0078D4", description: "Coding assistance and productivity." },
+  { name: "Grok", icon: Bot, url: "https://grok.x.ai", color: "#ffffff", description: "Research and real-time exploration." },
+  { name: "NoteGPT", icon: FileText, url: "https://notegpt.io", color: "#10B981", description: "Summarization and learning support." },
+  { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experiments and UI prototyping." },
+  { name: "Windsurf", icon: Terminal, url: "https://windsurf.com", color: "#3b82f6", description: "AI-powered coding workflow." },
+  { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment and hosting." },
+  { name: "B12.io", icon: Layout, url: "https://b12.io", color: "#8b5cf6", description: "Website building and business solutions." },
+  { name: "Google Chrome", icon: SiGooglechrome, url: "https://google.com/chrome", color: "#4285F4", description: "Development, testing, and research." },
+  { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management and organization." },
+  { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity." },
+  { name: "Outlook", icon: Mail, url: "https://outlook.com", color: "#0078D4", description: "Professional communication." },
+  { name: "Gmail", icon: SiGmail, url: "https://gmail.com", color: "#ea4335", description: "Personal and educational communication." }
 ];

@@ -43,11 +43,7 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className="text-lg md:text-xl text-app-muted font-light max-w-lg leading-relaxed"
           >
-            Student Developer <span className="mx-2 text-white/20">•</span> 
-            AI Enthusiast <span className="mx-2 text-white/20">•</span> 
-            Creative Builder
-            <br className="my-2" />
-            Built 500+ projects and experiments while exploring web development, AI, UI/UX design, and digital innovation.
+            I build fast, interactive and user-focused digital experiences.
             <br className="my-2" />
             Passionate about learning, building, and turning ideas into real-world solutions.
           </motion.p>
@@ -70,6 +66,14 @@ export default function Hero() {
               className="flex items-center space-x-2 bg-transparent border border-[#3B82F6] text-white px-6 py-3 rounded-full font-medium hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-shadow"
             >
               <span>Contact Me</span>
+            </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors"
+            >
+              <span>Download Resume</span>
             </a>
           </motion.div>
         </div>
