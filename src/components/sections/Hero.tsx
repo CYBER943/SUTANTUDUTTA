@@ -1,131 +1,70 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Terminal } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background gradients and shapes */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-app-primary/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-app-secondary/10 rounded-full blur-[120px]" />
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-app-bg">
+      {/* Premium subtle background glow */}
+      <div className="absolute top-0 inset-x-0 h-[500px] pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent" />
+        <div className="absolute top-[-100%] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-white/[0.05] rounded-full blur-[120px]" />
       </div>
 
-      <div className="w-full max-w-[1200px] mx-auto px-6 z-10 grid md:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs font-medium text-app-muted"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span>Available for new projects</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="text-5xl md:text-7xl font-display font-bold tracking-tight text-white leading-[1.1]"
-          >
-            Hi, I'm <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] via-[#8B5CF6] to-[#06B6D4] bg-[length:200%_auto] animate-gradient">
-              Sutantu Dutta.
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="text-lg md:text-xl text-app-muted font-light max-w-lg leading-relaxed"
-          >
-            I build fast, interactive and user-focused digital experiences.
-            <br className="my-2" />
-            Passionate about learning, building, and turning ideas into real-world solutions.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="flex flex-wrap items-center gap-4"
-          >
-            <a
-              href="#projects"
-              className="flex items-center space-x-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white px-6 py-3 rounded-full font-medium transition-colors border border-transparent"
-            >
-              <span>View Projects</span>
-              <ArrowRight size={18} />
-            </a>
-            <a
-              href="#contact"
-              className="flex items-center space-x-2 bg-transparent border border-[#3B82F6] text-white px-6 py-3 rounded-full font-medium hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-shadow"
-            >
-              <span>Contact Me</span>
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center space-x-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors"
-            >
-              <span>Download Resume</span>
-            </a>
-          </motion.div>
-        </div>
-
-        {/* Hero Illustration / Code Block */}
+      <div className="w-full max-w-5xl mx-auto px-6 z-10 flex flex-col items-center text-center">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="relative hidden md:block"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-flex items-center space-x-2 bg-app-card border border-app-border rounded-full px-3 py-1 text-xs font-medium text-app-text-secondary mb-10 hover:bg-app-elevated transition-colors cursor-pointer"
         >
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#3B82F6]/20 to-transparent rounded-2xl blur-xl" />
-          <div className="relative bg-[#111827] border border-[#1F2937] rounded-2xl overflow-hidden shadow-2xl">
-            <div className="flex items-center px-4 py-3 bg-[#0B1120] border-b border-[#1F2937]">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80" />
-              </div>
-              <div className="flex-1 text-center text-xs text-app-muted font-mono flex items-center justify-center space-x-2">
-                <Terminal size={12} />
-                <span>portfolio.ts</span>
-              </div>
-            </div>
-            <div className="p-6 font-mono text-sm overflow-x-auto text-app-muted leading-relaxed">
-              <span className="text-pink-400">const</span> developer <span className="text-app-primary">=</span> {'{'} <br />
-              &nbsp;&nbsp;name: <span className="text-green-300">'Sutantu Dutta'</span>,<br />
-              &nbsp;&nbsp;role: <span className="text-green-300">'Student Developer & AI Enthusiast'</span>,<br />
-              &nbsp;&nbsp;stats: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;projectsBuilt: <span className="text-orange-400">500</span><span className="text-app-muted">+</span>,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;certifications: [<span className="text-green-300">'SOF'</span>, <span className="text-green-300">'MyGov'</span>],<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;activeOn: [<span className="text-green-300">'CodePen'</span>, <span className="text-green-300">'GitHub'</span>]<br />
-              &nbsp;&nbsp;{'}'},<br />
-              &nbsp;&nbsp;mission: <span className="text-green-300">'Build tools that matter.'</span><br />
-              {'}'};<br />
-              <br />
-              <span className="text-pink-400">export default</span> developer;
-            </div>
-          </div>
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+          </span>
+          <span>Crafting modern web experiences</span>
+          <ChevronRight size={12} className="ml-1 opacity-50" />
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          className="text-6xl sm:text-7xl md:text-8xl font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 leading-[1.1] mb-6"
+        >
+          Sutantu Dutta
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="text-lg sm:text-xl md:text-2xl text-app-text-secondary font-light max-w-2xl leading-relaxed tracking-tight mb-12 text-balance"
+        >
+          Self-taught developer and design engineer. <br className="hidden md:block" />
+          I build polished applications focusing on performance, interaction, and premium user experiences.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
+        >
+          <a
+            href="#projects"
+            className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white text-black px-8 py-3.5 rounded-full font-medium transition-transform hover:scale-105 active:scale-95"
+          >
+            <span>View Case Studies</span>
+            <ArrowRight size={16} />
+          </a>
+          <a
+            href="#contact"
+            className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-app-card border border-app-border text-app-text px-8 py-3.5 rounded-full font-medium hover:bg-app-elevated transition-colors"
+          >
+            <span>Start a Conversation</span>
+          </a>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 text-app-muted"
-      >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-app-muted to-transparent" />
-      </motion.div>
     </section>
   );
 }

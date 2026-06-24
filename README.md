@@ -1,131 +1,95 @@
 # Sutantu Dutta
+**Student Developer • AI Enthusiast • Creative Builder**
 
-<div align="center">
+Built 500+ projects and experiments while exploring web development, artificial intelligence, UI/UX design, productivity systems, and digital innovation.
 
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=7C3AED&center=true&vCenter=true&width=700&lines=Student+Developer;AI+Enthusiast;Creative+Builder;Building+ideas+into+real+experiences" alt="Typing SVG" />
-
-  <p><strong>Student Developer • AI Enthusiast • Creative Builder</strong></p>
-
-  <p>
-    <a href="https://github.com/Sdm940"><img src="https://img.shields.io/badge/GitHub-Sdm940-181717?style=for-the-badge&logo=github" alt="GitHub" /></a>
-    <a href="https://codepen.io/SDM-TECH-KNOW"><img src="https://img.shields.io/badge/CodePen-SDM--TECH--KNOW-000000?style=for-the-badge&logo=codepen" alt="CodePen" /></a>
-  </p>
-
-</div>
-
-I’m Sutantu Dutta — a student developer who believes the best way to learn is by building. Over time, I’ve created 500+ projects and experiments across web development, AI, UI/UX, productivity systems, and digital innovation. I’m driven by curiosity, and I enjoy turning ideas into thoughtful, functional experiences.
-
-I’m especially interested in creating products that are useful, elegant, and human-centered. Whether I’m exploring frontend interfaces, experimenting with AI workflows, or refining a personal productivity system, I’m always looking for better ways to solve problems and learn faster.
+Passionate about learning, building, and turning ideas into real-world solutions.
 
 ---
 
-## About Me
+## 👨‍💻 About Me
 
-I’m passionate about technology because it gives me a way to turn imagination into reality. My journey has been shaped by hands-on experimentation, continuous learning, and a strong interest in building things that matter.
+I am driven by a profound **passion for technology** and a relentless **love for building projects**. For me, learning means getting my hands dirty—I learn primarily through experimentation and continuous iteration. Currently, my deepest interests lie at the intersection of **AI and web development**, where I constantly seek out new ways to integrate modern models with highly polished user interfaces.
 
-My approach to development is simple: learn by doing, improve through iteration, and stay curious enough to explore beyond the obvious. I enjoy working across the intersection of design, code, ideas, and user experience — especially when a project allows me to combine creativity with practical problem solving.
-
-What excites me most is the process of making something from scratch, discovering what works, and refining it into something better.
+I approach every project with a **continuous improvement mindset**, treating each line of code as an opportunity to refine my craft and solve problems more elegantly.
 
 ---
 
-## Achievements
+## 🏆 Achievements
 
-- 🚀 Built 500+ projects and experiments
-- 💻 Active CodePen creator
-- 🏆 SOF participant
-- 📜 MyGov certifications
-- 🧠 Continuous learner with a builder mindset
-
----
-
-## What I Build
-
-I’m interested in creating:
-
-- 🌐 Web applications
-- 🎓 Educational tools
-- 🧠 AI-powered experiences
-- 🧩 Productivity systems
-- 🎨 UI/UX experiments
-- ✨ Interactive digital experiences
+- 🚀 **500+ Projects Built**
+- 🏆 **SOF Participant**
+- 📜 **MyGov Certifications**
+- 💻 **Active CodePen Creator**
+- 🧠 **Lifelong Learner**
 
 ---
 
-## Tools I Use
+## 🔗 Featured Platforms
 
-I use a mix of AI tools, development platforms, and productivity apps to support my workflow. They help me think clearly, build faster, and stay organized while exploring new ideas.
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Sdm940)
+[![CodePen Badge](https://img.shields.io/badge/CodePen-000000?style=for-the-badge&logo=codepen&logoColor=white)](https://codepen.io/SDM-TECH-KNOW)
 
-<p align="left">
-  <img src="https://img.shields.io/badge/ChatGPT-74AA9C?style=flat-square&logo=openai&logoColor=white" alt="ChatGPT" />
-  <img src="https://img.shields.io/badge/Claude-CA8A04?style=flat-square&logo=anthropic&logoColor=white" alt="Claude" />
-  <img src="https://img.shields.io/badge/Gemini-4285F4?style=flat-square&logo=google&logoColor=white" alt="Gemini" />
-  <img src="https://img.shields.io/badge/Copilot-0078D4?style=flat-square&logo=microsoft&logoColor=white" alt="Microsoft Copilot" />
-  <img src="https://img.shields.io/badge/Grok-000000?style=flat-square" alt="Grok" />
-  <img src="https://img.shields.io/badge/NoteGPT-6B46C1?style=flat-square" alt="NoteGPT" />
-  <img src="https://img.shields.io/badge/CodePen-000000?style=flat-square&logo=codepen&logoColor=white" alt="CodePen" />
-  <img src="https://img.shields.io/badge/Windsurf-2563EB?style=flat-square" alt="Windsurf" />
-  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
-  <img src="https://img.shields.io/badge/B12-FF5A5F?style=flat-square" alt="B12" />
-  <img src="https://img.shields.io/badge/Chrome-4285F4?style=flat-square&logo=googlechrome&logoColor=white" alt="Google Chrome" />
-  <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=notion&logoColor=white" alt="Notion" />
-  <img src="https://img.shields.io/badge/Todoist-E44332?style=flat-square&logo=todoist&logoColor=white" alt="Todoist" />
-  <img src="https://img.shields.io/badge/Outlook-0078D4?style=flat-square&logo=microsoftoutlook&logoColor=white" alt="Outlook" />
-  <img src="https://img.shields.io/badge/Gmail-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Gmail" />
+---
+
+## 🛠️ Tools I Use
+
+### AI & Research
+![ChatGPT](https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white) ![Claude](https://img.shields.io/badge/Claude-CA8A04?style=for-the-badge&logo=anthropic&logoColor=white) ![Gemini](https://img.shields.io/badge/Gemini-8E75FF?style=for-the-badge&logo=googlegemini&logoColor=white) 
+![Microsoft Copilot](https://img.shields.io/badge/Copilot-0078D4?style=for-the-badge&logo=microsoft&logoColor=white) ![Grok](https://img.shields.io/badge/Grok-000000?style=for-the-badge) ![NoteGPT](https://img.shields.io/badge/NoteGPT-10B981?style=for-the-badge)
+
+### Development
+![CodePen](https://img.shields.io/badge/CodePen-000000?style=for-the-badge&logo=codepen&logoColor=white) ![Windsurf](https://img.shields.io/badge/Windsurf-3b82f6?style=for-the-badge) ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) ![B12.io](https://img.shields.io/badge/B12.io-8b5cf6?style=for-the-badge) ![Google Chrome](https://img.shields.io/badge/Chrome-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)
+
+### Productivity
+![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white) ![Todoist](https://img.shields.io/badge/Todoist-E44332?style=for-the-badge&logo=todoist&logoColor=white)
+
+### Communication
+![Outlook](https://img.shields.io/badge/Outlook-0078D4?style=for-the-badge&logo=microsoftoutlook&logoColor=white) ![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+
+---
+
+## 🎯 Current Focus
+
+I am currently dedicating my time to:
+
+- 🌐 **Web Development**
+- 🤖 **Artificial Intelligence**
+- 🎨 **UI/UX Design**
+- 🧩 **Problem Solving**
+- 🏗️ **Building Real-World Projects**
+
+---
+
+## 💡 Learning Philosophy
+
+**Learning by building** is my core philosophy. I believe that true understanding comes from translating theory into functional products. Cultivating **curiosity** is what gets me started, but **consistency** is what gets me to the finish line. Through deliberate **experimentation** and a commitment to **continuous growth**, I ensure that my skills adapt as fast as the evolving tech landscape.
+
+---
+
+## ✍️ Blog & Knowledge Sharing
+
+I strongly believe in building in public. I enjoy:
+- Sharing in-depth project breakdowns.
+- Documenting my learning experiences and technical hurdles.
+- Exploring and reviewing new AI tools.
+- Writing about technology and digital innovation.
+- Publishing insights to help other aspiring developers.
+
+---
+
+## 🤝 Connect With Me
+
+- **GitHub:** [@Sdm940](https://github.com/Sdm940)
+- **CodePen:** [@SDM-TECH-KNOW](https://codepen.io/SDM-TECH-KNOW)
+
+---
+
+> *"Technology is not just about writing code—it's about solving problems, learning continuously, and creating meaningful experiences."*  
+> — **Sutantu Dutta**
+
+---
+
+<p align="center">
+  <i>Fuelled by curiosity, creativity, innovation, and a lifelong dedication to learning.</i>
 </p>
-
----
-
-## Current Focus
-
-Right now, I’m focused on growing in:
-
-- 🌐 Web development
-- 🤖 Artificial intelligence
-- 🎨 UI/UX design
-- ⚙️ Frontend engineering
-- 🛠️ Building better, more meaningful projects
-- 📚 Learning modern technologies with intention
-
----
-
-## Learning Philosophy
-
-My learning philosophy is rooted in action. I believe that real understanding comes from building, testing, failing, adjusting, and improving. Perfection is not the goal — consistency and curiosity are.
-
-I’ve learned that experimentation often leads to the most valuable insights. The more I explore, the more I discover what I enjoy, what I’m good at, and where I want to grow next.
-
----
-
-## Blog & Knowledge Sharing
-
-I enjoy documenting my journey as much as I enjoy building. I like to:
-
-- ✍️ Write about projects and lessons learned
-- 🧠 Share insights around AI tools and workflows
-- 📚 Reflect on what I’m learning
-- 🔍 Explore technology with a thoughtful, curious lens
-- 🚀 Build in public and grow through shared experience
-
----
-
-## Connect With Me
-
-- GitHub: [@Sdm940](https://github.com/Sdm940)
-- CodePen: [@SDM-TECH-KNOW](https://codepen.io/SDM-TECH-KNOW)
-
----
-
-## Personal Quote
-
-> “Technology is not just about writing code — it’s about solving problems, learning continuously, and creating meaningful experiences.”
->
-> — Sutantu Dutta
-
----
-
-## Closing
-
-I’m driven by curiosity, shaped by creativity, and committed to building a future that is smarter, more thoughtful, and more human-centered. Every project is a step forward — and every idea is a chance to learn something new.
-
-If you’re interested in ideas, experiments, design, AI, or thoughtful development, feel free to connect.

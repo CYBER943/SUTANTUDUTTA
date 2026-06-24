@@ -42,10 +42,10 @@ export interface CaseStudy {
   id: number;
   title: string;
   category: string;
-  situation: string;
-  task: string;
-  action: string;
-  result: string;
+  challenge: string;
+  thinking: string;
+  approach: string;
+  outcome: string;
   technologies: string[];
 }
 
@@ -59,7 +59,7 @@ export interface CurrentInterest {
 export interface LearningSkill {
   id: number;
   title: string;
-  level: number;
+  description: string;
   icon: any;
 }
 

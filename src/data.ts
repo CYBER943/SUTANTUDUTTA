@@ -47,21 +47,21 @@ export const CASE_STUDIES: CaseStudy[] = [
     id: 1,
     title: "Cyberpunk Portfolio Concept",
     category: "Frontend Engineering",
-    situation: "Portfolios often lack memorable interactivity, leading to low engagement from recruiters and peers.",
-    task: "Design a visually compelling, highly interactive portfolio concept capturing a distinct cyberpunk aesthetic while maintaining performance.",
-    action: "Leveraged GSAP for complex timeline animations and smooth scrolling. Implemented a robust dark-mode glassmorphism system using CSS blending and variables.",
-    result: "Achieved a buttery-smooth 60fps interactive experience that significantly increased average session time and user engagement.",
+    challenge: "Developer portfolios often suffer from generic templates and lack memorable interactivity, leading to low engagement from peers and recruiters.",
+    thinking: "I wanted to break away from the minimalist trend and explore a highly stylized, maximalist approach. The goal was to build an immersive digital environment that felt alive, leveraging motion and depth without sacrificing usability.",
+    approach: "I developed a robust glassmorphism system using CSS blending and variables, paired with GSAP for complex timeline animations and smooth scrolling. I structured the layout to ensure the content remained legible despite the heavy aesthetic layering.",
+    outcome: "Achieved a buttery-smooth 60fps interactive experience. The project became a benchmark for my animation skills and significantly increased average session time on my experiments.",
     technologies: ["HTML", "CSS", "JavaScript", "GSAP"]
   },
   {
     id: 2,
     title: "Glassmorphic Dashboard",
     category: "UI Architecture",
-    situation: "Modern analytics dashboards can feel cluttered and overwhelming, making data hard to digest.",
-    task: "Build a sleek, translucent UI concept that highlights data without distracting the user with heavy bounding boxes.",
-    action: "Utilized Framer Motion for micro-interactions and Tailwind CSS for rapid styling of complex backdrop blurs and layered transparency.",
-    result: "Created a highly readable, premium visualization interface that balances aesthetic flair with functional data display.",
-    technologies: ["React", "Framer Motion", "CSS"]
+    challenge: "Modern analytics dashboards can feel cluttered and overwhelming, relying heavily on hard borders and dense color blocking to separate data sets.",
+    thinking: "By removing hard boundaries and utilizing translucent layers, data can be grouped visually through depth rather than lines. The design needed to maintain a premium feel while ensuring data hierarchy was immediately obvious.",
+    approach: "I utilized Framer Motion for micro-interactions and Tailwind CSS for rapid styling. I implemented complex backdrop blurs and layered transparency, ensuring text contrast met accessibility standards despite the dynamic backgrounds.",
+    outcome: "Created a highly readable, premium visualization interface that balances aesthetic flair with functional data display, proving that complex data doesn't require heavy UI constraints.",
+    technologies: ["React", "Framer Motion", "Tailwind CSS"]
   }
 ];
 
@@ -74,12 +74,11 @@ export const CURRENT_INTERESTS: CurrentInterest[] = [
 ];
 
 export const LEARNING_SKILLS: LearningSkill[] = [
-  { id: 1, title: "React & Next.js", level: 90, icon: Code2 },
-  { id: 2, title: "Framer Motion & GSAP", level: 85, icon: Layout },
-  { id: 3, title: "Three.js & WebGL", level: 75, icon: BrainCircuit },
-  { id: 4, title: "Tailwind CSS", level: 88, icon: Zap },
-  { id: 5, title: "Performance Tuning", level: 70, icon: Cpu },
-  { id: 6, title: "Generative AI API", level: 95, icon: CheckSquare }
+  { id: 1, title: "Interaction Design", description: "Crafting fluid animations with Framer Motion and GSAP.", icon: Layout },
+  { id: 2, title: "Frontend Architecture", description: "Structuring scalable React and Next.js applications.", icon: Code2 },
+  { id: 3, title: "Spatial Computing", description: "Experimenting with 3D environments using Three.js and WebGL.", icon: BrainCircuit },
+  { id: 4, title: "Performance Tuning", description: "Optimizing Core Web Vitals and Lighthouse metrics.", icon: Cpu },
+  { id: 5, title: "Generative AI", description: "Integrating LLMs to build intelligent web experiences.", icon: Sparkles }
 ];
 
 export const PROJECT_CATEGORIES_DATA: ProjectCategoryData[] = [
