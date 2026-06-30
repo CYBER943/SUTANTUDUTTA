@@ -2,6 +2,7 @@ import { PROJECTS, CATEGORIES, PROJECT_CATEGORIES_DATA } from '../../data';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, ExternalLink, ArrowRight } from 'lucide-react';
+import { TextReveal } from '../ui/TextReveal';
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -20,13 +21,13 @@ export default function Projects() {
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-4">
-              Experiments & Archive
+              <TextReveal text="Experiments & Archive" />
             </h2>
             <p className="text-app-text-secondary text-lg font-light">
               A curated collection of UI concepts, micro-interactions, and functional prototypes.
@@ -35,8 +36,8 @@ export default function Projects() {
 
           {/* Search Box */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="relative"
@@ -54,8 +55,8 @@ export default function Projects() {
 
         {/* Project Categories Grid */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-16"
@@ -63,8 +64,8 @@ export default function Projects() {
           {PROJECT_CATEGORIES_DATA.map((cat, idx) => (
             <motion.div
               key={cat.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               onClick={() => { setActiveCategory(cat.title); setSearchQuery(''); }}
@@ -91,15 +92,24 @@ export default function Projects() {
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence>
             {filteredProjects.map((project) => (
-              <motion.div
+                <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
                 key={project.id}
-                className="group flex flex-col bg-app-card border border-app-border rounded-3xl overflow-hidden hover:bg-app-elevated transition-all duration-500"
+                className={`group flex flex-col bg-app-card rounded-3xl overflow-hidden relative cursor-pointer ${
+                  project.featured 
+                    ? 'border border-transparent bg-clip-border before:absolute before:inset-0 before:z-[-1] before:rounded-3xl before:bg-gradient-to-r before:from-[#3B82F6] before:to-[#8B5CF6] before:p-[1px] before:content-[""] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]'
+                    : 'border border-app-border hover:border-[#3B82F6] hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]'
+                }`}
               >
+                {/* Gradient sweep overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                
                 {/* Visual Placeholder for Project Image */}
                 <div className="h-56 relative overflow-hidden bg-app-bg border-b border-app-border">
                   {project.link.includes('codepen.io') ? (
@@ -121,7 +131,7 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-transparent z-20" /> {/* Prevents iframe stealing click */}
                 </div>
 
-                <div className="p-8 flex-1 flex flex-col">
+                <div className="p-8 flex-1 flex flex-col relative z-10">
                   <div className="flex justify-between items-start mb-4">
                     <span className="text-xs font-medium text-white/60 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                       {project.category}
@@ -148,10 +158,11 @@ export default function Projects() {
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="inline-flex items-center space-x-2 text-sm font-medium text-white hover:text-white/80 transition-colors group/link"
+                    className="inline-flex items-center space-x-2 text-sm font-medium text-white hover:text-white/80 transition-colors group/link relative w-fit"
                   >
                     <span>View Project</span>
                     <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
+                    <span className="absolute left-0 bottom-0 w-0 h-px bg-white group-hover/link:w-full transition-all duration-300" />
                   </a>
                 </div>
               </motion.div>
@@ -173,8 +184,8 @@ export default function Projects() {
 
         {/* Featured CodePen / GitHub Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className="mt-24 bg-app-card border border-app-border rounded-[2.5rem] p-10 md:p-16 text-center relative overflow-hidden flex flex-col items-center"
@@ -193,7 +204,7 @@ export default function Projects() {
               href="https://codepen.io/SDM-TECH-KNOW"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white text-black px-8 py-3.5 rounded-full font-medium hover:scale-105 active:scale-95 transition-transform"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-app-primary text-white px-8 py-3.5 rounded-full font-medium hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:scale-105 active:scale-95 transition-all"
             >
               <ExternalLink size={16} />
               <span>Visit CodePen</span>
@@ -203,7 +214,7 @@ export default function Projects() {
               href="https://github.com/Sdm940"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-transparent border border-app-border text-white px-8 py-3.5 rounded-full font-medium hover:bg-app-elevated transition-colors"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-transparent border border-[#3B82F6] text-white px-8 py-3.5 rounded-full font-medium hover:bg-[#3B82F6]/10 transition-colors"
             >
               <ExternalLink size={16} />
               <span>View GitHub</span>

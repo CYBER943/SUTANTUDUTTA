@@ -18,13 +18,13 @@ export default function Blog() {
   const recentPosts = filteredPosts.length > 1 ? filteredPosts.slice(1) : [];
 
   return (
-    <section id="blog" className="py-24 relative overflow-hidden bg-[#020817]">
+    <section id="blog" className="py-24 relative overflow-hidden bg-[var(--color-app-bg)]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#3B82F6]/5 via-transparent to-transparent pointer-events-none" />
       
       <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 md:mb-24"
@@ -70,7 +70,7 @@ export default function Blog() {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full md:w-64 bg-[#111827] border border-[#1F2937] rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder:text-app-muted focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-all"
+              className="w-full md:w-64 bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder:text-app-muted focus:outline-none focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] transition-all"
             />
           </div>
         </div>
@@ -86,9 +86,9 @@ export default function Blog() {
             >
               {/* Featured Post */}
               {featuredPost && (
-                <div className="group flex flex-col lg:flex-row bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6]/50 rounded-3xl overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 hover:-translate-y-1">
+                <div className="group flex flex-col lg:flex-row bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] hover:border-[#3B82F6]/50 rounded-3xl overflow-hidden hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-500 hover:-translate-y-1">
                   <div className="lg:w-1/2 h-64 lg:h-auto relative overflow-hidden bg-[#0B1120]">
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent z-10 lg:bg-gradient-to-r lg:from-transparent lg:to-[#111827]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-app-card)] via-transparent to-transparent z-10 lg:bg-gradient-to-r lg:from-transparent lg:to-[var(--color-app-card)]" />
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#8B5CF6] via-transparent to-transparent blur-xl group-hover:scale-110 group-hover:from-[#06B6D4] transition-transform duration-700" />
                   </div>
                   
@@ -107,7 +107,7 @@ export default function Blog() {
                       {featuredPost.excerpt}
                     </p>
                     
-                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-[#1F2937]">
+                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-[var(--color-app-border)]">
                        <div className="flex items-center space-x-4 text-xs text-app-muted">
                         <span className="flex items-center"><Calendar size={14} className="mr-1.5" />{featuredPost.date}</span>
                         <span className="w-1 h-1 rounded-full bg-white/20" />
@@ -126,12 +126,12 @@ export default function Blog() {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {recentPosts.map((post, idx) => (
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+                      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
                       key={post.id}
-                      className="w-full max-w-[400px] md:max-w-none mx-auto overflow-x-hidden group flex flex-col bg-[#111827] border border-[#1F2937] hover:border-[#3B82F6]/30 rounded-2xl overflow-hidden hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-1"
+                      className="w-full max-w-[400px] md:max-w-none mx-auto overflow-x-hidden group flex flex-col bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] hover:border-[#3B82F6]/30 rounded-2xl overflow-hidden hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all duration-300 hover:-translate-y-1"
                     >
                       <div className="p-6 md:p-8 flex-1 flex flex-col">
                         <div className="flex items-center justify-between mb-4">
@@ -148,7 +148,7 @@ export default function Blog() {
                           {post.excerpt}
                         </p>
                         
-                        <div className="flex items-center justify-between mt-auto pt-6 border-t border-[#1F2937]/50">
+                        <div className="flex items-center justify-between mt-auto pt-6 border-t border-[var(--color-app-border)]/50">
                            <div className="flex items-center space-x-3 text-[11px] text-app-muted">
                             <span className="flex items-center"><Calendar size={12} className="mr-1" />{post.date}</span>
                           </div>
@@ -165,7 +165,7 @@ export default function Blog() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-center py-20 bg-[#111827] border border-[#1F2937] rounded-3xl"
+              className="text-center py-20 bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] rounded-3xl"
             >
               <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-app-muted">
                 <Search size={24} />

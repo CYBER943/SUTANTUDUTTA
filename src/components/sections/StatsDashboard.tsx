@@ -1,5 +1,27 @@
-import { motion } from 'motion/react';
+import { motion, useInView, animate } from 'motion/react';
 import { Activity, Award, BookOpen } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+function AnimatedNumber({ value, suffix = "" }: { value: number, suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const controls = animate(0, value, {
+        duration: 2.5,
+        ease: "easeOut",
+        onUpdate(v) {
+          setDisplayValue(Math.floor(v));
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, value]);
+
+  return <span ref={ref}>{displayValue}{suffix}</span>;
+}
 
 export default function StatsDashboard() {
   return (
@@ -8,15 +30,17 @@ export default function StatsDashboard() {
       
       <div className="w-full max-w-6xl mx-auto px-6 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
         >
           {/* Dashboard Cards */}
           <div className="bg-app-card border border-app-border hover:bg-app-elevated rounded-3xl p-8 transition-all duration-300 group hover:-translate-y-1">
-            <p className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-white mb-2 transition-colors">500+</p>
+            <p className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-white mb-2 transition-colors">
+              <AnimatedNumber value={500} suffix="+" />
+            </p>
             <p className="text-[11px] uppercase tracking-wider text-app-text-secondary font-medium flex items-center">
               <Activity size={14} className="text-white/50 mr-2" /> Projects Built
             </p>

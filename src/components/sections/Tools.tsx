@@ -1,142 +1,107 @@
 import { TOOLS } from '../../data';
-import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
-import React, { useRef, useState } from 'react';
-import { ToolItem } from '../../types';
+import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import AutoScroll from 'embla-carousel-auto-scroll';
+import { TextReveal } from '../ui/TextReveal';
 
-function TiltCard({ item, index }: { item: ToolItem; index: number; key?: string }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
-
+function ToolItem({ item }: { item: typeof TOOLS[0] }) {
   const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    x.set(0);
-    y.set(0);
-  };
 
   return (
     <motion.a
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.05 }}
-      ref={ref}
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
+      onMouseLeave={() => setIsHovered(false)}
+      className="flex items-center gap-3 px-10 transition-transform duration-300"
+      animate={{ 
+        y: [0, -8, 0],
       }}
-      className="group relative flex flex-col items-center justify-center p-8 rounded-[2rem] bg-app-card border border-app-border hover:bg-app-elevated transition-all cursor-pointer w-full h-full"
+      transition={{ 
+        duration: 4 + Math.random() * 2, 
+        repeat: Infinity, 
+        ease: "easeInOut",
+        delay: Math.random() * 2 
+      }}
+      style={{
+        transform: isHovered ? 'scale(1.05) rotate(2deg)' : 'scale(1) rotate(0deg)'
+      }}
     >
-      <div 
-        className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none" 
-        style={{ backgroundColor: item.color || '#ffffff' }}
-      />
-      <div
-        style={{ transform: "translateZ(30px)" }}
-        className="flex flex-col items-center gap-5 relative z-10 group-hover:-translate-y-2 transition-transform duration-500"
+      <motion.div 
+        className="flex items-center justify-center transition-all duration-300"
+        style={{ 
+          filter: isHovered ? `drop-shadow(0 0 16px ${item.color}80)` : 'none'
+        }}
+        animate={{
+          scale: [1, 1.05, 1],
+          opacity: [1, 0.8, 1]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       >
-        <div 
-          className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 bg-white/5 border border-white/10 group-hover:scale-110"
-          style={{ 
-            color: isHovered ? (item.color || '#ffffff') : 'var(--color-app-muted)',
-            filter: isHovered ? `drop-shadow(0 0 10px ${item.color || '#ffffff'}60)` : 'none',
-            borderColor: isHovered ? `${item.color || '#ffffff'}30` : 'rgba(255,255,255,0.05)'
-          }}
-        >
-          <item.icon size={28} strokeWidth={1.5} className="transition-all duration-300" />
-        </div>
-        <div className="flex flex-col items-center text-center gap-2">
-          <span className="font-medium text-white tracking-tight transition-colors duration-300" style={{ color: isHovered ? (item.color || '#ffffff') : '#ffffff' }}>
-            {item.name}
-          </span>
-          {item.description && (
-            <p className="text-xs text-app-text-secondary max-w-[140px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-0 group-hover:h-auto overflow-hidden text-balance">
-              {item.description}
-            </p>
-          )}
-        </div>
-      </div>
+        <item.icon 
+          size={36} 
+          style={{ color: item.color }} 
+        />
+      </motion.div>
+      <span 
+        className="text-3xl font-display font-medium whitespace-nowrap transition-colors duration-300"
+        style={{ color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.8)' }}
+      >
+        {item.name}
+      </span>
     </motion.a>
   );
 }
 
 export default function Tools() {
-  return (
-    <section className="py-32 relative overflow-hidden bg-app-bg">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[500px] bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
+  const [emblaRef] = useEmblaCarousel({ loop: true, dragFree: true }, [
+    AutoScroll({ playOnInit: true, speed: 1.5, stopOnInteraction: false, stopOnMouseEnter: true })
+  ]);
 
-      <div className="w-full max-w-6xl mx-auto px-6 relative z-10">
+  return (
+    <section className="py-32 relative overflow-hidden bg-[var(--color-app-bg)] border-t border-white/[0.04]">
+      {/* Animated Background */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#4F46E5]/10 blur-[120px] rounded-full mix-blend-screen animate-gradient" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[60%] bg-[#06B6D4]/10 blur-[120px] rounded-full mix-blend-screen animate-gradient" style={{ animationDelay: '2s' }} />
+        <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
+      </div>
+
+      <div className="w-full mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-16"
+          className="text-center mb-16 px-6"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-4">
-            Tools I Use
+          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6">
+            <TextReveal text="Tools I Use" />
           </h2>
-          <p className="text-app-text-secondary text-lg max-w-2xl mx-auto font-light leading-relaxed mb-16">
-            The tools, platforms, and technologies that support my learning, creativity, development workflow, and productivity.
+          <p className="text-[#94A3B8] text-lg max-w-3xl mx-auto font-light leading-relaxed">
+            The technologies, AI assistants, and platforms that power my workflow—from learning and coding to designing, deploying, and managing projects.
           </p>
-
-          {/* Animated Marquee */}
-          <div className="relative flex overflow-hidden mb-24 select-none mask-image-fade">
-            <div className="absolute top-0 left-0 w-24 md:w-32 h-full bg-gradient-to-r from-app-bg to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-24 md:w-32 h-full bg-gradient-to-l from-app-bg to-transparent z-10 pointer-events-none" />
-            
-            <motion.div
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ ease: "linear", duration: 30, repeat: Infinity }}
-              className="flex items-center space-x-12 md:space-x-20 w-max"
-            >
-              {[...TOOLS, ...TOOLS].map((item, idx) => (
-                <div key={idx} className="flex items-center space-x-3 text-app-muted hover:text-white transition-colors">
-                  <motion.div
-                    whileHover={{ rotate: 15, scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <item.icon size={32} />
-                  </motion.div>
-                  <span className="text-lg font-display font-bold">{item.name}</span>
-                </div>
-              ))}
-            </motion.div>
-          </div>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6 relative z-20">
-          {TOOLS.map((item, idx) => (
-            <TiltCard key={item.name} item={item} index={idx} />
-          ))}
+        {/* Horizontal Scrolling Marquee */}
+        <div className="relative overflow-hidden group">
+          {/* Edge Gradients for Smooth Fade */}
+          <div className="absolute top-0 left-0 w-24 sm:w-48 h-full bg-gradient-to-r from-[var(--color-app-bg)] to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-24 sm:w-48 h-full bg-gradient-to-l from-[var(--color-app-bg)] to-transparent z-10 pointer-events-none" />
+          
+          <div className="overflow-hidden py-12 cursor-grab active:cursor-grabbing" ref={emblaRef}>
+            <div className="flex backface-hidden touch-pan-y items-center">
+              {TOOLS.map((item, idx) => (
+                <ToolItem key={`${item.name}-${idx}`} item={item} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

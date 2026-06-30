@@ -26,9 +26,13 @@ import {
   SiGooglechrome,
   SiNotion,
   SiTodoist,
-  SiGmail
+  SiGmail,
+  SiGithub,
+  SiDropbox
 } from 'react-icons/si';
-import { Project, ToolCategory, ToolItem, BlogPost, TimelineEvent, CaseStudy, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
+import { VscVscode } from 'react-icons/vsc';
+import { DevinIcon, B12Icon, GrokIcon, NoteGPTIcon, GoogleAIStudioIcon } from './components/icons/CustomIcons';
+import { Project, ToolItem, BlogPost, TimelineEvent, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: 1, year: "The Beginning", title: "Started exploring technology", description: "Fell in love with computers and began understanding how the digital world operates." },
@@ -40,29 +44,6 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
   { id: 7, year: "Recognition", title: "Completed MyGov Certifications", description: "Validated my technical understanding through official digital literacy and technology programs." },
   { id: 8, year: "Milestone", title: "Reached 500+ projects", description: "A massive milestone embodying absolute dedication to learning through consistent building." },
   { id: 9, year: "Present", title: "Exploring AI & Modern Web", description: "Currently diving deep into artificial intelligence, LLMs, and modern scalable web architectures." }
-];
-
-export const CASE_STUDIES: CaseStudy[] = [
-  {
-    id: 1,
-    title: "Cyberpunk Portfolio Concept",
-    category: "Frontend Engineering",
-    challenge: "Developer portfolios often suffer from generic templates and lack memorable interactivity, leading to low engagement from peers and recruiters.",
-    thinking: "I wanted to break away from the minimalist trend and explore a highly stylized, maximalist approach. The goal was to build an immersive digital environment that felt alive, leveraging motion and depth without sacrificing usability.",
-    approach: "I developed a robust glassmorphism system using CSS blending and variables, paired with GSAP for complex timeline animations and smooth scrolling. I structured the layout to ensure the content remained legible despite the heavy aesthetic layering.",
-    outcome: "Achieved a buttery-smooth 60fps interactive experience. The project became a benchmark for my animation skills and significantly increased average session time on my experiments.",
-    technologies: ["HTML", "CSS", "JavaScript", "GSAP"]
-  },
-  {
-    id: 2,
-    title: "Glassmorphic Dashboard",
-    category: "UI Architecture",
-    challenge: "Modern analytics dashboards can feel cluttered and overwhelming, relying heavily on hard borders and dense color blocking to separate data sets.",
-    thinking: "By removing hard boundaries and utilizing translucent layers, data can be grouped visually through depth rather than lines. The design needed to maintain a premium feel while ensuring data hierarchy was immediately obvious.",
-    approach: "I utilized Framer Motion for micro-interactions and Tailwind CSS for rapid styling. I implemented complex backdrop blurs and layered transparency, ensuring text contrast met accessibility standards despite the dynamic backgrounds.",
-    outcome: "Created a highly readable, premium visualization interface that balances aesthetic flair with functional data display, proving that complex data doesn't require heavy UI constraints.",
-    technologies: ["React", "Framer Motion", "Tailwind CSS"]
-  }
 ];
 
 export const CURRENT_INTERESTS: CurrentInterest[] = [
@@ -151,6 +132,7 @@ export const PROJECTS: Project[] = [
     category: "UI/UX Concepts",
     tech: ["HTML", "CSS", "JavaScript", "GSAP"],
     link: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
+    featured: true
   },
   {
     id: 2,
@@ -159,6 +141,7 @@ export const PROJECTS: Project[] = [
     category: "Web Applications",
     tech: ["React", "CSS", "Framer Motion"],
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
+    featured: true
   },
   {
     id: 3,
@@ -179,19 +162,20 @@ export const PROJECTS: Project[] = [
 ];
 
 export const TOOLS: ToolItem[] = [
-  { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Research, learning, brainstorming, and development assistance." },
-  { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Deep analysis, reasoning, and structured thinking." },
-  { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "Research, exploration, and AI-powered insights." },
-  { name: "Microsoft Copilot", icon: SiGithubcopilot, url: "https://github.com/features/copilot", color: "#0078D4", description: "Coding assistance and productivity." },
-  { name: "Grok", icon: Bot, url: "https://grok.x.ai", color: "#ffffff", description: "Research and real-time exploration." },
-  { name: "NoteGPT", icon: FileText, url: "https://notegpt.io", color: "#10B981", description: "Summarization and learning support." },
-  { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experiments and UI prototyping." },
-  { name: "Windsurf", icon: Terminal, url: "https://windsurf.com", color: "#3b82f6", description: "AI-powered coding workflow." },
-  { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment and hosting." },
-  { name: "B12.io", icon: Layout, url: "https://b12.io", color: "#8b5cf6", description: "Website building and business solutions." },
-  { name: "Google Chrome", icon: SiGooglechrome, url: "https://google.com/chrome", color: "#4285F4", description: "Development, testing, and research." },
-  { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management and organization." },
+  { name: "Visual Studio Code", icon: VscVscode, url: "https://code.visualstudio.com", color: "#007ACC", description: "Primary code editor for development and debugging." },
+  { name: "Devin", icon: DevinIcon, url: "https://devin.ai", color: "#ffffff", description: "AI software engineering assistant for development workflows." },
+  { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experimentation and rapid prototyping." },
+  { name: "GitHub", icon: SiGithub, url: "https://github.com", color: "#ffffff", description: "Version control, collaboration, and project hosting." },
+  { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment, hosting, and performance optimization." },
+  { name: "B12.io", icon: B12Icon, url: "https://www.b12.io", color: "#8b5cf6", description: "Website creation and business website management." },
+  { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Coding, research, learning, and problem solving." },
+  { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Reasoning, writing, and structured analysis." },
+  { name: "Microsoft Copilot", icon: SiGithubcopilot, url: "https://copilot.microsoft.com", color: "#0078D4", description: "AI-powered coding assistance and productivity." },
+  { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "AI research, multimodal assistance, and ideation." },
+  { name: "Google AI Studio", icon: GoogleAIStudioIcon, url: "https://aistudio.google.com", color: "#4285F4", description: "Gemini API development, prompt engineering, and AI prototyping." },
+  { name: "Grok", icon: GrokIcon, url: "https://grok.com", color: "#ffffff", description: "AI assistant for reasoning, coding, and real-time insights." },
+  { name: "NoteGPT", icon: NoteGPTIcon, url: "https://notegpt.io", color: "#10B981", description: "AI-powered note-taking, summarization, and learning." },
+  { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management, documentation, and planning." },
   { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity." },
-  { name: "Outlook", icon: Mail, url: "https://outlook.com", color: "#0078D4", description: "Professional communication." },
-  { name: "Gmail", icon: SiGmail, url: "https://gmail.com", color: "#ea4335", description: "Personal and educational communication." }
+  { name: "Dropbox", icon: SiDropbox, url: "https://www.dropbox.com", color: "#0061FF", description: "Cloud storage, synchronization, backup, and file sharing." }
 ];

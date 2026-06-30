@@ -5,6 +5,7 @@ export interface Project {
   category: string;
   tech: string[];
   link: string;
+  featured?: boolean;
 }
 
 export interface ToolItem {
@@ -13,11 +14,6 @@ export interface ToolItem {
   url?: string;
   color?: string;
   description?: string;
-}
-
-export interface ToolCategory {
-  category: string;
-  items: ToolItem[];
 }
 
 export interface BlogPost {
@@ -36,17 +32,6 @@ export interface TimelineEvent {
   year: string;
   title: string;
   description: string;
-}
-
-export interface CaseStudy {
-  id: number;
-  title: string;
-  category: string;
-  challenge: string;
-  thinking: string;
-  approach: string;
-  outcome: string;
-  technologies: string[];
 }
 
 export interface CurrentInterest {

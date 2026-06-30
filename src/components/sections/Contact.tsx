@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2, Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import { TextReveal } from '../ui/TextReveal';
 
 const SOCIALS = [
   { name: 'GitHub', icon: Github, href: 'https://github.com/Sdm940', color: 'hover:text-white hover:border-white hover:bg-white/5' },
@@ -44,13 +45,13 @@ export default function Contact() {
           
           {/* Contact Details */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6">
-              Let's connect.
+              <TextReveal text="Let's connect." />
             </h2>
             <p className="text-app-text-secondary text-lg mb-12 max-w-md font-light leading-relaxed">
               Whether you have a project in mind, a question about my work, or just want to say hi, my inbox is always open.
@@ -95,24 +96,27 @@ export default function Contact() {
 
             <div className="flex flex-wrap gap-4">
               {SOCIALS.map((social) => (
-                <a
+                <motion.a
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className={`w-12 h-12 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-muted transition-all duration-300 hover:-translate-y-1 ${social.color}`}
+                  className={`relative overflow-hidden w-12 h-12 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-muted transition-all duration-300 group ${social.color}`}
                 >
-                  <social.icon size={20} strokeWidth={1.5} />
-                </a>
+                  <span className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300 pointer-events-none" />
+                  <social.icon size={20} strokeWidth={1.5} className="relative z-10" />
+                </motion.a>
               ))}
             </div>
           </motion.div>
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="bg-app-card border border-app-border rounded-[2rem] p-8 md:p-10 relative overflow-hidden"
@@ -150,7 +154,7 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
+                        className="w-full bg-[var(--color-app-card)] backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] transition-all"
                         placeholder="John Doe"
                       />
                     </div>
@@ -162,7 +166,7 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
+                        className="w-full bg-[var(--color-app-card)] backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] transition-all"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -175,7 +179,7 @@ export default function Contact() {
                       required
                       value={formData.subject || ''}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all"
+                      className="w-full bg-[var(--color-app-card)] backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] transition-all"
                       placeholder="Project Inquiry"
                     />
                   </div>
@@ -187,17 +191,20 @@ export default function Contact() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-white/30 focus:bg-white/10 transition-all resize-none"
+                      className="w-full bg-[var(--color-app-card)] backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#3B82F6] transition-all resize-none"
                       placeholder="Tell me about your project..."
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-white text-black font-medium rounded-xl px-4 py-3.5 flex items-center justify-center space-x-2 hover:bg-white/90 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full relative overflow-hidden bg-app-primary text-white font-medium rounded-xl px-4 py-3.5 flex items-center justify-center space-x-2 hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
                   >
-                    <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
-                    {!isSubmitting && <Send size={16} />}
+                    <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                      {!isSubmitting && <Send size={16} />}
+                    </span>
                   </button>
                 </motion.form>
               )}

@@ -6,8 +6,13 @@ import { TOOLS } from '../../data';
 
 export default function Footer() {
   return (
-    <footer className="relative bg-app-bg pt-32 pb-12 overflow-hidden border-t border-app-border">
+    <footer className="relative bg-[#020817] pt-32 pb-12 overflow-hidden border-t border-white/[0.06]">
       {/* Background Effects */}
+      <div className="absolute top-[-400px] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[800px] pointer-events-none flex justify-center">
+        <div className="absolute w-[600px] h-[600px] bg-[#3B82F6]/[0.12] rounded-full blur-[100px] -translate-x-[200px]" />
+        <div className="absolute w-[600px] h-[600px] bg-[#8B5CF6]/[0.08] rounded-full blur-[100px] translate-x-[200px]" />
+      </div>
+      
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
       
       {/* Animated Top Border Line */}

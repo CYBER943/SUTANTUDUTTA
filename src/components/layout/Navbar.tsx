@@ -50,7 +50,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`fixed top-0 left-0 w-full z-[1000] h-[72px] flex flex-col justify-center transition-all duration-300 ${
-          isScrolled ? 'bg-app-bg/80 backdrop-blur-xl border-b border-app-border' : 'bg-transparent'
+          isScrolled ? 'bg-[#020817]/75 backdrop-blur-[12px] border-b border-white/[0.05]' : 'bg-transparent'
         }`}
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
@@ -68,25 +68,30 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors ${
-                    isActive ? 'text-white' : 'text-app-muted hover:text-white/80'
+                  className={`relative text-sm font-medium transition-colors group py-2 ${
+                    isActive ? 'text-white' : 'text-app-text-secondary hover:text-white'
                   }`}
                 >
                   {link.name}
+                  <span className={`absolute left-0 bottom-0 h-0.5 bg-[#3B82F6] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                  {/* Subtle glow on hover */}
+                  <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 rounded-md -z-10 transition-opacity duration-300 scale-110" />
                 </a>
               );
             })}
             <a
               href="#contact"
-              className="px-5 py-2.5 text-sm font-medium rounded-full bg-white text-black hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="relative overflow-hidden px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] text-white shadow-[0_0_15px_rgba(79,70,229,0.25)] hover:shadow-[0_0_25px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
             >
-              Let's Talk
+              <span className="relative z-10">Let's Talk</span>
+              {/* Gradient sweep effect */}
+              <span className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] to-[#4F46E5] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden text-white relative z-[1150] p-2 -mr-2"
+            className="md:hidden text-white relative z-[1150] p-2 -mr-2 interactive"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -98,9 +103,6 @@ export default function Navbar() {
             </motion.div>
           </button>
         </div>
-
-        {/* Scroll Progress Bar */}
-        <div className="absolute bottom-0 left-0 h-[1px] bg-white z-[1010] transition-all duration-75" style={{ width: `${scrollProgress}%` }} />
       </motion.nav>
 
       {/* Mobile Navigation Dropdown */}
@@ -135,7 +137,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`text-2xl font-display font-medium transition-colors ${
-                      isActive ? 'text-white' : 'text-app-text-secondary hover:text-white'
+                      isActive ? 'text-app-primary' : 'text-app-text-secondary hover:text-app-text'
                     }`}
                   >
                     {link.name}
@@ -148,7 +150,7 @@ export default function Navbar() {
               transition={{ delay: 0.1 + (NAV_LINKS.length * 0.1) }}
               href="#contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-8 px-8 py-3 text-lg font-medium rounded-full bg-white text-black hover:bg-white/90 transition-colors"
+              className="mt-8 px-8 py-3 text-lg font-medium rounded-full bg-app-primary text-white hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:shadow-[0_0_25px_rgba(59,130,246,0.35)] transition-colors"
             >
               Let's Talk
             </motion.a>
