@@ -5,57 +5,39 @@ import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
 import { TextReveal } from '../ui/TextReveal';
 
-function ToolItem({ item }: { item: typeof TOOLS[0] }) {
+function ToolItem({ item }: { item: typeof TOOLS[0]; key?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.a
+    <a
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="flex items-center gap-3 px-10 transition-transform duration-300"
-      animate={{ 
-        y: [0, -8, 0],
-      }}
-      transition={{ 
-        duration: 4 + Math.random() * 2, 
-        repeat: Infinity, 
-        ease: "easeInOut",
-        delay: Math.random() * 2 
-      }}
       style={{
-        transform: isHovered ? 'scale(1.05) rotate(2deg)' : 'scale(1) rotate(0deg)'
+        transform: isHovered ? 'scale(1.05)' : 'scale(1)'
       }}
     >
-      <motion.div 
+      <div 
         className="flex items-center justify-center transition-all duration-300"
         style={{ 
           filter: isHovered ? `drop-shadow(0 0 16px ${item.color}80)` : 'none'
-        }}
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [1, 0.8, 1]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
         }}
       >
         <item.icon 
           size={36} 
           style={{ color: item.color }} 
         />
-      </motion.div>
+      </div>
       <span 
         className="text-3xl font-display font-medium whitespace-nowrap transition-colors duration-300"
         style={{ color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.8)' }}
       >
         {item.name}
       </span>
-    </motion.a>
+    </a>
   );
 }
 

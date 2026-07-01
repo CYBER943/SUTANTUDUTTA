@@ -167,7 +167,7 @@ export const TOOLS: ToolItem[] = [
   { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experimentation and rapid prototyping." },
   { name: "GitHub", icon: SiGithub, url: "https://github.com", color: "#ffffff", description: "Version control, collaboration, and project hosting." },
   { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment, hosting, and performance optimization." },
-  { name: "B12.io", icon: B12Icon, url: "https://www.b12.io", color: "#8b5cf6", description: "Website creation and business website management." },
+  { name: "B12.io", icon: B12Icon, url: "https://www.b12.io", color: "#5048C7", description: "Website creation and business website management." },
   { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Coding, research, learning, and problem solving." },
   { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Reasoning, writing, and structured analysis." },
   { name: "Microsoft Copilot", icon: SiGithubcopilot, url: "https://copilot.microsoft.com", color: "#0078D4", description: "AI-powered coding assistance and productivity." },

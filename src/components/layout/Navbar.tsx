@@ -55,8 +55,11 @@ export default function Navbar() {
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
         <div className="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
-          <a href="#home" className="text-xl font-display font-semibold tracking-tight text-white group relative z-[1010]">
-            Sutantu Dutta
+          <a href="#home" className="flex items-center space-x-3 text-xl font-display font-semibold tracking-tight text-white group relative z-[1010]">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#3B82F6] to-[#06B6D4] flex items-center justify-center text-sm shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+              SD
+            </div>
+            <span>Sutantu Dutta</span>
           </a>
 
           {/* Desktop Navigation */}
