@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, ChevronRight, Terminal, GitBranch, Cpu, Code2, Github, Codepen } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import { TextReveal } from '../ui/TextReveal';
-import Workspace3D from '../ui/Workspace3D';
+import FloatingCodeEditor from '../ui/FloatingCodeEditor';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -133,7 +133,7 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Premium Interactive 3D Workspace Scene */}
+        {/* Premium Interactive 2D Floating Editor Scene */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -142,11 +142,11 @@ export default function Hero() {
         >
           {isMounted && (
             <div className="w-full h-full absolute inset-0 pointer-events-auto origin-center">
-              <Workspace3D />
+              <FloatingCodeEditor />
             </div>
           )}
           
-          {/* Soft vignette to blend 3D scene edges */}
+          {/* Soft vignette to blend scene edges */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,var(--color-app-bg)_100%)] pointer-events-none z-10" />
         </motion.div>
       </div>
