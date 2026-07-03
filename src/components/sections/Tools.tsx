@@ -50,8 +50,8 @@ export default function Tools() {
     <section className="py-32 relative overflow-hidden bg-[var(--color-app-bg)] border-t border-white/[0.04]">
       {/* Animated Background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-[#4F46E5]/10 blur-[120px] rounded-full mix-blend-screen animate-gradient" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[60%] bg-[#06B6D4]/10 blur-[120px] rounded-full mix-blend-screen animate-gradient" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-red-600/10 blur-[120px] rounded-full mix-blend-screen animate-gradient" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[60%] bg-orange-500/10 blur-[120px] rounded-full mix-blend-screen animate-gradient" style={{ animationDelay: '2s' }} />
         <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
       </div>
 

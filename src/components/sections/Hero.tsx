@@ -42,10 +42,10 @@ export default function Hero() {
   }, [isMounted]);
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center justify-center pt-32 lg:pt-40 pb-20 overflow-hidden bg-[var(--color-app-bg)]">
+    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center justify-center pt-40 lg:pt-48 pb-20 overflow-hidden bg-[var(--color-app-bg)]">
       {/* Premium subtle background glow */}
       <motion.div style={{ top: glowY }} className="absolute inset-x-0 h-screen pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-r from-[#4F46E5]/20 via-[#06B6D4]/15 to-[#8B5CF6]/20 rounded-full blur-[120px] animate-gradient bg-[length:200%_auto]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-r from-red-600/20 via-orange-500/15 to-red-900/20 rounded-full blur-[120px] animate-gradient bg-[length:200%_auto]" />
       </motion.div>
 
       <div className="w-full max-w-7xl mx-auto px-6 z-20 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20">
@@ -56,7 +56,7 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center space-x-4 mb-10"
           >
-            <div className="inline-flex items-center space-x-2 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-full px-4 py-2 text-sm font-medium text-[#D1D5DB] hover:border-[#3B82F6]/50 hover:bg-[rgba(255,255,255,0.05)] transition-all cursor-pointer backdrop-blur-md">
+            <div className="inline-flex items-center space-x-2 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-full px-4 py-2 text-sm font-medium text-[#D1D5DB] hover:border-app-primary/50 hover:bg-[rgba(255,255,255,0.05)] transition-all cursor-pointer backdrop-blur-md">
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -64,13 +64,13 @@ export default function Hero() {
               <span>Open to Collaborate</span>
             </div>
             <div className="hidden sm:inline-flex items-center space-x-2 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-full px-4 py-2 text-sm font-medium text-[#D1D5DB] backdrop-blur-md">
-              <Code2 size={14} className="text-[#06B6D4]" />
+              <Code2 size={14} className="text-app-primary" />
               <span>Currently Building AI Tools</span>
             </div>
           </motion.div>
 
           <h1
-            className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/60 leading-[1.1] mb-8"
+            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/60 leading-[1.1] mb-8"
           >
             <TextReveal text="Sutantu Dutta" delay={0.1} />
           </h1>
@@ -88,13 +88,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full mt-4"
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-6 w-full mt-8"
           >
             <a
               href="#projects"
-              className="relative overflow-hidden flex items-center justify-center space-x-2 bg-gradient-to-r from-[#4F46E5] via-[#3B82F6] to-[#06B6D4] text-white px-8 py-4 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_35px_rgba(59,130,246,0.6)] hover:scale-105 active:scale-95 group border border-white/10"
+              className="relative overflow-hidden flex items-center justify-center space-x-2 bg-gradient-to-r from-app-primary via-red-500 to-app-primary-hover text-white px-8 py-4 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] hover:scale-105 active:scale-95 group border border-white/10"
             >
-              <span className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] to-[#4F46E5] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <span className="absolute inset-0 bg-gradient-to-r from-app-primary-hover to-app-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <span className="relative z-10 flex items-center justify-center space-x-2">
                 <span>View Projects</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -107,6 +107,28 @@ export default function Hero() {
             >
               <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <span className="relative z-10">Contact Me</span>
+            </a>
+
+            <a
+              href="https://github.com/Sdm940"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative overflow-hidden flex items-center justify-center space-x-2 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] text-white px-6 py-4 rounded-full font-medium hover:bg-[rgba(255,255,255,0.06)] backdrop-blur-md transition-all hover:scale-105 active:scale-95 group"
+            >
+              <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <Github size={18} className="text-white/80 group-hover:text-white" />
+              <span className="relative z-10">GitHub</span>
+            </a>
+
+            <a
+              href="https://codepen.io/SDM-TECH-KNOW"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative overflow-hidden flex items-center justify-center space-x-2 bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] text-white px-6 py-4 rounded-full font-medium hover:bg-[rgba(255,255,255,0.06)] backdrop-blur-md transition-all hover:scale-105 active:scale-95 group"
+            >
+              <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <Codepen size={18} className="text-white/80 group-hover:text-white" />
+              <span className="relative z-10">CodePen</span>
             </a>
           </motion.div>
         </motion.div>

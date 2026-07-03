@@ -31,7 +31,7 @@ import {
   SiDropbox
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
-import { DevinIcon, B12Icon, GrokIcon, NoteGPTIcon, GoogleAIStudioIcon } from './components/icons/CustomIcons';
+import { DevinIcon, B12Icon, GrokIcon, NoteGPTIcon, GoogleAIStudioIcon, WindsurfIcon } from './components/icons/CustomIcons';
 import { Project, ToolItem, BlogPost, TimelineEvent, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
@@ -164,6 +164,7 @@ export const PROJECTS: Project[] = [
 export const TOOLS: ToolItem[] = [
   { name: "Visual Studio Code", icon: VscVscode, url: "https://code.visualstudio.com", color: "#007ACC", description: "Primary code editor for development and debugging." },
   { name: "Devin", icon: DevinIcon, url: "https://devin.ai", color: "#ffffff", description: "AI software engineering assistant for development workflows." },
+  { name: "Windsurf", icon: WindsurfIcon, url: "https://codeium.com/windsurf", color: "#00E5FF", description: "The world's first agentic IDE." },
   { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experimentation and rapid prototyping." },
   { name: "GitHub", icon: SiGithub, url: "https://github.com", color: "#ffffff", description: "Version control, collaboration, and project hosting." },
   { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment, hosting, and performance optimization." },

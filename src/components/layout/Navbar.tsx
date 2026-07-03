@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
   { name: 'Tools', href: '#tools' },
+  { name: 'Blog', href: '#blog' },
 ];
 
 export default function Navbar() {
@@ -55,11 +56,9 @@ export default function Navbar() {
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
         <div className="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
-          <a href="#home" className="flex items-center space-x-3 text-xl font-display font-semibold tracking-tight text-white group relative z-[1010]">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#3B82F6] to-[#06B6D4] flex items-center justify-center text-sm shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-              SD
-            </div>
-            <span>Sutantu Dutta</span>
+          <a href="#home" className="text-xl font-display font-semibold tracking-tight group relative z-[1010] hover:opacity-80 transition-opacity">
+            <span className="text-white">Sutantu </span>
+            <span className="text-app-primary">Dutta</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -76,7 +75,7 @@ export default function Navbar() {
                   }`}
                 >
                   {link.name}
-                  <span className={`absolute left-0 bottom-0 h-0.5 bg-[#3B82F6] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                  <span className={`absolute left-0 bottom-0 h-0.5 bg-app-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                   {/* Subtle glow on hover */}
                   <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 rounded-md -z-10 transition-opacity duration-300 scale-110" />
                 </a>
@@ -84,11 +83,11 @@ export default function Navbar() {
             })}
             <a
               href="#contact"
-              className="relative overflow-hidden px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] text-white shadow-[0_0_15px_rgba(79,70,229,0.25)] hover:shadow-[0_0_25px_rgba(79,70,229,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
+              className="relative overflow-hidden px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-app-primary to-app-primary-hover text-white shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
             >
               <span className="relative z-10">Let's Talk</span>
               {/* Gradient sweep effect */}
-              <span className="absolute inset-0 bg-gradient-to-r from-[#06B6D4] to-[#4F46E5] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="absolute inset-0 bg-gradient-to-r from-app-primary-hover to-app-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </a>
           </div>
 

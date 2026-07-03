@@ -9,8 +9,8 @@ export default function Footer() {
     <footer className="relative bg-[#020817] pt-32 pb-12 overflow-hidden border-t border-white/[0.06]">
       {/* Background Effects */}
       <div className="absolute top-[-400px] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[800px] pointer-events-none flex justify-center">
-        <div className="absolute w-[600px] h-[600px] bg-[#3B82F6]/[0.12] rounded-full blur-[100px] -translate-x-[200px]" />
-        <div className="absolute w-[600px] h-[600px] bg-[#8B5CF6]/[0.08] rounded-full blur-[100px] translate-x-[200px]" />
+        <div className="absolute w-[600px] h-[600px] bg-app-primary/[0.12] rounded-full blur-[100px] -translate-x-[200px]" />
+        <div className="absolute w-[600px] h-[600px] bg-red-600/[0.08] rounded-full blur-[100px] translate-x-[200px]" />
       </div>
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
@@ -210,9 +210,20 @@ export default function Footer() {
           <p className="text-app-text-secondary text-xs font-medium order-3 md:order-1 text-center md:text-left">
             &copy; 2026 Sutantu Dutta. All Rights Reserved.
           </p>
-          <p className="text-white/60 font-medium tracking-wide text-[10px] uppercase order-1 md:order-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
-            React • Tailwind • Motion
-          </p>
+          <div className="flex items-center space-x-4 order-1 md:order-2">
+            <p className="text-white/60 font-medium tracking-wide text-[10px] uppercase px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
+              React • Tailwind • Motion
+            </p>
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-app-text-secondary hover:text-white transition-colors bg-white/5 border border-white/10 hover:bg-white/10 p-2 rounded-full flex items-center justify-center group"
+              title="Back to Top"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-y-0.5 transition-transform">
+                <path d="m18 15-6-6-6 6"/>
+              </svg>
+            </button>
+          </div>
           <p className="text-app-text-secondary text-xs font-medium order-2 md:order-3 text-center md:text-right">
             Crafted for the modern web.
           </p>

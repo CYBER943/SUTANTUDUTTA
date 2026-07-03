@@ -65,7 +65,7 @@ export default function Contact() {
       const emailjs = (await import('@emailjs/browser')).default;
       
       // Initialize with public key
-      emailjs.init("YOUR_PUBLIC_KEY");
+      emailjs.init("xVHsywL92cBHnONP2");
       
       const getBrowserInfo = () => {
         const ua = navigator.userAgent;
@@ -266,12 +266,12 @@ export default function Contact() {
                         }}
                         aria-invalid={errors.name ? "true" : "false"}
                         aria-describedby={errors.name ? "name-error" : undefined}
-                        className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.name ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-[#3B82F6] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
+                        className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.name ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
                         placeholder="John Doe"
                       />
                       <label 
                         htmlFor="name" 
-                        className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.name ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-[#3B82F6]'}`}
+                        className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.name ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
                       >
                         Full Name
                       </label>
@@ -293,12 +293,12 @@ export default function Contact() {
                         }}
                         aria-invalid={errors.email ? "true" : "false"}
                         aria-describedby={errors.email ? "email-error" : undefined}
-                        className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.email ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-[#3B82F6] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
+                        className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.email ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
                         placeholder="john@example.com"
                       />
                       <label 
                         htmlFor="email" 
-                        className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.email ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-[#3B82F6]'}`}
+                        className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.email ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
                       >
                         Email Address
                       </label>
@@ -321,12 +321,12 @@ export default function Contact() {
                       }}
                       aria-invalid={errors.subject ? "true" : "false"}
                       aria-describedby={errors.subject ? "subject-error" : undefined}
-                      className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.subject ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-[#3B82F6] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
+                      className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.subject ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
                       placeholder="Project Inquiry"
                     />
                     <label 
                       htmlFor="subject" 
-                      className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.subject ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-[#3B82F6]'}`}
+                      className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.subject ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
                     >
                       Subject
                     </label>
@@ -349,12 +349,12 @@ export default function Contact() {
                       aria-invalid={errors.message ? "true" : "false"}
                       aria-describedby={errors.message ? "message-error" : undefined}
                       maxLength={1000}
-                      className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.message ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-[#3B82F6] focus:shadow-[0_0_15px_rgba(59,130,246,0.15)]'} rounded-xl px-4 pt-6 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all resize-none`}
+                      className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.message ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-6 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all resize-none`}
                       placeholder="Tell me about your project..."
                     />
                     <label 
                       htmlFor="message" 
-                      className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.message ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-[#3B82F6]'}`}
+                      className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.message ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
                     >
                       Your Message
                     </label>
@@ -388,9 +388,9 @@ export default function Contact() {
                     type="submit"
                     disabled={isSubmitting}
                     aria-disabled={isSubmitting}
-                    className="w-full relative overflow-hidden bg-app-primary text-white font-medium rounded-xl px-4 py-3.5 flex items-center justify-center space-x-2 hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:shadow-[0_0_25px_rgba(59,130,246,0.4)] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-2"
+                    className="w-full relative overflow-hidden bg-app-primary text-white font-medium rounded-xl px-4 py-3.5 flex items-center justify-center space-x-2 hover:bg-app-primary-hover shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-2"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       {isSubmitting ? (
                         <>

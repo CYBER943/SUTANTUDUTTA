@@ -103,8 +103,8 @@ export default function Projects() {
                 key={project.id}
                 className={`group flex flex-col bg-app-card rounded-3xl overflow-hidden relative cursor-pointer ${
                   project.featured 
-                    ? 'border border-transparent bg-clip-border before:absolute before:inset-0 before:z-[-1] before:rounded-3xl before:bg-gradient-to-r before:from-[#3B82F6] before:to-[#8B5CF6] before:p-[1px] before:content-[""] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]'
-                    : 'border border-app-border hover:border-[#3B82F6] hover:shadow-[0_0_30px_rgba(59,130,246,0.2)]'
+                    ? 'border border-transparent bg-clip-border before:absolute before:inset-0 before:z-[-1] before:rounded-3xl before:bg-gradient-to-r before:from-app-primary before:to-red-700 before:p-[1px] before:content-[""] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]'
+                    : 'border border-app-border hover:border-app-primary hover:shadow-[0_0_30px_rgba(220,38,38,0.2)]'
                 }`}
               >
                 {/* Gradient sweep overlay on hover */}
@@ -204,7 +204,7 @@ export default function Projects() {
               href="https://codepen.io/SDM-TECH-KNOW"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-app-primary text-white px-8 py-3.5 rounded-full font-medium hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:scale-105 active:scale-95 transition-all"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-app-primary text-white px-8 py-3.5 rounded-full font-medium hover:bg-app-primary-hover shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:scale-105 active:scale-95 transition-all"
             >
               <ExternalLink size={16} />
               <span>Visit CodePen</span>
@@ -214,7 +214,7 @@ export default function Projects() {
               href="https://github.com/Sdm940"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-transparent border border-[#3B82F6] text-white px-8 py-3.5 rounded-full font-medium hover:bg-[#3B82F6]/10 transition-colors"
+              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-transparent border border-app-primary text-white px-8 py-3.5 rounded-full font-medium hover:bg-app-primary/10 transition-colors"
             >
               <ExternalLink size={16} />
               <span>View GitHub</span>
