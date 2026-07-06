@@ -42,10 +42,10 @@ export default function Hero() {
   }, [isMounted]);
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center justify-center pt-40 lg:pt-48 pb-20 overflow-hidden bg-[var(--color-app-bg)]">
-      {/* Premium subtle background glow */}
+    <section ref={sectionRef} id="home" className="relative min-h-[100dvh] flex items-center justify-center pt-32 lg:pt-48 pb-20 overflow-hidden bg-[var(--color-app-bg)]">
+      {/* Premium subtle background glow - simplified on mobile */}
       <motion.div style={{ top: glowY }} className="absolute inset-x-0 h-screen pointer-events-none z-0">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-r from-red-600/20 via-orange-500/15 to-red-900/20 rounded-full blur-[120px] animate-gradient bg-[length:200%_auto]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] sm:w-[1200px] sm:h-[800px] bg-gradient-to-r from-red-600/10 via-orange-500/5 to-red-900/10 sm:from-red-600/20 sm:via-orange-500/15 sm:to-red-900/20 rounded-full blur-[80px] sm:blur-[120px] animate-gradient bg-[length:200%_auto]" />
       </motion.div>
 
       <div className="w-full max-w-7xl mx-auto px-6 z-20 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20">
@@ -70,13 +70,13 @@ export default function Hero() {
           </motion.div>
 
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/60 leading-[1.1] mb-8"
+            className="font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/60 leading-[1.1] mb-8 text-[clamp(2.5rem,8vw,4rem)]"
           >
             <TextReveal text="Sutantu Dutta" delay={0.1} />
           </h1>
 
           <div
-            className="text-lg sm:text-xl text-[#D1D5DB] font-light max-w-xl leading-relaxed tracking-tight mb-12 text-balance min-h-[60px]"
+            className="text-[clamp(1.125rem,3vw,1.25rem)] text-[#D1D5DB] font-light max-w-xl leading-relaxed tracking-tight mb-12 text-balance min-h-[60px]"
           >
             {typedText}
             <span className="animate-pulse mr-1">_</span>
@@ -88,11 +88,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-6 w-full mt-8"
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 w-full mt-8"
           >
             <a
               href="#projects"
-              className="relative overflow-hidden flex items-center justify-center space-x-2 bg-gradient-to-r from-app-primary via-red-500 to-app-primary-hover text-white px-8 py-4 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_35px_rgba(220,38,38,0.6)] hover:scale-105 active:scale-95 group border border-white/10"
+              className="w-full sm:w-auto relative overflow-hidden flex items-center justify-center space-x-2 bg-gradient-to-r from-app-primary via-red-500 to-app-primary-hover text-white px-8 py-4 min-h-[44px] min-w-[44px] rounded-full font-medium transition-all shadow-none sm:shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:sm:shadow-[0_0_35px_rgba(220,38,38,0.6)] hover:scale-105 active:scale-95 group border border-white/10"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-app-primary-hover to-app-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               <span className="relative z-10 flex items-center justify-center space-x-2">
@@ -103,7 +103,7 @@ export default function Hero() {
             
             <a
               href="#contact"
-              className="relative overflow-hidden flex items-center justify-center space-x-2 bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 hover:border-white/20 backdrop-blur-xl transition-all shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-105 active:scale-95 group"
+              className="w-full sm:w-auto relative overflow-hidden flex items-center justify-center space-x-2 bg-white/5 border border-white/10 text-white px-8 py-4 min-h-[44px] min-w-[44px] rounded-full font-medium hover:bg-white/10 hover:border-white/20 backdrop-blur-xl transition-all shadow-none sm:shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:sm:shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:scale-105 active:scale-95 group"
             >
               <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <span className="relative z-10">Contact Me</span>

@@ -33,7 +33,7 @@ export default function Blog() {
             <BookOpen size={14} />
             <span>Articles & Insights</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-display font-bold text-white mb-6 tracking-tight">
             My <span className="text-transparent bg-clip-text bg-gradient-to-r from-app-primary via-red-500 to-orange-500 animate-gradient bg-[length:200%_auto]">Notes & Discoveries.</span>
           </h2>
           <p className="text-lg text-app-muted max-w-2xl font-light leading-relaxed">

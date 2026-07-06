@@ -159,7 +159,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6">
+            <h2 className="text-[clamp(2rem,5vw,3rem)] font-display font-bold tracking-tight text-white mb-6">
               <TextReveal text="Let's connect." />
             </h2>
             <p className="text-app-text-secondary text-lg mb-12 max-w-md font-light leading-relaxed">
@@ -183,10 +183,10 @@ export default function Contact() {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 w-full md:w-auto">
+                <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
                   <button
                     onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Email')}
-                    className="flex-1 md:flex-none flex items-center justify-center space-x-2 px-4 py-2 border border-white/10 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-all"
+                    className="w-full md:w-auto flex items-center justify-center space-x-2 px-4 py-2 min-h-[44px] border border-white/10 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-all"
                     aria-label="Copy to clipboard"
                   >
                     <Copy size={16} />
@@ -194,7 +194,7 @@ export default function Contact() {
                   </button>
                   <a 
                     href="mailto:sutantudutta@outlook.com"
-                    className="flex-1 md:flex-none flex items-center justify-center space-x-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-white/90 transition-all font-medium"
+                    className="w-full md:w-auto flex items-center justify-center space-x-2 px-4 py-2 min-h-[44px] bg-white text-black rounded-lg hover:bg-white/90 transition-all font-medium"
                   >
                     <Send size={16} />
                     <span className="text-sm">Email</span>
@@ -388,7 +388,7 @@ export default function Contact() {
                     type="submit"
                     disabled={isSubmitting}
                     aria-disabled={isSubmitting}
-                    className="w-full relative overflow-hidden bg-app-primary text-white font-medium rounded-xl px-4 py-3.5 flex items-center justify-center space-x-2 hover:bg-app-primary-hover shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-2"
+                    className="w-full relative overflow-hidden bg-app-primary text-white font-medium rounded-xl px-4 py-3.5 min-h-[44px] flex items-center justify-center space-x-2 hover:bg-app-primary-hover shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-2"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                     <span className="relative z-10 flex items-center justify-center gap-2">

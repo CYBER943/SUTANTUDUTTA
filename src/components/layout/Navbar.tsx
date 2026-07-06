@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search, Command } from 'lucide-react';
 
 const NAV_LINKS = [
   { name: 'Home', href: '#home' },
@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { name: 'Blog', href: '#blog' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -81,6 +81,18 @@ export default function Navbar() {
                 </a>
               );
             })}
+            
+            <button 
+              onClick={onOpenCommandPalette}
+              className="flex items-center justify-center p-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label="Open Command Palette"
+            >
+              <Search size={18} />
+              <span className="ml-2 text-xs font-mono px-1.5 py-0.5 rounded bg-white/10 border border-white/5 opacity-70 flex items-center gap-1">
+                 <Command size={10} /> K
+              </span>
+            </button>
+
             <a
               href="#contact"
               className="relative overflow-hidden px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-app-primary to-app-primary-hover text-white shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
@@ -92,18 +104,27 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white relative z-[1150] p-2 -mr-2 interactive"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            <motion.div
-              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.2 }}
+          <div className="md:hidden flex items-center space-x-2">
+            <button
+              className="text-white relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
+              onClick={onOpenCommandPalette}
+              aria-label="Open Command Palette"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.div>
-          </button>
+              <Search size={20} />
+            </button>
+            <button
+              className="text-white relative z-[1150] p-2.5 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              <motion.div
+                animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </motion.div>
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -119,7 +140,7 @@ export default function Navbar() {
           >
              {/* Inside close button */}
              <button
-                className="md:hidden text-white absolute top-6 right-6 p-2 z-[1150] h-[72px] flex items-center pr-4"
+                className="md:hidden text-white absolute top-6 right-6 p-2.5 z-[1150] min-h-[44px] min-w-[44px] flex items-center justify-center"
                 onClick={() => setIsMobileMenuOpen(false)}
                 style={{ top: 'calc(env(safe-area-inset-top) - 10px)' }}
                 aria-label="Close Menu"
@@ -152,7 +173,7 @@ export default function Navbar() {
               transition={{ delay: 0.1 + (NAV_LINKS.length * 0.1) }}
               href="#contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-8 px-8 py-3 text-lg font-medium rounded-full bg-app-primary text-white hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:shadow-[0_0_25px_rgba(59,130,246,0.35)] transition-colors"
+              className="mt-8 px-8 py-3 min-h-[44px] flex items-center justify-center text-lg font-medium rounded-full bg-app-primary text-white hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:shadow-[0_0_25px_rgba(59,130,246,0.35)] transition-colors"
             >
               Let's Talk
             </motion.a>

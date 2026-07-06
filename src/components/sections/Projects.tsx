@@ -26,7 +26,7 @@ export default function Projects() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-4">
+            <h2 className="text-[clamp(2rem,5vw,3rem)] font-display font-bold tracking-tight text-white mb-4">
               <TextReveal text="Experiments & Archive" />
             </h2>
             <p className="text-app-text-secondary text-lg font-light">
@@ -192,7 +192,7 @@ export default function Projects() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
           
-          <h3 className="text-3xl md:text-5xl font-display font-bold tracking-tight text-white mb-6 relative z-10">
+          <h3 className="text-[clamp(1.75rem,5vw,3rem)] font-display font-bold tracking-tight text-white mb-6 relative z-10">
             Explore 500+ Projects
           </h3>
           <p className="text-app-text-secondary text-lg max-w-2xl mx-auto mb-10 relative z-10 font-light">

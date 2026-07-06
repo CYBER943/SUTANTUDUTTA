@@ -32,7 +32,7 @@ function ToolItem({ item }: { item: typeof TOOLS[0]; key?: string }) {
         />
       </div>
       <span 
-        className="text-3xl font-display font-medium whitespace-nowrap transition-colors duration-300"
+        className="text-[clamp(1.5rem,4vw,1.875rem)] font-display font-medium whitespace-nowrap transition-colors duration-300"
         style={{ color: isHovered ? '#ffffff' : 'rgba(255, 255, 255, 0.8)' }}
       >
         {item.name}
@@ -63,7 +63,7 @@ export default function Tools() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-16 px-6"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold tracking-tight text-white mb-6">
+          <h2 className="text-[clamp(2rem,5vw,3rem)] font-display font-bold tracking-tight text-white mb-6">
             <TextReveal text="Tools I Use" />
           </h2>
           <p className="text-[#94A3B8] text-lg max-w-3xl mx-auto font-light leading-relaxed">

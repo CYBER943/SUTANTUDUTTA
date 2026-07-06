@@ -21,7 +21,7 @@ export default function About() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 flex flex-col items-center text-center"
         >
-          <h2 className="text-3xl md:text-5xl font-display font-bold tracking-tight text-white mb-4">
+          <h2 className="text-[clamp(2rem,5vw,3rem)] font-display font-bold tracking-tight text-white mb-4">
             <TextReveal text="About Me" />
           </h2>
           <p className="text-app-text-secondary text-lg max-w-2xl font-light">
