@@ -1,20 +1,20 @@
 import React, { Suspense, useState } from 'react';
+import { motion, useScroll } from 'motion/react';
+import { Toaster } from 'sonner';
+import { Analytics } from "@vercel/analytics/react";
+
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-
 import Hero from './components/sections/Hero';
+import CustomCursor from './components/ui/CustomCursor';
+import { SectionReveal } from './components/ui/SectionReveal';
+import CommandPalette from './components/ui/CommandPalette';
 
 const About = React.lazy(() => import('./components/sections/About'));
 const Projects = React.lazy(() => import('./components/sections/Projects'));
 const Tools = React.lazy(() => import('./components/sections/Tools'));
 const Blog = React.lazy(() => import('./components/sections/Blog'));
 const Contact = React.lazy(() => import('./components/sections/Contact'));
-
-import CustomCursor from './components/ui/CustomCursor';
-import { SectionReveal } from './components/ui/SectionReveal';
-import CommandPalette from './components/ui/CommandPalette';
-import { Toaster } from 'sonner';
-import { motion, useScroll } from 'motion/react';
 
 const FallbackLoader = () => (
   <div className="w-full h-[50vh] flex items-center justify-center">
@@ -77,6 +77,7 @@ export default function App() {
         </Suspense>
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }

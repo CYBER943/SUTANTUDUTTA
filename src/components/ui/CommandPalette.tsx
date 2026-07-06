@@ -63,13 +63,13 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
   const [recentIds, setRecentIds] = useState<string[]>([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('recentCommands');
-    if (saved) {
-      try {
+    try {
+      const saved = localStorage.getItem('recentCommands');
+      if (saved) {
         setRecentIds(JSON.parse(saved));
-      } catch (e) {
-        // ignore
       }
+    } catch (e) {
+      // ignore
     }
   }, []);
 
@@ -77,7 +77,11 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
     // Add to recent
     const newRecent = [cmdId, ...recentIds.filter(id => id !== cmdId)].slice(0, 4);
     setRecentIds(newRecent);
-    localStorage.setItem('recentCommands', JSON.stringify(newRecent));
+    try {
+      localStorage.setItem('recentCommands', JSON.stringify(newRecent));
+    } catch (e) {
+      // ignore
+    }
     
     // Execute action and close
     action();
