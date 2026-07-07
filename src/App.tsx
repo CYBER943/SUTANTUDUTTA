@@ -10,11 +10,33 @@ import CustomCursor from './components/ui/CustomCursor';
 import { SectionReveal } from './components/ui/SectionReveal';
 import CommandPalette from './components/ui/CommandPalette';
 
-const About = React.lazy(() => import('./components/sections/About'));
-const Projects = React.lazy(() => import('./components/sections/Projects'));
-const Tools = React.lazy(() => import('./components/sections/Tools'));
-const Blog = React.lazy(() => import('./components/sections/Blog'));
-const Contact = React.lazy(() => import('./components/sections/Contact'));
+// Utility function to handle chunk load errors (e.g. after a new deployment)
+function lazyWithRetry(componentImport: () => Promise<any>) {
+  return React.lazy(async () => {
+    const pageHasAlreadyBeenForceRefreshed = JSON.parse(
+      window.sessionStorage.getItem('page-has-been-force-refreshed') || 'false'
+    );
+    try {
+      const component = await componentImport();
+      window.sessionStorage.setItem('page-has-been-force-refreshed', 'false');
+      return component;
+    } catch (error) {
+      if (!pageHasAlreadyBeenForceRefreshed) {
+        window.sessionStorage.setItem('page-has-been-force-refreshed', 'true');
+        window.location.reload();
+        // Return a promise that never resolves while the page is reloading
+        return new Promise(() => {});
+      }
+      throw error;
+    }
+  });
+}
+
+const About = lazyWithRetry(() => import('./components/sections/About'));
+const Projects = lazyWithRetry(() => import('./components/sections/Projects'));
+const Tools = lazyWithRetry(() => import('./components/sections/Tools'));
+const Blog = lazyWithRetry(() => import('./components/sections/Blog'));
+const Contact = lazyWithRetry(() => import('./components/sections/Contact'));
 
 const FallbackLoader = () => (
   <div className="w-full h-[50vh] flex items-center justify-center">
