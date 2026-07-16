@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, ArrowRight, Calendar, Clock, BookOpen } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '../../data';
+import { TextReveal } from '../ui/TextReveal';
 
 export default function Blog() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -18,41 +19,41 @@ export default function Blog() {
   const recentPosts = filteredPosts.length > 1 ? filteredPosts.slice(1) : [];
 
   return (
-    <section id="blog" className="py-24 relative overflow-hidden bg-[var(--color-app-bg)]">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-app-primary/5 via-transparent to-transparent pointer-events-none" />
+    <section id="blog" className="py-32 relative overflow-hidden bg-[#020817] border-t border-white/[0.05]">
+      {/* Background Ambience */}
+      <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-orange-500/5 blur-[200px] pointer-events-none" />
       
-      <div className="w-full max-w-[1200px] mx-auto px-6 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-24"
+          className="mb-20 md:mb-32 flex flex-col items-start"
         >
-          <div className="inline-flex items-center space-x-2 bg-app-primary/10 border border-app-primary/20 rounded-full px-4 py-1.5 text-xs font-medium text-app-primary mb-6">
-            <BookOpen size={14} />
-            <span>Articles & Insights</span>
+          <div className="flex items-center space-x-3 mb-6">
+            <BookOpen className="text-app-primary" size={24} />
+            <span className="text-app-primary font-mono text-sm tracking-widest uppercase">Journal</span>
           </div>
-          <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-display font-bold text-white mb-6 tracking-tight">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-app-primary via-red-500 to-orange-500 animate-gradient bg-[length:200%_auto]">Notes & Discoveries.</span>
+          <h2 className="text-[clamp(3rem,8vw,5rem)] font-display font-bold text-white mb-6 tracking-tight leading-[1.1]">
+            <TextReveal text="Thoughts &" />
+            <br />
+            <span className="text-white/30"><TextReveal text="Discoveries." /></span>
           </h2>
-          <p className="text-lg text-app-muted max-w-2xl font-light leading-relaxed">
-            Showcasing my learning journey, project breakdowns, AI insights, productivity systems, and technology experiments.
-          </p>
         </motion.div>
 
-        {/* Filters and Search */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+        {/* Filters and Search - Premium Floating Bar */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-20 bg-white/[0.02] border border-white/10 p-4 rounded-3xl backdrop-blur-xl">
           {/* Categories */}
           <div className="flex flex-wrap gap-2">
             {BLOG_CATEGORIES.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
                   activeCategory === category
-                    ? 'bg-app-primary text-white shadow-[0_0_15px_rgba(220,38,38,0.3)]'
-                    : 'bg-white/5 text-app-muted hover:bg-white/10 hover:text-white border border-white/5'
+                    ? 'bg-white text-black'
+                    : 'bg-transparent text-white/50 hover:bg-white/5 hover:text-white'
                 }`}
               >
                 {category}
@@ -62,15 +63,15 @@ export default function Blog() {
 
           {/* Search */}
           <div className="relative w-full md:w-auto">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search size={18} className="text-app-muted" />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search size={16} className="text-white/40" />
             </div>
             <input
               type="text"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full md:w-64 bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] rounded-full py-2 pl-10 pr-4 text-sm text-white placeholder:text-app-muted focus:outline-none focus:border-app-primary focus:ring-1 focus:ring-app-primary transition-all"
+              className="w-full md:w-80 bg-black/40 border border-white/10 rounded-full py-3 pl-12 pr-4 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-all"
             />
           </div>
         </div>
@@ -82,77 +83,87 @@ export default function Blog() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="space-y-12"
+              className="space-y-16"
             >
-              {/* Featured Post */}
+              {/* Featured Post - Magazine Style */}
               {featuredPost && (
-                <div className="group flex flex-col lg:flex-row bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] hover:border-app-primary/50 rounded-3xl overflow-hidden hover:shadow-[0_0_30px_rgba(220,38,38,0.15)] transition-all duration-500 hover:-translate-y-1">
-                  <div className="lg:w-1/2 h-64 lg:h-auto relative overflow-hidden bg-[#0B1120]">
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-app-card)] via-transparent to-transparent z-10 lg:bg-gradient-to-r lg:from-transparent lg:to-[var(--color-app-card)]" />
-                    <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-600 via-transparent to-transparent blur-xl group-hover:scale-110 group-hover:from-orange-500 transition-transform duration-700" />
+                <div className="group flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+                  <div className="w-full lg:w-3/5 h-[400px] lg:h-[600px] relative overflow-hidden rounded-[3rem] bg-[#0A0A0A] border border-white/10">
+                    {/* Abstract placeholder visual for featured post */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/5 group-hover:scale-105 transition-transform duration-1000" />
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
+                    <div className="absolute bottom-10 left-10 right-10 top-10 border border-white/10 rounded-[2rem] pointer-events-none" />
                   </div>
                   
-                  <div className="lg:w-1/2 p-8 md:p-12 pl-8 lg:pl-12 flex flex-col justify-center">
-                    <div className="flex items-center space-x-4 mb-4">
-                      <span className="text-xs font-semibold text-app-primary bg-app-primary/10 px-3 py-1 rounded-full border border-app-primary/20">
+                  <div className="w-full lg:w-2/5 flex flex-col justify-center">
+                    <div className="flex items-center space-x-4 mb-8">
+                      <span className="text-xs font-mono font-medium text-red-400 bg-red-400/10 px-4 py-1.5 rounded-full border border-red-400/20 uppercase tracking-widest">
                         {featuredPost.category}
                       </span>
                     </div>
                     
-                    <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4 group-hover:text-app-primary transition-colors">
+                    <h3 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-[1.1] tracking-tight group-hover:text-red-400 transition-colors duration-500">
                       {featuredPost.title}
                     </h3>
                     
-                    <p className="text-app-muted leading-relaxed mb-8 flex-grow">
+                    <p className="text-white/50 text-lg leading-relaxed mb-10">
                       {featuredPost.excerpt}
                     </p>
                     
-                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-[var(--color-app-border)]">
-                       <div className="flex items-center space-x-4 text-xs text-app-muted">
-                        <span className="flex items-center"><Calendar size={14} className="mr-1.5" />{featuredPost.date}</span>
-                        <span className="w-1 h-1 rounded-full bg-white/20" />
-                        <span className="flex items-center"><Clock size={14} className="mr-1.5" />{featuredPost.readTime}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-8 border-t border-white/10">
+                       <div className="flex items-center space-x-6 text-sm text-white/40 font-mono">
+                        <span className="flex items-center"><Calendar size={14} className="mr-2" />{featuredPost.date}</span>
+                        <span className="flex items-center"><Clock size={14} className="mr-2" />{featuredPost.readTime}</span>
                       </div>
-                      <button className="flex items-center text-sm font-medium text-white group-hover:text-app-primary transition-colors">
-                        Read Article <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      <button className="group/btn flex items-center text-sm font-medium text-white hover:text-red-400 transition-colors">
+                        Read Article 
+                        <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center ml-3 group-hover/btn:border-red-400 group-hover/btn:bg-red-400/10 transition-all">
+                          <ArrowRight size={14} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                        </span>
                       </button>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Grid of Recent Posts */}
+              {/* Grid of Recent Posts - Editorial Minimalist */}
               {recentPosts.length > 0 && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 pt-20 border-t border-white/5">
                   {recentPosts.map((post, idx) => (
                     <motion.div
-                      initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-                      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: idx * 0.1 }}
+                      transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                       key={post.id}
-                      className="w-full max-w-[400px] md:max-w-none mx-auto overflow-x-hidden group flex flex-col bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] hover:border-app-primary/30 rounded-2xl overflow-hidden hover:shadow-[0_0_20px_rgba(220,38,38,0.1)] transition-all duration-300 hover:-translate-y-1"
+                      className="group flex flex-col"
                     >
-                      <div className="p-6 md:p-8 flex-1 flex flex-col">
+                      <div className="h-64 mb-8 relative overflow-hidden rounded-[2rem] bg-[#0A0A0A] border border-white/10">
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent group-hover:scale-105 transition-transform duration-700" />
+                      </div>
+                      
+                      <div className="flex flex-col flex-1">
                         <div className="flex items-center justify-between mb-4">
-                           <span className="text-[10px] font-semibold text-red-500 uppercase tracking-wider">
+                           <span className="text-[10px] font-mono font-medium text-white/40 uppercase tracking-widest">
                             {post.category}
                           </span>
                         </div>
                         
-                        <h4 className="text-lg font-display font-bold text-white mb-3 group-hover:text-app-primary transition-colors line-clamp-2">
+                        <h4 className="text-2xl font-display font-bold text-white mb-4 leading-tight group-hover:text-red-400 transition-colors">
                           {post.title}
                         </h4>
                         
-                        <p className="text-sm text-app-muted line-clamp-3 mb-6 flex-grow">
+                        <p className="text-base text-white/50 leading-relaxed line-clamp-3 mb-8 flex-grow">
                           {post.excerpt}
                         </p>
                         
-                        <div className="flex items-center justify-between mt-auto pt-6 border-t border-[var(--color-app-border)]/50">
-                           <div className="flex items-center space-x-3 text-[11px] text-app-muted">
-                            <span className="flex items-center"><Calendar size={12} className="mr-1" />{post.date}</span>
+                        <div className="flex items-center justify-between mt-auto pt-6 border-t border-white/10">
+                           <div className="flex items-center space-x-3 text-xs text-white/40 font-mono">
+                            <span className="flex items-center">{post.date}</span>
                           </div>
-                          <span className="text-[11px] font-medium text-app-primary opacity-0 group-hover:opacity-100 transition-opacity">Read</span>
+                          <span className="text-sm font-medium text-white flex items-center opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                            Read <ArrowRight size={14} className="ml-1" />
+                          </span>
                         </div>
                       </div>
                     </motion.div>
@@ -165,16 +176,16 @@ export default function Blog() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="text-center py-20 bg-[var(--color-app-card)] backdrop-blur-md border border-[var(--color-app-border)] rounded-3xl"
+              className="text-center py-32 bg-[#0A0A0A] border border-white/10 rounded-[3rem]"
             >
-              <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-app-muted">
-                <Search size={24} />
+              <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-6 text-white/30">
+                <Search size={32} />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">No articles found</h3>
-              <p className="text-app-muted">We couldn't find anything matching "{searchQuery}" in {activeCategory}.</p>
+              <h3 className="text-3xl font-display font-bold text-white mb-4">No articles found</h3>
+              <p className="text-white/50 text-lg mb-8">We couldn't find anything matching "{searchQuery}" in {activeCategory}.</p>
               <button 
                 onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
-                className="mt-6 text-app-primary hover:underline"
+                className="text-white font-medium bg-white/10 px-8 py-3 rounded-full hover:bg-white/20 transition-colors"
               >
                 Clear all filters
               </button>

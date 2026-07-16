@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2, Copy, Loader2 } from 'lucide-react';
+import { Mail, Github, Linkedin, Youtube, Twitter, Codepen, Send, CheckCircle2, Copy, Loader2, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 import { TextReveal } from '../ui/TextReveal';
 
@@ -148,88 +148,108 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32 relative bg-app-bg-secondary border-t border-app-border">
-      <div className="w-full max-w-6xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+    <section id="contact" className="py-32 relative bg-[#020817] overflow-hidden">
+      {/* Abstract Background Elements */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <div className="absolute -top-40 right-0 w-[500px] h-[500px] bg-red-500/10 blur-[150px] pointer-events-none rounded-full mix-blend-screen" />
+      
+      <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24 items-start">
           
-          {/* Contact Details */}
+          {/* Contact Details - Cinematic Left Side */}
           <motion.div
-            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-50px" }}
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col"
           >
-            <h2 className="text-[clamp(2rem,5vw,3rem)] font-display font-bold tracking-tight text-white mb-6">
-              <TextReveal text="Let's connect." />
+            <div className="flex items-center space-x-3 mb-8">
+              <Send className="text-app-primary" size={24} />
+              <span className="text-app-primary font-mono text-sm tracking-widest uppercase">Connection</span>
+            </div>
+            
+            <h2 className="text-[clamp(3rem,6vw,4.5rem)] font-display font-bold text-white mb-8 tracking-tight leading-[1.1]">
+              <TextReveal text="Let's build" />
+              <br />
+              <span className="text-white/30"><TextReveal text="something." /></span>
             </h2>
-            <p className="text-app-text-secondary text-lg mb-12 max-w-md font-light leading-relaxed">
-              Whether you have a project in mind, a question about my work, or just want to say hi, my inbox is always open.
+            
+            <p className="text-white/50 text-lg mb-16 max-w-md font-light leading-relaxed">
+              Whether you have a project in mind, a question about my work, or just want to discuss the future of the web, my inbox is always open.
             </p>
 
-            <div className="space-y-6 mb-12 text-white">
-              <div className="flex flex-col md:flex-row md:items-center p-6 rounded-[1.5rem] bg-app-card border border-app-border hover:bg-app-elevated transition-all group relative">
-                <div className="flex items-center space-x-4 flex-1 mb-6 md:mb-0">
-                  <div className="w-12 h-12 bg-white/5 border border-white/10 text-white/80 rounded-xl flex items-center justify-center group-hover:text-white group-hover:scale-105 transition-all">
-                    <Mail size={20} strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <div className="flex items-center space-x-2 mb-1">
-                      <p className="text-sm text-app-text-secondary font-medium tracking-wide uppercase text-[10px]">Primary Contact</p>
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse relative">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                      </span>
-                    </div>
-                    <p className="text-lg font-medium text-white group-hover:text-white/80 transition-colors break-all">sutantudutta@outlook.com</p>
-                  </div>
+            {/* Premium Email Card */}
+            <div className="group relative overflow-hidden bg-white/[0.02] border border-white/10 rounded-[2rem] p-8 hover:bg-white/[0.04] hover:border-white/20 transition-all duration-500 mb-12">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              
+              <div className="flex flex-col sm:flex-row sm:items-center gap-6 relative z-10">
+                <div className="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-white group-hover:text-black transition-all duration-500 shrink-0">
+                  <Mail size={24} strokeWidth={1.5} />
                 </div>
                 
-                <div className="flex flex-col md:flex-row items-center gap-3 w-full md:w-auto">
-                  <button
-                    onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Email')}
-                    className="w-full md:w-auto flex items-center justify-center space-x-2 px-4 py-2 min-h-[44px] border border-white/10 rounded-lg text-white/70 hover:text-white hover:bg-white/5 transition-all"
-                    aria-label="Copy to clipboard"
-                  >
-                    <Copy size={16} />
-                    <span className="text-sm font-medium">Copy</span>
-                  </button>
-                  <a 
-                    href="mailto:sutantudutta@outlook.com"
-                    className="w-full md:w-auto flex items-center justify-center space-x-2 px-4 py-2 min-h-[44px] bg-white text-black rounded-lg hover:bg-white/90 transition-all font-medium"
-                  >
-                    <Send size={16} />
-                    <span className="text-sm">Email</span>
-                  </a>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <p className="text-xs text-white/40 font-mono uppercase tracking-widest">Direct Line</p>
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                    </span>
+                  </div>
+                  <p className="text-xl md:text-2xl font-medium text-white truncate transition-colors">sutantudutta@outlook.com</p>
                 </div>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-3 mt-8 relative z-10">
+                <button
+                  onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Email')}
+                  className="flex items-center justify-center space-x-2 px-6 py-3 border border-white/10 rounded-xl text-white/70 hover:text-white hover:bg-white/5 transition-all font-medium group/btn"
+                >
+                  <Copy size={16} className="group-hover/btn:scale-110 transition-transform" />
+                  <span>Copy</span>
+                </button>
+                <a 
+                  href="mailto:sutantudutta@outlook.com"
+                  className="flex items-center justify-center space-x-2 px-6 py-3 bg-white text-black rounded-xl hover:bg-white/90 transition-all font-medium group/btn"
+                >
+                  <span>Email</span>
+                  <ArrowRight size={16} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+                </a>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              {SOCIALS.map((social) => (
-                <motion.a
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className={`relative overflow-hidden w-12 h-12 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-muted transition-all duration-300 group ${social.color}`}
-                >
-                  <span className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300 pointer-events-none" />
-                  <social.icon size={20} strokeWidth={1.5} className="relative z-10" />
-                </motion.a>
-              ))}
+            {/* Social Links */}
+            <div>
+              <p className="text-sm font-mono text-white/40 uppercase tracking-widest mb-6">Or find me on</p>
+              <div className="flex flex-wrap gap-4">
+                {SOCIALS.map((social) => (
+                  <motion.a
+                    whileHover={{ y: -5, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className={`relative overflow-hidden w-14 h-14 rounded-2xl bg-white/[0.02] border border-white/10 flex items-center justify-center text-white/50 transition-all duration-300 group ${social.color}`}
+                  >
+                    <span className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300 pointer-events-none" />
+                    <social.icon size={22} strokeWidth={1.5} className="relative z-10 group-hover:scale-110 transition-transform duration-500" />
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact Form - Minimalist & Focused */}
           <motion.div
-            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, margin: "-50px" }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="bg-app-card border border-app-border rounded-[2rem] p-8 md:p-10 relative overflow-hidden"
+            className="bg-[#0A0A0A] border border-white/10 rounded-[3rem] p-8 md:p-12 relative overflow-hidden shadow-2xl"
           >
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-500/10 blur-[100px] rounded-full pointer-events-none" />
+            
             <AnimatePresence mode='wait'>
               {isSuccess ? (
                 <motion.div
@@ -237,13 +257,13 @@ export default function Contact() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-app-card"
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-[#0A0A0A]"
                 >
-                  <div className="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center mb-6">
-                    <CheckCircle2 size={32} strokeWidth={1.5} />
+                  <div className="w-20 h-20 bg-green-500/10 border border-green-500/20 text-green-400 rounded-3xl flex items-center justify-center mb-8">
+                    <CheckCircle2 size={40} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-display font-semibold tracking-tight text-white mb-2">Message Sent</h3>
-                  <p className="text-app-text-secondary">Thank you for reaching out. I'll get back to you as soon as possible.</p>
+                  <h3 className="text-3xl font-display font-bold tracking-tight text-white mb-4">Transmission Successful</h3>
+                  <p className="text-white/50 text-lg max-w-sm">Thank you for reaching out. I've received your message and will respond shortly.</p>
                 </motion.div>
               ) : (
                 <motion.form
@@ -251,11 +271,12 @@ export default function Contact() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="space-y-5"
+                  className="space-y-6 relative z-10"
                   onSubmit={handleSubmit}
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div className="relative group pb-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Name Input */}
+                    <div className="relative group pb-5">
                       <input
                         id="name"
                         type="text"
@@ -265,24 +286,24 @@ export default function Contact() {
                           if (errors.name) setErrors(prev => ({ ...prev, name: '' }));
                         }}
                         aria-invalid={errors.name ? "true" : "false"}
-                        aria-describedby={errors.name ? "name-error" : undefined}
-                        className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.name ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
+                        className={`peer w-full bg-black/40 border-b-2 ${errors.name ? 'border-red-500' : 'border-white/10 focus:border-white'} rounded-none px-0 pt-6 pb-2 text-base text-white placeholder-transparent focus:outline-none transition-colors`}
                         placeholder="John Doe"
                       />
                       <label 
                         htmlFor="name" 
-                        className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.name ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
+                        className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest font-medium transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/30 peer-focus:top-2 peer-focus:text-[10px] ${errors.name ? 'text-red-400 peer-focus:text-red-400' : 'text-white/50 peer-focus:text-white'}`}
                       >
                         Full Name
                       </label>
                       {errors.name && (
-                        <span id="name-error" className="absolute bottom-0 left-2 text-[10px] text-red-400 font-medium">
+                        <span className="absolute bottom-0 left-0 text-[10px] text-red-400 font-medium">
                           {errors.name}
                         </span>
                       )}
                     </div>
                     
-                    <div className="relative group pb-4">
+                    {/* Email Input */}
+                    <div className="relative group pb-5">
                       <input
                         id="email"
                         type="email"
@@ -292,25 +313,25 @@ export default function Contact() {
                           if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
                         }}
                         aria-invalid={errors.email ? "true" : "false"}
-                        aria-describedby={errors.email ? "email-error" : undefined}
-                        className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.email ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
+                        className={`peer w-full bg-black/40 border-b-2 ${errors.email ? 'border-red-500' : 'border-white/10 focus:border-white'} rounded-none px-0 pt-6 pb-2 text-base text-white placeholder-transparent focus:outline-none transition-colors`}
                         placeholder="john@example.com"
                       />
                       <label 
                         htmlFor="email" 
-                        className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.email ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
+                        className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest font-medium transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/30 peer-focus:top-2 peer-focus:text-[10px] ${errors.email ? 'text-red-400 peer-focus:text-red-400' : 'text-white/50 peer-focus:text-white'}`}
                       >
                         Email Address
                       </label>
                       {errors.email && (
-                        <span id="email-error" className="absolute bottom-0 left-2 text-[10px] text-red-400 font-medium">
+                        <span className="absolute bottom-0 left-0 text-[10px] text-red-400 font-medium">
                           {errors.email}
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <div className="relative group pb-4">
+                  {/* Subject Input */}
+                  <div className="relative group pb-5">
                     <input
                       id="subject"
                       type="text"
@@ -320,51 +341,50 @@ export default function Contact() {
                         if (errors.subject) setErrors(prev => ({ ...prev, subject: '' }));
                       }}
                       aria-invalid={errors.subject ? "true" : "false"}
-                      aria-describedby={errors.subject ? "subject-error" : undefined}
-                      className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.subject ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-5 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all`}
+                      className={`peer w-full bg-black/40 border-b-2 ${errors.subject ? 'border-red-500' : 'border-white/10 focus:border-white'} rounded-none px-0 pt-6 pb-2 text-base text-white placeholder-transparent focus:outline-none transition-colors`}
                       placeholder="Project Inquiry"
                     />
                     <label 
                       htmlFor="subject" 
-                      className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.subject ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
+                      className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest font-medium transition-all peer-placeholder-shown:top-6 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/30 peer-focus:top-2 peer-focus:text-[10px] ${errors.subject ? 'text-red-400 peer-focus:text-red-400' : 'text-white/50 peer-focus:text-white'}`}
                     >
                       Subject
                     </label>
                     {errors.subject && (
-                      <span id="subject-error" className="absolute bottom-0 left-2 text-[10px] text-red-400 font-medium">
+                      <span className="absolute bottom-0 left-0 text-[10px] text-red-400 font-medium">
                         {errors.subject}
                       </span>
                     )}
                   </div>
 
-                  <div className="relative group pb-4">
+                  {/* Message Input */}
+                  <div className="relative group pb-5">
                     <textarea
                       id="message"
-                      rows={4}
+                      rows={5}
                       value={formData.message}
                       onChange={(e) => {
                         setFormData({ ...formData, message: e.target.value });
                         if (errors.message) setErrors(prev => ({ ...prev, message: '' }));
                       }}
                       aria-invalid={errors.message ? "true" : "false"}
-                      aria-describedby={errors.message ? "message-error" : undefined}
                       maxLength={1000}
-                      className={`peer w-full bg-[var(--color-app-card)] backdrop-blur-md border ${errors.message ? 'border-red-500 focus:border-red-500 focus:shadow-[0_0_15px_rgba(239,68,68,0.15)]' : 'border-white/10 focus:border-app-primary focus:shadow-[0_0_15px_rgba(220,38,38,0.15)]'} rounded-xl px-4 pt-6 pb-2 text-sm text-white placeholder-transparent focus:outline-none transition-all resize-none`}
+                      className={`peer w-full bg-black/40 border-b-2 ${errors.message ? 'border-red-500' : 'border-white/10 focus:border-white'} rounded-none px-0 pt-8 pb-2 text-base text-white placeholder-transparent focus:outline-none transition-colors resize-none`}
                       placeholder="Tell me about your project..."
                     />
                     <label 
                       htmlFor="message" 
-                      className={`absolute left-4 top-2 text-[10px] uppercase tracking-wider font-medium transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-[11px] peer-placeholder-shown:text-white/40 peer-focus:top-2 peer-focus:text-[10px] ${errors.message ? 'text-red-400 peer-focus:text-red-400' : 'text-app-text-secondary peer-focus:text-app-primary'}`}
+                      className={`absolute left-0 top-3 text-[10px] uppercase tracking-widest font-medium transition-all peer-placeholder-shown:top-8 peer-placeholder-shown:text-xs peer-placeholder-shown:text-white/30 peer-focus:top-2 peer-focus:text-[10px] ${errors.message ? 'text-red-400 peer-focus:text-red-400' : 'text-white/50 peer-focus:text-white'}`}
                     >
                       Your Message
                     </label>
-                    <div className="absolute bottom-0 left-0 w-full flex justify-between px-2 text-[10px]">
+                    <div className="absolute bottom-0 left-0 w-full flex justify-between text-[10px]">
                       {errors.message ? (
-                        <span id="message-error" className="text-red-400 font-medium">{errors.message}</span>
+                        <span className="text-red-400 font-medium">{errors.message}</span>
                       ) : (
                         <span></span>
                       )}
-                      <span className={`${formData.message.length >= 1000 ? 'text-red-400' : 'text-app-text-secondary'}`}>
+                      <span className={`font-mono ${formData.message.length >= 1000 ? 'text-red-400' : 'text-white/30'}`}>
                         {formData.message.length} / 1000
                       </span>
                     </div>
@@ -387,20 +407,18 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    aria-disabled={isSubmitting}
-                    className="w-full relative overflow-hidden bg-app-primary text-white font-medium rounded-xl px-4 py-3.5 min-h-[44px] flex items-center justify-center space-x-2 hover:bg-app-primary-hover shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-2"
+                    className="w-full relative overflow-hidden bg-white text-black font-semibold rounded-2xl px-6 py-4 flex items-center justify-center space-x-2 hover:bg-white/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-8"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                    <span className="relative z-10 flex items-center justify-center gap-2">
+                    <span className="relative z-10 flex items-center justify-center gap-3">
                       {isSubmitting ? (
                         <>
-                          <Loader2 size={16} className="animate-spin" />
-                          <span>Sending...</span>
+                          <Loader2 size={18} className="animate-spin" />
+                          <span>Transmitting...</span>
                         </>
                       ) : (
                         <>
                           <span>Send Message</span>
-                          <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          <ArrowRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         </>
                       )}
                     </span>

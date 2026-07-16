@@ -5,7 +5,15 @@ export interface Project {
   category: string;
   tech: string[];
   link: string;
+  github?: string;
+  codepen?: string;
   featured?: boolean;
+  problem?: string;
+  solution?: string;
+  challenges?: string;
+  results?: string;
+  performanceMetrics?: string[];
+  lessonsLearned?: string;
 }
 
 export interface ToolItem {
@@ -14,6 +22,9 @@ export interface ToolItem {
   url?: string;
   color?: string;
   description?: string;
+  category?: 'Development' | 'AI' | 'Creative' | 'Productivity';
+  experienceLevel?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Expert';
+  usageFrequency?: 'Daily' | 'Weekly' | 'Occasionally';
 }
 
 export interface BlogPost {

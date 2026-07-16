@@ -1,12 +1,13 @@
 import { PROJECTS, CATEGORIES, PROJECT_CATEGORIES_DATA } from '../../data';
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Search, ExternalLink, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { Search, ExternalLink, ArrowRight, Github, Codepen, CheckCircle2 } from 'lucide-react';
 import { TextReveal } from '../ui/TextReveal';
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const prefersReducedMotion = useReducedMotion();
 
   const filteredProjects = PROJECTS.filter((project) => {
     const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
@@ -21,8 +22,8 @@ export default function Projects() {
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -36,8 +37,8 @@ export default function Projects() {
 
           {/* Search Box */}
           <motion.div
-            initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="relative"
@@ -55,8 +56,8 @@ export default function Projects() {
 
         {/* Project Categories Grid */}
         <motion.div 
-          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-16"
@@ -64,8 +65,8 @@ export default function Projects() {
           {PROJECT_CATEGORIES_DATA.map((cat, idx) => (
             <motion.div
               key={cat.id}
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               onClick={() => { setActiveCategory(cat.title); setSearchQuery(''); }}
@@ -88,87 +89,147 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        {/* Project Grid */}
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Project List */}
+        <div className="flex flex-col gap-24">
           <AnimatePresence>
-            {filteredProjects.map((project) => (
-                <motion.div
+            {filteredProjects.map((project, index) => (
+              <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                exit={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 key={project.id}
-                className={`group flex flex-col bg-app-card rounded-3xl overflow-hidden relative cursor-pointer ${
-                  project.featured 
-                    ? 'border border-transparent bg-clip-border before:absolute before:inset-0 before:z-[-1] before:rounded-3xl before:bg-gradient-to-r before:from-app-primary before:to-red-700 before:p-[1px] before:content-[""] hover:shadow-[0_0_30px_rgba(220,38,38,0.3)]'
-                    : 'border border-app-border hover:border-app-primary hover:shadow-[0_0_30px_rgba(220,38,38,0.2)]'
-                }`}
+                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
               >
-                {/* Gradient sweep overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                
-                {/* Visual Placeholder for Project Image */}
-                <div className="h-56 relative overflow-hidden bg-app-bg border-b border-app-border">
-                  {project.link.includes('codepen.io') ? (
-                    <iframe 
-                      src={project.link.replace('/pen/', '/embed/preview/') + '?default-tab=result&theme-id=dark'} 
-                      title={project.title}
-                      loading="lazy"
-                      className="w-full h-full pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity"
-                      style={{ border: 'none' }}
-                      sandbox="allow-scripts allow-same-origin"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/30 group-hover:scale-110 group-hover:text-white/60 transition-all duration-500">
-                        <ExternalLink size={24} strokeWidth={1.5} />
+                {/* Visual Side */}
+                <div className="w-full lg:w-1/2 relative group">
+                  <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[3rem] pointer-events-none" />
+                  
+                  <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden bg-[#0A0A0A] border border-white/10 group-hover:border-white/20 transition-colors shadow-2xl">
+                    {project.link.includes('codepen.io') ? (
+                      <iframe 
+                        src={project.link.replace('/pen/', '/embed/preview/') + '?default-tab=result&theme-id=dark'} 
+                        title={project.title}
+                        loading="lazy"
+                        className="w-full h-full border-none opacity-90 group-hover:opacity-100 transition-opacity"
+                        sandbox="allow-scripts allow-same-origin"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/30 group-hover:scale-110 group-hover:text-white transition-all duration-500">
+                          <ExternalLink size={32} strokeWidth={1} />
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-transparent z-20" /> {/* Prevents iframe stealing click */}
+                    )}
+                    <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-3xl" />
+                  </div>
                 </div>
 
-                <div className="p-8 flex-1 flex flex-col relative z-10">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-xs font-medium text-white/60 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                {/* Content Side */}
+                <div className="w-full lg:w-1/2 flex flex-col">
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className="text-xs font-medium text-white/80 bg-white/10 px-3 py-1 rounded-full border border-white/10 backdrop-blur-md">
                       {project.category}
                     </span>
+                    {project.featured && (
+                      <span className="text-xs font-medium text-red-400 bg-red-400/10 px-3 py-1 rounded-full border border-red-400/20">
+                        Featured Case Study
+                      </span>
+                    )}
                   </div>
                   
-                  <h3 className="text-xl font-display font-semibold tracking-tight text-white mb-3">
+                  <h3 className="text-[clamp(2rem,4vw,3rem)] font-display font-bold tracking-tight text-white mb-6 leading-none">
                     {project.title}
                   </h3>
                   
-                  <p className="text-app-text-secondary text-sm leading-relaxed mb-8 flex-1">
+                  <p className="text-white/60 text-lg leading-relaxed mb-8">
                     {project.description}
                   </p>
+
+                  {/* Case Study Details */}
+                  {(project.problem || project.solution) && (
+                    <div className="grid sm:grid-cols-2 gap-6 mb-8">
+                      {project.problem && (
+                        <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5">
+                          <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> Challenge
+                          </h4>
+                          <p className="text-sm text-white/50 leading-relaxed">{project.problem}</p>
+                        </div>
+                      )}
+                      {project.solution && (
+                        <div className="p-5 rounded-2xl bg-white/[0.02] border border-white/5">
+                          <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Solution
+                          </h4>
+                          <p className="text-sm text-white/50 leading-relaxed">{project.solution}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Metrics */}
+                  {project.performanceMetrics && (
+                    <div className="flex flex-wrap gap-4 mb-8">
+                      {project.performanceMetrics.map((metric, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm text-white/80 font-medium">
+                          <CheckCircle2 size={16} className="text-green-400" />
+                          {metric}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   
-                  <div className="flex flex-wrap gap-2 mt-auto mb-8">
+                  <div className="flex flex-wrap gap-2 mb-10">
                     {project.tech.map((t, idx) => (
-                      <span key={idx} className="text-[11px] uppercase tracking-wider font-medium text-app-muted bg-white/5 px-2.5 py-1 rounded-md">
+                      <span key={idx} className="text-xs tracking-wider font-medium text-white/40 bg-white/5 px-3 py-1.5 rounded-md border border-white/5">
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="inline-flex items-center space-x-2 text-sm font-medium text-white hover:text-white/80 transition-colors group/link relative w-fit"
-                  >
-                    <span>View Project</span>
-                    <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform" />
-                    <span className="absolute left-0 bottom-0 w-0 h-px bg-white group-hover/link:w-full transition-all duration-300" />
-                  </a>
+                  <div className="flex flex-wrap items-center gap-4 mt-auto">
+                    {project.link && (
+                      <a 
+                        href={project.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="group relative flex items-center space-x-2 bg-white text-black px-6 py-3 rounded-full font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <span>Live Demo</span>
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    )}
+                    {project.github && (
+                      <a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-2 px-6 py-3 rounded-full font-medium text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <Github size={16} />
+                        <span>Source Code</span>
+                      </a>
+                    )}
+                    {project.codepen && !project.link.includes('codepen.io') && (
+                      <a 
+                        href={project.codepen} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center space-x-2 px-6 py-3 rounded-full font-medium text-white bg-white/5 border border-white/10 hover:bg-white/10 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <Codepen size={16} />
+                        <span>CodePen</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-20 text-app-muted">
@@ -184,8 +245,8 @@ export default function Projects() {
 
         {/* Featured CodePen / GitHub Banner */}
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className="mt-24 bg-app-card border border-app-border rounded-[2.5rem] p-10 md:p-16 text-center relative overflow-hidden flex flex-col items-center"

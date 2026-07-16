@@ -1,7 +1,6 @@
 import React from 'react';
 import { Github, Codepen, ArrowUpRight, CheckCircle2, ChevronRight, Activity, Award, BookOpen, Fingerprint } from 'lucide-react';
 import { motion } from 'motion/react';
-import { SiGithub, SiCodepen } from 'react-icons/si';
 import { TOOLS } from '../../data';
 
 export default function Footer() {
@@ -96,7 +95,7 @@ export default function Footer() {
                 className="group flex items-center space-x-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-colors text-app-text-secondary hover:text-white w-fit"
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/30 transition-colors">
-                  <SiGithub size={16} />
+                  <Github size={16} />
                 </div>
                 <span className="text-sm font-medium">GitHub</span>
               </a>
@@ -107,7 +106,7 @@ export default function Footer() {
                 className="group flex items-center space-x-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-colors text-app-text-secondary hover:text-white w-fit"
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/30 transition-colors">
-                  <SiCodepen size={16} />
+                  <Codepen size={16} />
                 </div>
                 <span className="text-sm font-medium">CodePen</span>
               </a>

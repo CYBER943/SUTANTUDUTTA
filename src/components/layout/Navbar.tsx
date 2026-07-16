@@ -13,34 +13,43 @@ const NAV_LINKS = [
 export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Setup sticky transition
+    let ticking = false;
+
+    const updateScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Setup scroll progress
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-      setScrollProgress(scrolled);
-      
-      // Determine active section
-      for (let i = NAV_LINKS.length - 1; i >= 0; i--) {
-        const link = NAV_LINKS[i];
-        const sectionId = link.href.substring(1);
-        const section = document.getElementById(sectionId);
-        if (section && window.scrollY >= section.offsetTop - 150) {
-          setActiveSection(sectionId);
+      // Determine active section (optimized to avoid reflows where possible)
+      const sections = NAV_LINKS.map(link => {
+        const id = link.href.substring(1);
+        const el = document.getElementById(id);
+        return { id, el };
+      }).filter(s => s.el !== null);
+
+      let currentSection = 'home';
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const { id, el } = sections[i];
+        if (el && window.scrollY >= el.offsetTop - 150) {
+          currentSection = id;
           break;
         }
+      }
+      
+      setActiveSection(currentSection);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScroll);
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Call once on mount
+    updateScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -50,19 +59,19 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 w-full z-[1000] h-[72px] flex flex-col justify-center transition-all duration-300 ${
-          isScrolled ? 'bg-[#020817]/75 backdrop-blur-[12px] border-b border-white/[0.05]' : 'bg-transparent'
+        className={`fixed top-0 left-0 w-full z-[1000] h-[80px] flex flex-col justify-center transition-all duration-300 ${
+          isScrolled ? 'bg-app-bg/80 backdrop-blur-xl border-b border-app-border' : 'bg-transparent'
         }`}
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
-        <div className="w-full max-w-6xl mx-auto px-6 flex justify-between items-center">
-          <a href="#home" className="text-xl font-display font-semibold tracking-tight group relative z-[1010] hover:opacity-80 transition-opacity">
-            <span className="text-white">Sutantu </span>
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
+          <a href="#home" className="text-2xl font-display font-semibold tracking-tight group relative z-[1010] hover:opacity-80 transition-opacity">
+            <span className="text-app-text">Sutantu </span>
             <span className="text-app-primary">Dutta</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-10">
             {NAV_LINKS.map((link) => {
               const sectionId = link.href.substring(1);
               const isActive = activeSection === sectionId;
@@ -71,7 +80,7 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
                   key={link.name}
                   href={link.href}
                   className={`relative text-sm font-medium transition-colors group py-2 ${
-                    isActive ? 'text-white' : 'text-app-text-secondary hover:text-white'
+                    isActive ? 'text-app-text' : 'text-app-text-secondary hover:text-app-text'
                   }`}
                 >
                   {link.name}
@@ -95,11 +104,11 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
 
             <a
               href="#contact"
-              className="relative overflow-hidden px-5 py-2.5 text-sm font-medium rounded-full bg-gradient-to-r from-app-primary to-app-primary-hover text-white shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:shadow-[0_0_25px_rgba(220,38,38,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
+              className="relative overflow-hidden px-6 py-2.5 text-sm font-medium rounded-full bg-app-primary text-white shadow-[0_0_20px_rgba(255,90,54,0.3)] hover:shadow-[0_0_30px_rgba(255,90,54,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
             >
               <span className="relative z-10">Let's Talk</span>
               {/* Gradient sweep effect */}
-              <span className="absolute inset-0 bg-gradient-to-r from-app-primary-hover to-app-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
             </a>
           </div>
 

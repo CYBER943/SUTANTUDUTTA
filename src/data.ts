@@ -14,23 +14,14 @@ import {
   MessageSquare,
   Terminal,
   Globe,
-  BookOpen
+  BookOpen,
+  Codepen,
+  PenTool,
+  Palette,
+  Figma,
+  Github,
+  Box
 } from 'lucide-react';
-import {
-  SiOpenai,
-  SiAnthropic,
-  SiGooglegemini,
-  SiGithubcopilot,
-  SiCodepen,
-  SiVercel,
-  SiGooglechrome,
-  SiNotion,
-  SiTodoist,
-  SiGmail,
-  SiGithub,
-  SiDropbox
-} from 'react-icons/si';
-import { VscVscode } from 'react-icons/vsc';
 import { DevinIcon, B12Icon, GrokIcon, NoteGPTIcon, GoogleAIStudioIcon, WindsurfIcon } from './components/icons/CustomIcons';
 import { Project, ToolItem, BlogPost, TimelineEvent, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
 
@@ -132,7 +123,15 @@ export const PROJECTS: Project[] = [
     category: "UI/UX Concepts",
     tech: ["HTML", "CSS", "JavaScript", "GSAP"],
     link: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
-    featured: true
+    codepen: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
+    github: "https://github.com/Sdm940",
+    featured: true,
+    problem: "Traditional portfolios lack personality and fail to demonstrate actual coding capability through the interface itself.",
+    solution: "Designed a highly interactive, cyber-aesthetic experience that serves as both a portfolio and a technical demonstration of GSAP and advanced CSS.",
+    challenges: "Synchronizing complex timeline animations while maintaining 60fps performance and responsive layouts across devices.",
+    results: "Created an immersive experience with high engagement rates and perfect Lighthouse performance scores.",
+    performanceMetrics: ["100% Lighthouse Score", "60 FPS Animations", "Zero Layout Shifts"],
+    lessonsLearned: "Mastered timeline orchestrations in GSAP and learned how to optimize paint operations by promoting animated elements to their own composite layers."
   },
   {
     id: 2,
@@ -141,7 +140,15 @@ export const PROJECTS: Project[] = [
     category: "Web Applications",
     tech: ["React", "CSS", "Framer Motion"],
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
-    featured: true
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
+    github: "https://github.com/Sdm940",
+    featured: true,
+    problem: "Data dashboards are often visually dense, intimidating, and lack modern aesthetic appeal.",
+    solution: "Implemented a glassmorphic design system that uses spatial depth, translucency, and subtle motion to make data consumption effortless.",
+    challenges: "Balancing the heavy backdrop-filter blur effects with render performance on mobile devices.",
+    results: "A visually stunning interface that remains legible while pushing the boundaries of modern CSS capabilities.",
+    performanceMetrics: ["Sub-50ms Interaction Delay", "Adaptive Blur Scaling", "Accessible Contrast Ratios"],
+    lessonsLearned: "Discovered techniques for faking glassmorphism using optimized radial gradients when backdrop-filter is too expensive for the device."
   },
   {
     id: 3,
@@ -150,6 +157,14 @@ export const PROJECTS: Project[] = [
     category: "AI Experiments",
     tech: ["Canvas API", "JavaScript", "Math"],
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
+    github: "https://github.com/Sdm940",
+    problem: "DOM-based animations hit performance bottlenecks quickly when dealing with hundreds of independent elements.",
+    solution: "Built a custom rendering engine using the HTML5 Canvas API and requestAnimationFrame for direct pixel manipulation.",
+    challenges: "Implementing efficient collision detection and physics calculations without dropping frames.",
+    results: "Smoothly renders over 5,000 independent particles with fluid mouse physics and dynamic color mapping.",
+    performanceMetrics: ["5000+ Particles", "Consistent 60FPS", "<2MB Memory Footprint"],
+    lessonsLearned: "Gained deep understanding of spatial partitioning for physics calculations and typed arrays for memory optimization."
   },
   {
     id: 4,
@@ -158,25 +173,37 @@ export const PROJECTS: Project[] = [
     category: "UI/UX Concepts",
     tech: ["Three.js", "WebGL", "JavaScript"],
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
+    github: "https://github.com/Sdm940",
+    problem: "Web experiences are typically constrained to 2D planes, limiting the ability to create truly immersive spatial designs.",
+    solution: "Leveraged Three.js to construct an interactive 3D environment that responds to scroll and mouse coordinates.",
+    challenges: "Managing lighting, shadows, and geometry complexity while ensuring the site doesn't drain device battery.",
+    results: "A highly engaging spatial interface that feels like a native application rather than a traditional website.",
+    performanceMetrics: ["Optimized Geometry", "Baked Lighting", "Lazy Loaded Assets"],
+    lessonsLearned: "Learned how to bridge the gap between HTML UI and WebGL canvases using synchronized camera projections."
   }
 ];
 
 export const TOOLS: ToolItem[] = [
-  { name: "Visual Studio Code", icon: VscVscode, url: "https://code.visualstudio.com", color: "#007ACC", description: "Primary code editor for development and debugging." },
-  { name: "Devin", icon: DevinIcon, url: "https://devin.ai", color: "#ffffff", description: "AI software engineering assistant for development workflows." },
-  { name: "Windsurf", icon: WindsurfIcon, url: "https://codeium.com/windsurf", color: "#00E5FF", description: "The world's first agentic IDE." },
-  { name: "CodePen", icon: SiCodepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experimentation and rapid prototyping." },
-  { name: "GitHub", icon: SiGithub, url: "https://github.com", color: "#ffffff", description: "Version control, collaboration, and project hosting." },
-  { name: "Vercel", icon: SiVercel, url: "https://vercel.com", color: "#ffffff", description: "Deployment, hosting, and performance optimization." },
-  { name: "B12.io", icon: B12Icon, url: "https://www.b12.io", color: "#5048C7", description: "Website creation and business website management." },
-  { name: "ChatGPT", icon: SiOpenai, url: "https://chatgpt.com", color: "#10a37f", description: "Coding, research, learning, and problem solving." },
-  { name: "Claude", icon: SiAnthropic, url: "https://claude.ai", color: "#d97757", description: "Reasoning, writing, and structured analysis." },
-  { name: "Microsoft Copilot", icon: SiGithubcopilot, url: "https://copilot.microsoft.com", color: "#0078D4", description: "AI-powered coding assistance and productivity." },
-  { name: "Gemini", icon: SiGooglegemini, url: "https://gemini.google.com", color: "#8e75ff", description: "AI research, multimodal assistance, and ideation." },
-  { name: "Google AI Studio", icon: GoogleAIStudioIcon, url: "https://aistudio.google.com", color: "#4285F4", description: "Gemini API development, prompt engineering, and AI prototyping." },
-  { name: "Grok", icon: GrokIcon, url: "https://grok.com", color: "#ffffff", description: "AI assistant for reasoning, coding, and real-time insights." },
-  { name: "NoteGPT", icon: NoteGPTIcon, url: "https://notegpt.io", color: "#10B981", description: "AI-powered note-taking, summarization, and learning." },
-  { name: "Notion", icon: SiNotion, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management, documentation, and planning." },
-  { name: "Todoist", icon: SiTodoist, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity." },
-  { name: "Dropbox", icon: SiDropbox, url: "https://www.dropbox.com", color: "#0061FF", description: "Cloud storage, synchronization, backup, and file sharing." }
+  { name: "Visual Studio Code", icon: Code2, url: "https://code.visualstudio.com", color: "#007ACC", description: "Primary code editor for development and debugging.", category: "Development", experienceLevel: "Expert", usageFrequency: "Daily" },
+  { name: "Devin", icon: DevinIcon, url: "https://devin.ai", color: "#ffffff", description: "AI software engineering assistant for development workflows.", category: "AI", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "Windsurf", icon: WindsurfIcon, url: "https://codeium.com/windsurf", color: "#00E5FF", description: "The world's first agentic IDE.", category: "Development", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "CodePen", icon: Codepen, url: "https://codepen.io", color: "#ffffff", description: "Frontend experimentation and rapid prototyping.", category: "Development", experienceLevel: "Expert", usageFrequency: "Weekly" },
+  { name: "GitHub", icon: Github, url: "https://github.com", color: "#ffffff", description: "Version control, collaboration, and project hosting.", category: "Development", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "Vercel", icon: Triangle, url: "https://vercel.com", color: "#ffffff", description: "Deployment, hosting, and performance optimization.", category: "Development", experienceLevel: "Advanced", usageFrequency: "Weekly" },
+  { name: "B12.io", icon: B12Icon, url: "https://www.b12.io", color: "#5048C7", description: "Website creation and business website management.", category: "Development", experienceLevel: "Intermediate", usageFrequency: "Occasionally" },
+  { name: "Chrome", icon: Chrome, url: "https://www.google.com/chrome/", color: "#4285F4", description: "Web browsing and development tools.", category: "Productivity", experienceLevel: "Expert", usageFrequency: "Daily" },
+  { name: "Figma", icon: Figma, url: "https://www.figma.com", color: "#F24E1E", description: "UI/UX design and prototyping.", category: "Creative", experienceLevel: "Advanced", usageFrequency: "Weekly" },
+  { name: "Adobe", icon: PenTool, url: "https://www.adobe.com", color: "#FF0000", description: "Creative suite for digital assets.", category: "Creative", experienceLevel: "Intermediate", usageFrequency: "Occasionally" },
+  { name: "Canva", icon: Palette, url: "https://www.canva.com", color: "#00C4CC", description: "Quick graphic design and layout creation.", category: "Creative", experienceLevel: "Advanced", usageFrequency: "Weekly" },
+  { name: "ChatGPT", icon: MessageSquare, url: "https://chatgpt.com", color: "#10a37f", description: "Coding, research, learning, and problem solving.", category: "AI", experienceLevel: "Expert", usageFrequency: "Daily" },
+  { name: "Claude", icon: BrainCircuit, url: "https://claude.ai", color: "#d97757", description: "Reasoning, writing, and structured analysis.", category: "AI", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "Microsoft Copilot", icon: Bot, url: "https://copilot.microsoft.com", color: "#0078D4", description: "AI-powered coding assistance and productivity.", category: "AI", experienceLevel: "Advanced", usageFrequency: "Weekly" },
+  { name: "Gemini", icon: Sparkles, url: "https://gemini.google.com", color: "#8e75ff", description: "AI research, multimodal assistance, and ideation.", category: "AI", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "Google AI Studio", icon: GoogleAIStudioIcon, url: "https://aistudio.google.com", color: "#4285F4", description: "Gemini API development, prompt engineering, and AI prototyping.", category: "AI", experienceLevel: "Advanced", usageFrequency: "Weekly" },
+  { name: "Grok", icon: GrokIcon, url: "https://grok.com", color: "#ffffff", description: "AI assistant for reasoning, coding, and real-time insights.", category: "AI", experienceLevel: "Intermediate", usageFrequency: "Weekly" },
+  { name: "NoteGPT", icon: NoteGPTIcon, url: "https://notegpt.io", color: "#10B981", description: "AI-powered note-taking, summarization, and learning.", category: "AI", experienceLevel: "Intermediate", usageFrequency: "Occasionally" },
+  { name: "Notion", icon: FileText, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management, documentation, and planning.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "Todoist", icon: CheckSquare, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" },
+  { name: "Dropbox", icon: Box, url: "https://www.dropbox.com", color: "#0061FF", description: "Cloud storage, synchronization, backup, and file sharing.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" }
 ];

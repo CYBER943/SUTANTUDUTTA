@@ -20,32 +20,36 @@ export default function CustomCursor() {
   const dotYSpring = useSpring(dotY, dotSpringConfig);
 
   useEffect(() => {
-    // Check if it's a touch device
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
       setIsTouchDevice(true);
       return;
     }
 
+    let interactiveEl: HTMLElement | null = null;
+    let centerX = 0;
+    let centerY = 0;
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      interactiveEl = target.closest('a, button, .interactive') as HTMLElement;
+      if (interactiveEl) {
+        setIsHovering(true);
+        const rect = interactiveEl.getBoundingClientRect();
+        centerX = rect.left + rect.width / 2;
+        centerY = rect.top + rect.height / 2;
+      } else {
+        setIsHovering(false);
+      }
+    };
+
     const updateMousePosition = (e: MouseEvent) => {
       let targetX = e.clientX;
       let targetY = e.clientY;
 
-      // Magnetic attraction logic
-      const target = e.target as HTMLElement;
-      const interactiveEl = target.closest('a, button, .interactive') as HTMLElement;
-      
       if (interactiveEl) {
-        setIsHovering(true);
-        // Calculate center of element
-        const rect = interactiveEl.getBoundingClientRect();
-        // Gentle magnetic pull (pulls 30% towards the center of the element)
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
+        // Recalculate center occasionally or rely on the cached one
         targetX = e.clientX + (centerX - e.clientX) * 0.3;
         targetY = e.clientY + (centerY - e.clientY) * 0.3;
-      } else {
-        setIsHovering(false);
       }
 
       cursorX.set(targetX);
@@ -57,11 +61,13 @@ export default function CustomCursor() {
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
+    window.addEventListener('mouseover', handleMouseOver);
     window.addEventListener('mousemove', updateMousePosition);
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
+      window.removeEventListener('mouseover', handleMouseOver);
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mousedown', handleMouseDown);
       window.removeEventListener('mouseup', handleMouseUp);
