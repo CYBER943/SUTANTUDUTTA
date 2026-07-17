@@ -7,8 +7,8 @@ const TOOLS_DATA = [
     description: 'AI assistant for coding, debugging, brainstorming, and productivity.',
     slug: 'chatgpt',
     logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-    hasText: true,
-    invert: true,
+    hasText: false,
+    invert: false,
   },
   {
     name: 'Google Gemini',
@@ -22,8 +22,8 @@ const TOOLS_DATA = [
     name: 'GitHub',
     description: 'Version control, collaboration, and open-source development.',
     slug: 'github',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/29/GitHub_logo_2013.svg',
-    hasText: true,
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg',
+    hasText: false,
     invert: true,
   },
   {
