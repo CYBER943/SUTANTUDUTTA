@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { ArrowRight, Github, Codepen, Mail, Download } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import { TextReveal } from '../ui/TextReveal';
-import { ToolShowcase } from '../ui/ToolShowcase';
+import { CodeEditorShowcase } from '../ui/CodeEditorShowcase';
 import { BackgroundCode } from '../ui/BackgroundCode';
 
 export default function Hero() {
@@ -158,9 +158,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="w-full md:w-[50%] h-[400px] sm:h-[500px] md:h-[650px] relative mt-12 md:mt-0 perspective-1000 flex items-center justify-center"
+          className="w-full md:w-[50%] relative mt-12 md:mt-0 flex items-center justify-center"
         >
-          {isMounted && <ToolShowcase />}
+          {isMounted && <CodeEditorShowcase />}
         </motion.div>
       </div>
     </section>
