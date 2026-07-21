@@ -50,6 +50,14 @@ const TOOLS_DATA = [
     hasText: false,
     invert: false,
   },
+  {
+    name: 'Visual Studio Code',
+    description: 'A powerful, extensible code editor for modern development workflows.',
+    slug: 'visualstudiocode',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg',
+    hasText: false,
+    invert: false,
+  },
 ];
 
 export default function Tools() {

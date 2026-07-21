@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { motion, useScroll } from 'motion/react';
 import { Toaster } from 'sonner';
 import { Analytics } from "@vercel/analytics/react";
@@ -9,6 +9,7 @@ import Hero from './components/sections/Hero';
 import CustomCursor from './components/ui/CustomCursor';
 import { SectionReveal } from './components/ui/SectionReveal';
 import CommandPalette from './components/ui/CommandPalette';
+import { Preloader } from './components/ui/Preloader';
 
 // Utility function to handle chunk load errors (e.g. after a new deployment)
 function lazyWithRetry(componentImport: () => Promise<any>) {
@@ -47,9 +48,29 @@ const FallbackLoader = () => (
 export default function App() {
   const { scrollYProgress } = useScroll();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const handleLoad = () => {
+      // Small delay to ensure smooth transition and font loading
+      setTimeout(() => setIsLoading(false), 2000);
+    };
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      const fallback = setTimeout(handleLoad, 3000);
+      return () => {
+        window.removeEventListener('load', handleLoad);
+        clearTimeout(fallback);
+      };
+    }
+  }, []);
 
   return (
     <div className="min-h-screen selection:bg-app-primary/30 selection:text-white bg-app-bg w-full overflow-hidden">
+      <Preloader isLoading={isLoading} />
       <CustomCursor />
       <CommandPalette isOpen={isCommandPaletteOpen} setIsOpen={setIsCommandPaletteOpen} />
       
