@@ -9,7 +9,6 @@ import Hero from './components/sections/Hero';
 import CustomCursor from './components/ui/CustomCursor';
 import { SectionReveal } from './components/ui/SectionReveal';
 import CommandPalette from './components/ui/CommandPalette';
-import { Preloader } from './components/ui/Preloader';
 
 // Utility function to handle chunk load errors (e.g. after a new deployment)
 function lazyWithRetry(componentImport: () => Promise<any>) {
@@ -48,16 +47,24 @@ const FallbackLoader = () => (
 export default function App() {
   const { scrollYProgress } = useScroll();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleLoad = () => {
-      // Small delay to ensure smooth transition and font loading
-      setTimeout(() => setIsLoading(false), 2000);
+      // Fade out the global preloader that is in index.html
+      const preloader = document.getElementById('global-preloader');
+      if (preloader) {
+        preloader.style.opacity = '0';
+        preloader.style.filter = 'blur(10px)';
+        preloader.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+          preloader.style.display = 'none';
+        }, 800);
+      }
     };
 
     if (document.readyState === 'complete') {
-      handleLoad();
+      // Small delay for smooth transition if it loads too fast
+      setTimeout(handleLoad, 500);
     } else {
       window.addEventListener('load', handleLoad);
       const fallback = setTimeout(handleLoad, 3000);
@@ -70,7 +77,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen selection:bg-app-primary/30 selection:text-white bg-app-bg w-full overflow-hidden">
-      <Preloader isLoading={isLoading} />
       <CustomCursor />
       <CommandPalette isOpen={isCommandPaletteOpen} setIsOpen={setIsCommandPaletteOpen} />
       

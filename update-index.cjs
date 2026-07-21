@@ -1,46 +1,8 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Student Developer, AI Enthusiast, and Cybersecurity Learner building modern web experiences." />
-    <title>Sutantu Dutta | Developer Portfolio</title>
+const fs = require('fs');
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+let html = fs.readFileSync('index.html', 'utf-8');
 
-    <!-- Open Graph SEO -->
-    <meta property="og:title" content="Sutantu Dutta | Developer Portfolio" />
-    <meta property="og:description" content="Student Developer, AI Enthusiast, and Cybersecurity Learner building modern web experiences." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sutantudutta.com" />
-    <meta property="og:image" content="https://sutantudutta.com/og-image.png" />
-    <meta property="og:site_name" content="Sutantu Dutta" />
-
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Sutantu Dutta | Developer Portfolio" />
-    <meta name="twitter:description" content="Student Developer, AI Enthusiast, and Cybersecurity Learner building modern web experiences." />
-    <meta name="twitter:image" content="https://sutantudutta.com/og-image.png" />
-
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Sutantu Dutta",
-        "jobTitle": "Student Developer",
-        "url": "https://sutantudutta.com",
-        "sameAs": [
-          "https://github.com/Sdm940",
-          "https://codepen.io/SDM-TECH-KNOW"
-        ],
-        "knowsAbout": ["Web Development", "Artificial Intelligence", "Cybersecurity", "React", "TypeScript", "Three.js"]
-      }
-    </script>
-  
+const headInsert = `
     <!-- Preloader Styles -->
     <style>
       body { margin: 0; background-color: #08090D; }
@@ -146,8 +108,9 @@
         pointer-events: none;
       }
     </style>
-  </head>
-  
+  </head>`;
+
+const bodyInsert = `
   <body>
     <div id="global-preloader">
       <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 96px; height: 96px; z-index: 10;">
@@ -160,9 +123,9 @@
         <div class="loader-bar-fg"></div>
       </div>
       <div class="loader-glow"></div>
-    </div>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+    </div>`;
 
+html = html.replace('</head>', headInsert);
+html = html.replace('<body>', bodyInsert);
+fs.writeFileSync('index.html', html);
+console.log('Updated index.html');

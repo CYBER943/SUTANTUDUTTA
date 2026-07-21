@@ -12,7 +12,7 @@ export default defineConfig(() => {
       },
     },
     build: {
-      minify: 'terser',
+      minify: 'terser' as const,
       terserOptions: {
         compress: {
           drop_console: true,
@@ -21,14 +21,7 @@ export default defineConfig(() => {
       },
       rollupOptions: {
         output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) return 'react-vendor';
-              if (id.includes('motion') || id.includes('framer-motion')) return 'motion-vendor';
-              if (id.includes('lucide')) return 'lucide-vendor';
-              return 'deps-vendor';
-            }
-          },
+          
         },
       },
     },
