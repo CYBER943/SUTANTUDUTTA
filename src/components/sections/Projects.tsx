@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Search, ExternalLink, ArrowRight, Github, Codepen, CheckCircle2 } from 'lucide-react';
 import { TextReveal } from '../ui/TextReveal';
+import { useTheme } from '../ThemeProvider';
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const prefersReducedMotion = useReducedMotion();
+  const { theme } = useTheme();
 
   const filteredProjects = PROJECTS.filter((project) => {
     const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
@@ -110,7 +112,7 @@ export default function Projects() {
                   <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden bg-[#0A0A0A] border border-white/10 group-hover:border-white/20 transition-colors shadow-2xl">
                     {project.link.includes('codepen.io') ? (
                       <iframe 
-                        src={project.link.replace('/pen/', '/embed/preview/') + '?default-tab=result&theme-id=dark'} 
+                        src={`${project.link.replace('/pen/', '/embed/preview/')}?default-tab=result&theme-id=${theme}`} 
                         title={project.title}
                         loading="lazy"
                         className="w-full h-full border-none opacity-90 group-hover:opacity-100 transition-opacity"

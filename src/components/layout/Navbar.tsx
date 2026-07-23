@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Search, Command } from 'lucide-react';
+import { Menu, X, Search, Command, Sun, Moon } from 'lucide-react';
+import { useTheme } from '../ThemeProvider';
 
 const NAV_LINKS = [
   { name: 'Home', href: '#home' },
@@ -14,6 +15,7 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     let ticking = false;
@@ -100,8 +102,15 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
               <span className="ml-2 text-xs font-mono px-1.5 py-0.5 rounded bg-white/10 border border-white/5 opacity-70 flex items-center gap-1">
                  <Command size={10} /> K
               </span>
+            
             </button>
-
+            <button
+              onClick={toggleTheme}
+              className="flex items-center justify-center p-2 rounded-full text-app-text-secondary hover:text-app-primary hover:bg-app-card hover:scale-110 transition-all duration-300 mr-2"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
             <a
               href="#contact"
               className="relative overflow-hidden px-6 py-2.5 text-sm font-medium rounded-full bg-app-primary text-white shadow-[0_0_20px_rgba(255,90,54,0.3)] hover:shadow-[0_0_30px_rgba(255,90,54,0.5)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all group"
@@ -113,7 +122,14 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-1">
+            <button
+              onClick={toggleTheme}
+              className="text-app-text-secondary relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-app-primary transition-colors"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             <button
               className="text-white relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={onOpenCommandPalette}
@@ -121,6 +137,7 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
             >
               <Search size={20} />
             </button>
+
             <button
               className="text-white relative z-[1150] p-2.5 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -133,6 +150,7 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </motion.div>
             </button>
+
           </div>
         </div>
       </motion.nav>
@@ -156,6 +174,7 @@ export default function Navbar({ onOpenCommandPalette }: { onOpenCommandPalette?
               >
                 <X size={24} />
              </button>
+
 
             {NAV_LINKS.map((link, idx) => {
                const sectionId = link.href.substring(1);

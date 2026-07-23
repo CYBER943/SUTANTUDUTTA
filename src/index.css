@@ -32,7 +32,21 @@
   --color-app-disabled: #475569;
 }
 
+:root.light {
+  --color-app-bg: #FFFFFF;
+  --color-app-bg-secondary: #F8FAFC;
+  --color-app-card: rgba(0, 0, 0, 0.04);
+  --color-app-elevated: rgba(0, 0, 0, 0.06);
+  --color-app-border: rgba(0, 0, 0, 0.08);
+  --color-app-border-light: rgba(0, 0, 0, 0.04);
+  --color-app-text: #1F2937;
+  --color-app-text-secondary: #4B5563;
+  --color-app-muted: #64748B;
+  --color-app-disabled: #94A3B8;
+}
+
 body {
+  transition: background-color 300ms ease, color 300ms ease;
   background-color: var(--color-app-bg);
   color: var(--color-app-text);
   font-family: var(--font-sans);
@@ -106,3 +120,10 @@ html {
   100% { transform: translateX(100%); }
 }
 
+
+.theme-invert {
+  filter: brightness(0) invert(1);
+}
+:root.light .theme-invert {
+  filter: brightness(0) invert(0);
+}

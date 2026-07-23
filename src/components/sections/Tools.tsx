@@ -3,6 +3,31 @@ import { motion } from 'motion/react';
 
 const TOOLS_DATA = [
   {
+    name: 'Notion',
+    description: 'All-in-one workspace for notes, docs, and collaboration.',
+    slug: 'notion',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg',
+    hasText: true,
+    invert: true,
+  },
+  {
+    name: 'CodePen',
+    description: 'Online code editor and front-end web development community.',
+    slug: 'codepen',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/32/CodePen_Logo.svg',
+    hasText: true,
+    invert: true,
+  },
+  
+  {
+    name: 'Todoist',
+    description: 'Task management app and to-do list organizer.',
+    slug: 'todoist',
+    logoUrl: 'https://cdn.simpleicons.org/todoist/E44332',
+    hasText: false,
+    invert: false,
+  },
+  {
     name: 'ChatGPT',
     description: 'AI assistant for coding, debugging, brainstorming, and productivity.',
     slug: 'chatgpt',
@@ -99,7 +124,7 @@ export default function Tools() {
                   <img 
                     src={tool.logoUrl} 
                     alt={`${tool.name} logo`}
-                    className={`h-8 lg:h-10 w-auto object-contain drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-300 ${tool.invert ? 'brightness-0 invert' : ''}`}
+                    className={`h-8 lg:h-10 w-auto object-contain drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,90,54,0.4)] transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
                     loading="lazy"
                   />
                 ) : (
@@ -107,10 +132,10 @@ export default function Tools() {
                     <img 
                       src={tool.logoUrl} 
                       alt={`${tool.name} logo`}
-                      className={`w-10 h-10 lg:w-12 lg:h-12 drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all duration-300 ${tool.invert ? 'brightness-0 invert' : ''}`}
+                      className={`w-10 h-10 lg:w-12 lg:h-12 drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,90,54,0.4)] transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
                       loading="lazy"
                     />
-                    <span className="text-xl lg:text-2xl font-semibold text-app-text-secondary group-hover:text-white transition-colors duration-300 whitespace-nowrap">
+                    <span className="text-xl lg:text-2xl font-semibold text-app-text-secondary group-hover:text-app-text transition-colors duration-300 whitespace-nowrap">
                       {tool.name}
                     </span>
                   </>

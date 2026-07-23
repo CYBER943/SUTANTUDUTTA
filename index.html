@@ -146,6 +146,17 @@
         pointer-events: none;
       }
     </style>
+  
+    <script>
+      (function() {
+        try {
+          var theme = localStorage.getItem('theme');
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   
   <body>
