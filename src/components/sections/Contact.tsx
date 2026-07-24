@@ -13,7 +13,7 @@ const SOCIALS = [
 ];
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', honeypot: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '', projectType: 'Personal Project', urgency: 'Relaxed', honeypot: '' });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -65,7 +65,7 @@ export default function Contact() {
       const emailjs = (await import('@emailjs/browser')).default;
       
       // Initialize with public key
-      emailjs.init("xVHsywL92cBHnONP2");
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "SFx7Vfw6kC_YuGJ-HUzzI");
       
       const getBrowserInfo = () => {
         const ua = navigator.userAgent;
@@ -89,6 +89,8 @@ export default function Contact() {
       };
       
       const templateParams = {
+        project_type: formData.projectType,
+        urgency: formData.urgency,
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
@@ -101,21 +103,23 @@ export default function Contact() {
 
       // Send main email to the portfolio owner
       await emailjs.send(
-        "service_m1et0ae",
-        "YOUR_TEMPLATE_ID",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_m1et0ae",
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID",
         templateParams
       );
 
       // Attempt to send auto-reply to the visitor
       try {
         await emailjs.send(
-          "service_m1et0ae",
-          "YOUR_AUTO_REPLY_TEMPLATE_ID",
+          import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_m1et0ae",
+          import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID || "YOUR_AUTO_REPLY_TEMPLATE_ID",
           {
             name: formData.name,
             email: formData.email,
             subject: formData.subject,
-            message: formData.message
+            message: formData.message,
+            project_type: formData.projectType,
+            urgency: formData.urgency
           }
         );
       } catch (autoReplyErr) {
@@ -130,7 +134,7 @@ export default function Contact() {
         description: "Thank you for contacting me. I've received your message and will reply as soon as possible.",
       });
       
-      setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
+      setFormData({ name: '', email: '', subject: '', message: '', projectType: 'Personal Project', urgency: 'Relaxed', honeypot: '' });
       setTimeout(() => setIsSuccess(false), 5000);
       
     } catch (error) {
@@ -170,9 +174,9 @@ export default function Contact() {
             </div>
             
             <h2 className="text-[clamp(3rem,6vw,4.5rem)] font-display font-bold text-white mb-8 tracking-tight leading-[1.1]">
-              <TextReveal text="Let's build" />
+              <TextReveal text="Let's create something" />
               <br />
-              <span className="text-white/30"><TextReveal text="something." /></span>
+              <span className="text-white/30"><TextReveal text="amazing together." /></span>
             </h2>
             
             <p className="text-white/50 text-lg mb-16 max-w-md font-light leading-relaxed">
@@ -200,7 +204,7 @@ export default function Contact() {
               </div>
               
               <div className="grid grid-cols-2 gap-3 mt-8 relative z-10">
-                <button
+                                                  <button
                   onClick={() => copyToClipboard('sutantudutta@outlook.com', 'Email')}
                   className="flex items-center justify-center space-x-2 px-6 py-3 border border-white/10 rounded-xl text-white/70 hover:text-white hover:bg-white/5 transition-all font-medium group/btn"
                 >
@@ -263,7 +267,7 @@ export default function Contact() {
                     <CheckCircle2 size={40} strokeWidth={1.5} />
                   </div>
                   <h3 className="text-3xl font-display font-bold tracking-tight text-white mb-4">Transmission Successful</h3>
-                  <p className="text-white/50 text-lg max-w-sm">Thank you for reaching out. I've received your message and will respond shortly.</p>
+                  <p className="text-white/50 text-lg max-w-sm">Got it! I'll reply within 48 hours 🎉</p>
                 </motion.div>
               ) : (
                 <motion.form
@@ -357,6 +361,46 @@ export default function Contact() {
                     )}
                   </div>
 
+                                    {/* Project Type */}
+                  <div className="space-y-3 pb-2">
+                    <label className="text-[10px] uppercase tracking-widest font-medium text-white/50">Type of Project</label>
+                    <div className="flex flex-wrap gap-3">
+                      {['Personal Project', 'Freelance', 'Collaboration'].map(type => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, projectType: type })}
+                          className={`px-4 py-2 rounded-full text-sm transition-all border ${formData.projectType === type ? 'bg-white text-black border-white' : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/10 hover:border-white/20'}`}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Urgency */}
+                  <div className="space-y-3 pb-2">
+                    <label className="text-[10px] uppercase tracking-widest font-medium text-white/50">How urgent?</label>
+                    <div className="flex flex-wrap gap-3">
+                      {[
+                        { label: 'Relaxed', emoji: '🐢' },
+                        { label: 'Normal', emoji: '🚶' },
+                        { label: 'Soon', emoji: '🏃' },
+                        { label: 'ASAP', emoji: '🚀' }
+                      ].map(urgency => (
+                        <button
+                          key={urgency.label}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, urgency: urgency.label })}
+                          className={`px-4 py-2 rounded-xl text-sm transition-all border flex items-center gap-2 ${formData.urgency === urgency.label ? 'bg-white text-black border-white scale-105 shadow-[0_0_15px_rgba(255,255,255,0.2)]' : 'bg-white/5 text-white/70 border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105'}`}
+                        >
+                          <span className="text-lg">{urgency.emoji}</span>
+                          <span>{urgency.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Message Input */}
                   <div className="relative group pb-5">
                     <textarea
@@ -404,7 +448,7 @@ export default function Contact() {
                     />
                   </div>
 
-                  <button
+                                    <button
                     type="submit"
                     disabled={isSubmitting}
                     className="w-full relative overflow-hidden bg-white text-black font-semibold rounded-2xl px-6 py-4 flex items-center justify-center space-x-2 hover:bg-white/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed group mt-8"
@@ -413,16 +457,25 @@ export default function Contact() {
                       {isSubmitting ? (
                         <>
                           <Loader2 size={18} className="animate-spin" />
-                          <span>Transmitting...</span>
+                          <span>Sending...</span>
                         </>
                       ) : (
                         <>
-                          <span>Send Message</span>
+                          <span className="block group-hover:hidden transition-all">Send Message</span>
+                          <span className="hidden group-hover:block transition-all">Let's talk!</span>
                           <ArrowRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         </>
                       )}
                     </span>
                   </button>
+                  <div className="pt-4 text-center">
+                    <p className="text-white/40 text-xs">
+                      Or reach out via{' '}
+                      <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors">GitHub</a>
+                      {' '}/{' '}
+                      <a href="mailto:sutantudutta@outlook.com" className="text-white/70 hover:text-white transition-colors">Email</a>
+                    </p>
+                  </div>
                 </motion.form>
               )}
             </AnimatePresence>
