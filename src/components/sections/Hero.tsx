@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import { TextReveal } from '../ui/TextReveal';
 import { CodeEditorShowcase } from '../ui/CodeEditorShowcase';
 import { BackgroundCode } from '../ui/BackgroundCode';
+import { CoreTech } from '../ui/CoreTech';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
@@ -136,21 +137,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center md:justify-start gap-6 mt-14 pt-8 border-t border-app-border w-full md:w-fit"
-          >
-            <span className="text-sm font-medium text-app-muted uppercase tracking-widest">Core Tech</span>
-            <div className="flex items-center gap-6">
-              {['React', 'TypeScript', 'Node.js', 'Python'].map((tech) => (
-                <span key={tech} className="text-base font-medium text-app-text-secondary">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+          <CoreTech />
         </motion.div>
 
         {/* Right Column - Developer Tools Showcase (50%) */}

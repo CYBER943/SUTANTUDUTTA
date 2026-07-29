@@ -9,9 +9,9 @@ const TOOLS = [
   { name: 'Gemini', slug: 'googlegemini', color: '8E75B2' },
   { name: 'AI Studio', slug: 'google', color: '4285F4' },
   { name: 'Grok', slug: 'x', color: 'FFFFFF' },
-  { name: 'NoteGPT', slug: 'notion', color: 'FFFFFF' }, // Fallback icon
+  { name: 'NoteGPT', slug: 'googledocs', color: 'FFFFFF' },
   { name: 'Dropbox', slug: 'dropbox', color: '0061FF' },
-  { name: 'Notion', slug: 'notion', color: 'FFFFFF' },
+  { name: 'Claude', slug: 'claude', color: 'D97757' },
   { name: 'Todoist', slug: 'todoist', color: 'E44332' },
   { name: 'Vercel', slug: 'vercel', color: 'FFFFFF' },
 ];

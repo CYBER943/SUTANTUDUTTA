@@ -3,12 +3,20 @@ import { motion } from 'motion/react';
 
 const TOOLS_DATA = [
   {
-    name: 'Notion',
-    description: 'All-in-one workspace for notes, docs, and collaboration.',
-    slug: 'notion',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e9/Notion-logo.svg',
-    hasText: true,
-    invert: true,
+    name: 'Claude',
+    description: 'AI assistant for advanced reasoning, research, and analysis.',
+    slug: 'claude',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg',
+    hasText: false,
+    invert: false,
+  },
+  {
+    name: 'Copilot',
+    description: 'AI-powered coding assistant and productivity companion.',
+    slug: 'copilot',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/aa/Microsoft_Copilot_Icon.svg',
+    hasText: false,
+    invert: false,
   },
   {
     name: 'CodePen',

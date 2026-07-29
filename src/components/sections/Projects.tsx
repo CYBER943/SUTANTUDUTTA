@@ -1,5 +1,5 @@
 import { PROJECTS, CATEGORIES, PROJECT_CATEGORIES_DATA } from '../../data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { Search, ExternalLink, ArrowRight, Github, Codepen, CheckCircle2 } from 'lucide-react';
 import { TextReveal } from '../ui/TextReveal';
@@ -11,10 +11,20 @@ export default function Projects() {
   const prefersReducedMotion = useReducedMotion();
   const { theme } = useTheme();
 
+  useEffect(() => {
+    const handleFilterTech = (e: CustomEvent) => {
+      setSearchQuery(e.detail);
+      setActiveCategory('All');
+    };
+    window.addEventListener('filter-tech', handleFilterTech as EventListener);
+    return () => window.removeEventListener('filter-tech', handleFilterTech as EventListener);
+  }, []);
+
   const filteredProjects = PROJECTS.filter((project) => {
     const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
     const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          project.description.toLowerCase().includes(searchQuery.toLowerCase());
+                          project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          project.tech.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesCategory && matchesSearch;
   });
 

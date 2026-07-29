@@ -65,8 +65,10 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
   useEffect(() => {
     try {
       const saved = localStorage.getItem('recentCommands');
-      if (saved) {
+      if (saved && JSON.parse(saved).length > 0) {
         setRecentIds(JSON.parse(saved));
+      } else {
+        setRecentIds(['projects', 'tools', 'blog']);
       }
     } catch (e) {
       // ignore
@@ -101,10 +103,10 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
     
     // Create a new array with "Recent" at the top
     displayCommands = [
-      ...recentCommands.map(c => ({ ...c, originalGroup: c.group, group: 'Recent' })),
+      ...recentCommands.map(c => ({ ...c, originalGroup: c.group, group: 'Suggested / Recent' })),
       ...commands.filter(c => !recentIds.includes(c.id))
     ];
-    groups = ['Recent', ...Array.from(new Set(commands.map(c => c.group)))];
+    groups = ['Suggested / Recent', ...Array.from(new Set(commands.map(c => c.group)))];
   }
 
   // Keyboard navigation

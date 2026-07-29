@@ -203,7 +203,6 @@ export const TOOLS: ToolItem[] = [
   { name: "Google AI Studio", icon: GoogleAIStudioIcon, url: "https://aistudio.google.com", color: "#4285F4", description: "Gemini API development, prompt engineering, and AI prototyping.", category: "AI", experienceLevel: "Advanced", usageFrequency: "Weekly" },
   { name: "Grok", icon: GrokIcon, url: "https://grok.com", color: "#ffffff", description: "AI assistant for reasoning, coding, and real-time insights.", category: "AI", experienceLevel: "Intermediate", usageFrequency: "Weekly" },
   { name: "NoteGPT", icon: NoteGPTIcon, url: "https://notegpt.io", color: "#10B981", description: "AI-powered note-taking, summarization, and learning.", category: "AI", experienceLevel: "Intermediate", usageFrequency: "Occasionally" },
-  { name: "Notion", icon: FileText, url: "https://www.notion.so", color: "#ffffff", description: "Knowledge management, documentation, and planning.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" },
-  { name: "Todoist", icon: CheckSquare, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" },
+    { name: "Todoist", icon: CheckSquare, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" },
   { name: "Dropbox", icon: Box, url: "https://www.dropbox.com", color: "#0061FF", description: "Cloud storage, synchronization, backup, and file sharing.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" }
 ];
