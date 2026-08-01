@@ -3,6 +3,14 @@ import { motion } from 'motion/react';
 
 const TOOLS_DATA = [
   {
+    name: 'Adobe Express',
+    description: 'Quick graphic design and layout creation.',
+    slug: 'adobeexpress',
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Adobe_Express_2026_icon.svg',
+    hasText: false,
+    invert: false,
+  },
+  {
     name: 'Claude',
     description: 'AI assistant for advanced reasoning, research, and analysis.',
     slug: 'claude',
