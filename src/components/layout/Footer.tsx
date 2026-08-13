@@ -1,201 +1,206 @@
 import React from 'react';
-import { Github, Codepen, ArrowUpRight, CheckCircle2, ChevronRight, Activity, Award, BookOpen, Fingerprint } from 'lucide-react';
+import { Github, Codepen, Linkedin, Mail, MapPin, Calendar, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
-import { TOOLS } from '../../data';
+
+const TECH_STACK = [
+  'Artificial Intelligence',
+  'Python',
+  'JavaScript',
+  'React',
+  'Next.js',
+  'Node.js',
+  'HTML',
+  'CSS',
+  'TypeScript',
+  'Tailwind CSS',
+  'Visual Studio Code'
+];
+
+const NAV_LINKS = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Contact', href: '#contact' }
+];
+
+const GlowingWaves = () => {
+  return (
+    <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none opacity-40 mix-blend-screen overflow-hidden flex items-end">
+      {/* Wave 1 */}
+      <motion.svg 
+        animate={{ translateX: ["0%", "-33.333%"] }}
+        transition={{ duration: 15, ease: "linear", repeat: Infinity }}
+        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0" 
+        viewBox="0 0 3000 600" 
+        fill="none" 
+        preserveAspectRatio="none"
+      >
+        <path d="M 0 400 Q 250 200 500 400 T 1000 400 T 1500 400 T 2000 400 T 2500 400 T 3000 400" stroke="#8b5cf6" strokeWidth="2" filter="url(#blur-sm-footer)" />
+        <path d="M 0 400 Q 250 200 500 400 T 1000 400 T 1500 400 T 2000 400 T 2500 400 T 3000 400" stroke="#8b5cf6" strokeWidth="1" />
+      </motion.svg>
+      
+      {/* Wave 2 */}
+      <motion.svg 
+        animate={{ translateX: ["-40%", "0%"] }}
+        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
+        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0 opacity-60" 
+        viewBox="0 0 3000 600" 
+        fill="none" 
+        preserveAspectRatio="none"
+      >
+        <path d="M -1200 450 Q -900 550 -600 450 T 0 450 T 600 450 T 1200 450 T 1800 450 T 2400 450 T 3000 450" stroke="#c084fc" strokeWidth="4" filter="url(#blur-md-footer)" />
+        <path d="M -1200 450 Q -900 550 -600 450 T 0 450 T 600 450 T 1200 450 T 1800 450 T 2400 450 T 3000 450" stroke="#ffffff" strokeWidth="1" opacity="0.5" />
+      </motion.svg>
+
+      {/* Wave 3 */}
+      <motion.svg 
+        animate={{ translateX: ["0%", "-25%"] }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0 opacity-80" 
+        viewBox="0 0 3200 600" 
+        fill="none" 
+        preserveAspectRatio="none"
+      >
+        <path d="M 0 300 Q 200 500 400 300 T 800 300 T 1200 300 T 1600 300 T 2000 300 T 2400 300 T 2800 300 T 3200 300" stroke="#d946ef" strokeWidth="2" filter="url(#blur-sm-footer)" />
+      </motion.svg>
+
+      <svg className="hidden">
+        <defs>
+          <filter id="blur-sm-footer" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6" />
+          </filter>
+          <filter id="blur-md-footer" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="12" />
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  );
+};
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#020817] pt-32 pb-12 overflow-hidden border-t border-white/[0.06]">
-      {/* Background Effects */}
-      <div className="absolute top-[-400px] left-1/2 -translate-x-1/2 w-full max-w-5xl h-[800px] pointer-events-none flex justify-center">
-        <div className="absolute w-[600px] h-[600px] bg-app-primary/[0.12] rounded-full blur-[100px] -translate-x-[200px]" />
-        <div className="absolute w-[600px] h-[600px] bg-red-600/[0.08] rounded-full blur-[100px] translate-x-[200px]" />
-      </div>
+    <footer className="relative bg-[#05050A] pt-24 pb-12 overflow-hidden font-sans border-t border-purple-500/10">
       
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-50" />
-      
-      {/* Animated Top Border Line */}
+      {/* Top Animated Border */}
       <motion.div 
         initial={{ scaleX: 0, opacity: 0 }}
         whileInView={{ scaleX: 1, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.5, ease: "circOut" }}
-        className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent origin-left"
+        className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent origin-left"
       />
 
-      <div className="w-full max-w-6xl mx-auto px-6 relative z-10">
+      {/* Radial Depth Gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.12)_0%,rgba(5,5,10,1)_70%)] pointer-events-none" />
+      
+      <GlowingWaves />
+
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
         
-        {/* Main Footer Content */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24"
+          className="flex flex-col lg:flex-row pb-16"
         >
           
-          {/* Branding Column */}
-          <div className="lg:col-span-4 flex flex-col items-start">
-            <a href="#home" className="inline-block text-2xl font-display font-bold tracking-tight text-white group mb-6 hover:text-white/80 transition-colors">
-              Sutantu Dutta
+          {/* Column 1: Brand */}
+          <div className="w-full lg:w-[32%] lg:pr-12 lg:border-r border-white/[0.08] mb-12 lg:mb-0 flex flex-col">
+            <a href="#home" className="inline-block group mb-2">
+              <h2 className="text-3xl font-display font-bold text-white tracking-tight group-hover:text-white/90 transition-colors">
+                Sutantu Dutta<span className="text-purple-500">.</span>
+              </h2>
             </a>
+            <h3 className="text-[13px] text-purple-400 font-mono tracking-widest uppercase mb-6 font-semibold">
+              AI Developer
+            </h3>
+            <p className="text-white/60 text-[15px] leading-relaxed mb-8 max-w-sm">
+              Building scalable, high-performance AI-powered applications and modern digital experiences.
+            </p>
             
-            <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-[11px] uppercase tracking-wider font-medium text-app-text-secondary mb-8 hover:bg-white/10 transition-colors cursor-default">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"></span>
-              </span>
-              <span>Available for Work</span>
+            <div className="flex gap-4">
+              <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+                <Github size={18} className="group-hover:scale-110 transition-transform" />
+              </a>
+              <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+                <Codepen size={18} className="group-hover:scale-110 transition-transform" />
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+                <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
+              </a>
             </div>
-
-            <p className="text-white text-sm font-medium mb-3">
-              Student Developer <span className="mx-2 text-white/20">•</span> AI Enthusiast <span className="mx-2 text-white/20">•</span> Creative Builder
-            </p>
-            
-            <p className="text-app-text-secondary font-light text-sm max-w-sm leading-relaxed border-l-2 border-white/10 pl-4 py-1">
-              "Built with curiosity, creativity, and continuous learning." <br />
-              <span className="text-white/40 mt-2 block">— Sutantu Dutta</span>
-            </p>
           </div>
 
-          {/* Quick Links Column */}
-          <div className="lg:col-span-2 lg:col-start-6">
-            <h4 className="text-white font-semibold mb-8 uppercase tracking-wider text-[11px] flex items-center space-x-2">
-              <span>Quick Links</span>
+          {/* Column 2: Navigation */}
+          <div className="w-full lg:w-[18%] lg:px-12 lg:border-r border-white/[0.08] mb-12 lg:mb-0 flex flex-col">
+            <h4 className="font-mono text-[13px] font-semibold text-white tracking-[0.2em] uppercase mb-8">
+              Navigation
             </h4>
             <nav className="flex flex-col space-y-4">
-              {[
-                { name: 'Home', href: '#home' },
-                { name: 'About', href: '#about' },
-                { name: 'Projects', href: '#projects' },
-                { name: 'Tools', href: '#tools' },
-                { name: 'Contact', href: '#contact' }
-              ].map((link) => (
-                <a key={link.name} href={link.href} className="group flex items-center text-app-text-secondary hover:text-white transition-colors w-fit text-sm font-medium">
+              {NAV_LINKS.map((link) => (
+                <a key={link.name} href={link.href} className="group flex items-center text-white/50 hover:text-purple-400 transition-colors w-fit text-[15px]">
                   <span className="relative">
                     {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-white/50 transition-all duration-300 group-hover:w-full" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-purple-500/50 transition-all duration-300 group-hover:w-full" />
                   </span>
-                  <ArrowUpRight size={14} className="opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-1 transition-all text-white/50" />
                 </a>
               ))}
             </nav>
           </div>
 
-          {/* Profiles Column */}
-          <div className="lg:col-span-2">
-            <h4 className="text-white font-semibold mb-8 uppercase tracking-wider text-[11px] flex items-center space-x-2">
-              <span>Profiles</span>
+          {/* Column 3: Tech Stack */}
+          <div className="w-full lg:w-[25%] lg:px-12 lg:border-r border-white/[0.08] mb-12 lg:mb-0 flex flex-col">
+            <h4 className="font-mono text-[13px] font-semibold text-white tracking-[0.2em] uppercase mb-8">
+              Tech Stack
             </h4>
-            <div className="flex flex-col space-y-4">
-              <a 
-                href="https://github.com/Sdm940" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="group flex items-center space-x-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-colors text-app-text-secondary hover:text-white w-fit"
-              >
-                <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/30 transition-colors">
-                  <Github size={16} />
-                </div>
-                <span className="text-sm font-medium">GitHub</span>
-              </a>
-              <a 
-                href="https://codepen.io/SDM-TECH-KNOW" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="group flex items-center space-x-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-colors text-app-text-secondary hover:text-white w-fit"
-              >
-                <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/30 transition-colors">
-                  <Codepen size={16} />
-                </div>
-                <span className="text-sm font-medium">CodePen</span>
-              </a>
-              <a 
-                href="#" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="group flex items-center space-x-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-colors text-app-text-secondary hover:text-[#0077b5] w-fit"
-              >
-                <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:bg-[#0077b5]/10 group-hover:border-[#0077b5]/30 transition-colors">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                  </svg>
-                </div>
-                <span className="text-sm font-medium">LinkedIn</span>
-              </a>
-              <a 
-                href="mailto:sutantudutta@outlook.com" 
-                className="group flex items-center space-x-3 p-2 -ml-2 rounded-lg hover:bg-white/5 transition-colors text-app-text-secondary hover:text-white w-fit"
-              >
-                <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:bg-white/10 group-hover:border-white/30 transition-colors">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                </div>
-                <span className="text-sm font-medium">Email</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Portfolio Statistics */}
-          <div className="lg:col-span-3">
-            <h4 className="text-white font-semibold mb-8 uppercase tracking-wider text-[11px] flex items-center space-x-2">
-              <span>Impact</span>
-            </h4>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-app-card border border-app-border rounded-[1.25rem] p-5 hover:bg-app-elevated transition-colors cursor-default">
-                <p className="text-2xl font-display font-semibold tracking-tight text-white mb-1">500+</p>
-                <p className="text-[10px] text-app-text-secondary uppercase tracking-wider font-medium">Projects Built</p>
-              </div>
-              <div className="bg-app-card border border-app-border rounded-[1.25rem] p-5 hover:bg-app-elevated transition-colors cursor-default">
-                <p className="text-2xl font-display font-semibold tracking-tight text-white mb-1">SOF</p>
-                <p className="text-[10px] text-app-text-secondary uppercase tracking-wider font-medium">Participant</p>
-              </div>
-              <div className="bg-app-card border border-app-border rounded-[1.25rem] p-5 hover:bg-app-elevated transition-colors cursor-default">
-                <p className="text-2xl font-display font-semibold tracking-tight text-white mb-1 flex items-center space-x-1">
-                  <span>MyGov</span>
-                </p>
-                <p className="text-[10px] text-app-text-secondary uppercase tracking-wider font-medium">Certified</p>
-              </div>
-              <div className="bg-app-card border border-app-border rounded-[1.25rem] p-5 hover:bg-app-elevated transition-colors cursor-default">
-                <p className="text-2xl font-display font-semibold tracking-tight text-white mb-1 flex items-center">
-                  <BookOpen size={20} strokeWidth={1.5} className="text-white/70" />
-                </p>
-                <p className="text-[10px] text-app-text-secondary uppercase tracking-wider font-medium">Explorer</p>
-              </div>
-            </div>
-          </div>
-
-        </motion.div>
-
-        {/* Tools Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="mb-16 pt-8 border-t border-app-border"
-        >
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <h4 className="text-white font-semibold uppercase tracking-wider text-[11px] whitespace-nowrap">Tech Stack</h4>
-            <div className="flex flex-wrap gap-3 w-full">
-              {TOOLS.map((tool) => (
-                <a 
-                  key={tool.name}
-                  href={tool.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-white hover:bg-app-elevated hover:border-white/20 transition-all hover:-translate-y-1 group relative"
-                  title={tool.name}
-                >
-                  <div className="group-hover:scale-110 transition-transform relative z-10" style={{ color: 'inherit' }}>
-                    <tool.icon size={18} strokeWidth={1.5} />
-                  </div>
-                </a>
+            <ul className="flex flex-col space-y-3.5">
+              {TECH_STACK.map((tech) => (
+                <li key={tech} className="flex items-center space-x-3 text-white/50 hover:text-white transition-colors cursor-default text-[15px] group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-500/40 shadow-[0_0_8px_rgba(168,85,247,0)] group-hover:bg-purple-500/80 group-hover:shadow-[0_0_8px_rgba(168,85,247,0.8)] transition-all" />
+                  <span>{tech}</span>
+                </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Get In Touch */}
+          <div className="w-full lg:w-[25%] lg:pl-12 flex flex-col">
+            <h4 className="font-mono text-[13px] font-semibold text-white tracking-[0.2em] uppercase mb-8">
+              Get In Touch
+            </h4>
+            <div className="flex flex-col space-y-6">
+              <a href="mailto:sutantudutta@outlook.com" className="group flex items-center space-x-4">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 group-hover:text-purple-400 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 transition-all shadow-lg shrink-0">
+                  <Mail size={18} />
+                </div>
+                <span className="text-[15px] text-white/60 group-hover:text-white transition-colors break-all">
+                  sutantudutta@outlook.com
+                </span>
+              </a>
+              
+              <div className="flex items-center space-x-4">
+                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 shadow-lg shrink-0">
+                  <MapPin size={18} />
+                </div>
+                <span className="text-[15px] text-white/60">India</span>
+              </div>
+
+              <div className="flex items-center space-x-4 group mt-2">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 relative overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.15)] shrink-0">
+                  <div className="absolute inset-0 bg-purple-500/20 animate-pulse" />
+                  <Calendar size={18} className="relative z-10" />
+                </div>
+                <span className="text-[12px] font-mono tracking-widest text-purple-400 uppercase font-semibold leading-snug">
+                  Available for<br/>Collaborations
+                </span>
+              </div>
             </div>
           </div>
+          
         </motion.div>
 
         {/* Bottom Bar */}
@@ -204,31 +209,24 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="pt-8 border-t border-app-border flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden"
+          className="pt-8 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6"
         >
-          <p className="text-app-text-secondary text-xs font-medium order-3 md:order-1 text-center md:text-left">
-            &copy; 2026 Sutantu Dutta. All Rights Reserved.
+          <p className="text-white/40 text-[13px] font-medium order-2 md:order-1">
+            &copy; {new Date().getFullYear()} Sutantu Dutta. All Rights Reserved.
           </p>
-          <div className="flex items-center space-x-4 order-1 md:order-2">
-            <p className="text-white/60 font-medium tracking-wide text-[10px] uppercase px-4 py-1.5 rounded-full bg-white/5 border border-white/10">
-              React • Tailwind • Motion
-            </p>
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-app-text-secondary hover:text-white transition-colors bg-white/5 border border-white/10 hover:bg-white/10 p-2 rounded-full flex items-center justify-center group"
-              title="Back to Top"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:-translate-y-0.5 transition-transform">
-                <path d="m18 15-6-6-6 6"/>
-              </svg>
-            </button>
-          </div>
-          <p className="text-app-text-secondary text-xs font-medium order-2 md:order-3 text-center md:text-right">
-            Crafted for the modern web.
-          </p>
+          <button 
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="group flex items-center space-x-3 text-white/40 hover:text-white text-[13px] font-mono tracking-widest uppercase font-semibold transition-colors order-1 md:order-2"
+          >
+            <span>Back to Top</span>
+            <div className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:bg-purple-500/20 group-hover:border-purple-500/40 transition-all">
+              <ArrowUpRight size={14} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </button>
         </motion.div>
 
       </div>
     </footer>
   );
 }
+
