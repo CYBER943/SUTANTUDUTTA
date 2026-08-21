@@ -129,7 +129,7 @@ export default function Footer() {
               <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
                 <Codepen size={18} className="group-hover:scale-110 transition-transform" />
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+              <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="LinkedIn" title="LinkedIn">
                 <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
               </a>
             </div>

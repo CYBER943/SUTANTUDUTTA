@@ -20,7 +20,9 @@ import {
   Palette,
   Figma,
   Github,
-  Box
+  Box,
+  GraduationCap,
+  Book
 } from 'lucide-react';
 import { DevinIcon, B12Icon, GrokIcon, NoteGPTIcon, GoogleAIStudioIcon, WindsurfIcon } from './components/icons/CustomIcons';
 import { Project, ToolItem, BlogPost, TimelineEvent, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
@@ -38,11 +40,11 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
 ];
 
 export const CURRENT_INTERESTS: CurrentInterest[] = [
-  { id: 1, title: "Advanced JavaScript", icon: Code2, status: "Active" },
-  { id: 2, title: "Three.js", icon: Sparkles, status: "Exploring" },
-  { id: 3, title: "AI Development", icon: Bot, status: "Building" },
-  { id: 4, title: "Performance Optimization", icon: Zap, status: "Refining" },
-  { id: 5, title: "Modern Web Animations", icon: Layout, status: "Ideating" }
+  { id: 1, title: "Vibe Coding", icon: Terminal, status: "ACTIVE" },
+  { id: 2, title: "Academics", icon: GraduationCap, status: "FOCUSING" },
+  { id: 3, title: "Learning", icon: BookOpen, status: "EXPLORING" },
+  { id: 4, title: "Reading Books", icon: Book, status: "READING" },
+  { id: 5, title: "AI Development", icon: Bot, status: "BUILDING" }
 ];
 
 export const LEARNING_SKILLS: LearningSkill[] = [

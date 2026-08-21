@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react';
-import { ArrowRight, Github, Codepen, Mail, Download } from 'lucide-react';
+import { ArrowRight, Github, Codepen, Mail, Download, Linkedin } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import { TextReveal } from '../ui/TextReveal';
 import { CodeEditorShowcase } from '../ui/CodeEditorShowcase';
@@ -131,8 +131,19 @@ export default function Hero() {
                  rel="noopener noreferrer"
                  className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-white/20 backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="CodePen"
+                 title="CodePen"
                >
                  <Codepen size={20} />
+               </a>
+               <a
+                 href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-white/20 backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 aria-label="LinkedIn"
+                 title="LinkedIn"
+               >
+                 <Linkedin size={20} />
                </a>
             </div>
           </motion.div>

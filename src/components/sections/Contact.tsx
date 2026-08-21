@@ -314,6 +314,7 @@ export default function Contact() {
                  <a href="mailto:sutantudutta@outlook.com" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors">Email</a>
                  <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors">GitHub</a>
                  <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors">CodePen</a>
+                 <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors" aria-label="LinkedIn" title="LinkedIn">LinkedIn</a>
               </div>
             </div>
 
