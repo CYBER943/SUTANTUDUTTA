@@ -28,15 +28,11 @@ import { DevinIcon, B12Icon, GrokIcon, NoteGPTIcon, GoogleAIStudioIcon, Windsurf
 import { Project, ToolItem, BlogPost, TimelineEvent, CurrentInterest, LearningSkill, ProjectCategoryData } from './types';
 
 export const TIMELINE_EVENTS: TimelineEvent[] = [
-  { id: 1, year: "The Beginning", title: "Started exploring technology", description: "Fell in love with computers and began understanding how the digital world operates." },
-  { id: 2, year: "First Steps", title: "Learned HTML & CSS", description: "Wrote my very first lines of code. It was simple, but seeing text appear on a screen felt like magic." },
-  { id: 3, year: "Building", title: "Built first website", description: "Put together a fully functional static website. The spark for frontend development was ignited." },
-  { id: 4, year: "Experimentation", title: "Started using CodePen", description: "Began creating bite-sized UI/UX experiments and sharing them with the community." },
-  { id: 5, year: "Momentum", title: "Built 100+ projects", description: "Consistent daily coding led to shipping over a hundred micro-projects and interactive components." },
-  { id: 6, year: "Competition", title: "Participated in SOF", description: "Challenged my problem-solving skills in competitive logical and technical Olympiads." },
-  { id: 7, year: "Recognition", title: "Completed MyGov Certifications", description: "Validated my technical understanding through official digital literacy and technology programs." },
-  { id: 8, year: "Milestone", title: "Reached 500+ projects", description: "A massive milestone embodying absolute dedication to learning through consistent building." },
-  { id: 9, year: "Present", title: "Exploring AI & Modern Web", description: "Currently diving deep into artificial intelligence, LLMs, and modern scalable web architectures." }
+  { id: 1, year: "The Spark", title: "Learning Programming", description: "Began my journey into code, fascinated by the idea of creating something from nothing." },
+  { id: 2, year: "Exploration", title: "Exploring Web Development", description: "Dove into building websites, turning static concepts into interactive digital experiences." },
+  { id: 3, year: "Discovery", title: "Discovering AI", description: "Realized the potential of Artificial Intelligence and started integrating it into my projects." },
+  { id: 4, year: "Creation", title: "Building Projects", description: "Focused on hands-on learning, creating numerous tools, applications, and experiments." },
+  { id: 5, year: "Evolution", title: "Continuous Improvement", description: "Constantly exploring new technologies, refining my skills, and pushing the boundaries of what I can build." }
 ];
 
 export const CURRENT_INTERESTS: CurrentInterest[] = [

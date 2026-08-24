@@ -1,14 +1,34 @@
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Award, Code, BookOpen, Layers, ChevronRight, Fingerprint, Activity, Globe, Compass } from 'lucide-react';
+import { ChevronRight, Fingerprint, Activity, Globe, Compass, Bot, Code, Layout, Sparkles, PenTool, Book, GraduationCap, BookOpen, Lightbulb, Layers } from 'lucide-react';
 import { TextReveal } from '../ui/TextReveal';
 import { TIMELINE_EVENTS, CURRENT_INTERESTS } from '../../data';
 import { useRef } from 'react';
 
-const STATS = [
-  { id: 1, label: 'Projects Built', value: '500+', icon: Layers, desc: 'Interactive prototypes and apps' },
-  { id: 2, label: 'Experience', value: 'Class 10', icon: BookOpen, desc: 'Continuous learner' },
-  { id: 3, label: 'Designation', value: 'Full Stack', icon: Code, desc: 'End-to-end architecture' },
-  { id: 4, label: 'Awards', value: '2+', icon: Award, desc: 'National level recognition' },
+const WHAT_I_LOVE_BUILDING = [
+  { id: 1, title: 'AI Applications', icon: Bot, desc: 'Intelligent, automated, and context-aware systems.' },
+  { id: 2, title: 'Modern Websites', icon: Globe, desc: 'Fast, responsive, and beautifully designed digital spaces.' },
+  { id: 3, title: 'Interactive User Interfaces', icon: Layout, desc: 'Engaging, fluid, and intuitive frontend experiences.' },
+  { id: 4, title: 'Experimental Projects', icon: Sparkles, desc: 'Pushing boundaries with new tech and creative ideas.' },
+  { id: 5, title: 'Creative Digital Experiences', icon: PenTool, desc: 'Blending design and code to craft memorable interactions.' },
+];
+
+const SKILLS = [
+  "Artificial Intelligence",
+  "Web Development",
+  "JavaScript",
+  "Python",
+  "React",
+  "Next.js",
+  "UI/UX",
+  "Creative Coding"
+];
+
+const BEYOND_CODE = [
+  { id: 1, title: "Reading books", icon: Book },
+  { id: 2, title: "Academics", icon: GraduationCap },
+  { id: 3, title: "Learning new concepts", icon: BookOpen },
+  { id: 4, title: "Exploring new ideas", icon: Lightbulb },
+  { id: 5, title: "Creative experimentation", icon: Layers },
 ];
 
 export default function About() {
@@ -27,99 +47,107 @@ export default function About() {
 
       <div className="w-full max-w-6xl mx-auto px-6 relative z-10">
         
-        {/* Section Header */}
+        {/* 1. INTRODUCTION */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-32 flex flex-col items-start"
+          className="mb-24 flex flex-col items-start"
         >
           <div className="flex items-center space-x-3 mb-6">
             <Fingerprint className="text-app-primary" size={24} />
-            <span className="text-app-primary font-mono text-sm tracking-widest uppercase">Identity</span>
+            <span className="text-app-primary font-mono text-sm tracking-widest uppercase">About Me</span>
           </div>
-          <h2 className="text-[clamp(3rem,8vw,5rem)] font-display font-bold tracking-tight text-white leading-[1.1]">
-            <TextReveal text="Driven by curiosity." />
+          
+          <h2 className="text-[clamp(2.5rem,5vw,4.5rem)] font-display font-bold tracking-tight text-white leading-[1.15] mb-8">
+            <TextReveal text="Hi, I'm SUTANTU DUTTA —" />
             <br />
-            <span className="text-white/30"><TextReveal text="Defined by craft." /></span>
+            <span className="text-white/80"><TextReveal text="a Class 10 student and AI Developer passionate about building intelligent applications and modern digital experiences." /></span>
           </h2>
+          
+          <p className="text-white/60 text-xl leading-relaxed max-w-4xl font-light">
+            I enjoy experimenting with Artificial Intelligence, developing modern websites, learning cutting-edge technologies, and turning ambitious ideas into working digital projects. Whether it's crafting a smooth user interface or integrating smart AI features, I love the entire process of bringing concepts to life through code.
+          </p>
         </motion.div>
 
-        {/* Editorial Story Section */}
-        <div className="grid lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-32 items-start mb-40">
-          
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="sticky top-32"
-          >
-            <h3 className="text-3xl font-display font-medium text-white leading-tight mb-8">
-              "I believe the best products live at the intersection of rigorous engineering and thoughtful design."
+        {/* 6. DEVELOPER PHILOSOPHY */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-32 relative p-12 md:p-16 rounded-[3rem] bg-gradient-to-br from-red-900/10 to-orange-900/5 border border-red-500/10 overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <h3 className="text-[clamp(2rem,6vw,4rem)] font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-red-500 mb-6 tracking-tighter italic">
+              "Learn. Build. Experiment. Repeat."
             </h3>
-            
-            <div className="space-y-6 text-white/50 text-lg leading-relaxed font-light">
-              <p>
-                I started coding out of a simple curiosity to understand how the internet works. That curiosity quickly evolved into an obsession with building digital tools that don't just function, but feel great to use.
-              </p>
-              <p>
-                Though I am currently a Class 10 student, my approach to development is entirely professional. I am deeply passionate about <strong>AI</strong>, <strong>Web Development</strong>, and <strong>Cybersecurity</strong>. 
-              </p>
-            </div>
-          </motion.div>
+            <p className="text-white/60 text-xl max-w-2xl font-light leading-relaxed">
+              I believe the best way to learn technology is by actually building things. Experimenting, making mistakes, and continuously improving is at the core of my developer journey.
+            </p>
+          </div>
+        </motion.div>
 
-          {/* Premium Bento Stats Grid */}
-          <div className="grid sm:grid-cols-2 gap-4 lg:gap-6">
-            {STATS.map((stat, idx) => (
+        {/* 3. WHAT I LOVE BUILDING */}
+        <div className="mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-4 mb-12"
+          >
+            <Code className="text-app-primary" size={32} />
+            <h3 className="text-3xl md:text-4xl font-display font-bold tracking-tight text-white">
+              What I Love Building
+            </h3>
+          </motion.div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WHAT_I_LOVE_BUILDING.map((item, idx) => (
               <motion.div
-                key={stat.id}
-                initial={{ opacity: 0, y: 30 }}
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative bg-white/[0.02] border border-white/10 p-8 rounded-3xl overflow-hidden hover:bg-white/[0.04] hover:border-white/20 transition-all duration-500"
+                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group p-8 rounded-3xl bg-[#0A0A0A] border border-white/10 hover:bg-white/[0.02] hover:border-red-500/30 transition-all duration-500 shadow-xl"
               >
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-500/0 via-red-500/0 to-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 mb-12 group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                  <stat.icon size={20} strokeWidth={1.5} />
+                <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-white/50 mb-6 group-hover:bg-red-500/10 group-hover:text-red-400 group-hover:scale-110 transition-all duration-500">
+                  <item.icon size={24} strokeWidth={1.5} />
                 </div>
-                
-                <div className="relative z-10">
-                  <h4 className="text-4xl font-display font-bold text-white mb-2 tracking-tight group-hover:translate-x-2 transition-transform duration-500">
-                    {stat.value}
-                  </h4>
-                  <p className="text-white/80 font-medium mb-1">{stat.label}</p>
-                  <p className="text-sm text-white/40">{stat.desc}</p>
-                </div>
+                <h4 className="text-xl font-bold font-display text-white mb-3 group-hover:text-red-100 transition-colors">{item.title}</h4>
+                <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
-
-            {/* Certifications Wide Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="sm:col-span-2 group relative bg-gradient-to-br from-red-900/20 to-orange-900/10 border border-red-500/20 p-8 rounded-3xl overflow-hidden hover:border-red-500/40 transition-all duration-500 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6"
-            >
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none" />
-              
-              <div className="relative z-10">
-                <h4 className="text-2xl font-display font-bold text-white mb-2">Honors & Certifications</h4>
-                <p className="text-white/60">Officially recognized by SOF & MyGov India for excellence.</p>
-              </div>
-              
-              <div className="relative z-10 w-16 h-16 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center text-red-400 group-hover:scale-110 group-hover:bg-red-500 group-hover:text-white transition-all duration-500 shadow-[0_0_30px_rgba(220,38,38,0.2)]">
-                <Award size={28} strokeWidth={1.5} />
-              </div>
-            </motion.div>
           </div>
         </div>
 
-        {/* Interests & Skills - Cinematic Grid */}
+        {/* 7. SKILLS SNAPSHOT */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-32 flex flex-col items-center text-center max-w-4xl mx-auto"
+        >
+          <h3 className="text-2xl font-display font-bold tracking-tight text-white mb-8">
+            Skills & Technologies I'm Exploring
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {SKILLS.map((skill, idx) => (
+              <motion.span 
+                key={idx} 
+                whileHover={{ scale: 1.05 }}
+                className="px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-sm font-medium hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-100 transition-colors cursor-default shadow-lg"
+              >
+                {skill}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 4. MY CURRENT FOCUS */}
         <div className="mb-40">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -157,7 +185,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Dynamic Timeline */}
+        {/* 2. MY DEVELOPER JOURNEY (Timeline) */}
         <div className="mb-40" ref={timelineRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -167,10 +195,10 @@ export default function About() {
           >
             <Compass className="text-app-primary mb-4" size={24} />
             <h3 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold tracking-tight text-white mb-4">
-              The Journey
+              My Developer Journey
             </h3>
             <p className="text-white/50 text-lg max-w-xl mx-auto">
-              A chronological map of my evolution as a developer.
+              A chronological map of my evolution as a student developer.
             </p>
           </motion.div>
 
@@ -206,13 +234,44 @@ export default function About() {
           </div>
         </div>
 
+        {/* 5. PERSONAL SIDE (Beyond Code) */}
+        <div className="mb-40">
+           <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center mb-16"
+          >
+            <h3 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold tracking-tight text-white mb-4">
+              Beyond Code
+            </h3>
+            <p className="text-white/50 text-lg max-w-xl mx-auto">
+              What I do when I'm not in front of an IDE.
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-5xl mx-auto">
+             {BEYOND_CODE.map((item, idx) => (
+                <motion.div 
+                  key={item.id} 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col items-center justify-center p-8 bg-[#0A0A0A] border border-white/5 rounded-3xl text-center group hover:bg-white/[0.02] hover:border-white/20 transition-all duration-500"
+                >
+                    <item.icon className="w-10 h-10 text-white/30 mb-6 group-hover:text-white group-hover:-translate-y-1 transition-all duration-300" strokeWidth={1.5} />
+                    <span className="text-sm text-white/70 font-medium">{item.title}</span>
+                </motion.div>
+             ))}
+          </div>
+        </div>
+
         {/* Professional Profiles - Immersive Cards */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20"
         >
           <div className="flex flex-col items-center text-center mb-16">
             <Globe className="text-app-primary mb-4" size={24} />
@@ -231,7 +290,6 @@ export default function About() {
               whileHover={{ y: -10 }}
               className="group relative bg-[#0A0A0A] border border-white/10 p-10 md:p-12 rounded-[3rem] overflow-hidden hover:border-white/30 transition-all duration-500 block shadow-2xl"
             >
-              {/* Animated abstract background */}
               <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/20 blur-[100px] rounded-full group-hover:bg-blue-500/30 transition-colors duration-700 pointer-events-none" />
               
               <div className="flex justify-between items-start mb-16 relative z-10">
@@ -266,7 +324,6 @@ export default function About() {
               whileHover={{ y: -10 }}
               className="group relative bg-[#0A0A0A] border border-white/10 p-10 md:p-12 rounded-[3rem] overflow-hidden hover:border-white/30 transition-all duration-500 block shadow-2xl"
             >
-              {/* Animated abstract background */}
               <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-green-500/10 blur-[100px] rounded-full group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none" />
               
               <div className="flex justify-between items-start mb-16 relative z-10">
