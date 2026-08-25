@@ -76,7 +76,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen selection:bg-app-primary/30 selection:text-white bg-app-bg w-full overflow-hidden">
+    <div className="min-h-screen selection:bg-app-primary/30 selection:text-white bg-app-bg w-full overflow-x-hidden flex flex-col">
       <CustomCursor />
       <CommandPalette isOpen={isCommandPaletteOpen} setIsOpen={setIsCommandPaletteOpen} />
       

@@ -76,21 +76,21 @@ export const CodeEditorShowcase = () => {
       <div className="absolute -inset-1 bg-gradient-to-r from-[#FF4D4D] via-[#FF6B35] to-app-purple rounded-[24px] blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000" />
       
       {/* Editor Container */}
-      <div className="relative flex flex-col w-full h-[550px] bg-[#0A0A0A]/95 backdrop-blur-2xl rounded-[20px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_20px_80px_rgba(255,77,77,0.2)]">
+      <div className="relative flex flex-col w-full h-[400px] sm:h-[450px] md:h-[550px] bg-[#0A0A0A]/95 backdrop-blur-2xl rounded-[20px] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-500 hover:border-white/20 hover:shadow-[0_20px_80px_rgba(255,77,77,0.2)]">
         
         {/* Editor Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-[#111111]/90 backdrop-blur-md">
+        <div className="flex items-center justify-between px-3 md:px-4 py-3 border-b border-white/5 bg-[#111111]/90 backdrop-blur-md">
           {/* macOS Traffic Lights */}
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
-            <div className="w-3 h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
-            <div className="w-3 h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
+          <div className="flex items-center gap-1.5 md:gap-2">
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
           </div>
 
           {/* File Tab */}
-          <div className="flex items-center gap-2 px-4 py-1.5 bg-white/[0.05] rounded-md border border-white/5 shadow-inner">
-            <span className="text-[#3178C6] font-bold text-[11px]">TSX</span>
-            <span className="text-xs text-white/80 font-mono tracking-tight">portfolio.tsx</span>
+          <div className="flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-1 md:py-1.5 bg-white/[0.05] rounded-md border border-white/5 shadow-inner">
+            <span className="text-[#3178C6] font-bold text-[9px] md:text-[11px]">TSX</span>
+            <span className="text-[10px] md:text-xs text-white/80 font-mono tracking-tight hidden sm:inline-block">portfolio.tsx</span>
           </div>
 
           {/* Actions */}
@@ -139,7 +139,7 @@ export const CodeEditorShowcase = () => {
         <div ref={editorRef} className="flex-1 overflow-auto p-5 hide-scrollbar scroll-smooth">
           <Highlight theme={themes.vsDark} code={displayedCode} language="tsx">
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
-              <pre className="text-[14px] font-mono leading-loose bg-transparent" style={{ ...style, backgroundColor: 'transparent', fontFamily: '"JetBrains Mono", monospace' }}>
+              <pre className="text-[11px] sm:text-[12px] md:text-[14px] font-mono leading-loose bg-transparent" style={{ ...style, backgroundColor: 'transparent', fontFamily: '"JetBrains Mono", monospace' }}>
                 {tokens.map((line, i) => (
                   <div 
                     key={i} 
@@ -173,18 +173,18 @@ export const CodeEditorShowcase = () => {
         </div>
 
         {/* Editor Footer / Status Bar */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 bg-[#111111]/90 text-[11px] font-mono text-white/40">
-          <div className="flex items-center gap-5">
+        <div className="flex items-center justify-between px-3 md:px-4 py-2.5 border-t border-white/5 bg-[#111111]/90 text-[9px] md:text-[11px] font-mono text-white/40">
+          <div className="flex items-center gap-3 md:gap-5">
             <span className="flex items-center gap-1.5 hover:text-white/80 cursor-pointer transition-colors">
-              <Terminal size={14} />
-              <span>TERMINAL</span>
+              <Terminal size={12} className="md:w-3.5 md:h-3.5" />
+              <span className="hidden sm:inline-block">TERMINAL</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#FF4D4D] animate-pulse" />
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#FF4D4D] animate-pulse" />
               <span>TypeScript React</span>
             </span>
           </div>
-          <div className="flex items-center gap-5">
+          <div className="hidden sm:flex items-center gap-5">
             <span className="hover:text-white/80 cursor-pointer transition-colors">UTF-8</span>
             <span className="hover:text-white/80 cursor-pointer transition-colors">Prettier</span>
           </div>

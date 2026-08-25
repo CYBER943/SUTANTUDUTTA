@@ -41,7 +41,7 @@ export default function About() {
   const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="py-32 relative bg-[#020817] overflow-hidden" id="about">
+    <section className="py-20 md:py-32 relative bg-[#020817] overflow-hidden border-t border-white/[0.05]" id="about">
       {/* Background Ambient Glow */}
       <div className="absolute top-1/4 left-0 w-full h-[500px] bg-red-600/5 blur-[150px] pointer-events-none" />
 

@@ -31,7 +31,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-[100dvh] flex items-center justify-center pt-24 lg:pt-32 pb-20 overflow-hidden bg-app-bg">
+    <section ref={sectionRef} id="home" className="relative flex items-center justify-center pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-app-bg">
       {/* Background System */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
          <BackgroundCode />

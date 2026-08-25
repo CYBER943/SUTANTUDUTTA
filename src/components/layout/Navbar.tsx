@@ -197,7 +197,7 @@ export default function Navbar({
             <button
               className="md:hidden text-white absolute top-6 right-6 p-2.5 z-[1150] min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(false)}
-              style={{ top: "calc(env(safe-area-inset-top) - 10px)" }}
+              style={{ top: "calc(1.5rem + env(safe-area-inset-top))" }}
               aria-label="Close Menu"
             >
               <X size={24} />

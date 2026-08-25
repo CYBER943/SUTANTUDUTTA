@@ -103,7 +103,7 @@ const TOOLS_DATA = [
 
 export default function Tools() {
   return (
-    <section id="tools" className="relative py-24 lg:py-32 bg-app-bg overflow-hidden">
+    <section id="tools" className="relative py-20 md:py-32 bg-app-bg overflow-hidden border-t border-white/[0.05]">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-app-primary/5 blur-[120px] rounded-full mix-blend-screen" />

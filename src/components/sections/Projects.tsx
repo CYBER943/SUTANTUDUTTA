@@ -29,7 +29,7 @@ export default function Projects() {
   });
 
   return (
-    <section className="py-32 relative bg-app-bg-secondary">
+    <section className="py-20 md:py-32 relative bg-app-bg-secondary border-t border-white/[0.05]">
       <div className="w-full max-w-6xl mx-auto px-6">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

@@ -19,7 +19,7 @@ export default function Blog() {
   const recentPosts = filteredPosts.length > 1 ? filteredPosts.slice(1) : [];
 
   return (
-    <section id="blog" className="py-32 relative overflow-hidden bg-[#020817] border-t border-white/[0.05]">
+    <section id="blog" className="py-20 md:py-32 relative overflow-hidden bg-[#020817] border-t border-white/[0.05]">
       {/* Background Ambience */}
       <div className="absolute right-0 bottom-0 w-3/4 h-3/4 bg-orange-500/5 blur-[200px] pointer-events-none" />
       
