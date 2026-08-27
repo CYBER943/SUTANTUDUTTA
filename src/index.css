@@ -30,6 +30,8 @@
   --color-app-text-secondary: #B4B7C2;
   --color-app-muted: #64748B;
   --color-app-disabled: #475569;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.2);
 }
 
 :root.light {
@@ -43,6 +45,8 @@
   --color-app-text-secondary: #4B5563;
   --color-app-muted: #64748B;
   --color-app-disabled: #94A3B8;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.1);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -84,11 +88,11 @@ html {
   background: var(--color-app-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* Universal focus ring */

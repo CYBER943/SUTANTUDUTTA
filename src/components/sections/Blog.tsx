@@ -185,7 +185,7 @@ export default function Blog() {
               <p className="text-app-text-secondary text-lg mb-8">We couldn't find anything matching "{searchQuery}" in {activeCategory}.</p>
               <button 
                 onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
-                className="text-app-text font-medium bg-app-elevated px-8 py-3 rounded-full hover:bg-white/20 transition-colors"
+                className="text-app-text font-medium bg-app-elevated px-8 py-3 rounded-full hover:bg-app-border transition-colors"
               >
                 Clear all filters
               </button>

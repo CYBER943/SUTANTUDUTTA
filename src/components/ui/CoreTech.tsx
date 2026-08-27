@@ -74,7 +74,7 @@ export function CoreTech() {
                     <span className="text-app-text font-medium group-hover:text-app-primary transition-colors">{skill.name}</span>
                     <span className="text-app-muted font-mono text-[10px]">{skill.level}%</span>
                   </div>
-                  <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                  <div className="w-full h-1 bg-app-elevated rounded-full overflow-hidden">
                     <motion.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}

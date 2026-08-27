@@ -1,6 +1,6 @@
 import React from 'react';
 import { Github, Codepen, Linkedin, Mail, MapPin, Calendar, ArrowUpRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 const TECH_STACK = [
   'Artificial Intelligence',
@@ -26,12 +26,13 @@ const NAV_LINKS = [
 ];
 
 const GlowingWaves = () => {
+  const prefersReducedMotion = useReducedMotion();
   return (
-    <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none opacity-40  overflow-hidden flex items-end">
+    <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none opacity-30 overflow-hidden flex items-end z-0">
       {/* Wave 1 */}
       <motion.svg 
-        animate={{ translateX: ["0%", "-33.333%"] }}
-        transition={{ duration: 15, ease: "linear", repeat: Infinity }}
+        animate={prefersReducedMotion ? {} : { translateX: ["0%", "-33.333%"] }}
+        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
         className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0" 
         viewBox="0 0 3000 600" 
         fill="none" 
@@ -43,22 +44,22 @@ const GlowingWaves = () => {
       
       {/* Wave 2 */}
       <motion.svg 
-        animate={{ translateX: ["-40%", "0%"] }}
-        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0 opacity-60" 
+        animate={prefersReducedMotion ? {} : { translateX: ["-40%", "0%"] }}
+        transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0 opacity-50" 
         viewBox="0 0 3000 600" 
         fill="none" 
         preserveAspectRatio="none"
       >
         <path d="M -1200 450 Q -900 550 -600 450 T 0 450 T 600 450 T 1200 450 T 1800 450 T 2400 450 T 3000 450" stroke="#c084fc" strokeWidth="4" filter="url(#blur-md-footer)" />
-        <path d="M -1200 450 Q -900 550 -600 450 T 0 450 T 600 450 T 1200 450 T 1800 450 T 2400 450 T 3000 450" stroke="#ffffff" strokeWidth="1" opacity="0.5" />
+        <path d="M -1200 450 Q -900 550 -600 450 T 0 450 T 600 450 T 1200 450 T 1800 450 T 2400 450 T 3000 450" stroke="var(--color-app-border)" strokeWidth="1" opacity="0.4" />
       </motion.svg>
 
       {/* Wave 3 */}
       <motion.svg 
-        animate={{ translateX: ["0%", "-25%"] }}
-        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
-        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0 opacity-80" 
+        animate={prefersReducedMotion ? {} : { translateX: ["0%", "-25%"] }}
+        transition={{ duration: 25, ease: "linear", repeat: Infinity }}
+        className="absolute w-[300%] min-w-[2000px] h-full bottom-0 left-0 opacity-60" 
         viewBox="0 0 3200 600" 
         fill="none" 
         preserveAspectRatio="none"
@@ -105,38 +106,41 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col lg:flex-row pb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-0 pb-16"
         >
           
           {/* Column 1: Brand */}
-          <div className="w-full lg:w-[32%] lg:pr-12 lg:border-r border-app-border mb-12 lg:mb-0 flex flex-col">
+          <div className="lg:col-span-4 lg:pr-12 lg:border-r border-app-border flex flex-col">
             <a href="#home" className="inline-block group mb-2">
               <h2 className="text-3xl font-display font-bold text-app-text tracking-tight group-hover:text-app-text transition-colors">
                 Sutantu Dutta<span className="text-purple-500">.</span>
               </h2>
             </a>
-            <h3 className="text-[13px] text-purple-400 font-mono tracking-widest uppercase mb-6 font-semibold">
+            <h3 className="text-[13px] text-purple-400 font-mono tracking-widest uppercase mb-2 font-semibold">
               AI Developer
             </h3>
+            <p className="text-[12px] text-app-text-secondary font-mono tracking-wider mb-6 opacity-80 uppercase">
+              Learning. Building. Experimenting.
+            </p>
             <p className="text-app-text-secondary text-[15px] leading-relaxed mb-8 max-w-sm">
               Building scalable, high-performance AI-powered applications and modern digital experiences.
             </p>
             
             <div className="flex gap-4">
-              <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-app-text hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+              <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-app-text hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="GitHub">
                 <Github size={18} className="group-hover:scale-110 transition-transform" />
               </a>
-              <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-app-text hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+              <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-app-text hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="CodePen">
                 <Codepen size={18} className="group-hover:scale-110 transition-transform" />
               </a>
-              <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="LinkedIn" title="LinkedIn">
+              <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="LinkedIn">
                 <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
               </a>
             </div>
           </div>
 
           {/* Column 2: Navigation */}
-          <div className="w-full lg:w-[18%] lg:px-12 lg:border-r border-app-border mb-12 lg:mb-0 flex flex-col">
+          <div className="lg:col-span-2 lg:px-12 lg:border-r border-app-border flex flex-col">
             <h4 className="font-mono text-[13px] font-semibold text-app-text tracking-[0.2em] uppercase mb-8">
               Navigation
             </h4>
@@ -153,7 +157,7 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Tech Stack */}
-          <div className="w-full lg:w-[25%] lg:px-12 lg:border-r border-app-border mb-12 lg:mb-0 flex flex-col">
+          <div className="lg:col-span-3 lg:px-12 lg:border-r border-app-border flex flex-col">
             <h4 className="font-mono text-[13px] font-semibold text-app-text tracking-[0.2em] uppercase mb-8">
               Tech Stack
             </h4>
@@ -168,7 +172,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Get In Touch */}
-          <div className="w-full lg:w-[25%] lg:pl-12 flex flex-col">
+          <div className="lg:col-span-3 lg:pl-12 flex flex-col">
             <h4 className="font-mono text-[13px] font-semibold text-app-text tracking-[0.2em] uppercase mb-8">
               Get In Touch
             </h4>
@@ -189,13 +193,15 @@ export default function Footer() {
                 <span className="text-[15px] text-app-text-secondary">India</span>
               </div>
 
-              <div className="flex items-center space-x-4 group mt-2">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 relative overflow-hidden shadow-[0_0_15px_rgba(168,85,247,0.15)] shrink-0">
-                  <div className="absolute inset-0 bg-purple-500/20 animate-pulse" />
-                  <Calendar size={18} className="relative z-10" />
+              <div className="flex items-center space-x-4 group mt-2 cursor-default">
+                <div className="w-10 h-10 rounded-xl bg-app-success/10 border border-app-success/20 flex items-center justify-center text-app-success shadow-[0_0_15px_rgba(34,197,94,0.15)] shrink-0">
+                  <div className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-app-success opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-app-success"></span>
+                  </div>
                 </div>
-                <span className="text-[12px] font-mono tracking-widest text-purple-400 uppercase font-semibold leading-snug">
-                  Available for<br/>Collaborations
+                <span className="text-[12px] font-mono tracking-widest text-app-success uppercase font-semibold leading-snug">
+                  Open to<br/>Collaborations
                 </span>
               </div>
             </div>
@@ -212,7 +218,7 @@ export default function Footer() {
           className="pt-8 border-t border-app-border flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <p className="text-app-muted text-[13px] font-medium order-2 md:order-1">
-            &copy; {new Date().getFullYear()} Sutantu Dutta. All Rights Reserved.
+            &copy; 2026 Sutantu Dutta. All Rights Reserved.
           </p>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -223,6 +229,22 @@ export default function Footer() {
               <ArrowUpRight size={14} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </div>
           </button>
+        </motion.div>
+
+        {/* Personal Signature */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="mt-16 pb-4 flex flex-col items-center justify-center text-center opacity-40 hover:opacity-100 transition-opacity duration-500 cursor-default"
+        >
+          <span className="font-display font-bold tracking-[0.2em] uppercase text-app-text text-[11px] md:text-sm">
+            SUTANTU DUTTA — AI DEVELOPER
+          </span>
+          <span className="font-mono text-[10px] md:text-xs mt-2 tracking-widest text-app-text-secondary uppercase">
+            LEARNING. BUILDING. EXPERIMENTING.
+          </span>
         </motion.div>
 
       </div>

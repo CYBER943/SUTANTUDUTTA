@@ -95,7 +95,7 @@ export function ToolShowcase() {
               <img 
                 src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
                 alt={tool.name} 
-                className="w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-opacity" 
+                className={`w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-opacity ${tool.color === 'FFFFFF' ? 'theme-invert' : ''}`} 
                 loading="lazy"
                 decoding="async"
                 width={32}
@@ -175,7 +175,7 @@ function DesktopToolItem({ tool, index, mouseX, mouseY, prefersReducedMotion, is
           <img 
             src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
             alt={tool.name} 
-            className="w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-all duration-500 drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transform-gpu group-hover:scale-110" 
+            className={`w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-all duration-500 drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transform-gpu group-hover:scale-110 ${tool.color === 'FFFFFF' ? 'theme-invert' : ''}`} 
             loading="lazy"
             decoding="async"
             width={32}

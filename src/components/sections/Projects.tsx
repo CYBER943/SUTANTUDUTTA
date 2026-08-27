@@ -90,7 +90,7 @@ export default function Projects() {
             >
               <div className="flex justify-between items-start mb-4">
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                  activeCategory === cat.title ? 'bg-white text-black' : 'bg-app-card text-app-text'
+                  activeCategory === cat.title ? 'bg-app-text text-app-bg' : 'bg-app-card text-app-text'
                 }`}>
                   <cat.icon size={16} strokeWidth={2} />
                 </div>

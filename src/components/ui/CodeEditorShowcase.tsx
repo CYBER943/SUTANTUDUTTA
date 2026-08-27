@@ -92,7 +92,7 @@ export const CodeEditorShowcase = () => {
           </div>
 
           {/* File Tab */}
-          <div className="flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-1 md:py-1.5 bg-white/[0.05] rounded-md border border-app-border-light shadow-inner">
+          <div className="flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-1 md:py-1.5 bg-app-card rounded-md border border-app-border-light shadow-inner">
             <span className="text-[#3178C6] font-bold text-[9px] md:text-[11px]">TSX</span>
             <span className="text-[10px] md:text-xs text-app-text-secondary font-mono tracking-tight hidden sm:inline-block">portfolio.tsx</span>
           </div>
@@ -148,7 +148,7 @@ export const CodeEditorShowcase = () => {
                   <div 
                     key={i} 
                     {...getLineProps({ line })}
-                    className="group/line hover:bg-white/[0.04] transition-colors rounded-sm px-2 -mx-2 flex items-start"
+                    className="group/line hover:bg-app-card transition-colors rounded-sm px-2 -mx-2 flex items-start"
                   >
                     {/* Line Number */}
                     <span className="w-8 text-right pr-5 text-app-muted select-none group-hover/line:text-app-text-secondary transition-colors">

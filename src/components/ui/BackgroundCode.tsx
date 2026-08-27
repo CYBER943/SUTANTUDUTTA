@@ -116,7 +116,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
   }
   
   .glass-panel-hover {
-    @apply hover:bg-white/[0.05] hover:border-app-border transition-all duration-300;
+    @apply hover:bg-app-card hover:border-app-border transition-all duration-300;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255,255,255,0.05);
   }
   
@@ -127,7 +127,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
 
 @layer base {
   ::selection {
-    @apply bg-white/20 text-app-text;
+    @apply bg-app-border text-app-text;
   }
 
   /* Custom Scrollbar for IDE feel */
@@ -142,7 +142,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
     @apply bg-app-elevated rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-white/20;
+    @apply bg-app-border;
   }
 }`
   }
@@ -281,10 +281,10 @@ export function BackgroundCode() {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-[var(--color-app-bg)] via-transparent to-[var(--color-app-bg)]" />
       
       {/* VS Code Window Container */}
-      <div className="relative w-[120%] h-[120%] md:w-[110%] md:h-[110%] max-w-[1400px] max-h-[900px] bg-[#0d1117] border border-app-border-light rounded-2xl shadow-2xl overflow-hidden blur-[1px] md:blur-[2px] transform-gpu scale-95 origin-center">
+      <div className="relative w-[120%] h-[120%] md:w-[110%] md:h-[110%] max-w-[1400px] max-h-[900px] bg-app-bg-secondary border border-app-border-light rounded-2xl shadow-2xl overflow-hidden blur-[1px] md:blur-[2px] transform-gpu scale-95 origin-center">
         
         {/* Window Header */}
-        <div className="h-10 bg-[#161b22] border-b border-app-border-light flex items-center px-4 gap-4">
+        <div className="h-10 bg-app-card border-b border-app-border-light flex items-center px-4 gap-4">
           <div className="flex gap-2">
             <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
@@ -296,7 +296,7 @@ export function BackgroundCode() {
             {CODE_SNIPPETS.map((s, i) => (
               <div 
                 key={i} 
-                className={`flex items-center gap-2 px-4 h-full text-xs font-mono ${i === snippetIndex ? 'bg-[#0d1117] text-app-text border-t border-t-blue-500' : 'text-app-muted'}`}
+                className={`flex items-center gap-2 px-4 h-full text-xs font-mono ${i === snippetIndex ? 'bg-app-bg-secondary text-app-text border-t border-t-blue-500' : 'text-app-muted'}`}
               >
                 {s.filename}
               </div>
@@ -318,7 +318,7 @@ export function BackgroundCode() {
             {!prefersReducedMotion && (
                <span 
                  ref={cursorRef} 
-                 className="inline-block absolute w-2 md:w-2.5 h-4 md:h-5 bg-white/80 animate-pulse align-middle"
+                 className="inline-block absolute w-2 md:w-2.5 h-4 md:h-5 bg-app-text-secondary animate-pulse align-middle"
                />
             )}
           </div>
