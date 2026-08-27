@@ -90,7 +90,7 @@ export function ToolShowcase() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="group flex items-center gap-3 p-3 md:p-4 rounded-[20px] bg-app-card backdrop-blur-xl border border-app-border hover:bg-app-elevated hover:border-white/20 transition-all shadow-lg"
+              className="group flex items-center gap-3 p-3 md:p-4 rounded-[20px] bg-app-card backdrop-blur-xl border border-app-border hover:bg-app-elevated hover:border-app-border transition-all shadow-lg"
             >
               <img 
                 src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
@@ -168,9 +168,9 @@ function DesktopToolItem({ tool, index, mouseX, mouseY, prefersReducedMotion, is
       >
         <motion.div
           animate={bobY}
-          className="relative flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 rounded-[24px] bg-app-card backdrop-blur-xl border border-app-border shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] transition-all duration-500 hover:scale-[1.08] hover:bg-app-elevated hover:border-white/20 cursor-pointer transform-gpu group-hover:-translate-y-2"
+          className="relative flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 rounded-[24px] bg-app-card backdrop-blur-xl border border-app-border shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] transition-all duration-500 hover:scale-[1.08] hover:bg-app-elevated hover:border-app-border cursor-pointer transform-gpu group-hover:-translate-y-2"
         >
-          <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 20px rgba(255,255,255,0.03)` }} />
+          <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 20px var(--color-app-border-light)` }} />
           
           <img 
             src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 

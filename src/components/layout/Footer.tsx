@@ -27,7 +27,7 @@ const NAV_LINKS = [
 
 const GlowingWaves = () => {
   return (
-    <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none opacity-40 mix-blend-screen overflow-hidden flex items-end">
+    <div className="absolute bottom-0 left-0 w-full h-[600px] pointer-events-none opacity-40  overflow-hidden flex items-end">
       {/* Wave 1 */}
       <motion.svg 
         animate={{ translateX: ["0%", "-33.333%"] }}
@@ -82,7 +82,7 @@ const GlowingWaves = () => {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#05050A] pt-24 pb-12 overflow-hidden font-sans border-t border-purple-500/10">
+    <footer className="relative bg-app-bg pt-24 pb-12 overflow-hidden font-sans border-t border-purple-500/10">
       
       {/* Top Animated Border */}
       <motion.div 
@@ -109,40 +109,40 @@ export default function Footer() {
         >
           
           {/* Column 1: Brand */}
-          <div className="w-full lg:w-[32%] lg:pr-12 lg:border-r border-white/[0.08] mb-12 lg:mb-0 flex flex-col">
+          <div className="w-full lg:w-[32%] lg:pr-12 lg:border-r border-app-border mb-12 lg:mb-0 flex flex-col">
             <a href="#home" className="inline-block group mb-2">
-              <h2 className="text-3xl font-display font-bold text-white tracking-tight group-hover:text-white/90 transition-colors">
+              <h2 className="text-3xl font-display font-bold text-app-text tracking-tight group-hover:text-app-text transition-colors">
                 Sutantu Dutta<span className="text-purple-500">.</span>
               </h2>
             </a>
             <h3 className="text-[13px] text-purple-400 font-mono tracking-widest uppercase mb-6 font-semibold">
               AI Developer
             </h3>
-            <p className="text-white/60 text-[15px] leading-relaxed mb-8 max-w-sm">
+            <p className="text-app-text-secondary text-[15px] leading-relaxed mb-8 max-w-sm">
               Building scalable, high-performance AI-powered applications and modern digital experiences.
             </p>
             
             <div className="flex gap-4">
-              <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+              <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-app-text hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
                 <Github size={18} className="group-hover:scale-110 transition-transform" />
               </a>
-              <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-white hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
+              <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-app-text hover:bg-purple-500/20 hover:border-purple-500/40 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg">
                 <Codepen size={18} className="group-hover:scale-110 transition-transform" />
               </a>
-              <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="LinkedIn" title="LinkedIn">
+              <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary hover:text-[#0077b5] hover:bg-[#0077b5]/10 hover:border-[#0077b5]/30 hover:-translate-y-1 transition-all group backdrop-blur-sm shadow-lg" aria-label="LinkedIn" title="LinkedIn">
                 <Linkedin size={18} className="group-hover:scale-110 transition-transform" />
               </a>
             </div>
           </div>
 
           {/* Column 2: Navigation */}
-          <div className="w-full lg:w-[18%] lg:px-12 lg:border-r border-white/[0.08] mb-12 lg:mb-0 flex flex-col">
-            <h4 className="font-mono text-[13px] font-semibold text-white tracking-[0.2em] uppercase mb-8">
+          <div className="w-full lg:w-[18%] lg:px-12 lg:border-r border-app-border mb-12 lg:mb-0 flex flex-col">
+            <h4 className="font-mono text-[13px] font-semibold text-app-text tracking-[0.2em] uppercase mb-8">
               Navigation
             </h4>
             <nav className="flex flex-col space-y-4">
               {NAV_LINKS.map((link) => (
-                <a key={link.name} href={link.href} className="group flex items-center text-white/50 hover:text-purple-400 transition-colors w-fit text-[15px]">
+                <a key={link.name} href={link.href} className="group flex items-center text-app-text-secondary hover:text-purple-400 transition-colors w-fit text-[15px]">
                   <span className="relative">
                     {link.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-px bg-purple-500/50 transition-all duration-300 group-hover:w-full" />
@@ -153,13 +153,13 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Tech Stack */}
-          <div className="w-full lg:w-[25%] lg:px-12 lg:border-r border-white/[0.08] mb-12 lg:mb-0 flex flex-col">
-            <h4 className="font-mono text-[13px] font-semibold text-white tracking-[0.2em] uppercase mb-8">
+          <div className="w-full lg:w-[25%] lg:px-12 lg:border-r border-app-border mb-12 lg:mb-0 flex flex-col">
+            <h4 className="font-mono text-[13px] font-semibold text-app-text tracking-[0.2em] uppercase mb-8">
               Tech Stack
             </h4>
             <ul className="flex flex-col space-y-3.5">
               {TECH_STACK.map((tech) => (
-                <li key={tech} className="flex items-center space-x-3 text-white/50 hover:text-white transition-colors cursor-default text-[15px] group">
+                <li key={tech} className="flex items-center space-x-3 text-app-text-secondary hover:text-app-text transition-colors cursor-default text-[15px] group">
                   <span className="w-1.5 h-1.5 rounded-full bg-purple-500/40 shadow-[0_0_8px_rgba(168,85,247,0)] group-hover:bg-purple-500/80 group-hover:shadow-[0_0_8px_rgba(168,85,247,0.8)] transition-all" />
                   <span>{tech}</span>
                 </li>
@@ -169,24 +169,24 @@ export default function Footer() {
 
           {/* Column 4: Get In Touch */}
           <div className="w-full lg:w-[25%] lg:pl-12 flex flex-col">
-            <h4 className="font-mono text-[13px] font-semibold text-white tracking-[0.2em] uppercase mb-8">
+            <h4 className="font-mono text-[13px] font-semibold text-app-text tracking-[0.2em] uppercase mb-8">
               Get In Touch
             </h4>
             <div className="flex flex-col space-y-6">
               <a href="mailto:sutantudutta@outlook.com" className="group flex items-center space-x-4">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 group-hover:text-purple-400 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 transition-all shadow-lg shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary group-hover:text-purple-400 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 transition-all shadow-lg shrink-0">
                   <Mail size={18} />
                 </div>
-                <span className="text-[15px] text-white/60 group-hover:text-white transition-colors break-all">
+                <span className="text-[15px] text-app-text-secondary group-hover:text-app-text transition-colors break-all">
                   sutantudutta@outlook.com
                 </span>
               </a>
               
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-white/50 shadow-lg shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-app-card border border-app-border flex items-center justify-center text-app-text-secondary shadow-lg shrink-0">
                   <MapPin size={18} />
                 </div>
-                <span className="text-[15px] text-white/60">India</span>
+                <span className="text-[15px] text-app-text-secondary">India</span>
               </div>
 
               <div className="flex items-center space-x-4 group mt-2">
@@ -209,17 +209,17 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="pt-8 border-t border-white/[0.08] flex flex-col md:flex-row items-center justify-between gap-6"
+          className="pt-8 border-t border-app-border flex flex-col md:flex-row items-center justify-between gap-6"
         >
-          <p className="text-white/40 text-[13px] font-medium order-2 md:order-1">
+          <p className="text-app-muted text-[13px] font-medium order-2 md:order-1">
             &copy; {new Date().getFullYear()} Sutantu Dutta. All Rights Reserved.
           </p>
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group flex items-center space-x-3 text-white/40 hover:text-white text-[13px] font-mono tracking-widest uppercase font-semibold transition-colors order-1 md:order-2"
+            className="group flex items-center space-x-3 text-app-muted hover:text-app-text text-[13px] font-mono tracking-widest uppercase font-semibold transition-colors order-1 md:order-2"
           >
             <span>Back to Top</span>
-            <div className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/[0.08] flex items-center justify-center group-hover:bg-purple-500/20 group-hover:border-purple-500/40 transition-all">
+            <div className="w-8 h-8 rounded-full bg-app-card border border-app-border flex items-center justify-center group-hover:bg-purple-500/20 group-hover:border-purple-500/40 transition-all">
               <ArrowUpRight size={14} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </div>
           </button>

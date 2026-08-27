@@ -80,14 +80,14 @@ export default function CustomCursor() {
     <>
       {/* Outer Glow Ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998] mix-blend-screen"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full pointer-events-none z-[9998] "
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
           translateX: '-50%',
           translateY: '-50%',
           border: '1px solid',
-          borderColor: isHovering ? 'rgba(239, 68, 68, 0.8)' : 'rgba(255, 255, 255, 0.2)',
+          borderColor: isHovering ? 'rgba(239, 68, 68, 0.8)' : 'var(--color-app-border)',
           backgroundColor: isHovering ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
           boxShadow: isHovering ? '0 0 20px rgba(239, 68, 68, 0.4)' : 'none',
         }}
@@ -116,7 +116,7 @@ export default function CustomCursor() {
           y: dotYSpring,
           translateX: '-50%',
           translateY: '-50%',
-          backgroundColor: isHovering ? '#ef4444' : '#ffffff',
+          backgroundColor: isHovering ? '#ef4444' : 'var(--color-app-text)',
         }}
       />
     </>

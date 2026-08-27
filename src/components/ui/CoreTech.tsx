@@ -57,7 +57,7 @@ export function CoreTech() {
             className="flex flex-col md:flex-row md:items-center gap-3"
           >
             <div className="w-24 shrink-0">
-              <span className="text-xs font-semibold text-white/50 uppercase tracking-wider">{category.name}</span>
+              <span className="text-xs font-semibold text-app-text-secondary uppercase tracking-wider">{category.name}</span>
             </div>
             <div className="flex flex-wrap gap-3 flex-1">
               {category.skills.map((skill, skillIdx) => (
@@ -68,11 +68,11 @@ export function CoreTech() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.6 + (catIdx * 0.1) + (skillIdx * 0.1) }}
                   onClick={() => handleTechClick(skill.name)}
-                  className="group relative cursor-pointer flex flex-col gap-1.5 p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20 transition-all w-[140px]"
+                  className="group relative cursor-pointer flex flex-col gap-1.5 p-3 rounded-xl border border-app-border-light bg-app-card hover:bg-app-elevated hover:border-app-border transition-all w-[140px]"
                 >
                   <div className="flex justify-between items-center text-xs">
-                    <span className="text-white/80 font-medium group-hover:text-white transition-colors">{skill.name}</span>
-                    <span className="text-white/40 font-mono text-[10px]">{skill.level}%</span>
+                    <span className="text-app-text font-medium group-hover:text-app-primary transition-colors">{skill.name}</span>
+                    <span className="text-app-muted font-mono text-[10px]">{skill.level}%</span>
                   </div>
                   <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                     <motion.div 

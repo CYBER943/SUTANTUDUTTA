@@ -111,12 +111,12 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/[0.02] backdrop-blur-xl border border-white/10;
+    @apply bg-app-card backdrop-blur-xl border border-app-border;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
   
   .glass-panel-hover {
-    @apply hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300;
+    @apply hover:bg-white/[0.05] hover:border-app-border transition-all duration-300;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255,255,255,0.05);
   }
   
@@ -127,7 +127,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
 
 @layer base {
   ::selection {
-    @apply bg-white/20 text-white;
+    @apply bg-white/20 text-app-text;
   }
 
   /* Custom Scrollbar for IDE feel */
@@ -139,7 +139,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-white/10 rounded-full;
+    @apply bg-app-elevated rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-white/20;
@@ -274,17 +274,17 @@ export function BackgroundCode() {
   }, [snippetIndex, prefersReducedMotion]);
 
   return (
-    <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.25] pointer-events-none select-none overflow-hidden mix-blend-screen" aria-hidden="true">
+    <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.25] pointer-events-none select-none overflow-hidden " aria-hidden="true">
       {/* Gradient Mask to fade edges */}
-      <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,#020817_70%)]" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#020817] via-transparent to-[#020817]" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020817] via-transparent to-[#020817]" />
+      <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,var(--color-app-bg)_70%)]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[var(--color-app-bg)] via-transparent to-[var(--color-app-bg)]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[var(--color-app-bg)] via-transparent to-[var(--color-app-bg)]" />
       
       {/* VS Code Window Container */}
-      <div className="relative w-[120%] h-[120%] md:w-[110%] md:h-[110%] max-w-[1400px] max-h-[900px] bg-[#0d1117] border border-white/5 rounded-2xl shadow-2xl overflow-hidden blur-[1px] md:blur-[2px] transform-gpu scale-95 origin-center">
+      <div className="relative w-[120%] h-[120%] md:w-[110%] md:h-[110%] max-w-[1400px] max-h-[900px] bg-[#0d1117] border border-app-border-light rounded-2xl shadow-2xl overflow-hidden blur-[1px] md:blur-[2px] transform-gpu scale-95 origin-center">
         
         {/* Window Header */}
-        <div className="h-10 bg-[#161b22] border-b border-white/5 flex items-center px-4 gap-4">
+        <div className="h-10 bg-[#161b22] border-b border-app-border-light flex items-center px-4 gap-4">
           <div className="flex gap-2">
             <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
             <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
@@ -296,7 +296,7 @@ export function BackgroundCode() {
             {CODE_SNIPPETS.map((s, i) => (
               <div 
                 key={i} 
-                className={`flex items-center gap-2 px-4 h-full text-xs font-mono ${i === snippetIndex ? 'bg-[#0d1117] text-white/90 border-t border-t-blue-500' : 'text-white/40'}`}
+                className={`flex items-center gap-2 px-4 h-full text-xs font-mono ${i === snippetIndex ? 'bg-[#0d1117] text-app-text border-t border-t-blue-500' : 'text-app-muted'}`}
               >
                 {s.filename}
               </div>
@@ -311,9 +311,9 @@ export function BackgroundCode() {
         >
           <div 
             ref={lineNumbersRef}
-            className="text-white/20 text-right pr-6 select-none border-r border-white/5 mr-6"
+            className="text-app-muted text-right pr-6 select-none border-r border-app-border-light mr-6"
           />
-          <div className="relative text-white/80 whitespace-pre font-mono">
+          <div className="relative text-app-text-secondary whitespace-pre font-mono">
             <code ref={codeRef} className="block" />
             {!prefersReducedMotion && (
                <span 

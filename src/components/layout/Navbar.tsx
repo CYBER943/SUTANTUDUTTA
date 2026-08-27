@@ -114,18 +114,18 @@ export default function Navbar({
                     className={`absolute left-0 bottom-0 h-0.5 bg-app-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
                   />
                   {/* Subtle glow on hover */}
-                  <span className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 rounded-md -z-10 transition-opacity duration-300 scale-110" />
+                  <span className="absolute inset-0 bg-app-card opacity-0 group-hover:opacity-100 rounded-md -z-10 transition-opacity duration-300 scale-110" />
                 </a>
               );
             })}
 
             <button
               onClick={onOpenCommandPalette}
-              className="flex items-center justify-center p-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              className="flex items-center justify-center p-2 rounded-full text-app-text-secondary hover:text-app-text hover:bg-app-elevated transition-colors"
               aria-label="Open Command Palette"
             >
               <Search size={18} />
-              <span className="ml-2 text-xs font-mono px-1.5 py-0.5 rounded bg-white/10 border border-white/5 opacity-70 flex items-center gap-1">
+              <span className="ml-2 text-xs font-mono px-1.5 py-0.5 rounded bg-app-elevated border border-app-border-light opacity-70 flex items-center gap-1">
                 <Command size={10} /> K
               </span>
             </button>
@@ -160,7 +160,7 @@ export default function Navbar({
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
-              className="text-white relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="text-app-text relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={onOpenCommandPalette}
               aria-label="Open Command Palette"
             >
@@ -168,7 +168,7 @@ export default function Navbar({
             </button>
 
             <button
-              className="text-white relative z-[1150] p-2.5 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="text-app-text relative z-[1150] p-2.5 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle Menu"
             >
@@ -195,7 +195,7 @@ export default function Navbar({
           >
             {/* Inside close button */}
             <button
-              className="md:hidden text-white absolute top-6 right-6 p-2.5 z-[1150] min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="md:hidden text-app-text absolute top-6 right-6 p-2.5 z-[1150] min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ top: "calc(1.5rem + env(safe-area-inset-top))" }}
               aria-label="Close Menu"

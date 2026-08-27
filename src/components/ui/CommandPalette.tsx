@@ -167,18 +167,18 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-2xl bg-[#111111]/90 backdrop-blur-2xl border border-white/10 rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[70vh]"
+            className="relative w-full max-w-2xl bg-app-bg-secondary/90 backdrop-blur-2xl border border-app-border rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[70vh]"
             role="dialog"
             aria-modal="true"
           >
             {/* Search Input */}
-            <div className="flex items-center px-4 border-b border-white/5 relative z-10 bg-[#111111]/50">
-              <Search className="w-5 h-5 text-white/40 mr-3" />
+            <div className="flex items-center px-4 border-b border-app-border-light relative z-10 bg-app-bg-secondary/50">
+              <Search className="w-5 h-5 text-app-muted mr-3" />
               <input
                 ref={inputRef}
                 type="text"
                 placeholder="Type a command or search..."
-                className="w-full bg-transparent border-none text-white text-lg py-5 focus:outline-none placeholder:text-white/30 font-light"
+                className="w-full bg-transparent border-none text-app-text text-lg py-5 focus:outline-none placeholder:text-app-muted font-light"
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
@@ -187,7 +187,7 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
               />
               <button 
                 onClick={() => setIsOpen(false)}
-                className="p-1 rounded-md text-white/40 hover:text-white hover:bg-white/10 transition-colors ml-2"
+                className="p-1 rounded-md text-app-muted hover:text-app-text hover:bg-app-elevated transition-colors ml-2"
                 aria-label="Close Command Palette"
               >
                  <X className="w-5 h-5" />
@@ -197,7 +197,7 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
             {/* Results */}
             <div ref={listRef} className="overflow-y-auto p-2 scrollbar-hide flex-1">
               {displayCommands.length === 0 ? (
-                <div className="py-14 text-center text-white/40 text-sm flex flex-col items-center">
+                <div className="py-14 text-center text-app-muted text-sm flex flex-col items-center">
                    <Command className="w-8 h-8 mb-4 opacity-20" />
                    <p>No results found for "{query}"</p>
                 </div>
@@ -208,7 +208,7 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
                   
                   return (
                     <div key={group} className="mb-4 last:mb-0">
-                      <div className="px-3 text-xs font-medium text-white/30 mb-2 uppercase tracking-wider">
+                      <div className="px-3 text-xs font-medium text-app-muted mb-2 uppercase tracking-wider">
                         {group}
                       </div>
                       {groupCommands.map((cmd) => {
@@ -220,7 +220,7 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
                           <div
                             key={cmd.id}
                             className={`flex items-center px-3 py-3 rounded-xl cursor-pointer transition-colors duration-150 ${
-                              isSelected ? 'bg-app-primary/20 text-white' : 'text-white/60 hover:bg-white/5 hover:text-white'
+                              isSelected ? 'bg-app-primary/20 text-app-text' : 'text-app-text-secondary hover:bg-app-card hover:text-app-text'
                             }`}
                             onMouseEnter={() => setSelectedIndex(globalIndex)}
                             onClick={() => {
@@ -229,7 +229,7 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
                             role="option"
                             aria-selected={isSelected}
                           >
-                            <Icon className={`w-5 h-5 mr-3 ${isSelected ? 'text-app-primary' : 'text-white/40'}`} />
+                            <Icon className={`w-5 h-5 mr-3 ${isSelected ? 'text-app-primary' : 'text-app-muted'}`} />
                             <span className="flex-1 font-medium">{cmd.title}</span>
                             {isSelected && (
                               <motion.span 
@@ -249,19 +249,19 @@ export default function CommandPalette({ isOpen, setIsOpen }: { isOpen: boolean,
             </div>
             
             {/* Footer with keyboard hints */}
-            <div className="px-4 py-3 border-t border-white/5 flex items-center justify-between text-xs text-white/30 bg-[#0a0a0a]/50">
+            <div className="px-4 py-3 border-t border-app-border-light flex items-center justify-between text-xs text-app-muted bg-app-bg-secondary/50">
                <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-1">
-                     <kbd className="bg-white/10 px-1.5 py-0.5 rounded shadow-sm text-white/50 border border-white/5 font-sans">↑</kbd>
-                     <kbd className="bg-white/10 px-1.5 py-0.5 rounded shadow-sm text-white/50 border border-white/5 font-sans">↓</kbd>
+                     <kbd className="bg-app-elevated px-1.5 py-0.5 rounded shadow-sm text-app-text-secondary border border-app-border-light font-sans">↑</kbd>
+                     <kbd className="bg-app-elevated px-1.5 py-0.5 rounded shadow-sm text-app-text-secondary border border-app-border-light font-sans">↓</kbd>
                      <span className="ml-1">to navigate</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                     <kbd className="bg-white/10 px-1.5 py-0.5 rounded shadow-sm text-white/50 border border-white/5 font-sans">↵</kbd>
+                     <kbd className="bg-app-elevated px-1.5 py-0.5 rounded shadow-sm text-app-text-secondary border border-app-border-light font-sans">↵</kbd>
                      <span className="ml-1">to select</span>
                   </div>
                   <div className="flex items-center space-x-1">
-                     <kbd className="bg-white/10 px-1.5 py-0.5 rounded shadow-sm text-white/50 border border-white/5 font-sans">esc</kbd>
+                     <kbd className="bg-app-elevated px-1.5 py-0.5 rounded shadow-sm text-app-text-secondary border border-app-border-light font-sans">esc</kbd>
                      <span className="ml-1">to close</span>
                   </div>
                </div>

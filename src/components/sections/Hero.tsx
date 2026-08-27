@@ -36,15 +36,15 @@ export default function Hero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
          <BackgroundCode />
          {/* Subtle Grid */}
-         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
+         <div className="absolute inset-0 bg-[linear-gradient(var(--color-app-border-light)_1px,transparent_1px),linear-gradient(90deg,var(--color-app-border-light)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
          
          {/* Noise Texture */}
          <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
 
          {/* Ambient Lighting & Mesh Gradient */}
-         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-app-primary/10 rounded-full blur-[140px] mix-blend-screen" />
-         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-orange-500/10 rounded-full blur-[140px] mix-blend-screen" />
-         <div className={`absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-app-purple/10 rounded-full blur-[120px] mix-blend-screen ${prefersReducedMotion ? '' : 'animate-pulse'}`} />
+         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-app-primary/10 rounded-full blur-[140px] " />
+         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-orange-500/10 rounded-full blur-[140px] " />
+         <div className={`absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-app-purple/10 rounded-full blur-[120px]  ${prefersReducedMotion ? '' : 'animate-pulse'}`} />
       </motion.div>
 
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 z-20 flex flex-col md:flex-row items-center justify-between gap-16 lg:gap-24">
@@ -100,7 +100,7 @@ export default function Hero() {
             
             <a
               href="#contact"
-              className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-app-card border border-app-border text-app-text px-8 py-4 text-base rounded-full font-medium hover:bg-app-elevated backdrop-blur-xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto shadow-lg hover:border-white/20"
+              className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-app-card border border-app-border text-app-text px-8 py-4 text-base rounded-full font-medium hover:bg-app-elevated backdrop-blur-xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto shadow-lg hover:border-app-border"
             >
                <Mail size={18} className="text-app-text-secondary group-hover:text-app-text transition-colors" />
               <span className="relative z-10">Contact</span>
@@ -111,7 +111,7 @@ export default function Hero() {
                  href="/resume.pdf"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-white/20 backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="Resume"
                >
                  <Download size={20} />
@@ -120,7 +120,7 @@ export default function Hero() {
                  href="https://github.com/Sdm940"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-white/20 backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="GitHub"
                >
                  <Github size={20} />
@@ -129,7 +129,7 @@ export default function Hero() {
                  href="https://codepen.io/SDM-TECH-KNOW"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-white/20 backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="CodePen"
                  title="CodePen"
                >
@@ -139,7 +139,7 @@ export default function Hero() {
                  href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-white/20 backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="LinkedIn"
                  title="LinkedIn"
                >

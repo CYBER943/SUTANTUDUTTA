@@ -122,10 +122,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-40 relative bg-[#05050A] overflow-hidden min-h-[800px] flex items-center font-sans border-t border-white/[0.05]">
+    <section id="contact" className="py-24 md:py-40 relative bg-app-bg overflow-hidden min-h-[800px] flex items-center font-sans border-t border-app-border-light">
       {/* Abstract Background Texture */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)', backgroundSize: '4rem 4rem' }} />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03)_0%,transparent_75%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-app-border-light)_0%,transparent_75%)] pointer-events-none" />
       
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-[1fr_1.8fr] gap-16 lg:gap-24 items-start">
@@ -139,7 +139,7 @@ export default function Contact() {
             className="flex flex-col pt-2 lg:pt-6"
           >
             <div className="mb-6 lg:mb-12">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-app-text">
                 <path d="M4 4H10V10H4V4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M14 14H20V20H14V14Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 <path d="M14 4H20V10H14V4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -148,10 +148,10 @@ export default function Contact() {
               </svg>
             </div>
             
-            <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] font-bold tracking-tighter leading-[0.95] mb-6 text-white font-display">
+            <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] font-bold tracking-tighter leading-[0.95] mb-6 text-app-text font-display">
               Let's get<br />started.
             </h2>
-            <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-white/40 font-semibold">
+            <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-app-muted font-semibold">
               Contact Form
             </p>
           </motion.div>
@@ -173,11 +173,11 @@ export default function Contact() {
                   exit={{ opacity: 0 }}
                   className="flex flex-col items-start justify-center h-full py-16"
                 >
-                  <div className="w-16 h-16 bg-white/5 border border-white/10 text-white rounded-2xl flex items-center justify-center mb-8">
+                  <div className="w-16 h-16 bg-app-card border border-app-border text-app-text rounded-2xl flex items-center justify-center mb-8">
                     <CheckCircle2 size={32} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 font-display">Message received.</h3>
-                  <p className="text-white/50 text-xl max-w-md leading-relaxed">
+                  <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-app-text mb-4 font-display">Message received.</h3>
+                  <p className="text-app-text-secondary text-xl max-w-md leading-relaxed">
                     Thank you for reaching out. I'll get back to you shortly to get things started.
                   </p>
                 </motion.div>
@@ -188,7 +188,7 @@ export default function Contact() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onSubmit={handleSubmit}
-                  className="text-2xl md:text-4xl lg:text-[2.75rem] leading-[2.2] md:leading-[2.2] lg:leading-[2.2] font-medium text-white/90"
+                  className="text-2xl md:text-4xl lg:text-[2.75rem] leading-[2.2] md:leading-[2.2] lg:leading-[2.2] font-medium text-app-text"
                 >
                   <p className="inline">
                     My name is 
@@ -201,7 +201,7 @@ export default function Contact() {
                           setFormData({ ...formData, name: e.target.value });
                           if (errors.name) setErrors(prev => ({ ...prev, name: '' }));
                         }}
-                        className={`bg-transparent border-b-2 ${errors.name ? 'border-red-500' : 'border-white/20 focus:border-white'} outline-none px-2 py-1 text-center text-white placeholder:text-white/20 placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[180px] md:w-[280px] lg:w-[320px]`}
+                        className={`bg-transparent border-b-2 ${errors.name ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[180px] md:w-[280px] lg:w-[320px]`}
                       />
                       <AnimatePresence>
                         {errors.name && (
@@ -226,7 +226,7 @@ export default function Contact() {
                           setFormData({ ...formData, message: e.target.value });
                           if (errors.message) setErrors(prev => ({ ...prev, message: '' }));
                         }}
-                        className={`bg-transparent border-b-2 ${errors.message ? 'border-red-500' : 'border-white/20 focus:border-white'} outline-none px-2 py-1 text-center text-white placeholder:text-white/20 placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[220px] md:w-[340px] lg:w-[420px]`}
+                        className={`bg-transparent border-b-2 ${errors.message ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[220px] md:w-[340px] lg:w-[420px]`}
                       />
                       <AnimatePresence>
                         {errors.message && (
@@ -251,7 +251,7 @@ export default function Contact() {
                           setFormData({ ...formData, email: e.target.value });
                           if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
                         }}
-                        className={`bg-transparent border-b-2 ${errors.email ? 'border-red-500' : 'border-white/20 focus:border-white'} outline-none px-2 py-1 text-center text-white placeholder:text-white/20 placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[200px] md:w-[320px] lg:w-[380px]`}
+                        className={`bg-transparent border-b-2 ${errors.email ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[200px] md:w-[320px] lg:w-[380px]`}
                       />
                       <AnimatePresence>
                         {errors.email && (
@@ -287,16 +287,16 @@ export default function Contact() {
                     <button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="group flex items-center text-xs md:text-sm font-mono tracking-[0.25em] uppercase font-bold text-white hover:text-white/70 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="group flex items-center text-xs md:text-sm font-mono tracking-[0.25em] uppercase font-bold text-app-text hover:text-app-text-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
-                          <Loader2 size={16} className="animate-spin mr-4 text-white/50" />
+                          <Loader2 size={16} className="animate-spin mr-4 text-app-text-secondary" />
                           SENDING...
                         </>
                       ) : (
                         <>
-                          <span className="mr-4 text-white/50 group-hover:text-white transition-colors">—</span> 
+                          <span className="mr-4 text-app-text-secondary group-hover:text-app-text transition-colors">—</span> 
                           SEND MESSAGE
                         </>
                       )}
@@ -306,15 +306,15 @@ export default function Contact() {
               )}
             </AnimatePresence>
             
-            <div className="mt-24 lg:mt-32 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-              <p className="text-white/30 text-[10px] font-mono uppercase tracking-widest">
+            <div className="mt-24 lg:mt-32 pt-8 border-t border-app-border flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+              <p className="text-app-muted text-[10px] font-mono uppercase tracking-widest">
                 © {new Date().getFullYear()} SUTANTU DUTTA. 
               </p>
               <div className="flex flex-wrap gap-6">
-                 <a href="mailto:sutantudutta@outlook.com" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors">Email</a>
-                 <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors">GitHub</a>
-                 <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors">CodePen</a>
-                 <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-white/30 hover:text-white transition-colors" aria-label="LinkedIn" title="LinkedIn">LinkedIn</a>
+                 <a href="mailto:sutantudutta@outlook.com" className="text-[10px] font-mono uppercase tracking-widest text-app-muted hover:text-app-text transition-colors">Email</a>
+                 <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-app-muted hover:text-app-text transition-colors">GitHub</a>
+                 <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-app-muted hover:text-app-text transition-colors">CodePen</a>
+                 <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer" className="text-[10px] font-mono uppercase tracking-widest text-app-muted hover:text-app-text transition-colors" aria-label="LinkedIn" title="LinkedIn">LinkedIn</a>
               </div>
             </div>
 
