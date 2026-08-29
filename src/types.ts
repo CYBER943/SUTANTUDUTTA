@@ -7,6 +7,7 @@ export interface Project {
   link: string;
   github?: string;
   codepen?: string;
+  image?: string;
   featured?: boolean;
   problem?: string;
   solution?: string;

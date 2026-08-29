@@ -123,6 +123,7 @@ export const PROJECTS: Project[] = [
     link: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
     codepen: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
     github: "https://github.com/Sdm940",
+    image: "/src/assets/images/cyberpunk_portfolio_1787996201544.jpg",
     featured: true,
     problem: "Traditional portfolios lack personality and fail to demonstrate actual coding capability through the interface itself.",
     solution: "Designed a highly interactive, cyber-aesthetic experience that serves as both a portfolio and a technical demonstration of GSAP and advanced CSS.",
@@ -140,6 +141,7 @@ export const PROJECTS: Project[] = [
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
     codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
     github: "https://github.com/Sdm940",
+    image: "/src/assets/images/glass_dashboard_1787996219601.jpg",
     featured: true,
     problem: "Data dashboards are often visually dense, intimidating, and lack modern aesthetic appeal.",
     solution: "Implemented a glassmorphic design system that uses spatial depth, translucency, and subtle motion to make data consumption effortless.",
@@ -157,6 +159,7 @@ export const PROJECTS: Project[] = [
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
     codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
     github: "https://github.com/Sdm940",
+    image: "/src/assets/images/particle_sim_1787996233074.jpg",
     problem: "DOM-based animations hit performance bottlenecks quickly when dealing with hundreds of independent elements.",
     solution: "Built a custom rendering engine using the HTML5 Canvas API and requestAnimationFrame for direct pixel manipulation.",
     challenges: "Implementing efficient collision detection and physics calculations without dropping frames.",
@@ -173,12 +176,43 @@ export const PROJECTS: Project[] = [
     link: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
     codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
     github: "https://github.com/Sdm940",
+    image: "/src/assets/images/webgl_3d_1787996253568.jpg",
     problem: "Web experiences are typically constrained to 2D planes, limiting the ability to create truly immersive spatial designs.",
     solution: "Leveraged Three.js to construct an interactive 3D environment that responds to scroll and mouse coordinates.",
     challenges: "Managing lighting, shadows, and geometry complexity while ensuring the site doesn't drain device battery.",
     results: "A highly engaging spatial interface that feels like a native application rather than a traditional website.",
     performanceMetrics: ["Optimized Geometry", "Baked Lighting", "Lazy Loaded Assets"],
     lessonsLearned: "Learned how to bridge the gap between HTML UI and WebGL canvases using synchronized camera projections."
+  },
+  {
+    id: 5,
+    title: "CYBER943",
+    description: "A creative web development project and interactive coding experiment created on CodePen.",
+    category: "WEB / CREATIVE CODING",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SDM-TECH-KNOW/pen/JoEMqwB",
+    codepen: "https://codepen.io/SDM-TECH-KNOW/pen/JoEMqwB",
+    image: "https://codepen.io/SDM-TECH-KNOW/pen/JoEMqwB/image/large.png"
+  },
+  {
+    id: 6,
+    title: "MONOPOLY",
+    description: "A browser-based Monopoly-inspired game experiment exploring interactive gameplay and web development.",
+    category: "GAME / WEB",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SDM-TECH-KNOW/pen/XJpgWdd",
+    codepen: "https://codepen.io/SDM-TECH-KNOW/pen/XJpgWdd",
+    image: "https://codepen.io/SDM-TECH-KNOW/pen/XJpgWdd/image/large.png"
+  },
+  {
+    id: 7,
+    title: "SD",
+    description: "A creative web experiment built to explore interactive design and browser-based development.",
+    category: "WEB / EXPERIMENT",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SDM-TECH-KNOW/pen/XJpRZMv",
+    codepen: "https://codepen.io/SDM-TECH-KNOW/pen/XJpRZMv",
+    image: "https://codepen.io/SDM-TECH-KNOW/pen/XJpRZMv/image/large.png"
   }
 ];
 

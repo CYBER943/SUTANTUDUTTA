@@ -1,301 +1,273 @@
-import { PROJECTS, CATEGORIES, PROJECT_CATEGORIES_DATA } from '../../data';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { Search, ExternalLink, ArrowRight, Github, Codepen, CheckCircle2 } from 'lucide-react';
-import { TextReveal } from '../ui/TextReveal';
-import { useTheme } from '../ThemeProvider';
+import React from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
+import { PROJECTS } from '../../data';
+import { Project } from '../../types';
 
-export default function Projects() {
-  const [activeCategory, setActiveCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
+const FeaturedProject = ({ project, index }: { project: Project; index: number }) => {
   const prefersReducedMotion = useReducedMotion();
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    const handleFilterTech = (e: CustomEvent) => {
-      setSearchQuery(e.detail);
-      setActiveCategory('All');
-    };
-    window.addEventListener('filter-tech', handleFilterTech as EventListener);
-    return () => window.removeEventListener('filter-tech', handleFilterTech as EventListener);
-  }, []);
-
-  const filteredProjects = PROJECTS.filter((project) => {
-    const matchesCategory = activeCategory === 'All' || project.category === activeCategory;
-    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          project.tech.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
 
   return (
-    <section className="py-20 md:py-32 relative bg-app-bg-secondary border-t border-app-border-light">
-      <div className="w-full max-w-6xl mx-auto px-6">
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h2 className="text-[clamp(2rem,5vw,3rem)] font-display font-bold tracking-tight text-app-text mb-4">
-              <TextReveal text="Experiments & Archive" />
-            </h2>
-            <p className="text-app-text-secondary text-lg font-light">
-              A curated collection of UI concepts, micro-interactions, and functional prototypes.
-            </p>
-          </motion.div>
+    <motion.div
+      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="group flex flex-col lg:flex-row gap-8 lg:gap-12 bg-app-card rounded-[2rem] border border-app-border p-6 lg:p-8 hover:border-app-primary/30 hover:shadow-[0_8px_30px_rgba(234,88,12,0.05)] transition-all duration-500 relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-app-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-          {/* Search Box */}
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="relative"
-          >
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-app-muted" size={16} />
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full md:w-72 bg-app-bg border border-app-border rounded-full py-2.5 pl-12 pr-4 text-sm text-app-text placeholder:text-app-muted focus:outline-none focus:border-app-border transition-all"
-            />
-          </motion.div>
+      {/* Image Side */}
+      <div className="w-full lg:w-3/5 rounded-2xl overflow-hidden relative bg-app-bg aspect-video border border-app-border z-10">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-app-elevated text-app-muted">
+            No Preview Available
+          </div>
+        )}
+      </div>
+
+      {/* Content Side */}
+      <div className="w-full lg:w-2/5 flex flex-col justify-center z-10">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-[11px] font-mono tracking-widest text-app-primary uppercase font-semibold">
+            Featured Project
+          </span>
+          <span className="w-1 h-1 rounded-full bg-app-border" />
+          <span className="text-[11px] font-mono tracking-widest text-app-text-secondary uppercase">
+            0{index + 1}
+          </span>
         </div>
 
-        {/* Project Categories Grid */}
+        <h3 className="text-3xl lg:text-4xl font-display font-bold text-app-text mb-2 group-hover:text-app-primary transition-colors">
+          {project.title}
+        </h3>
+        
+        <p className="text-sm font-mono text-app-text-secondary mb-6 tracking-wide uppercase opacity-80">
+          {project.category}
+        </p>
+
+        <p className="text-app-text-secondary leading-relaxed mb-8">
+          {project.description}
+          {project.problem && <span className="block mt-2">{project.problem}</span>}
+          {project.lessonsLearned && <span className="block mt-2 text-app-muted italic">Learned: {project.lessonsLearned}</span>}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-8">
+          {project.tech.map((t, idx) => (
+            <span key={idx} className="text-[11px] font-mono tracking-wider font-medium text-app-muted bg-app-bg px-3 py-1.5 rounded-full border border-app-border">
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4 mt-auto pt-4">
+          {(project.link || project.codepen) && (
+            <a
+              href={project.link || project.codepen}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-app-primary text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-app-primary-hover hover:-translate-y-0.5 transition-all shadow-[0_0_15px_rgba(234,88,12,0.2)] hover:shadow-[0_0_20px_rgba(234,88,12,0.4)] group/btn"
+              aria-label={`Live Demo of ${project.title}`}
+            >
+              Live Demo
+              <ArrowUpRight size={16} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-app-text bg-app-bg border border-app-border hover:bg-app-elevated hover:border-app-text-secondary hover:-translate-y-0.5 transition-all group/source"
+              aria-label={`Source code of ${project.title}`}
+            >
+              <Github size={16} />
+              Source <ArrowUpRight size={14} className="opacity-0 -ml-4 group-hover/source:opacity-100 group-hover/source:ml-0 transition-all text-app-muted" />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const prefersReducedMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group flex flex-col bg-app-card rounded-3xl border border-app-border hover:border-app-primary/30 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(234,88,12,0.05)] transition-all duration-500 overflow-hidden relative"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-app-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+
+      {/* Image Area */}
+      <div className="w-full aspect-video overflow-hidden border-b border-app-border relative z-10 bg-app-bg">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-app-elevated text-app-muted">
+            No Preview
+          </div>
+        )}
+        <div className="absolute top-4 left-4 flex gap-2">
+          <span className="text-[10px] font-mono tracking-widest text-app-bg bg-app-text px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
+            0{index + 1}
+          </span>
+          {project.category.includes('AI') && (
+            <span className="text-[10px] font-mono tracking-widest text-app-bg bg-app-primary px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
+              AI
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Content Area */}
+      <div className="p-6 flex flex-col flex-grow z-10">
+        <p className="text-[11px] font-mono text-app-primary tracking-widest uppercase mb-2 font-semibold">
+          {project.category}
+        </p>
+        
+        <h3 className="text-xl font-display font-bold text-app-text mb-3 group-hover:text-app-primary transition-colors">
+          {project.title}
+        </h3>
+        
+        <p className="text-sm text-app-text-secondary leading-relaxed mb-6 line-clamp-3">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+          {project.tech.slice(0, 3).map((t, idx) => (
+            <span key={idx} className="text-[10px] font-mono tracking-widest font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
+              {t}
+            </span>
+          ))}
+          {project.tech.length > 3 && (
+            <span className="text-[10px] font-mono tracking-widest font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
+              +{project.tech.length - 3}
+            </span>
+          )}
+        </div>
+
+        <div className="pt-5 border-t border-app-border flex items-center gap-4">
+          {(project.link || project.codepen) && (
+            <a
+              href={project.link || project.codepen}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold text-app-text hover:text-app-primary transition-colors flex items-center gap-1.5 group/link"
+              aria-label={`Live Demo of ${project.title}`}
+            >
+              Demo <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold text-app-muted hover:text-app-text transition-colors flex items-center gap-1.5"
+              aria-label={`Source code of ${project.title}`}
+            >
+              <Github size={14} /> Source
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export const Projects = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const featuredProject = PROJECTS[0];
+  const gridProjects = PROJECTS.slice(1);
+
+  return (
+    <section id="projects" className="py-24 relative z-10 bg-app-bg">
+      <div className="w-full max-w-7xl mx-auto px-6 lg:px-10">
+        
+        {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-16"
+          className="mb-16 md:mb-24 flex flex-col"
         >
-          {PROJECT_CATEGORIES_DATA.map((cat, idx) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.05 }}
-              onClick={() => { setActiveCategory(cat.title); setSearchQuery(''); }}
-              className={`p-4 rounded-2xl border cursor-pointer group transition-all duration-300 ${
-                activeCategory === cat.title 
-                  ? 'bg-app-elevated border-app-border' 
-                  : 'bg-app-card border-app-border hover:bg-app-elevated'
-              }`}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                  activeCategory === cat.title ? 'bg-app-text text-app-bg' : 'bg-app-card text-app-text'
-                }`}>
-                  <cat.icon size={16} strokeWidth={2} />
-                </div>
-                <span className="text-xs font-medium text-app-muted">{cat.count}</span>
-              </div>
-              <h3 className={`font-medium text-sm transition-colors ${activeCategory === cat.title ? 'text-app-text' : 'text-app-text-secondary'}`}>{cat.title}</h3>
-            </motion.div>
-          ))}
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-xs font-mono tracking-[0.2em] text-app-primary uppercase font-semibold">
+              01 / PROJECTS
+            </span>
+            <div className="h-px bg-app-border flex-grow max-w-[100px]" />
+          </div>
+          
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold text-app-text tracking-tight leading-[1.1] mb-6">
+            Selected Projects
+          </h2>
+          
+          <p className="text-lg md:text-xl text-app-text-secondary max-w-2xl font-light leading-relaxed">
+            Things I've built, experimented with, and learned from.
+          </p>
         </motion.div>
 
-        {/* Project List */}
-        <div className="flex flex-col gap-24">
-          <AnimatePresence>
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                layout
-                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                exit={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                key={project.id}
-                className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
-              >
-                {/* Visual Side */}
-                <div className="w-full lg:w-1/2 relative group">
-                  <div className="absolute -inset-4 bg-gradient-to-r from-red-500/20 to-orange-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[3rem] pointer-events-none" />
-                  
-                  <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden bg-app-bg-secondary border border-app-border group-hover:border-app-border transition-colors shadow-2xl">
-                    {project.link.includes('codepen.io') ? (
-                      <iframe 
-                        src={`${project.link.replace('/pen/', '/embed/preview/')}?default-tab=result&theme-id=${theme}`} 
-                        title={project.title}
-                        loading="lazy"
-                        className="w-full h-full border-none opacity-90 group-hover:opacity-100 transition-opacity"
-                        sandbox="allow-scripts allow-same-origin"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-2xl bg-app-card border border-app-border flex items-center justify-center text-app-muted group-hover:scale-110 group-hover:text-app-text transition-all duration-500">
-                          <ExternalLink size={32} strokeWidth={1} />
-                        </div>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 pointer-events-none border border-app-border rounded-3xl" />
-                  </div>
-                </div>
-
-                {/* Content Side */}
-                <div className="w-full lg:w-1/2 flex flex-col">
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="text-xs font-medium text-app-text-secondary bg-app-elevated px-3 py-1 rounded-full border border-app-border backdrop-blur-md">
-                      {project.category}
-                    </span>
-                    {project.featured && (
-                      <span className="text-xs font-medium text-red-400 bg-red-400/10 px-3 py-1 rounded-full border border-red-400/20">
-                        Featured Case Study
-                      </span>
-                    )}
-                  </div>
-                  
-                  <h3 className="text-[clamp(2rem,4vw,3rem)] font-display font-bold tracking-tight text-app-text mb-6 leading-none">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-app-text-secondary text-lg leading-relaxed mb-8">
-                    {project.description}
-                  </p>
-
-                  {/* Case Study Details */}
-                  {(project.problem || project.solution) && (
-                    <div className="grid sm:grid-cols-2 gap-6 mb-8">
-                      {project.problem && (
-                        <div className="p-5 rounded-2xl bg-app-card border border-app-border-light">
-                          <h4 className="text-sm font-semibold text-app-text mb-2 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" /> Challenge
-                          </h4>
-                          <p className="text-sm text-app-text-secondary leading-relaxed">{project.problem}</p>
-                        </div>
-                      )}
-                      {project.solution && (
-                        <div className="p-5 rounded-2xl bg-app-card border border-app-border-light">
-                          <h4 className="text-sm font-semibold text-app-text mb-2 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Solution
-                          </h4>
-                          <p className="text-sm text-app-text-secondary leading-relaxed">{project.solution}</p>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Metrics */}
-                  {project.performanceMetrics && (
-                    <div className="flex flex-wrap gap-4 mb-8">
-                      {project.performanceMetrics.map((metric, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm text-app-text-secondary font-medium">
-                          <CheckCircle2 size={16} className="text-green-400" />
-                          {metric}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  
-                  <div className="flex flex-wrap gap-2 mb-10">
-                    {project.tech.map((t, idx) => (
-                      <span key={idx} className="text-xs tracking-wider font-medium text-app-muted bg-app-card px-3 py-1.5 rounded-md border border-app-border-light">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-4 mt-auto">
-                    {project.link && (
-                      <a 
-                        href={project.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="group relative flex items-center space-x-2 bg-app-text text-app-bg px-6 py-3 rounded-full font-medium transition-all hover:scale-[1.02] active:scale-[0.98]"
-                      >
-                        <span>Live Demo</span>
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                      </a>
-                    )}
-                    {project.github && (
-                      <a 
-                        href={project.github} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-2 px-6 py-3 rounded-full font-medium text-app-text bg-app-card border border-app-border hover:bg-app-elevated transition-all hover:scale-[1.02] active:scale-[0.98]"
-                      >
-                        <Github size={16} />
-                        <span>Source Code</span>
-                      </a>
-                    )}
-                    {project.codepen && !project.link.includes('codepen.io') && (
-                      <a 
-                        href={project.codepen} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="flex items-center space-x-2 px-6 py-3 rounded-full font-medium text-app-text bg-app-card border border-app-border hover:bg-app-elevated transition-all hover:scale-[1.02] active:scale-[0.98]"
-                      >
-                        <Codepen size={16} />
-                        <span>CodePen</span>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
-
-        {filteredProjects.length === 0 && (
-          <div className="text-center py-20 text-app-muted">
-            <p>No projects found matching your criteria.</p>
-            <button 
-              onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
-              className="mt-4 text-app-text hover:underline font-medium"
-            >
-              Clear filters
-            </button>
+        {/* Featured Project */}
+        {featuredProject && (
+          <div className="mb-8 md:mb-12">
+            <FeaturedProject project={featuredProject} index={0} />
           </div>
         )}
 
-        {/* Featured CodePen / GitHub Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="mt-24 bg-app-card border border-app-border rounded-[2.5rem] p-10 md:p-16 text-center relative overflow-hidden flex flex-col items-center"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
-          
-          <h3 className="text-[clamp(1.75rem,5vw,3rem)] font-display font-bold tracking-tight text-app-text mb-6 relative z-10">
-            Explore 500+ Projects
-          </h3>
-          <p className="text-app-text-secondary text-lg max-w-2xl mx-auto mb-10 relative z-10 font-light">
-            Discover a wide variety of interactive experiments, creative UI concepts, and fully functional mini-applications built from scratch.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 w-full sm:w-auto">
-            <a
-              href="https://codepen.io/SDM-TECH-KNOW"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-app-primary text-white px-8 py-3.5 rounded-full font-medium hover:bg-app-primary-hover shadow-[0_0_15px_rgba(220,38,38,0.25)] hover:scale-105 active:scale-95 transition-all"
-            >
-              <ExternalLink size={16} />
-              <span>Visit CodePen</span>
-            </a>
-            
-            <a
-              href="https://github.com/Sdm940"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-transparent border border-app-primary text-app-text px-8 py-3.5 rounded-full font-medium hover:bg-app-primary/10 transition-colors"
-            >
-              <ExternalLink size={16} />
-              <span>View GitHub</span>
-            </a>
-          </div>
-        </motion.div>
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {gridProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index + 1} />
+          ))}
+        </div>
 
+        {/* Final CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-24 md:mt-32 pt-12 border-t border-app-border flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+          <div className="flex items-center gap-4">
+            <span className="w-2 h-2 rounded-full bg-app-primary animate-pulse" />
+            <p className="text-app-text-secondary text-sm font-mono tracking-widest uppercase">Want to see more?</p>
+          </div>
+          <a
+            href="https://github.com/Sdm940"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 text-app-text font-display font-bold text-lg md:text-xl hover:text-app-primary transition-colors"
+          >
+            Explore all projects
+            <div className="w-10 h-10 rounded-full border border-app-border flex items-center justify-center group-hover:border-app-primary group-hover:bg-app-primary/10 transition-all">
+              <ExternalLink size={16} className="group-hover:scale-110 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </a>
+        </motion.div>
+        
       </div>
     </section>
   );
-}
+};
+
+export default Projects;
