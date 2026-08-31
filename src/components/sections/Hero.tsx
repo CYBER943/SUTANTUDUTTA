@@ -47,12 +47,12 @@ export default function Hero() {
          <div className={`absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-app-purple/10 rounded-full blur-[120px]  ${prefersReducedMotion ? '' : 'animate-pulse'}`} />
       </motion.div>
 
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 z-20 flex flex-col md:flex-row items-center justify-between gap-16 lg:gap-24">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 z-20 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
         
         {/* Left Column - Content (50%) */}
         <motion.div 
           style={{ y: textY, opacity }} 
-          className="w-full md:w-[50%] flex flex-col items-center md:items-start text-center md:text-left mt-10 md:mt-0"
+          className="w-full lg:w-[50%] flex flex-col items-center lg:items-start text-center lg:text-left mt-10 lg:mt-0"
         >
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
@@ -156,7 +156,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="w-full md:w-[50%] relative mt-12 md:mt-0 flex items-center justify-center"
+          className="w-full lg:w-[50%] relative mt-12 lg:mt-0 flex items-center justify-center"
         >
           {isMounted && <CodeEditorShowcase />}
         </motion.div>

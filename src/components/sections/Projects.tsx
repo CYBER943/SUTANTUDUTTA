@@ -13,7 +13,7 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="group flex flex-col lg:flex-row gap-8 lg:gap-12 bg-app-card rounded-[2rem] border border-app-border p-6 lg:p-8 hover:border-app-primary/30 hover:shadow-[0_8px_30px_rgba(234,88,12,0.05)] transition-all duration-500 relative overflow-hidden"
+      className="group flex flex-col lg:flex-row gap-8 lg:gap-12 bg-app-card rounded-[2rem] border border-app-border p-6 lg:p-8 hover:border-app-primary/30 hover:shadow-[0_8px_30px_rgba(234,88,12,0.05)] active:scale-[0.98] transition-all duration-500 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-app-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
@@ -36,11 +36,11 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
       {/* Content Side */}
       <div className="w-full lg:w-2/5 flex flex-col justify-center z-10">
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-[11px] font-mono tracking-widest text-app-primary uppercase font-semibold">
+          <span className="text-xs font-mono tracking-[0.2em] text-app-primary uppercase font-semibold">
             Featured Project
           </span>
           <span className="w-1 h-1 rounded-full bg-app-border" />
-          <span className="text-[11px] font-mono tracking-widest text-app-text-secondary uppercase">
+          <span className="text-xs font-mono tracking-[0.2em] text-app-text-secondary uppercase">
             0{index + 1}
           </span>
         </div>
@@ -61,7 +61,7 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
 
         <div className="flex flex-wrap gap-2 mb-8">
           {project.tech.map((t, idx) => (
-            <span key={idx} className="text-[11px] font-mono tracking-wider font-medium text-app-muted bg-app-bg px-3 py-1.5 rounded-full border border-app-border">
+            <span key={idx} className="text-xs font-mono tracking-wider font-medium text-app-muted bg-app-bg px-3 py-1.5 rounded-full border border-app-border">
               {t}
             </span>
           ))}
@@ -107,7 +107,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group flex flex-col bg-app-card rounded-3xl border border-app-border hover:border-app-primary/30 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(234,88,12,0.05)] transition-all duration-500 overflow-hidden relative"
+      className="group flex flex-col bg-app-card rounded-3xl border border-app-border hover:border-app-primary/30 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(234,88,12,0.05)] active:scale-[0.98] transition-all duration-500 overflow-hidden relative"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-app-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
 
@@ -126,11 +126,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           </div>
         )}
         <div className="absolute top-4 left-4 flex gap-2">
-          <span className="text-[10px] font-mono tracking-widest text-app-bg bg-app-text px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
+          <span className="text-[10px] font-mono tracking-[0.2em] text-app-bg bg-app-text px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
             0{index + 1}
           </span>
           {project.category.includes('AI') && (
-            <span className="text-[10px] font-mono tracking-widest text-app-bg bg-app-primary px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
+            <span className="text-[10px] font-mono tracking-[0.2em] text-app-bg bg-app-primary px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
               AI
             </span>
           )}
@@ -139,7 +139,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
       {/* Content Area */}
       <div className="p-6 flex flex-col flex-grow z-10">
-        <p className="text-[11px] font-mono text-app-primary tracking-widest uppercase mb-2 font-semibold">
+        <p className="text-xs font-mono text-app-primary tracking-[0.2em] uppercase mb-2 font-semibold">
           {project.category}
         </p>
         
@@ -153,12 +153,12 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
         <div className="flex flex-wrap gap-2 mb-6 mt-auto">
           {project.tech.slice(0, 3).map((t, idx) => (
-            <span key={idx} className="text-[10px] font-mono tracking-widest font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
+            <span key={idx} className="text-[10px] font-mono tracking-[0.2em] font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
               {t}
             </span>
           ))}
           {project.tech.length > 3 && (
-            <span className="text-[10px] font-mono tracking-widest font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
+            <span className="text-[10px] font-mono tracking-[0.2em] font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
               +{project.tech.length - 3}
             </span>
           )}
