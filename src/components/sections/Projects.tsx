@@ -126,11 +126,11 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           </div>
         )}
         <div className="absolute top-4 left-4 flex gap-2">
-          <span className="text-[10px] font-mono tracking-[0.2em] text-app-bg bg-app-text px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
+          <span className="text-xs font-mono tracking-[0.2em] text-app-bg bg-app-text px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
             0{index + 1}
           </span>
           {project.category.includes('AI') && (
-            <span className="text-[10px] font-mono tracking-[0.2em] text-app-bg bg-app-primary px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
+            <span className="text-xs font-mono tracking-[0.2em] text-app-bg bg-app-primary px-2.5 py-1 rounded-full uppercase font-bold shadow-md">
               AI
             </span>
           )}
@@ -153,12 +153,12 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
 
         <div className="flex flex-wrap gap-2 mb-6 mt-auto">
           {project.tech.slice(0, 3).map((t, idx) => (
-            <span key={idx} className="text-[10px] font-mono tracking-[0.2em] font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
+            <span key={idx} className="text-xs font-mono tracking-[0.2em] font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
               {t}
             </span>
           ))}
           {project.tech.length > 3 && (
-            <span className="text-[10px] font-mono tracking-[0.2em] font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
+            <span className="text-xs font-mono tracking-[0.2em] font-medium text-app-muted bg-app-bg px-2.5 py-1 rounded-full border border-app-border">
               +{project.tech.length - 3}
             </span>
           )}

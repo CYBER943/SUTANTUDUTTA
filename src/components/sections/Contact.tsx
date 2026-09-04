@@ -151,7 +151,7 @@ export default function Contact() {
             <h2 className="text-5xl md:text-6xl lg:text-[5.5rem] font-bold tracking-tighter leading-[0.95] mb-6 text-app-text font-display">
               Let's get<br />started.
             </h2>
-            <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-app-muted font-semibold">
+            <p className="text-xs font-mono uppercase tracking-[0.25em] text-app-muted font-semibold">
               Contact Form
             </p>
           </motion.div>
@@ -201,7 +201,7 @@ export default function Contact() {
                           setFormData({ ...formData, name: e.target.value });
                           if (errors.name) setErrors(prev => ({ ...prev, name: '' }));
                         }}
-                        className={`bg-transparent border-b-2 ${errors.name ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[180px] md:w-[280px] lg:w-[320px]`}
+                        className={`bg-transparent border-b-2 ${errors.name ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-xs md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[180px] md:w-[280px] lg:w-[320px]`}
                       />
                       <AnimatePresence>
                         {errors.name && (
@@ -226,7 +226,7 @@ export default function Contact() {
                           setFormData({ ...formData, message: e.target.value });
                           if (errors.message) setErrors(prev => ({ ...prev, message: '' }));
                         }}
-                        className={`bg-transparent border-b-2 ${errors.message ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[220px] md:w-[340px] lg:w-[420px]`}
+                        className={`bg-transparent border-b-2 ${errors.message ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-xs md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[220px] md:w-[340px] lg:w-[420px]`}
                       />
                       <AnimatePresence>
                         {errors.message && (
@@ -251,7 +251,7 @@ export default function Contact() {
                           setFormData({ ...formData, email: e.target.value });
                           if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
                         }}
-                        className={`bg-transparent border-b-2 ${errors.email ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-[11px] md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[200px] md:w-[320px] lg:w-[380px]`}
+                        className={`bg-transparent border-b-2 ${errors.email ? 'border-red-500' : 'border-app-border focus:border-app-text'} outline-none px-2 py-1 text-center text-app-text placeholder:text-app-muted placeholder:text-xs md:placeholder:text-sm placeholder:font-mono placeholder:tracking-widest transition-colors w-[200px] md:w-[320px] lg:w-[380px]`}
                       />
                       <AnimatePresence>
                         {errors.email && (
