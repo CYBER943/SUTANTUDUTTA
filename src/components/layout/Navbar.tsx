@@ -82,93 +82,80 @@ export default function Navbar({
         } ${isNavbarVisible ? "top-0" : "-top-[100px]"}`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
       >
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center">
-          <a
-            href="#home"
-            className="text-2xl font-display font-semibold tracking-tight group relative z-[1010] hover:opacity-80 transition-opacity"
-          >
-            <span className="text-app-text">Sutantu </span>
-            <span className="text-app-primary">Dutta</span>
-            <span className="hidden sm:inline-block ml-2 text-app-text-secondary font-mono text-sm opacity-50">
-              / {activeSection}
-            </span>
-          </a>
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-10 flex justify-between items-center relative">
+          <div className="flex-1 flex items-center">
+            <a
+              href="#home"
+              className="text-2xl font-display font-semibold tracking-tight group relative z-[1010] hover:opacity-80 transition-opacity"
+            >
+              <span className="text-app-text">Sutantu </span>
+              <span className="text-app-primary">Dutta</span>
+            </a>
+          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
-            {NAV_LINKS.map((link) => {
-              const sectionId = link.href.substring(1);
-              const isActive = activeSection === sectionId;
-              return (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`relative text-sm font-medium transition-colors group py-2 ${
-                    isActive
-                      ? "text-app-text"
-                      : "text-app-text-secondary hover:text-app-text"
-                  }`}
-                >
-                  {link.name}
-                  <span
-                    className={`absolute left-0 bottom-0 h-0.5 bg-app-primary transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
-                  />
-                  {/* Subtle glow on hover */}
-                  <span className="absolute inset-0 bg-app-card opacity-0 group-hover:opacity-100 rounded-md -z-10 transition-opacity duration-300 scale-110" />
-                </a>
-              );
-            })}
+          {/* Desktop Center Pill Navigation */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
+            <div className="flex items-center p-1.5 bg-app-bg border border-app-border rounded-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.02),0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-md">
+              {NAV_LINKS.map((link) => {
+                const sectionId = link.href.substring(1);
+                const isActive = activeSection === sectionId;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="relative px-5 py-2 text-sm font-medium transition-colors group"
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavPill"
+                        className="absolute inset-0 bg-app-card border border-app-border-light rounded-full z-0"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
+                    <span className={`relative z-10 ${isActive ? "text-app-text" : "text-app-muted group-hover:text-app-text-secondary"}`}>
+                      {link.name}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
 
+          {/* Desktop Right Side CTA & Tools */}
+          <div className="hidden md:flex flex-1 items-center justify-end space-x-2">
             <button
               onClick={onOpenCommandPalette}
-              className="flex items-center justify-center p-2 rounded-full text-app-text-secondary hover:text-app-text hover:bg-app-elevated transition-colors"
-              aria-label="Open Command Palette"
+              className="p-2 text-app-muted hover:text-app-text rounded-full transition-colors flex items-center justify-center"
+              aria-label="Search"
             >
-              <Search size={18} />
-              <span className="ml-2 text-xs font-mono px-1.5 py-0.5 rounded bg-app-elevated border border-app-border-light opacity-70 flex items-center gap-1">
-                <Command size={10} /> K
-              </span>
+              <Search size={16} />
             </button>
             <button
               onClick={toggleTheme}
-              className="flex items-center justify-center p-2 rounded-full text-app-text-secondary hover:text-app-primary hover:bg-app-card hover:scale-110 transition-all duration-300 mr-2"
+              className="p-2 mr-2 text-app-muted hover:text-app-primary rounded-full transition-colors flex items-center justify-center"
               aria-label="Toggle Theme"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             <a
               href="#contact"
-              className={`relative overflow-hidden px-6 py-2.5 text-sm font-medium rounded-full bg-app-primary text-white transition-all group ${
-                activeSection === "home"
-                  ? "shadow-[0_0_20px_rgba(255,90,54,0.3)] animate-pulse hover:animate-none hover:shadow-[0_0_30px_rgba(255,90,54,0.5)]"
-                  : "shadow-[0_0_15px_rgba(255,90,54,0.2)] hover:shadow-[0_0_25px_rgba(255,90,54,0.4)]"
-              } hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]`}
+              className="relative overflow-hidden px-6 py-2.5 text-sm font-medium rounded-full bg-app-primary text-white transition-all group shadow-[0_0_15px_rgba(255,90,54,0.2)] hover:shadow-[0_0_25px_rgba(255,90,54,0.4)] active:scale-[0.96]"
             >
-              <span className="relative z-10">Let's Talk</span>
-              {/* Gradient sweep effect */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out_infinite]" />
+              <span className="relative z-10 flex items-center justify-center h-full">Let's Talk</span>
+              <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </a>
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="md:hidden flex items-center space-x-1">
-            <button
-              onClick={toggleTheme}
-              className="text-app-text-secondary relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-app-primary transition-colors"
-              aria-label="Toggle Theme"
+          <div className="md:hidden flex items-center space-x-2">
+            <a
+              href="#contact"
+              className="relative overflow-hidden px-4 py-2 text-xs font-medium rounded-full bg-app-primary text-white transition-all group shadow-[0_0_15px_rgba(255,90,54,0.2)] active:scale-[0.96]"
             >
-              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+              <span className="relative z-10 flex items-center justify-center h-full">Let's Talk</span>
+            </a>
             <button
-              className="text-app-text relative z-[1150] p-2.5 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
-              onClick={onOpenCommandPalette}
-              aria-label="Open Command Palette"
-            >
-              <Search size={20} />
-            </button>
-
-            <button
-              className="text-app-text relative z-[1150] p-2.5 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="text-app-text relative z-[1150] p-2 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center bg-app-card border border-app-border rounded-full"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle Menu"
             >
@@ -176,7 +163,7 @@ export default function Navbar({
                 animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </motion.div>
             </button>
           </div>
@@ -224,16 +211,33 @@ export default function Navbar({
                 </motion.a>
               );
             })}
-            <motion.a
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 + NAV_LINKS.length * 0.1 }}
-              href="#contact"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-8 px-8 py-3 min-h-[44px] flex items-center justify-center text-lg font-medium rounded-full bg-app-primary text-white hover:bg-app-primary-hover shadow-[0_0_15px_rgba(59,130,246,0.25)] hover:shadow-[0_0_25px_rgba(59,130,246,0.35)] transition-colors"
+              className="flex items-center gap-6 mt-8"
             >
-              Let's Talk
-            </motion.a>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (onOpenCommandPalette) onOpenCommandPalette();
+                }}
+                className="flex items-center justify-center p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated transition-colors"
+                aria-label="Search"
+              >
+                <Search size={24} />
+              </button>
+              <button
+                onClick={() => {
+                  toggleTheme();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center justify-center p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-primary hover:bg-app-elevated transition-colors"
+                aria-label="Toggle Theme"
+              >
+                {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
