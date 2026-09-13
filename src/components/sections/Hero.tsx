@@ -70,17 +70,15 @@ export default function Hero() {
           </motion.div>
 
           <h1 className="font-display font-bold tracking-tighter text-app-text leading-[1.1] md:leading-[1] mb-6 text-[clamp(3rem,7vw,5.5rem)]">
-            <TextReveal text="Crafting digital" delay={0.1} />
+            <TextReveal text="Crafting intelligent" delay={0.1} />
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-app-primary via-orange-400 to-app-primary bg-[length:200%_auto] animate-gradient">
-               experiences.
+               digital experiences.
             </span>
           </h1>
-
           <p className="text-[clamp(1.125rem,2vw,1.25rem)] text-app-text-secondary font-light max-w-[600px] leading-relaxed tracking-wide mb-12 text-balance">
-            Student developer & AI enthusiast. I build polished applications focusing on performance, interaction, and premium user experiences.
+            Class 10 student and AI developer who learns by building and experiments with AI, web development, UI/UX, and modern technologies.
           </p>
-
           <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +101,7 @@ export default function Hero() {
               className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-app-card border border-app-border text-app-text px-8 py-4 text-base rounded-full font-medium hover:bg-app-elevated backdrop-blur-xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto shadow-lg hover:border-app-border"
             >
                <Mail size={18} className="text-app-text-secondary group-hover:text-app-text transition-colors" />
-              <span className="relative z-10">Contact</span>
+              <span className="relative z-10">Let's Talk</span>
             </a>
 
             <div className="flex items-center gap-4 sm:ml-4">

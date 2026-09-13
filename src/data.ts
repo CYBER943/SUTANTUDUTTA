@@ -60,129 +60,87 @@ export const PROJECT_CATEGORIES_DATA: ProjectCategoryData[] = [
   { id: 5, title: "Productivity Apps", count: 80, description: "Tools and systems designed to boost focus and output.", icon: CheckSquare }
 ];
 
-export const BLOG_CATEGORIES = [
-  "All",
-  "AI & Technology",
-  "Web Development",
-  "Productivity",
-  "Learning Journey",
-  "Project Breakdowns"
-];
+export const BLOG_CATEGORIES = ["All", "AI", "Web Development", "Vibe Coding", "Learning", "Projects", "Productivity"];
 
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
-    title: "Building an AI-Powered Markdown Editor",
-    excerpt: "A deep dive into integrating the Gemini API and crafting a seamless, real-time typing experience for content creators.",
-    category: "AI & Technology",
-    readTime: "6 min read",
-    date: "June 12, 2026",
+    title: "Vibe Coding: The Future of Developer Productivity",
+    excerpt: "Exploring how natural language interfaces and agentic IDEs are changing how we build software.",
+    date: "Sep 12, 2026",
+    readTime: "5 min read",
+    category: "Vibe Coding",
+    image: "https://images.unsplash.com/photo-1618042164219-62c820f10723?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: 2,
-    title: "How I Built 500+ Projects",
-    excerpt: "My journey through continuous experimentation, learning curves, and the systematic approach I use to ship code consistently.",
-    category: "Learning Journey",
-    readTime: "8 min read",
-    date: "May 28, 2026",
+    title: "Balancing Academics and Software Development",
+    excerpt: "How I manage my time as a Class 10 student while actively building AI-powered web applications.",
+    date: "Aug 28, 2026",
+    readTime: "4 min read",
+    category: "Learning",
+    image: "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: 3,
-    title: "Mastering Tailwind CSS & Framer Motion",
-    excerpt: "Techniques for building premium, micro-interactive user interfaces that feel native and highly responsive.",
+    title: "Building Interactive Experiences with Framer Motion",
+    excerpt: "A deep dive into creating buttery-smooth animations and premium micro-interactions in React 19.",
+    date: "Aug 15, 2026",
+    readTime: "7 min read",
     category: "Web Development",
-    readTime: "5 min read",
-    date: "May 15, 2026",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: 4,
-    title: "Project Breakdown: Student Task Manager",
-    excerpt: "Architecting a productivity application from scratch: Database schemas, local storage strategies, and state management.",
-    category: "Project Breakdowns",
-    readTime: "10 min read",
-    date: "April 02, 2026",
+    title: "Integrating the Gemini API into Modern Web Apps",
+    excerpt: "Practical patterns for leveraging Google's Gemini models to build intelligent, context-aware features.",
+    date: "Jul 30, 2026",
+    readTime: "6 min read",
+    category: "AI",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800"
   }
-];
-
-export const CATEGORIES = [
-  "All",
-  "Web Applications",
-  "Educational Projects",
-  "AI Experiments",
-  "UI/UX Concepts",
-  "Productivity Tools"
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "Cyberpunk Portfolio Concept",
-    description: "A premium, modern interactive experience highlighting micro-interactions, dark mode aesthetics, and glassmorphism.",
-    category: "UI/UX Concepts",
-    tech: ["HTML", "CSS", "JavaScript", "GSAP"],
-    link: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
-    codepen: "https://codepen.io/SDM-TECH-KNOW/pen/pvRRXbE",
-    github: "https://github.com/Sdm940",
-    image: "/src/assets/images/cyberpunk_portfolio_1787996201544.jpg",
-    featured: true,
-    problem: "Traditional portfolios lack personality and fail to demonstrate actual coding capability through the interface itself.",
-    solution: "Designed a highly interactive, cyber-aesthetic experience that serves as both a portfolio and a technical demonstration of GSAP and advanced CSS.",
-    challenges: "Synchronizing complex timeline animations while maintaining 60fps performance and responsive layouts across devices.",
-    results: "Created an immersive experience with high engagement rates and perfect Lighthouse performance scores.",
-    performanceMetrics: ["100% Lighthouse Score", "60 FPS Animations", "Zero Layout Shifts"],
-    lessonsLearned: "Mastered timeline orchestrations in GSAP and learned how to optimize paint operations by promoting animated elements to their own composite layers."
+    title: "Project 1",
+    description: "An interactive web development experiment.",
+    category: "WEB / EXPERIMENT",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/MYjqxLm",
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/MYjqxLm",
+    image: "https://codepen.io/SUDANTU-HOLDINGS/pen/MYjqxLm/image/large.png"
   },
   {
     id: 2,
-    title: "Glassmorphic Dashboard",
-    description: "An interactive dashboard visualizing real-time metrics with a sleek, translucent glassmorphism aesthetic.",
-    category: "Web Applications",
-    tech: ["React", "CSS", "Framer Motion"],
-    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
-    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/emgWgYJ",
-    github: "https://github.com/Sdm940",
-    image: "/src/assets/images/glass_dashboard_1787996219601.jpg",
-    featured: true,
-    problem: "Data dashboards are often visually dense, intimidating, and lack modern aesthetic appeal.",
-    solution: "Implemented a glassmorphic design system that uses spatial depth, translucency, and subtle motion to make data consumption effortless.",
-    challenges: "Balancing the heavy backdrop-filter blur effects with render performance on mobile devices.",
-    results: "A visually stunning interface that remains legible while pushing the boundaries of modern CSS capabilities.",
-    performanceMetrics: ["Sub-50ms Interaction Delay", "Adaptive Blur Scaling", "Accessible Contrast Ratios"],
-    lessonsLearned: "Discovered techniques for faking glassmorphism using optimized radial gradients when backdrop-filter is too expensive for the device."
+    title: "Project 2",
+    description: "Exploring modern frontend layouts and interactions.",
+    category: "WEB / EXPERIMENT",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/gbwzPLo",
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/gbwzPLo",
+    image: "https://codepen.io/SUDANTU-HOLDINGS/pen/gbwzPLo/image/large.png"
   },
   {
     id: 3,
-    title: "Interactive Particle Simulation",
-    description: "A high-performance particle system rendering thousands of points interacting with mouse movements.",
-    category: "AI Experiments",
-    tech: ["Canvas API", "JavaScript", "Math"],
-    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
-    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/ogYpyoZ",
-    github: "https://github.com/Sdm940",
-    image: "/src/assets/images/particle_sim_1787996233074.jpg",
-    problem: "DOM-based animations hit performance bottlenecks quickly when dealing with hundreds of independent elements.",
-    solution: "Built a custom rendering engine using the HTML5 Canvas API and requestAnimationFrame for direct pixel manipulation.",
-    challenges: "Implementing efficient collision detection and physics calculations without dropping frames.",
-    results: "Smoothly renders over 5,000 independent particles with fluid mouse physics and dynamic color mapping.",
-    performanceMetrics: ["5000+ Particles", "Consistent 60FPS", "<2MB Memory Footprint"],
-    lessonsLearned: "Gained deep understanding of spatial partitioning for physics calculations and typed arrays for memory optimization."
+    title: "Project 3",
+    description: "Creative coding and visual effects on the web.",
+    category: "WEB / CREATIVE CODING",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/RNWVWZQ",
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/RNWVWZQ",
+    image: "https://codepen.io/SUDANTU-HOLDINGS/pen/RNWVWZQ/image/large.png"
   },
   {
     id: 4,
-    title: "3D WebGL Visualization",
-    description: "Sleek, immersive 3D scene built to showcase modern web technologies and spatial design.",
-    category: "UI/UX Concepts",
-    tech: ["Three.js", "WebGL", "JavaScript"],
-    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
-    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/WborpVV",
-    github: "https://github.com/Sdm940",
-    image: "/src/assets/images/webgl_3d_1787996253568.jpg",
-    problem: "Web experiences are typically constrained to 2D planes, limiting the ability to create truly immersive spatial designs.",
-    solution: "Leveraged Three.js to construct an interactive 3D environment that responds to scroll and mouse coordinates.",
-    challenges: "Managing lighting, shadows, and geometry complexity while ensuring the site doesn't drain device battery.",
-    results: "A highly engaging spatial interface that feels like a native application rather than a traditional website.",
-    performanceMetrics: ["Optimized Geometry", "Baked Lighting", "Lazy Loaded Assets"],
-    lessonsLearned: "Learned how to bridge the gap between HTML UI and WebGL canvases using synchronized camera projections."
+    title: "Project 4",
+    description: "A polished digital interface built on CodePen.",
+    category: "UI / UX",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "https://codepen.io/SUDANTU-HOLDINGS/pen/pvEVVaB",
+    codepen: "https://codepen.io/SUDANTU-HOLDINGS/pen/pvEVVaB",
+    image: "https://codepen.io/SUDANTU-HOLDINGS/pen/pvEVVaB/image/large.png"
   },
   {
     id: 5,

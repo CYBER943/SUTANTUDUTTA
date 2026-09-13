@@ -87,22 +87,26 @@ export default function Contact() {
         templateParams
       );
 
-      // Attempt to send auto-reply to the visitor
-      try {
-        await emailjs.send(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_m1et0ae",
-          import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID || "YOUR_AUTO_REPLY_TEMPLATE_ID",
-          {
-            name: formData.name,
-            email: formData.email,
-            subject: `New inquiry from ${formData.name}`,
-            message: formData.message,
-            project_type: 'General Inquiry',
-            urgency: 'Normal'
-          }
-        );
-      } catch (autoReplyErr) {
-        console.error("Auto-reply failed to send:", autoReplyErr);
+      const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
+      
+      if (autoReplyTemplateId && autoReplyTemplateId !== "YOUR_AUTO_REPLY_TEMPLATE_ID") {
+        // Attempt to send auto-reply to the visitor
+        try {
+          await emailjs.send(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_m1et0ae",
+            autoReplyTemplateId,
+            {
+              name: formData.name,
+              email: formData.email,
+              subject: `New inquiry from ${formData.name}`,
+              message: formData.message,
+              project_type: 'General Inquiry',
+              urgency: 'Normal'
+            }
+          );
+        } catch (autoReplyErr) {
+          console.warn("Auto-reply failed to send:", autoReplyErr);
+        }
       }
 
       lastSubmitTime.current = Date.now();
