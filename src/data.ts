@@ -197,3 +197,39 @@ export const TOOLS: ToolItem[] = [
     { name: "Todoist", icon: CheckSquare, url: "https://todoist.com", color: "#e44332", description: "Task management and productivity.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" },
   { name: "Dropbox", icon: Box, url: "https://www.dropbox.com", color: "#0061FF", description: "Cloud storage, synchronization, backup, and file sharing.", category: "Productivity", experienceLevel: "Advanced", usageFrequency: "Daily" }
 ];
+
+export const TOOLS_SHOWCASE = [
+  { name: 'VS Code', slug: 'visualstudiocode', color: '007ACC' },
+  { name: 'GitHub', slug: 'github', color: 'FFFFFF' },
+  { name: 'Copilot', slug: 'githubcopilot', color: 'FFFFFF' },
+  { name: 'ChatGPT', slug: 'openai', color: 'FFFFFF' },
+  { name: 'Gemini', slug: 'googlegemini', color: '8E75B2' },
+  { name: 'AI Studio', slug: 'google', color: '4285F4' },
+  { name: 'Grok', slug: 'x', color: 'FFFFFF' },
+  { name: 'Adobe Express', slug: 'adobe', color: 'FF0000' },
+  { name: 'Dropbox', slug: 'dropbox', color: '0061FF' },
+  { name: 'Claude', slug: 'claude', color: 'D97757' },
+  { name: 'Todoist', slug: 'todoist', color: 'E44332' },
+  { name: 'Vercel', slug: 'vercel', color: 'FFFFFF' },
+];
+
+export const CORE_TECH_DATA = {
+  frontend: [
+    { name: 'React', level: 90, color: '#61DAFB' },
+    { name: 'TypeScript', level: 85, color: '#3178C6' },
+    { name: 'Next.js', level: 80, color: '#000000' },
+    { name: 'Tailwind CSS', level: 95, color: '#06B6D4' }
+  ],
+  backend: [
+    { name: 'Node.js', level: 80, color: '#339933' },
+    { name: 'Python', level: 75, color: '#3776AB' },
+    { name: 'Supabase', level: 70, color: '#3ECF8E' },
+    { name: 'PostgreSQL', level: 65, color: '#4169E1' }
+  ],
+  ai: [
+    { name: 'Gemini API', level: 90, color: '#8E75B2' },
+    { name: 'OpenAI API', level: 85, color: '#412991' },
+    { name: 'Claude API', level: 85, color: '#D97757' },
+    { name: 'Prompt Eng.', level: 95, color: '#FFB84D' }
+  ]
+};

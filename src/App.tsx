@@ -40,7 +40,7 @@ const Contact = lazyWithRetry(() => import('./components/sections/Contact'));
 
 const FallbackLoader = () => (
   <div className="w-full h-[50vh] flex items-center justify-center">
-    <div className="w-6 h-6 border-2 border-app-primary border-t-transparent rounded-full animate-spin"></div>
+    <div className="w-6 h-6 border-2 border-accent-primary border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
 
@@ -76,17 +76,17 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen selection:bg-app-primary/30 selection:text-white bg-app-bg w-full overflow-x-hidden flex flex-col">
+    <div className="min-h-screen selection:bg-accent-primary/30 selection:text-white bg-bg-primary w-full overflow-x-hidden flex flex-col">
       <CustomCursor />
       <CommandPalette isOpen={isCommandPaletteOpen} setIsOpen={setIsCommandPaletteOpen} />
       
       {/* Scroll Progress Indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-app-primary origin-left z-[9999]"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-accent-primary origin-left z-[9999]"
         style={{ scaleX: scrollYProgress }}
       />
 
-      <Toaster theme="dark" toastOptions={{ style: { background: '#111827', border: '1px solid #1F2937', color: '#F8FAFC' } }} />
+      <Toaster theme="dark" toastOptions={{ style: { background: 'var(--card-bg)', border: '1px solid var(--card-border)', color: 'var(--text-primary)' } }} />
       <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
       <main style={{ paddingTop: 'calc(72px + env(safe-area-inset-top))' }}>
         {/* 1. Home */}

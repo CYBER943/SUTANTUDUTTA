@@ -87,9 +87,9 @@ export default function CustomCursor() {
           translateX: '-50%',
           translateY: '-50%',
           border: '1px solid',
-          borderColor: isHovering ? 'rgba(239, 68, 68, 0.8)' : 'var(--color-app-border)',
-          backgroundColor: isHovering ? 'rgba(239, 68, 68, 0.1)' : 'transparent',
-          boxShadow: isHovering ? '0 0 20px rgba(239, 68, 68, 0.4)' : 'none',
+          borderColor: isHovering ? 'var(--accent-secondary)' : 'var(--border)',
+          backgroundColor: isHovering ? 'var(--glow)' : 'transparent',
+          boxShadow: isHovering ? '0 0 20px var(--glow)' : 'none',
         }}
         animate={{
           scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
@@ -100,7 +100,7 @@ export default function CustomCursor() {
       {/* Ripple Effect on click */}
       {isClicking && (
         <motion.div
-          className="fixed top-0 left-0 rounded-full pointer-events-none z-[9997] border border-[#ef4444]"
+          className="fixed top-0 left-0 rounded-full pointer-events-none z-[9997] border border-[var(--accent-primary)]"
           initial={{ opacity: 1, scale: 1, x: '-50%', y: '-50%' }}
           animate={{ opacity: 0, scale: 3, x: '-50%', y: '-50%' }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
@@ -116,7 +116,7 @@ export default function CustomCursor() {
           y: dotYSpring,
           translateX: '-50%',
           translateY: '-50%',
-          backgroundColor: isHovering ? '#ef4444' : 'var(--color-app-text)',
+          backgroundColor: isHovering ? 'var(--accent-primary)' : 'var(--text-primary)',
         }}
       />
     </>

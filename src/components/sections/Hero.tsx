@@ -31,20 +31,20 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="home" className="relative flex items-center justify-center pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-app-bg">
+    <section ref={sectionRef} id="home" className="relative flex items-center justify-center pt-32 pb-16 md:pt-40 md:pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-bg-primary">
       {/* Background System */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 pointer-events-none z-0">
          <BackgroundCode />
          {/* Subtle Grid */}
-         <div className="absolute inset-0 bg-[linear-gradient(var(--color-app-border-light)_1px,transparent_1px),linear-gradient(90deg,var(--color-app-border-light)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
+         <div className="absolute inset-0 bg-[linear-gradient(var(--card-border)_1px,transparent_1px),linear-gradient(90deg,var(--card-border)_1px,transparent_1px)] bg-[size:32px_32px] opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_50%,transparent_90%)]" />
          
          {/* Noise Texture */}
          <div className="absolute inset-0 opacity-[0.015] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }} />
 
          {/* Ambient Lighting & Mesh Gradient */}
-         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-app-primary/10 rounded-full blur-[140px] " />
-         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-orange-500/10 rounded-full blur-[140px] " />
-         <div className={`absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-app-purple/10 rounded-full blur-[120px]  ${prefersReducedMotion ? '' : 'animate-pulse'}`} />
+         <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-accent-primary/10 rounded-full blur-[140px] " />
+         <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-glow rounded-full blur-[140px] " />
+         <div className={`absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-glow rounded-full blur-[120px]  ${prefersReducedMotion ? '' : 'animate-pulse'}`} />
       </motion.div>
 
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20 z-20 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-24">
@@ -60,23 +60,23 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center space-x-3 mb-8"
           >
-            <div className="inline-flex items-center space-x-2 bg-app-card border border-app-border rounded-full px-4 py-2 text-sm font-medium text-app-text-secondary backdrop-blur-xl shadow-lg">
+            <div className="inline-flex items-center space-x-2 bg-card-bg border border-border rounded-full px-4 py-2 text-sm font-medium text-text-secondary backdrop-blur-xl shadow-lg">
               <span className="flex h-2 w-2 relative">
-                <span className={`absolute inline-flex h-full w-full rounded-full bg-app-success opacity-75 ${prefersReducedMotion ? '' : 'animate-ping'}`}></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-app-success"></span>
+                <span className={`absolute inline-flex h-full w-full rounded-full bg-status-success opacity-75 ${prefersReducedMotion ? '' : 'animate-ping'}`}></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-status-success"></span>
               </span>
               <span>{greeting}, I'm Sutantu</span>
             </div>
           </motion.div>
 
-          <h1 className="font-display font-bold tracking-tighter text-app-text leading-[1.1] md:leading-[1] mb-6 text-[clamp(3rem,7vw,5.5rem)]">
+          <h1 className="font-display font-bold tracking-tighter text-text-primary leading-[1.1] md:leading-[1] mb-6 text-[clamp(3rem,7vw,5.5rem)]">
             <TextReveal text="Crafting intelligent" delay={0.1} />
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-app-primary via-orange-400 to-app-primary bg-[length:200%_auto] animate-gradient">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary via-accent-bright to-accent-primary bg-[length:200%_auto] animate-gradient">
                digital experiences.
             </span>
           </h1>
-          <p className="text-[clamp(1.125rem,2vw,1.25rem)] text-app-text-secondary font-light max-w-[600px] leading-relaxed tracking-wide mb-12 text-balance">
+          <p className="text-[clamp(1.125rem,2vw,1.25rem)] text-text-secondary font-light max-w-[600px] leading-relaxed tracking-wide mb-12 text-balance">
             Class 10 student and AI developer who learns by building and experiments with AI, web development, UI/UX, and modern technologies.
           </p>
           <motion.div
@@ -87,7 +87,7 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-app-primary text-white px-8 py-4 text-base rounded-full font-medium transition-all hover:scale-[1.03] active:scale-[0.97] w-full sm:w-auto shadow-[0_0_20px_rgba(255,90,54,0.3)] hover:shadow-[0_0_30px_rgba(255,90,54,0.5)]"
+              className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-accent-primary text-white px-8 py-4 text-base rounded-full font-medium transition-all hover:scale-[1.03] active:scale-[0.97] w-full sm:w-auto shadow-lg hover:shadow-lg"
             >
               <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
               <span className="relative z-10 flex items-center space-x-2">
@@ -98,9 +98,9 @@ export default function Hero() {
             
             <a
               href="#contact"
-              className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-app-card border border-app-border text-app-text px-8 py-4 text-base rounded-full font-medium hover:bg-app-elevated backdrop-blur-xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto shadow-lg hover:border-app-border"
+              className="group relative overflow-hidden flex items-center justify-center space-x-2 bg-card-bg border border-border text-text-primary px-8 py-4 text-base rounded-full font-medium hover:bg-surface-elevated backdrop-blur-xl transition-all hover:scale-[1.02] active:scale-[0.98] w-full sm:w-auto shadow-lg hover:border-border"
             >
-               <Mail size={18} className="text-app-text-secondary group-hover:text-app-text transition-colors" />
+               <Mail size={18} className="text-text-secondary group-hover:text-text-primary transition-colors" />
               <span className="relative z-10">Let's Talk</span>
             </a>
 
@@ -109,7 +109,7 @@ export default function Hero() {
                  href="/resume.pdf"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-card-bg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated hover:border-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="Resume"
                >
                  <Download size={20} />
@@ -118,7 +118,7 @@ export default function Hero() {
                  href="https://github.com/Sdm940"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-card-bg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated hover:border-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="GitHub"
                >
                  <Github size={20} />
@@ -127,7 +127,7 @@ export default function Hero() {
                  href="https://codepen.io/SDM-TECH-KNOW"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-card-bg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated hover:border-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="CodePen"
                  title="CodePen"
                >
@@ -137,7 +137,7 @@ export default function Hero() {
                  href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/"
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated hover:border-app-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
+                 className="p-4 rounded-full bg-card-bg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated hover:border-border backdrop-blur-xl transition-all hover:scale-[1.05] active:scale-[0.95] shadow-lg"
                  aria-label="LinkedIn"
                  title="LinkedIn"
                >

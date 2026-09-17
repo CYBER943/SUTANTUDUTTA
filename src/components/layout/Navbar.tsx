@@ -77,7 +77,7 @@ export default function Navbar({
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`fixed left-0 w-full z-[1000] h-[80px] flex flex-col justify-center transition-all duration-500 ${
           isScrolled
-            ? "bg-app-bg/80 backdrop-blur-xl border-b border-app-border"
+            ? "bg-bg-primary/80 backdrop-blur-xl border-b border-border"
             : "bg-transparent"
         } ${isNavbarVisible ? "top-0" : "-top-[100px]"}`}
         style={{ paddingTop: "env(safe-area-inset-top)" }}
@@ -88,14 +88,14 @@ export default function Navbar({
               href="#home"
               className="text-2xl font-display font-semibold tracking-tight group relative z-[1010] hover:opacity-80 transition-opacity"
             >
-              <span className="text-app-text">Sutantu </span>
-              <span className="text-app-primary">Dutta</span>
+              <span className="text-text-primary">Sutantu </span>
+              <span className="text-accent-primary">Dutta</span>
             </a>
           </div>
 
           {/* Desktop Center Pill Navigation */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
-            <div className="flex items-center p-1.5 bg-app-bg border border-app-border rounded-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.02),0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-md">
+            <div className="flex items-center p-1.5 bg-bg-primary border border-border rounded-full shadow-lg backdrop-blur-md">
               {NAV_LINKS.map((link) => {
                 const sectionId = link.href.substring(1);
                 const isActive = activeSection === sectionId;
@@ -108,11 +108,11 @@ export default function Navbar({
                     {isActive && (
                       <motion.div
                         layoutId="activeNavPill"
-                        className="absolute inset-0 bg-app-card border border-app-border-light rounded-full z-0"
+                        className="absolute inset-0 bg-card-bg border border-border rounded-full z-0"
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
                     )}
-                    <span className={`relative z-10 ${isActive ? "text-app-text" : "text-app-muted group-hover:text-app-text-secondary"}`}>
+                    <span className={`relative z-10 ${isActive ? "text-text-primary" : "text-text-muted group-hover:text-text-secondary"}`}>
                       {link.name}
                     </span>
                   </a>
@@ -125,21 +125,21 @@ export default function Navbar({
           <div className="hidden md:flex flex-1 items-center justify-end space-x-2">
             <button
               onClick={onOpenCommandPalette}
-              className="p-2 text-app-muted hover:text-app-text rounded-full transition-colors flex items-center justify-center"
+              className="p-2 text-text-muted hover:text-text-primary rounded-full transition-colors flex items-center justify-center"
               aria-label="Search"
             >
               <Search size={16} />
             </button>
             <button
               onClick={toggleTheme}
-              className="p-2 mr-2 text-app-muted hover:text-app-primary rounded-full transition-colors flex items-center justify-center"
+              className="p-2 mr-2 text-text-muted hover:text-accent-primary rounded-full transition-colors flex items-center justify-center"
               aria-label="Toggle Theme"
             >
               {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             <a
               href="#contact"
-              className="relative overflow-hidden px-6 py-2.5 text-sm font-medium rounded-full bg-app-primary text-white transition-all group shadow-[0_0_15px_rgba(255,90,54,0.2)] hover:shadow-[0_0_25px_rgba(255,90,54,0.4)] active:scale-[0.96]"
+              className="relative overflow-hidden px-6 py-2.5 text-sm font-medium rounded-full bg-accent-primary text-white transition-all group shadow-lg hover:shadow-lg active:scale-[0.96]"
             >
               <span className="relative z-10 flex items-center justify-center h-full">Let's Talk</span>
               <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -150,12 +150,12 @@ export default function Navbar({
           <div className="md:hidden flex items-center space-x-2">
             <a
               href="#contact"
-              className="relative overflow-hidden px-4 py-2 text-xs font-medium rounded-full bg-app-primary text-white transition-all group shadow-[0_0_15px_rgba(255,90,54,0.2)] active:scale-[0.96]"
+              className="relative overflow-hidden px-4 py-2 text-xs font-medium rounded-full bg-accent-primary text-white transition-all group shadow-lg active:scale-[0.96]"
             >
               <span className="relative z-10 flex items-center justify-center h-full">Let's Talk</span>
             </a>
             <button
-              className="text-app-text relative z-[1150] p-2 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center bg-app-card border border-app-border rounded-full"
+              className="text-text-primary relative z-[1150] p-2 -mr-2 interactive min-h-[44px] min-w-[44px] flex items-center justify-center bg-card-bg border border-border rounded-full"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle Menu"
             >
@@ -178,11 +178,11 @@ export default function Navbar({
             animate={{ y: 0 }}
             exit={{ y: "-100%" }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 w-full h-[100dvh] bg-app-bg/95 backdrop-blur-2xl z-[1100] flex flex-col items-center justify-center space-y-8"
+            className="fixed inset-0 w-full h-[100dvh] bg-bg-primary/95 backdrop-blur-2xl z-[1100] flex flex-col items-center justify-center space-y-8"
           >
             {/* Inside close button */}
             <button
-              className="md:hidden text-app-text absolute top-6 right-6 p-2.5 z-[1150] min-h-[44px] min-w-[44px] flex items-center justify-center"
+              className="md:hidden text-text-primary absolute top-6 right-6 p-2.5 z-[1150] min-h-[44px] min-w-[44px] flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ top: "calc(1.5rem + env(safe-area-inset-top))" }}
               aria-label="Close Menu"
@@ -203,8 +203,8 @@ export default function Navbar({
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-2xl font-display font-medium transition-colors ${
                     isActive
-                      ? "text-app-primary"
-                      : "text-app-text-secondary hover:text-app-text"
+                      ? "text-accent-primary"
+                      : "text-text-secondary hover:text-text-primary"
                   }`}
                 >
                   {link.name}
@@ -222,7 +222,7 @@ export default function Navbar({
                   setIsMobileMenuOpen(false);
                   if (onOpenCommandPalette) onOpenCommandPalette();
                 }}
-                className="flex items-center justify-center p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-text hover:bg-app-elevated transition-colors"
+                className="flex items-center justify-center p-4 rounded-full bg-card-bg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-elevated transition-colors"
                 aria-label="Search"
               >
                 <Search size={24} />
@@ -232,7 +232,7 @@ export default function Navbar({
                   toggleTheme();
                   setIsMobileMenuOpen(false);
                 }}
-                className="flex items-center justify-center p-4 rounded-full bg-app-card border border-app-border text-app-text-secondary hover:text-app-primary hover:bg-app-elevated transition-colors"
+                className="flex items-center justify-center p-4 rounded-full bg-card-bg border border-border text-text-secondary hover:text-accent-primary hover:bg-surface-elevated transition-colors"
                 aria-label="Toggle Theme"
               >
                 {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}

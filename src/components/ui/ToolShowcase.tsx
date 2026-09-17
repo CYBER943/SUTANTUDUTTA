@@ -1,20 +1,8 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { motion, useReducedMotion, useMotionValue, useTransform, useSpring, useInView } from 'motion/react';
+import { TOOLS_SHOWCASE as TOOLS } from '../../data';
 
-const TOOLS = [
-  { name: 'VS Code', slug: 'visualstudiocode', color: '007ACC' },
-  { name: 'GitHub', slug: 'github', color: 'FFFFFF' },
-  { name: 'Copilot', slug: 'githubcopilot', color: 'FFFFFF' },
-  { name: 'ChatGPT', slug: 'openai', color: 'FFFFFF' },
-  { name: 'Gemini', slug: 'googlegemini', color: '8E75B2' },
-  { name: 'AI Studio', slug: 'google', color: '4285F4' },
-  { name: 'Grok', slug: 'x', color: 'FFFFFF' },
-  { name: 'Adobe Express', slug: 'adobe', color: 'FF0000' },
-  { name: 'Dropbox', slug: 'dropbox', color: '0061FF' },
-  { name: 'Claude', slug: 'claude', color: 'D97757' },
-  { name: 'Todoist', slug: 'todoist', color: 'E44332' },
-  { name: 'Vercel', slug: 'vercel', color: 'FFFFFF' },
-];
+
 
 const POSITIONS = [
   // Elegant, balanced floating arrangement
@@ -90,7 +78,7 @@ export function ToolShowcase() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="group flex items-center gap-3 p-3 md:p-4 rounded-[20px] bg-app-card backdrop-blur-xl border border-app-border hover:bg-app-elevated hover:border-app-border transition-all shadow-lg"
+              className="group flex items-center gap-3 p-3 md:p-4 rounded-[20px] bg-card-bg backdrop-blur-xl border border-border hover:bg-surface-elevated hover:border-border transition-all shadow-lg"
             >
               <img 
                 src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
@@ -101,7 +89,7 @@ export function ToolShowcase() {
                 width={32}
                 height={32}
               />
-              <span className="text-app-text-secondary font-medium text-sm md:text-base group-hover:text-app-text transition-colors">{tool.name}</span>
+              <span className="text-text-secondary font-medium text-sm md:text-base group-hover:text-text-primary transition-colors">{tool.name}</span>
             </motion.div>
           ))}
         </div>
@@ -168,20 +156,20 @@ function DesktopToolItem({ tool, index, mouseX, mouseY, prefersReducedMotion, is
       >
         <motion.div
           animate={bobY}
-          className="relative flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 rounded-[24px] bg-app-card backdrop-blur-xl border border-app-border shadow-[0_8px_32px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] transition-all duration-500 hover:scale-[1.08] hover:bg-app-elevated hover:border-app-border cursor-pointer transform-gpu group-hover:-translate-y-2"
+          className="relative flex items-center gap-3 px-5 py-3 md:px-6 md:py-4 rounded-[24px] bg-card-bg backdrop-blur-xl border border-border shadow-lg hover:shadow-lg transition-all duration-500 hover:scale-[1.08] hover:bg-surface-elevated hover:border-border cursor-pointer transform-gpu group-hover:-translate-y-2"
         >
-          <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 20px var(--color-app-border-light)` }} />
+          <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 20px var(--card-border)` }} />
           
           <img 
             src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
             alt={tool.name} 
-            className={`w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-all duration-500 drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] transform-gpu group-hover:scale-110 ${tool.color === 'FFFFFF' ? 'theme-invert' : ''}`} 
+            className={`w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-all duration-500 drop-shadow-md group-hover:drop-shadow-lg transform-gpu group-hover:scale-110 ${tool.color === 'FFFFFF' ? 'theme-invert' : ''}`} 
             loading="lazy"
             decoding="async"
             width={32}
             height={32}
           />
-          <span className="text-app-text-secondary font-medium text-sm md:text-base whitespace-nowrap group-hover:text-app-text transition-colors duration-500">
+          <span className="text-text-secondary font-medium text-sm md:text-base whitespace-nowrap group-hover:text-text-primary transition-colors duration-500">
             {tool.name}
           </span>
         </motion.div>

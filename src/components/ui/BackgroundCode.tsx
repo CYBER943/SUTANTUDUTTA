@@ -83,7 +83,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
       <motion.svg 
         style={{ rotate: rotation }}
         viewBox="0 0 100 100" 
-        className="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+        className="w-full h-full drop-shadow-lg"
       >
         {nodes.map((node, i) => (
           <motion.circle
@@ -111,12 +111,12 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
 
 @layer utilities {
   .glass-panel {
-    @apply bg-app-card backdrop-blur-xl border border-app-border;
+    @apply bg-card-bg backdrop-blur-xl border border-border;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
   
   .glass-panel-hover {
-    @apply hover:bg-app-card hover:border-app-border transition-all duration-300;
+    @apply hover:bg-card-bg hover:border-border transition-all duration-300;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255,255,255,0.05);
   }
   
@@ -127,7 +127,7 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
 
 @layer base {
   ::selection {
-    @apply bg-app-border text-app-text;
+    @apply bg-border text-text-primary;
   }
 
   /* Custom Scrollbar for IDE feel */
@@ -139,10 +139,10 @@ export const NeuromorphicGrid: React.FC<GridProps> = ({
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-app-elevated rounded-full;
+    @apply bg-surface-elevated rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-app-border;
+    @apply bg-border;
   }
 }`
   }
@@ -163,7 +163,7 @@ const highlightSyntax = (code: string, language: string) => {
       .replace(/(\/\/.*$)/gm, '<span class="text-gray-500/80 italic">$1</span>')
       .replace(/\/\*[\s\S]*?\*\//g, '<span class="text-gray-500/80 italic">$&</span>')
       .replace(/\b(true|false|null|undefined)\b/g, '<span class="text-purple-400">$1</span>')
-      .replace(/\b(\d+)\b/g, '<span class="text-orange-400">$1</span>')
+      .replace(/\b(\d+)\b/g, '<span class="text-accent-bright">$1</span>')
       .replace(/\b([A-Z][a-zA-Z0-9_]*)\b/g, '<span class="text-yellow-200">$1</span>')
       .replace(/\b([a-zA-Z_$][\w$]*)(?=\()/g, '<span class="text-blue-400">$1</span>')
       .replace(/&lt;([A-Z][\w$]*)\b/g, '&lt;<span class="text-cyan-400">$1</span>')
@@ -276,19 +276,19 @@ export function BackgroundCode() {
   return (
     <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.25] pointer-events-none select-none overflow-hidden " aria-hidden="true">
       {/* Gradient Mask to fade edges */}
-      <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,var(--color-app-bg)_70%)]" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[var(--color-app-bg)] via-transparent to-[var(--color-app-bg)]" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[var(--color-app-bg)] via-transparent to-[var(--color-app-bg)]" />
+      <div className="absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,var(--bg-primary)_70%)]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[var(--bg-primary)] via-transparent to-[var(--bg-primary)]" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-[var(--bg-primary)] via-transparent to-[var(--bg-primary)]" />
       
       {/* VS Code Window Container */}
-      <div className="relative w-[120%] h-[120%] md:w-[110%] md:h-[110%] max-w-[1400px] max-h-[900px] bg-app-bg-secondary border border-app-border-light rounded-2xl shadow-2xl overflow-hidden blur-[1px] md:blur-[2px] transform-gpu scale-95 origin-center">
+      <div className="relative w-[120%] h-[120%] md:w-[110%] md:h-[110%] max-w-[1400px] max-h-[900px] bg-bg-secondary border border-border rounded-2xl shadow-2xl overflow-hidden blur-[1px] md:blur-[2px] transform-gpu scale-95 origin-center">
         
         {/* Window Header */}
-        <div className="h-10 bg-app-card border-b border-app-border-light flex items-center px-4 gap-4">
+        <div className="h-10 bg-card-bg border-b border-border flex items-center px-4 gap-4">
           <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-            <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
+            <div className="w-3 h-3 rounded-full bg-status-error" />
+            <div className="w-3 h-3 rounded-full bg-accent-secondary" />
+            <div className="w-3 h-3 rounded-full bg-status-success" />
           </div>
           
           {/* File Tabs */}
@@ -296,7 +296,7 @@ export function BackgroundCode() {
             {CODE_SNIPPETS.map((s, i) => (
               <div 
                 key={i} 
-                className={`flex items-center gap-2 px-4 h-full text-xs font-mono ${i === snippetIndex ? 'bg-app-bg-secondary text-app-text border-t border-t-blue-500' : 'text-app-muted'}`}
+                className={`flex items-center gap-2 px-4 h-full text-xs font-mono ${i === snippetIndex ? 'bg-bg-secondary text-text-primary border-t border-t-blue-500' : 'text-text-muted'}`}
               >
                 {s.filename}
               </div>
@@ -311,14 +311,14 @@ export function BackgroundCode() {
         >
           <div 
             ref={lineNumbersRef}
-            className="text-app-muted text-right pr-6 select-none border-r border-app-border-light mr-6"
+            className="text-text-muted text-right pr-6 select-none border-r border-border mr-6"
           />
-          <div className="relative text-app-text-secondary whitespace-pre font-mono">
+          <div className="relative text-text-secondary whitespace-pre font-mono">
             <code ref={codeRef} className="block" />
             {!prefersReducedMotion && (
                <span 
                  ref={cursorRef} 
-                 className="inline-block absolute w-2 md:w-2.5 h-4 md:h-5 bg-app-text-secondary animate-pulse align-middle"
+                 className="inline-block absolute w-2 md:w-2.5 h-4 md:h-5 bg-text-primary-secondary animate-pulse align-middle"
                />
             )}
           </div>

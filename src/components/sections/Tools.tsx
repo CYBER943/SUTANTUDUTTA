@@ -103,11 +103,11 @@ const TOOLS_DATA = [
 
 export default function Tools() {
   return (
-    <section id="tools" className="relative py-20 md:py-32 bg-app-bg overflow-hidden border-t border-app-border-light">
+    <section id="tools" className="relative py-20 md:py-32 bg-bg-primary overflow-hidden border-t border-border">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-app-primary/5 blur-[120px] rounded-full " />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full " />
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent-primary/5 blur-[120px] rounded-full " />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-glow blur-[120px] rounded-full " />
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
@@ -119,10 +119,10 @@ export default function Tools() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16 lg:mb-24"
         >
-          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold tracking-tight text-app-text mb-6">
+          <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-display font-bold tracking-tight text-text-primary mb-6">
             Tools I Use
           </h2>
-          <p className="text-[clamp(1.125rem,2vw,1.25rem)] text-app-text-secondary font-light leading-relaxed text-balance">
+          <p className="text-[clamp(1.125rem,2vw,1.25rem)] text-text-secondary font-light leading-relaxed text-balance">
             The tools that power my workflow—from AI-assisted development to deployment and design.
           </p>
         </motion.div>
@@ -140,7 +140,7 @@ export default function Tools() {
                   <img 
                     src={tool.logoUrl} 
                     alt={`${tool.name} logo`}
-                    className={`h-8 lg:h-10 w-auto object-contain drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,90,54,0.4)] transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
+                    className={`h-8 lg:h-10 w-auto object-contain drop-shadow-md group-hover:drop-shadow-lg transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
                     loading="lazy"
                   />
                 ) : (
@@ -148,10 +148,10 @@ export default function Tools() {
                     <img 
                       src={tool.logoUrl} 
                       alt={`${tool.name} logo`}
-                      className={`w-10 h-10 lg:w-12 lg:h-12 drop-shadow-md group-hover:drop-shadow-[0_0_15px_rgba(255,90,54,0.4)] transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
+                      className={`w-10 h-10 lg:w-12 lg:h-12 drop-shadow-md group-hover:drop-shadow-lg transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
                       loading="lazy"
                     />
-                    <span className="text-xl lg:text-2xl font-semibold text-app-text-secondary group-hover:text-app-text transition-colors duration-300 whitespace-nowrap">
+                    <span className="text-xl lg:text-2xl font-semibold text-text-secondary group-hover:text-text-primary transition-colors duration-300 whitespace-nowrap">
                       {tool.name}
                     </span>
                   </>
