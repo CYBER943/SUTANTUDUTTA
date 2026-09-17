@@ -1,162 +1,178 @@
 # SUTANTU DUTTA
 
-**Student Developer • AI Developer • Creative Builder**
+<div align="center">
 
-A Class 10 student who builds AI-powered applications, modern web experiences, and creative experiments. I learn best by turning ideas into projects.
+  <img src="https://img.shields.io/badge/Portfolio-Live%20Website-0A84FF?style=for-the-badge&logo=vercel&logoColor=white" alt="Portfolio Live Website" />
+  <img src="https://img.shields.io/badge/Status-Open%20for%20Projects-34D399?style=for-the-badge" alt="Open for projects" />
+  <img src="https://img.shields.io/badge/Age-Class%2010-FFB703?style=for-the-badge" alt="Class 10" />
 
-🤖 Exploring AI → 💻 Building projects → 📚 Learning → 📖 Reading → ⚡ Vibe Coding
+</div>
 
----
+<p align="center">
+  <strong>Class 10 Student • AI Developer • Creative Builder</strong>
+</p>
 
-## 👨‍💻 About Me
-
-I'm a student developer passionate about learning through building. I spend my time experimenting with AI tools, creating web experiences, and exploring the intersection of design and technology. I believe in continuous improvement through iteration and experimentation.
-
-My interests span **Artificial Intelligence**, **Web Development**, **UI/UX Design**, and **Digital Innovation**. I care deeply about creating polished, thoughtful digital experiences that are both functional and beautiful.
-
----
-
-## 🚀 What I Build
-
-**🤖 AI Applications**
-Exploring AI tools and building applications that leverage machine learning and natural language processing.
-
-**🌐 Web Experiences**
-Modern, responsive websites and web applications with a focus on user experience and clean design.
-
-**🎨 Creative Interfaces**
-Interactive projects that blend creativity, design, and technology to create memorable digital moments.
-
-**🧪 Experiments & Prototypes**
-Rapid prototypes and experimental projects to test ideas, learn new technologies, and push boundaries.
-
-**⚡ Productivity & Utility Projects**
-Tools and utilities that solve real problems and improve workflows.
+<p align="center">
+  <a href="https://sutantudutta-red.vercel.app" target="_blank" rel="noopener noreferrer">🌐 Live Portfolio</a>
+  •
+  <a href="https://github.com/Sdm940" target="_blank" rel="noopener noreferrer">GitHub</a>
+  •
+  <a href="https://codepen.io/SDM-TECH-KNOW" target="_blank" rel="noopener noreferrer">CodePen</a>
+  •
+  <a href="https://www.linkedin.com/in/sutantu-dutta-176a2442a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</p>
 
 ---
 
-## 🛠️ Tech & Tools
+## About Me
 
-<details open>
-<summary><b>🤖 AI & Research</b></summary>
+I believe the best way to learn technology is by building things. Experimenting, making mistakes, and continuously improving is at the core of my journey as a student developer.
 
+My passion lies at the intersection of Artificial Intelligence and modern web development. While balancing academics, I spend my time exploring new concepts, reading books, and turning ideas into real digital experiences.
+
+I enjoy working across:
+
+- AI and machine learning experiments
+- Modern web development and responsive interfaces
+- UI/UX design and creative product thinking
+- Vibe coding and rapid prototyping
+- Learning by building meaningful, polished projects
+
+---
+
+## My Journey
+
+I started by learning programming, exploring web development, discovering AI, and eventually building projects that combine creativity with technology.
+
+### Current focus areas
+
+- Vibe Coding
+- Academics
+- Learning
+- Reading Books
+- Artificial Intelligence
+- Web Development
+- Creative Building
+
+---
+
+## What I Build
+
+### 🤖 AI & Intelligent Experiences
+Creating experiments and prototypes that explore the power of AI, reasoning, and smart user experiences.
+
+### 🌐 Web Applications
+Designing modern, interactive websites and apps with a strong focus on usability, clarity, and creative execution.
+
+### 🎨 Creative UI/UX
+Building visually engaging interfaces and digital experiences that feel premium, smooth, and memorable.
+
+### 🧪 Experiments & Prototypes
+Rapidly testing ideas, learning from iteration, and turning concepts into working products.
+
+---
+
+## Tech Stack & Tools
+
+### AI & Research
 - ChatGPT
 - Claude
 - Gemini
 - Microsoft Copilot
 - Grok
 - NoteGPT
+- Google AI Studio
 
-</details>
-
-<details open>
-<summary><b>💻 Development</b></summary>
-
-![HTML5](https://img.shields.io/badge/HTML5-E34C26?logo=html5&logoColor=white&style=flat-square)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white&style=flat-square)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
-![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=flat-square)
-![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white&style=flat-square)
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white&style=flat-square)
-
-**Tools & Platforms:**
-- CodePen
+### Development
+- HTML5
+- CSS3
+- JavaScript
+- TypeScript
+- React
+- Vite
+- Next.js
+- Python
+- Tailwind CSS
+- Visual Studio Code
+- GitHub
 - Vercel
 - Windsurf
-- Visual Studio Code
 
-</details>
-
-<details open>
-<summary><b>📊 Productivity & Communication</b></summary>
-
+### Design & Productivity
+- Figma
+- Canva
+- Adobe
+- Adobe Express
 - Notion
 - Todoist
-- Outlook
 - Gmail
-
-</details>
-
----
-
-## 🎯 Currently Exploring
-
-- Vibe Coding & Creative Development
-- Artificial Intelligence & AI Tools
-- Web Development & Modern Frameworks
-- UI/UX Design Principles
-- Building Real-World Projects
-- Reading & Learning
-- Academic Growth
+- Outlook
 
 ---
 
-## 📚 My Learning Philosophy
+## Featured Work
 
-> **Learn. Build. Experiment. Repeat.**
+This portfolio is built as a modern personal website showcasing projects, blog ideas, tools, and creative experiments.
 
-I believe the best way to grow is by doing. I turn ideas into projects, make mistakes, learn from them, and iterate. Every project is an opportunity to discover something new and push my skills further.
-
----
-
-## 📖 Beyond Code
-
-Outside of development, I'm passionate about:
-- Reading books and exploring new ideas
-- Academics and continuous learning
-- Creative experimentation
-- Discovering emerging technologies
-- Building things that matter
+### Highlights
+- Premium animated portfolio interface
+- Project showcase and interactive sections
+- Tool stack and focus area presentation
+- Contact form for collaboration inquiries
+- Responsive portfolio experience across devices
 
 ---
 
-## 🏆 Achievements & Milestones
+## Projects & Experiments
 
-- **500+ Projects & Experiments** – Active exploration and building across various technologies
-- **SOF Participant** – Engaged in Science Olympiad Foundation activities
-- **MyGov Certifications** – Completed governance and civic education certifications
-- **Active CodePen Creator** – Regular contributor sharing interactive projects and experiments
+I enjoy building creative web experiences, UI prototypes, and experiments on platforms like CodePen.
 
----
+Examples:
 
-## 🌐 Find Me Online
-
-| Platform | Link |
-|----------|------|
-| **GitHub** | [@Sdm940](https://github.com/Sdm940) |
-| **CodePen** | [@SDM-TECH-KNOW](https://codepen.io/SDM-TECH-KNOW) |
-| **LinkedIn** | [Sutantu Dutta](https://www.linkedin.com/in/sutantu-dutta-176a2442a/) |
+- [CodePen Profile](https://codepen.io/SDM-TECH-KNOW)
+- [GitHub Profile](https://github.com/Sdm940)
+- [Live Portfolio](https://sutantudutta-red.vercel.app)
 
 ---
 
-## ✍️ What I Value
+## Blog & Thinking
 
-I enjoy documenting what I learn, sharing project experiences, exploring AI tools, and writing about technology and innovation. I believe in the power of sharing knowledge and collaborating with others in the developer community.
+I enjoy documenting what I learn, sharing experiences, and exploring ideas around:
+
+- AI
+- Vibe Coding
+- Web Development
+- Learning
+- Productivity
+- Projects
 
 ---
 
-## 💭 Philosophy
+## Contact
 
-> "Fuelled by curiosity, creativity, and a lifelong dedication to learning."
+Have an idea, want to collaborate, or just want to talk about tech and AI?
+
+- Email: [sutantudutta@outlook.com](mailto:sutantudutta@outlook.com)
+- GitHub: [@Sdm940](https://github.com/Sdm940)
+- CodePen: [@SDM-TECH-KNOW](https://codepen.io/SDM-TECH-KNOW)
+- LinkedIn: [Sutantu Dutta](https://www.linkedin.com/in/sutantu-dutta-176a2442a/)
+
+---
+
+## Philosophy
+
+> Fuelled by curiosity, creativity, and a lifelong dedication to learning.
 
 Every line of code, every design decision, and every project is an opportunity to grow and create something meaningful.
 
 ---
 
-## 📬 Get in Touch
-
-Have an idea, want to collaborate, or just want to chat about tech and AI?
-
-**📧 Email:** [sutantudutta@outlook.com](mailto:sutantudutta@outlook.com)
-
----
-
 <div align="center">
 
-**SUTANTU DUTTA**
-
-Student Developer • AI Developer • Creative Builder
-
-*Fuelled by curiosity, creativity, and a lifelong dedication to learning.*
+  <strong>SUTANTU DUTTA</strong>
+  <br />
+  Student Developer • AI Developer • Creative Builder
+  <br />
+  <em>Fuelled by curiosity, creativity, and a lifelong dedication to learning.</em>
 
 </div>
