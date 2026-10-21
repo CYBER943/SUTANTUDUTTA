@@ -91,8 +91,28 @@ const ProjectCard = ({ project, index }: { project: Project; index: number; key?
   );
 };
 
-export default function Projects() {
+interface ProjectsProps {
+  projects?: Project[];
+}
+
+export default function Projects({ projects: propProjects }: ProjectsProps = {}) {
   const prefersReducedMotion = useReducedMotion();
+  const [projectList, setProjectList] = React.useState<Project[]>(propProjects || PROJECTS);
+
+  React.useEffect(() => {
+    if (propProjects) {
+      setProjectList(propProjects);
+      return;
+    }
+    fetch('/api/public/data')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data.projects) && data.projects.length > 0) {
+          setProjectList(data.projects);
+        }
+      })
+      .catch(() => {});
+  }, [propProjects]);
 
   return (
     <section className="py-24 md:py-32 relative bg-bg-primary overflow-hidden border-t border-border" id="projects">
@@ -121,7 +141,7 @@ export default function Projects() {
 
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project, index) => (
+          {projectList.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>

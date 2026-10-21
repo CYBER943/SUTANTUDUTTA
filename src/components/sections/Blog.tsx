@@ -1,14 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, ArrowRight, Calendar, Clock, BookOpen } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '../../data';
+import { BlogPost } from '../../types';
 import { TextReveal } from '../ui/TextReveal';
 
-export default function Blog() {
+interface BlogProps {
+  posts?: BlogPost[];
+}
+
+export default function Blog({ posts: propPosts }: BlogProps = {}) {
+  const [blogList, setBlogList] = useState<BlogPost[]>(propPosts || BLOG_POSTS);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredPosts = BLOG_POSTS.filter(post => {
+  useEffect(() => {
+    if (propPosts) {
+      setBlogList(propPosts);
+      return;
+    }
+    fetch('/api/public/data')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data.blog) && data.blog.length > 0) {
+          setBlogList(data.blog);
+        }
+      })
+      .catch(() => {});
+  }, [propPosts]);
+
+  const filteredPosts = blogList.filter(post => {
     const matchesCategory = activeCategory === 'All' || post.category === activeCategory;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());

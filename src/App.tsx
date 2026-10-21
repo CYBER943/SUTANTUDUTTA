@@ -2,6 +2,7 @@ import React, { Suspense, useState, useEffect } from 'react';
 import { motion, useScroll } from 'motion/react';
 import { Toaster } from 'sonner';
 import { Analytics } from "@vercel/analytics/react";
+import { ArrowRight } from 'lucide-react';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -9,6 +10,7 @@ import Hero from './components/sections/Hero';
 import CustomCursor from './components/ui/CustomCursor';
 import { SectionReveal } from './components/ui/SectionReveal';
 import CommandPalette from './components/ui/CommandPalette';
+import AdminRoot from './components/admin/AdminRoot';
 
 // Utility function to handle chunk load errors (e.g. after a new deployment)
 function lazyWithRetry(componentImport: () => Promise<any>) {
@@ -47,6 +49,25 @@ const FallbackLoader = () => (
 export default function App() {
   const { scrollYProgress } = useScroll();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [siteData, setSiteData] = useState<{ settings?: any; announcement?: any }>({});
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/public/data')
+      .then(res => res.json())
+      .then(data => {
+        if (data) setSiteData(data);
+      })
+      .catch(() => {});
+  }, [currentPath]);
 
   useEffect(() => {
     const handleLoad = () => {
@@ -63,7 +84,6 @@ export default function App() {
     };
 
     if (document.readyState === 'complete') {
-      // Small delay for smooth transition if it loads too fast
       setTimeout(handleLoad, 500);
     } else {
       window.addEventListener('load', handleLoad);
@@ -74,6 +94,25 @@ export default function App() {
       };
     }
   }, []);
+
+  // Route: Admin Control Center (/admin, /admin/login, /admin/setup, /admin/dashboard, etc.)
+  if (currentPath.startsWith('/admin')) {
+    return (
+      <div className="min-h-screen bg-bg-primary text-text-primary selection:bg-accent-primary/30 selection:text-white">
+        <Toaster theme="dark" toastOptions={{ style: { background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' } }} />
+        <AdminRoot
+          onNavigateToPublic={() => {
+            window.history.pushState({}, '', '/');
+            setCurrentPath('/');
+          }}
+        />
+      </div>
+    );
+  }
+
+  // Route: Public Portfolio Website
+  const announcement = siteData?.announcement;
+  const settings = siteData?.settings;
 
   return (
     <div className="min-h-screen selection:bg-accent-primary/30 selection:text-white bg-bg-primary w-full overflow-x-hidden flex flex-col">
@@ -86,7 +125,29 @@ export default function App() {
         style={{ scaleX: scrollYProgress }}
       />
 
-      <Toaster theme="dark" toastOptions={{ style: { background: 'var(--card-bg)', border: '1px solid var(--card-border)', color: 'var(--text-primary)' } }} />
+      <Toaster theme="dark" toastOptions={{ style: { background: 'var(--card-bg)', border: '1px solid var(--border)', color: 'var(--text-primary)' } }} />
+      
+      {/* Dynamic Announcement Banner if enabled */}
+      {announcement?.enabled && (
+        <div className="relative z-[9998] w-full bg-gradient-to-r from-accent-primary/20 via-purple-600/20 to-accent-primary/20 border-b border-border py-2 px-4 flex flex-wrap items-center justify-center gap-3 text-xs backdrop-blur-md">
+          <span className="px-2 py-0.5 rounded-md bg-accent-primary text-white font-mono text-[10px] font-bold tracking-wider">
+            {announcement.badge || 'NEW'}
+          </span>
+          <span className="text-text-primary font-medium text-center">
+            {announcement.message}
+          </span>
+          {announcement.linkText && (
+            <a
+              href={announcement.linkUrl || '#projects'}
+              className="text-accent-bright hover:underline font-semibold flex items-center gap-1"
+            >
+              <span>{announcement.linkText}</span>
+              <ArrowRight size={12} />
+            </a>
+          )}
+        </div>
+      )}
+
       <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
       <main style={{ paddingTop: 'calc(72px + env(safe-area-inset-top))' }}>
         {/* 1. Home */}
@@ -125,9 +186,11 @@ export default function App() {
           </SectionReveal>
         </Suspense>
       </main>
-      <Footer />
+      <Footer
+        statusText={settings?.statusText}
+        statusAvailable={settings?.statusAvailable}
+      />
       <Analytics />
     </div>
   );
 }
-
