@@ -36,8 +36,29 @@ export const B12Icon = ({ size = 24, ...props }: React.SVGProps<SVGSVGElement> &
 );
 
 export const GoogleAIStudioIcon = ({ size = 24, ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" width={size} height={size} {...props}>
-    <path d="M12 2L2 22h20L12 2zm0 3.8l6.2 14.2H5.8L12 5.8z" />
+  <svg viewBox="0 0 192 192" width={size} height={size} {...props}>
+    <defs>
+      <linearGradient id="custom-icon-aistudio-top" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#00B95C" />
+        <stop offset="50%" stopColor="#00BCD4" />
+        <stop offset="100%" stopColor="#1A73E8" />
+      </linearGradient>
+      <linearGradient id="custom-icon-aistudio-bottom" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#1A73E8" />
+        <stop offset="40%" stopColor="#4285F4" />
+        <stop offset="65%" stopColor="#FBBC04" />
+        <stop offset="90%" stopColor="#EA4335" />
+        <stop offset="100%" stopColor="#FC413D" />
+      </linearGradient>
+    </defs>
+    <path
+      fill="url(#custom-icon-aistudio-top)"
+      d="M161.23 55.76L79.92 98.11C53.06 112.1 21.01 92.5 21.01 62.08C21.01 39.66 39.09 21.49 61.38 21.5L152.95 21.54C171.83 21.54 177.99 47.04 161.23 55.76Z"
+    />
+    <path
+      fill="url(#custom-icon-aistudio-bottom)"
+      d="M30.77 136.24L112.08 93.89C138.94 79.9 170.99 99.5 170.99 129.92C170.99 152.34 152.91 170.51 130.62 170.5L39.05 170.46C20.17 170.46 14.01 144.96 30.77 136.24Z"
+    />
   </svg>
 );
 

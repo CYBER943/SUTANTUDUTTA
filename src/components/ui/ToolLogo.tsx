@@ -129,32 +129,41 @@ export default function ToolLogo({ slug, name, className = "w-10 h-10 lg:w-12 lg
     );
   }
 
-  // 4. CodePen: Official isometric 3D cube mark
+  // 4. CodePen: Official isometric 3D wireframe cube mark
   if (normalized === 'codepen') {
     return (
       <svg
-        viewBox="0 0 100 100"
-        className={`${className} fill-current text-text-primary object-contain drop-shadow-md`}
+        viewBox="0 0 24 24"
+        className={`${className} object-contain drop-shadow-md text-text-primary`}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         role="img"
         aria-label={`${name} logo`}
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M100 34.2c-.4-2.6-3.3-4-5.3-5.3-3.6-2.4-7.1-4.7-10.7-7.1-8.5-5.7-17.1-11.4-25.6-17.1-2-1.3-4-2.7-6-4-1.4-1-3.3-1-4.8 0-5.7 3.8-11.5 7.7-17.2 11.5L5.2 29C3.6 30.1 2 31.2 1 33c-.7 1.2-1 2.6-1 4v32.2c0 1.4.3 2.8 1 4 1 1.8 2.6 2.9 4.2 4 8.3 5.6 16.6 11.1 24.9 16.7 3.5 2.4 7.1 4.7 10.6 7.1 1.4 1 3.3 1 4.8 0 8.3-5.6 16.6-11.1 24.9-16.7 4.1-2.7 8.1-5.4 12.2-8.2 2-1.3 4.9-2.7 5.3-5.3.1-.7.1-1.4.1-2.1V36.3c-.1-.7-.1-1.4-.2-2.1zm-46.8 52.5v-20.9l16.4-11 16.4 11v20.9l-32.8 21zm-6.4 0l-32.8-21V64.8l16.4-11 16.4 11v20.9zM50 43.1L33.6 32.1 50 21.1l16.4 11L50 43.1zm3.2-27.7l16.4 11-16.4 11V15.4zm-6.4 0v22l-16.4-11 16.4-11zm-32.8 21l16.4 11-16.4 11V36.4zm82 22l-16.4-11 16.4-11v22z" />
+        <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2" />
+        <line x1="12" y1="22" x2="12" y2="15.5" />
+        <polyline points="22 8.5 12 15.5 2 8.5" />
+        <polyline points="2 15.5 12 8.5 22 15.5" />
+        <line x1="12" y1="2" x2="12" y2="8.5" />
       </svg>
     );
   }
 
-  // 5. Claude: Official terracotta sunburst mark
+  // 5. Claude: Official Anthropic terracotta sunburst mark
   if (normalized === 'claude') {
     return (
       <svg
-        viewBox="0 0 24 24"
+        viewBox="0 0 100 100"
         className={`${className} object-contain drop-shadow-md text-[#D97757] fill-current`}
         role="img"
         aria-label={`${name} logo`}
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M12 2a1.5 1.5 0 0 1 1.5 1.5v2.08a7.5 7.5 0 0 1 3.42 1.42l1.47-1.48a1.5 1.5 0 0 1 2.12 2.12l-1.48 1.47a7.5 7.5 0 0 1 1.42 3.42h2.08a1.5 1.5 0 0 1 0 3h-2.08a7.5 7.5 0 0 1-1.42 3.42l1.48 1.47a1.5 1.5 0 0 1-2.12 2.12l-1.47-1.48a7.5 7.5 0 0 1-3.42 1.42v2.08a1.5 1.5 0 0 1-3 0v-2.08a7.5 7.5 0 0 1-3.42-1.42l-1.47 1.48a1.5 1.5 0 0 1-2.12-2.12l1.48-1.47A7.5 7.5 0 0 1 4.08 15H2a1.5 1.5 0 0 1 0-3h2.08a7.5 7.5 0 0 1 1.42-3.42L4.02 7.11a1.5 1.5 0 1 1 2.12-2.12l1.47 1.48A7.5 7.5 0 0 1 11 5.05V3.5A1.5 1.5 0 0 1 12 2z" />
+        <path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z" />
       </svg>
     );
   }
@@ -199,26 +208,39 @@ export default function ToolLogo({ slug, name, className = "w-10 h-10 lg:w-12 lg
     );
   }
 
-  // 8. Google AI Studio: Official diamond/prism icon in Google Blue
+  // 8. Google AI Studio: Official dual-capsule S mark with Google color gradients
   if (normalized === 'google' || normalized === 'googleaistudio') {
     return (
       <svg
-        viewBox="0 0 24 24"
+        viewBox="0 0 192 192"
         className={`${className} object-contain drop-shadow-md`}
         role="img"
         aria-label={`${name} logo`}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="aistudio-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#4285F4" />
-            <stop offset="50%" stopColor="#8AB4F8" />
-            <stop offset="100%" stopColor="#34A853" />
+          <linearGradient id="aistudio-top-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#00B95C" />
+            <stop offset="50%" stopColor="#00BCD4" />
+            <stop offset="100%" stopColor="#1A73E8" />
+          </linearGradient>
+          <linearGradient id="aistudio-bottom-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1A73E8" />
+            <stop offset="40%" stopColor="#4285F4" />
+            <stop offset="65%" stopColor="#FBBC04" />
+            <stop offset="90%" stopColor="#EA4335" />
+            <stop offset="100%" stopColor="#FC413D" />
           </linearGradient>
         </defs>
+        {/* Top green-to-blue capsule */}
         <path
-          fill="url(#aistudio-grad)"
-          d="M12 2L2 22h20L12 2zm0 3.8l6.2 14.2H5.8L12 5.8z"
+          fill="url(#aistudio-top-grad)"
+          d="M161.23 55.76L79.92 98.11C53.06 112.1 21.01 92.5 21.01 62.08C21.01 39.66 39.09 21.49 61.38 21.5L152.95 21.54C171.83 21.54 177.99 47.04 161.23 55.76Z"
+        />
+        {/* Bottom blue-yellow-red capsule */}
+        <path
+          fill="url(#aistudio-bottom-grad)"
+          d="M30.77 136.24L112.08 93.89C138.94 79.9 170.99 99.5 170.99 129.92C170.99 152.34 152.91 170.51 130.62 170.5L39.05 170.46C20.17 170.46 14.01 144.96 30.77 136.24Z"
         />
       </svg>
     );
@@ -242,45 +264,32 @@ export default function ToolLogo({ slug, name, className = "w-10 h-10 lg:w-12 lg
     );
   }
 
-  // 10. Adobe Express: Official stylized ribbon
+  // 10. Adobe Express: Official rounded rainbow gradient "A" loop on dark squircle
   if (normalized === 'adobeexpress' || normalized === 'adobe') {
     return (
       <svg
-        viewBox="0 0 24 24"
+        viewBox="0 0 56 56"
         className={`${className} object-contain drop-shadow-md`}
         role="img"
         aria-label={`${name} logo`}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="adobe-express-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#FF0000" />
-            <stop offset="50%" stopColor="#FF6138" />
-            <stop offset="100%" stopColor="#7928CA" />
+          <linearGradient id="adobe-express-a-grad" x1="0%" y1="70%" x2="100%" y2="70%">
+            <stop offset="0%" stopColor="#2D7FF9" />
+            <stop offset="22%" stopColor="#B620E0" />
+            <stop offset="48%" stopColor="#FF263D" />
+            <stop offset="75%" stopColor="#FFA600" />
+            <stop offset="100%" stopColor="#25D366" />
           </linearGradient>
         </defs>
+        {/* Official dark squircle background tile */}
+        <rect width="56" height="56" rx="12" fill="#000B1D" />
+        {/* Official Adobe Express gradient loop "A" */}
         <path
-          fill="url(#adobe-express-grad)"
-          d="M13.966 22h-3.932l4.915-11.85h3.932L13.966 22zM2.85 22L9.5 6.067 13.067 15.1 8.85 22H2.85zm12.3-15.933L21.15 22h-5.267l-2.433-6.233 4.1-9.7z"
-        />
-      </svg>
-    );
-  }
-
-  // 11. Canva: Official Canva cyan script mark
-  if (normalized === 'canva') {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        className={`${className} object-contain drop-shadow-md`}
-        role="img"
-        aria-label={`${name} logo`}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="12" cy="12" r="11" fill="#00C4CC" />
-        <path
-          fill="#FFFFFF"
-          d="M14.8 8.4c-.4-.3-1.1-.5-1.9-.5-2.2 0-3.9 1.7-3.9 4.1 0 2.2 1.5 3.8 3.7 3.8 1.1 0 1.9-.4 2.4-.8l-.5-1.2c-.4.3-1 .6-1.7.6-1.4 0-2.3-1-2.3-2.4 0-1.6 1.1-2.7 2.5-2.7.5 0 .9.1 1.2.3l.5-1.2z"
+          fill="url(#adobe-express-a-grad)"
+          d="M33.711 15.492a6.483 6.483 0 0 0-11.943.011L13.583 35A4.039 4.039 0 0 0 17.3 40.6h9.115a4.062 4.062 0 0 0-.011-8.123l-1.558.011A.921.921 0 0 1 24 31.212l2.905-6.924a.9.9 0 0 1 1.667 0L34.5 38.144A3.925 3.925 0 0 0 38.229 40.6a4.038 4.038 0 0 0 3.72-5.615L33.711 15.492Z"
+          transform="translate(0.5, 0)"
         />
       </svg>
     );

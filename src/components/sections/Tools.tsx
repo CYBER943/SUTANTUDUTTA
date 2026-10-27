@@ -49,11 +49,6 @@ const TOOLS_DATA = [
     slug: 'visualstudiocode',
   },
   {
-    name: 'Canva',
-    description: 'Design platform for graphics, presentations, and social media assets.',
-    slug: 'canva',
-  },
-  {
     name: 'Adobe Express',
     description: 'Quick graphic design and layout creation.',
     slug: 'adobeexpress',
