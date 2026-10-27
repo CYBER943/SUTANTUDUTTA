@@ -58,9 +58,8 @@ export default function AdminSetup({ onSuccess, onNavigateToPublic }: AdminSetup
     setLoading(true);
     try {
       const res = await adminApi.setup({
-        username: username.trim(),
-        email: email.trim(),
-        password
+        password,
+        confirmPassword
       });
 
       if (res.success && res.recoveryKey && res.admin) {
@@ -176,15 +175,25 @@ export default function AdminSetup({ onSuccess, onNavigateToPublic }: AdminSetup
             <KeyRound size={22} />
           </div>
           <h1 className="text-2xl font-display font-bold text-text-primary tracking-tight">
-            Administrator Bootstrap
+            Super Admin Master Key
           </h1>
           <p className="text-text-secondary text-xs mt-1.5 font-mono tracking-wide">
-            INITIALIZE FIRST & ONLY ADMINISTRATOR
+            PERMANENT ROOT ACTIVATION — SUTANTU DUTTA
           </p>
         </div>
 
-        <div className="p-3 bg-surface-elevated border border-border rounded-xl mb-6 text-xs text-text-muted leading-relaxed">
-          Configure your master credentials for Sutantu Dutta's portfolio. Public registration will be disabled immediately after this step.
+        {/* Identity Badge */}
+        <div className="p-3.5 bg-surface-elevated border border-accent-primary/30 rounded-xl mb-6">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-accent-secondary mb-1">
+            <span>PERMANENT SUPER ADMIN</span>
+            <span className="text-status-success font-bold">IMMUTABLE ROOT</span>
+          </div>
+          <div className="text-sm font-display font-bold text-text-primary">
+            Sutantu Dutta
+          </div>
+          <div className="text-xs font-mono text-text-secondary">
+            sutantudutta@outlook.com
+          </div>
         </div>
 
         {error && (
@@ -195,39 +204,6 @@ export default function AdminSetup({ onSuccess, onNavigateToPublic }: AdminSetup
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-text-secondary mb-1.5">
-              Admin Username
-            </label>
-            <div className="relative">
-              <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted" />
-              <input
-                type="text"
-                required
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="sutantudutta"
-                className="w-full bg-surface-elevated border border-border focus:border-accent-primary rounded-xl py-2.5 pl-10 pr-4 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-mono uppercase tracking-wider text-text-secondary mb-1.5">
-              Administrator Email
-            </label>
-            <div className="relative">
-              <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-muted" />
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="sutantudutta@outlook.com"
-                className="w-full bg-surface-elevated border border-border focus:border-accent-primary rounded-xl py-2.5 pl-10 pr-4 text-sm text-text-primary placeholder:text-text-muted focus:outline-none transition-colors"
-              />
-            </div>
-          </div>
 
           <div>
             <label className="block text-xs font-mono uppercase tracking-wider text-text-secondary mb-1.5">

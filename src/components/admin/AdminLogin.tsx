@@ -88,9 +88,20 @@ export default function AdminLogin({
 
         {/* Error Alert */}
         {error && (
-          <div className="mb-6 p-3.5 bg-status-error/10 border border-status-error/30 rounded-xl flex items-start space-x-3 text-status-error text-xs">
-            <AlertCircle size={16} className="shrink-0 mt-0.5" />
-            <span className="leading-relaxed font-sans">{error}</span>
+          <div className="mb-6 p-3.5 bg-status-error/10 border border-status-error/30 rounded-xl flex flex-col space-y-2 text-status-error text-xs">
+            <div className="flex items-start space-x-2.5">
+              <AlertCircle size={16} className="shrink-0 mt-0.5" />
+              <span className="leading-relaxed font-sans">{error}</span>
+            </div>
+            {error.includes('activated') && onNavigateToSetup && (
+              <button
+                type="button"
+                onClick={onNavigateToSetup}
+                className="self-start text-[11px] font-mono font-bold text-accent-bright underline hover:text-accent-secondary mt-1"
+              >
+                Activate Super Admin Master Key Now →
+              </button>
+            )}
           </div>
         )}
 

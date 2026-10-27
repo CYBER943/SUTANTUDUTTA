@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { motion, useReducedMotion, useMotionValue, useTransform, useSpring, useInView } from 'motion/react';
 import { TOOLS_SHOWCASE as TOOLS } from '../../data';
+import ToolLogo from './ToolLogo';
 
 
 
@@ -80,15 +81,12 @@ export function ToolShowcase() {
               transition={{ duration: 0.5, delay: idx * 0.05 }}
               className="group flex items-center gap-3 p-3 md:p-4 rounded-[20px] bg-card-bg backdrop-blur-xl border border-border hover:bg-surface-elevated hover:border-border transition-all shadow-lg"
             >
-              <img 
-                src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
-                alt={tool.name} 
-                className={`w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-opacity ${tool.color === 'FFFFFF' ? 'theme-invert' : ''}`} 
-                loading="lazy"
-                decoding="async"
-                width={32}
-                height={32}
+              <ToolLogo 
+                slug={tool.slug} 
+                name={tool.name} 
+                className="w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-opacity" 
               />
+
               <span className="text-text-secondary font-medium text-sm md:text-base group-hover:text-text-primary transition-colors">{tool.name}</span>
             </motion.div>
           ))}
@@ -160,14 +158,10 @@ function DesktopToolItem({ tool, index, mouseX, mouseY, prefersReducedMotion, is
         >
           <div className="absolute inset-0 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: `inset 0 0 20px var(--card-border)` }} />
           
-          <img 
-            src={`https://cdn.simpleicons.org/${tool.slug}/${tool.color}`} 
-            alt={tool.name} 
-            className={`w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-all duration-500 drop-shadow-md group-hover:drop-shadow-lg transform-gpu group-hover:scale-110 ${tool.color === 'FFFFFF' ? 'theme-invert' : ''}`} 
-            loading="lazy"
-            decoding="async"
-            width={32}
-            height={32}
+          <ToolLogo 
+            slug={tool.slug} 
+            name={tool.name} 
+            className="w-6 h-6 md:w-8 md:h-8 opacity-80 group-hover:opacity-100 transition-all duration-500 drop-shadow-md group-hover:drop-shadow-lg transform-gpu group-hover:scale-110" 
           />
           <span className="text-text-secondary font-medium text-sm md:text-base whitespace-nowrap group-hover:text-text-primary transition-colors duration-500">
             {tool.name}

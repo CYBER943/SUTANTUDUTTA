@@ -1,5 +1,18 @@
 {
-  "admin": null,
+  "admin": {
+    "id": "superadmin_sutantu_dutta",
+    "username": "sutantudutta",
+    "email": "sutantudutta@outlook.com",
+    "displayName": "Sutantu Dutta",
+    "role": "superadmin",
+    "isSuperAdmin": true,
+    "isActivated": true,
+    "status": "active",
+    "createdAt": "2026-10-24T08:35:57.573Z",
+    "passwordHash": "$2b$12$pf7mrczrhgfPBE0BB1mzuOm.w9.9ehqWc1LF/18g9i94ThCgyZaoK",
+    "recoveryKeyHash": "cd6bc87a46d60f9023086e1c0408e66cba20edf048e9706f5387b0e2fe7827d9",
+    "lastLoginAt": "2026-10-24T08:37:17.460Z"
+  },
   "settings": {
     "name": "Sutantu Dutta",
     "role": "AI DEVELOPER",
@@ -207,6 +220,48 @@
   ],
   "auditLogs": [
     {
+      "id": "audit_1792831037923_i0xz5",
+      "action": "USER_CREATED",
+      "details": "Super Admin created new editor: \"Alex Rivera\" (alex@example.com)",
+      "timestamp": "2026-10-24T08:37:17.923Z",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_1792831037460_bwzdg",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "details": "Administrator Sutantu Dutta (superadmin) logged in successfully",
+      "timestamp": "2026-10-24T08:37:17.460Z",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_1792831001828_alp9u",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "details": "Administrator Sutantu Dutta (superadmin) logged in successfully",
+      "timestamp": "2026-10-24T08:36:41.828Z",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_1792830991855_07bnz",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "details": "Administrator Sutantu Dutta (superadmin) logged in successfully",
+      "timestamp": "2026-10-24T08:36:31.855Z",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_1792830985276_ul7w5",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "details": "Administrator Sutantu Dutta (superadmin) logged in successfully",
+      "timestamp": "2026-10-24T08:36:25.276Z",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "audit_1792830969989_pd89i",
+      "action": "SUPERADMIN_ACTIVATED",
+      "details": "Super Admin master password activated for Sutantu Dutta (sutantudutta@outlook.com)",
+      "timestamp": "2026-10-24T08:36:09.989Z",
+      "ip": "127.0.0.1"
+    },
+    {
       "id": "audit_1792573430858_ifolu",
       "action": "FAILED_LOGIN_ATTEMPT",
       "details": "Failed login attempt for identifier 'sutantudutta'",
@@ -226,6 +281,35 @@
       "details": "Portfolio database initialized with default projects and configuration.",
       "timestamp": "2026-10-21T09:03:18.402Z",
       "ip": "system"
+    }
+  ],
+  "admins": [
+    {
+      "id": "superadmin_sutantu_dutta",
+      "username": "sutantudutta",
+      "email": "sutantudutta@outlook.com",
+      "displayName": "Sutantu Dutta",
+      "role": "superadmin",
+      "isSuperAdmin": true,
+      "isActivated": true,
+      "status": "active",
+      "createdAt": "2026-10-24T08:35:57.573Z",
+      "passwordHash": "$2b$12$pf7mrczrhgfPBE0BB1mzuOm.w9.9ehqWc1LF/18g9i94ThCgyZaoK",
+      "recoveryKeyHash": "cd6bc87a46d60f9023086e1c0408e66cba20edf048e9706f5387b0e2fe7827d9",
+      "lastLoginAt": "2026-10-24T08:37:17.460Z"
+    },
+    {
+      "id": "admin_1792831037923_0cga",
+      "username": "alex_editor",
+      "email": "alex@example.com",
+      "displayName": "Alex Rivera",
+      "role": "editor",
+      "isSuperAdmin": false,
+      "isActivated": true,
+      "passwordHash": "$2b$12$PQRSInCcTJn41LBDo.lRgOtaE1uFG9a6e1EWQl08wYcozx21X/g/K",
+      "recoveryKeyHash": "937253f4c7e093a809c3d41de9b38da7e7ce05c937bb9958f84869658aed52d8",
+      "createdAt": "2026-10-24T08:37:17.923Z",
+      "status": "active"
     }
   ]
 }

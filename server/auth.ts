@@ -4,7 +4,7 @@ import path from 'path';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { db } from './db';
+import { db, AdminRole } from './db';
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const SECRET_FILE = path.join(DATA_DIR, '.jwt-secret');
@@ -97,7 +97,9 @@ export interface AdminTokenPayload {
   adminId: string;
   username: string;
   email: string;
-  role: 'superadmin';
+  displayName?: string;
+  role: AdminRole;
+  isSuperAdmin: boolean;
   iat?: number;
   exp?: number;
 }
@@ -163,13 +165,63 @@ export function requireAdminAuth(req: AuthenticatedRequest, res: Response, next:
     return;
   }
 
-  // Ensure admin still exists in db
+  // Ensure admin still exists in db and is not suspended
   const database = db.get();
-  if (!database.admin || database.admin.id !== payload.adminId) {
+  const matchedAdmin = database.admins?.find(a => a.id === payload.adminId) || 
+    (database.admin?.id === payload.adminId ? database.admin : null);
+
+  if (!matchedAdmin) {
     res.status(401).json({ error: 'Unauthorized: Administrator account not found.' });
     return;
   }
 
-  req.admin = payload;
+  if (matchedAdmin.status === 'suspended') {
+    res.status(403).json({ error: 'Account suspended: Access denied.' });
+    return;
+  }
+
+  req.admin = {
+    ...payload,
+    role: matchedAdmin.role,
+    isSuperAdmin: matchedAdmin.isSuperAdmin || matchedAdmin.role === 'superadmin'
+  };
   next();
+}
+
+// RBAC: Require one of the specified roles (Super Admin always passes)
+export function requireRole(allowedRoles: AdminRole[]) {
+  return (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
+    const checkRole = () => {
+      if (req.admin?.isSuperAdmin || allowedRoles.includes(req.admin!.role)) {
+        next();
+        return;
+      }
+      res.status(403).json({
+        error: `Forbidden: Action requires one of the following roles: [${allowedRoles.join(', ')}]. Current role: ${req.admin?.role}.`
+      });
+    };
+
+    if (req.admin) {
+      checkRole();
+    } else {
+      requireAdminAuth(req, res, checkRole);
+    }
+  };
+}
+
+// RBAC: Strictly require Super Admin privilege (Sutantu Dutta)
+export function requireSuperAdmin(req: AuthenticatedRequest, res: Response, next: NextFunction): void {
+  const checkSuperAdmin = () => {
+    if (req.admin?.isSuperAdmin || req.admin?.role === 'superadmin') {
+      next();
+      return;
+    }
+    res.status(403).json({ error: 'Forbidden: Permanent Super Admin permission is required for this operation.' });
+  };
+
+  if (req.admin) {
+    checkSuperAdmin();
+  } else {
+    requireAdminAuth(req, res, checkSuperAdmin);
+  }
 }

@@ -1,5 +1,17 @@
 import { Router, Request, Response } from 'express';
-import { db, ProjectItem, BlogPostItem, ContactMessageItem, SiteSettings } from '../db';
+import { 
+  db, 
+  ProjectItem, 
+  BlogPostItem, 
+  ContactMessageItem, 
+  SiteSettings, 
+  AdminUser, 
+  AdminRole,
+  PERMANENT_SUPER_ADMIN_EMAIL,
+  PERMANENT_SUPER_ADMIN_USERNAME,
+  PERMANENT_SUPER_ADMIN_NAME,
+  PERMANENT_SUPER_ADMIN_ID
+} from '../db';
 import {
   checkLoginRateLimit,
   recordFailedLogin,
@@ -12,6 +24,8 @@ import {
   verifyRecoveryKey,
   verifyToken,
   requireAdminAuth,
+  requireRole,
+  requireSuperAdmin,
   AuthenticatedRequest
 } from '../auth';
 
@@ -33,9 +47,7 @@ function getClientIp(req: Request): string {
 // GET /api/public/data - Get dynamic content for portfolio sections
 router.get('/public/data', (_req: Request, res: Response) => {
   const data = db.get();
-  // Filter published blog posts for public view
   const publishedBlog = data.blog.filter(b => b.published !== false);
-  // Sort projects by order
   const sortedProjects = [...data.projects].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
   res.json({
@@ -97,7 +109,13 @@ router.post('/public/messages', (req: Request, res: Response) => {
 // GET /api/admin/auth/status - Check if system is bootstrapped and if current user is logged in
 router.get('/admin/auth/status', (req: Request, res: Response) => {
   const data = db.get();
-  const isSetup = !!data.admin;
+  
+  // Sutantu Dutta is the permanent Super Admin
+  const sutantu = data.admins.find(
+    a => a.email.toLowerCase() === PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase() || a.id === PERMANENT_SUPER_ADMIN_ID
+  ) || data.admin;
+
+  const isActivated = !!(sutantu && sutantu.isActivated && sutantu.passwordHash);
 
   let token: string | undefined;
   const authHeader = req.headers.authorization;
@@ -108,48 +126,78 @@ router.get('/admin/auth/status', (req: Request, res: Response) => {
   }
 
   let isAuthenticated = false;
-  let username: string | undefined;
+  let userPayload: any = null;
 
-  if (token && isSetup) {
+  if (token) {
     const payload = verifyToken(token);
-    if (payload && payload.adminId === data.admin?.id) {
-      isAuthenticated = true;
-      username = data.admin.username;
+    if (payload) {
+      const matched = data.admins.find(a => a.id === payload.adminId);
+      if (matched && matched.status !== 'suspended') {
+        isAuthenticated = true;
+        userPayload = {
+          id: matched.id,
+          username: matched.username,
+          email: matched.email,
+          displayName: matched.displayName || matched.username,
+          role: matched.role,
+          isSuperAdmin: matched.isSuperAdmin
+        };
+      }
     }
   }
 
   res.json({
-    isSetup,
+    isSetup: isActivated,
+    isActivated,
     isAuthenticated,
-    username
+    superAdminEmail: PERMANENT_SUPER_ADMIN_EMAIL,
+    superAdminName: PERMANENT_SUPER_ADMIN_NAME,
+    user: userPayload,
+    username: userPayload?.username
   });
 });
 
-// POST /api/admin/auth/setup - One-time initial administrator bootstrap
+// POST /api/admin/auth/setup - First-time Super Admin Master Password Activation for Sutantu Dutta
 router.post('/admin/auth/setup', async (req: Request, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
 
-  // Strictly enforce one-time setup: disable once created
-  if (data.admin) {
-    res.status(403).json({ error: 'Setup is locked: An administrator account has already been initialized.' });
+  let sutantu = data.admins.find(
+    a => a.email.toLowerCase() === PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase() || a.id === PERMANENT_SUPER_ADMIN_ID
+  );
+
+  if (!sutantu) {
+    sutantu = {
+      id: PERMANENT_SUPER_ADMIN_ID,
+      username: PERMANENT_SUPER_ADMIN_USERNAME,
+      email: PERMANENT_SUPER_ADMIN_EMAIL,
+      displayName: PERMANENT_SUPER_ADMIN_NAME,
+      role: 'superadmin',
+      isSuperAdmin: true,
+      isActivated: false,
+      status: 'active',
+      createdAt: new Date().toISOString()
+    };
+    data.admins.unshift(sutantu);
+  }
+
+  // If already activated, lock setup endpoint
+  if (sutantu.isActivated && sutantu.passwordHash) {
+    res.status(403).json({ 
+      error: 'Activation locked: Permanent Super Admin Sutantu Dutta has already established a master password. Please use standard login or security key recovery.' 
+    });
     return;
   }
 
-  const { username, email, password } = req.body;
-
-  if (!username || typeof username !== 'string' || username.trim().length < 3) {
-    res.status(400).json({ error: 'Username must be at least 3 characters long.' });
-    return;
-  }
-
-  if (!email || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    res.status(400).json({ error: 'A valid email address is required.' });
-    return;
-  }
+  const { password, confirmPassword } = req.body;
 
   if (!password || typeof password !== 'string' || password.length < 8) {
-    res.status(400).json({ error: 'Password must be at least 8 characters long.' });
+    res.status(400).json({ error: 'Master password must be at least 8 characters long.' });
+    return;
+  }
+
+  if (confirmPassword && password !== confirmPassword) {
+    res.status(400).json({ error: 'Passwords do not match.' });
     return;
   }
 
@@ -158,33 +206,32 @@ router.post('/admin/auth/setup', async (req: Request, res: Response) => {
     const rawRecoveryKey = generateRecoveryKey();
     const recoveryKeyHash = hashRecoveryKey(rawRecoveryKey);
 
-    const adminUser = {
-      id: `admin_${Date.now()}`,
-      username: username.trim(),
-      email: email.trim().toLowerCase(),
-      passwordHash,
-      recoveryKeyHash,
-      createdAt: new Date().toISOString(),
-      lastLoginAt: new Date().toISOString()
-    };
+    sutantu.passwordHash = passwordHash;
+    sutantu.recoveryKeyHash = recoveryKeyHash;
+    sutantu.isActivated = true;
+    sutantu.role = 'superadmin';
+    sutantu.isSuperAdmin = true;
+    sutantu.status = 'active';
+    sutantu.lastLoginAt = new Date().toISOString();
 
-    data.admin = adminUser;
+    data.admin = sutantu;
     db.write(data);
-    db.logAudit('ADMIN_BOOTSTRAP', `Administrator account initialized for ${adminUser.username} (${adminUser.email})`, ip);
+    db.logAudit('SUPERADMIN_ACTIVATED', `Super Admin master password activated for ${PERMANENT_SUPER_ADMIN_NAME} (${PERMANENT_SUPER_ADMIN_EMAIL})`, ip);
 
     const token = generateToken({
-      adminId: adminUser.id,
-      username: adminUser.username,
-      email: adminUser.email,
-      role: 'superadmin'
-    }, false);
+      adminId: sutantu.id,
+      username: sutantu.username,
+      email: sutantu.email,
+      displayName: sutantu.displayName,
+      role: 'superadmin',
+      isSuperAdmin: true
+    }, true);
 
-    // Set secure cookie
     res.cookie('admin_token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge: 12 * 60 * 60 * 1000
+      maxAge: 30 * 24 * 60 * 60 * 1000
     });
 
     res.status(201).json({
@@ -192,25 +239,23 @@ router.post('/admin/auth/setup', async (req: Request, res: Response) => {
       token,
       recoveryKey: rawRecoveryKey,
       admin: {
-        id: adminUser.id,
-        username: adminUser.username,
-        email: adminUser.email
+        id: sutantu.id,
+        username: sutantu.username,
+        email: sutantu.email,
+        displayName: sutantu.displayName,
+        role: sutantu.role,
+        isSuperAdmin: true
       }
     });
   } catch (err: any) {
-    res.status(500).json({ error: `Setup failed: ${err.message}` });
+    res.status(500).json({ error: `Setup activation failed: ${err.message}` });
   }
 });
 
-// POST /api/admin/auth/login - Administrator login with brute-force rate limiting
+// POST /api/admin/auth/login - Administrator login with brute-force rate limiting & RBAC
 router.post('/admin/auth/login', async (req: Request, res: Response) => {
   const ip = getClientIp(req);
   const data = db.get();
-
-  if (!data.admin) {
-    res.status(400).json({ error: 'Administrator has not been set up yet. Please complete initial setup.' });
-    return;
-  }
 
   // Rate limiting check
   const rateCheck = checkLoginRateLimit(ip);
@@ -229,24 +274,18 @@ router.post('/admin/auth/login', async (req: Request, res: Response) => {
   }
 
   const target = String(usernameOrEmail).trim().toLowerCase();
-  const adminMatches = (
-    data.admin.username.toLowerCase() === target ||
-    data.admin.email.toLowerCase() === target
+
+  // Find user in admins list
+  const matchedUser = data.admins.find(
+    a => a.username.toLowerCase() === target || a.email.toLowerCase() === target
   );
 
-  let isMatch = false;
-  if (adminMatches) {
-    isMatch = await verifyPassword(password, data.admin.passwordHash);
-  }
-
-  if (!isMatch) {
+  if (!matchedUser) {
     const rateResult = recordFailedLogin(ip);
-    db.logAudit('FAILED_LOGIN_ATTEMPT', `Failed login attempt for identifier '${usernameOrEmail}'`, ip);
+    db.logAudit('FAILED_LOGIN_ATTEMPT', `Failed login attempt: Identifier '${usernameOrEmail}' not found`, ip);
 
     if (rateResult.locked) {
-      res.status(429).json({
-        error: `Too many failed login attempts. Account locked for 15 minutes.`
-      });
+      res.status(429).json({ error: 'Too many failed login attempts. Gateway locked for 15 minutes.' });
       return;
     }
 
@@ -256,17 +295,51 @@ router.post('/admin/auth/login', async (req: Request, res: Response) => {
     return;
   }
 
-  // Successful login: reset rate limit and record timestamp
+  // Check if account is not yet activated
+  if (!matchedUser.isActivated || !matchedUser.passwordHash) {
+    res.status(400).json({
+      error: 'Super Admin master password has not been activated yet. Please complete initial setup.'
+    });
+    return;
+  }
+
+  // Check if suspended
+  if (matchedUser.status === 'suspended') {
+    res.status(403).json({ error: 'Account suspended: Please contact Super Admin Sutantu Dutta.' });
+    return;
+  }
+
+  // Verify bcrypt password hash
+  const isMatch = await verifyPassword(password, matchedUser.passwordHash);
+
+  if (!isMatch) {
+    const rateResult = recordFailedLogin(ip);
+    db.logAudit('FAILED_LOGIN_ATTEMPT', `Failed login attempt for account '${matchedUser.email}'`, ip);
+
+    if (rateResult.locked) {
+      res.status(429).json({ error: 'Too many failed login attempts. Gateway locked for 15 minutes.' });
+      return;
+    }
+
+    res.status(401).json({
+      error: `Invalid credentials. (${rateResult.remainingAttempts} attempts remaining before temporary lockout)`
+    });
+    return;
+  }
+
+  // Successful login: reset rate limiter and record timestamp
   resetFailedLogin(ip);
-  data.admin.lastLoginAt = new Date().toISOString();
+  matchedUser.lastLoginAt = new Date().toISOString();
   db.write(data);
-  db.logAudit('ADMIN_LOGIN_SUCCESS', `Administrator ${data.admin.username} logged in successfully`, ip);
+  db.logAudit('ADMIN_LOGIN_SUCCESS', `Administrator ${matchedUser.displayName || matchedUser.username} (${matchedUser.role}) logged in successfully`, ip);
 
   const token = generateToken({
-    adminId: data.admin.id,
-    username: data.admin.username,
-    email: data.admin.email,
-    role: 'superadmin'
+    adminId: matchedUser.id,
+    username: matchedUser.username,
+    email: matchedUser.email,
+    displayName: matchedUser.displayName,
+    role: matchedUser.role,
+    isSuperAdmin: matchedUser.isSuperAdmin || matchedUser.role === 'superadmin'
   }, !!rememberMe);
 
   const maxAge = rememberMe ? 30 * 24 * 60 * 60 * 1000 : 12 * 60 * 60 * 1000;
@@ -282,10 +355,13 @@ router.post('/admin/auth/login', async (req: Request, res: Response) => {
     success: true,
     token,
     admin: {
-      id: data.admin.id,
-      username: data.admin.username,
-      email: data.admin.email,
-      lastLoginAt: data.admin.lastLoginAt
+      id: matchedUser.id,
+      username: matchedUser.username,
+      email: matchedUser.email,
+      displayName: matchedUser.displayName || matchedUser.username,
+      role: matchedUser.role,
+      isSuperAdmin: matchedUser.isSuperAdmin,
+      lastLoginAt: matchedUser.lastLoginAt
     }
   });
 });
@@ -295,12 +371,7 @@ router.post('/admin/auth/recover', async (req: Request, res: Response) => {
   const ip = getClientIp(req);
   const data = db.get();
 
-  if (!data.admin) {
-    res.status(400).json({ error: 'Administrator account not set up yet.' });
-    return;
-  }
-
-  const { recoveryKey, newPassword } = req.body;
+  const { recoveryKey, newPassword, email } = req.body;
 
   if (!recoveryKey || typeof recoveryKey !== 'string') {
     res.status(400).json({ error: 'Recovery key is required.' });
@@ -312,9 +383,18 @@ router.post('/admin/auth/recover', async (req: Request, res: Response) => {
     return;
   }
 
-  const isKeyValid = verifyRecoveryKey(recoveryKey, data.admin.recoveryKeyHash);
+  // Find target admin (default to Sutantu Dutta if not provided)
+  const targetEmail = email ? String(email).trim().toLowerCase() : PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase();
+  const targetAdmin = data.admins.find(a => a.email.toLowerCase() === targetEmail);
+
+  if (!targetAdmin || !targetAdmin.recoveryKeyHash) {
+    res.status(400).json({ error: 'No recovery key registered for this account.' });
+    return;
+  }
+
+  const isKeyValid = verifyRecoveryKey(recoveryKey, targetAdmin.recoveryKeyHash);
   if (!isKeyValid) {
-    db.logAudit('RECOVERY_KEY_FAILURE', 'Invalid recovery key attempted', ip);
+    db.logAudit('RECOVERY_KEY_FAILURE', `Invalid recovery key attempted for ${targetEmail}`, ip);
     res.status(401).json({ error: 'Invalid recovery key.' });
     return;
   }
@@ -323,14 +403,15 @@ router.post('/admin/auth/recover', async (req: Request, res: Response) => {
   const newRecoveryKey = generateRecoveryKey();
   const newRecoveryKeyHash = hashRecoveryKey(newRecoveryKey);
 
-  data.admin.passwordHash = newPasswordHash;
-  data.admin.recoveryKeyHash = newRecoveryKeyHash;
+  targetAdmin.passwordHash = newPasswordHash;
+  targetAdmin.recoveryKeyHash = newRecoveryKeyHash;
+  targetAdmin.isActivated = true;
   db.write(data);
-  db.logAudit('ADMIN_PASSWORD_RECOVERED', `Password reset successfully via recovery key`, ip);
+  db.logAudit('ADMIN_PASSWORD_RECOVERED', `Password reset successfully via recovery key for ${targetAdmin.email}`, ip);
 
   res.json({
     success: true,
-    message: 'Password successfully reset. A new recovery key has been generated.',
+    message: 'Master password successfully reset. A new emergency recovery key has been generated.',
     newRecoveryKey
   });
 });
@@ -339,7 +420,7 @@ router.post('/admin/auth/recover', async (req: Request, res: Response) => {
 router.post('/admin/auth/logout', (req: Request, res: Response) => {
   const ip = getClientIp(req);
   res.clearCookie('admin_token');
-  db.logAudit('ADMIN_LOGOUT', 'Administrator logged out', ip);
+  db.logAudit('ADMIN_LOGOUT', 'Administrator session terminated', ip);
   res.json({ success: true, message: 'Logged out successfully.' });
 });
 
@@ -363,15 +444,21 @@ router.post('/admin/auth/change-password', requireAdminAuth, async (req: Authent
     return;
   }
 
-  const isMatch = await verifyPassword(currentPassword, data.admin!.passwordHash);
+  const user = data.admins.find(a => a.id === req.admin!.adminId);
+  if (!user || !user.passwordHash) {
+    res.status(404).json({ error: 'User account not found.' });
+    return;
+  }
+
+  const isMatch = await verifyPassword(currentPassword, user.passwordHash);
   if (!isMatch) {
     res.status(401).json({ error: 'Current password is incorrect.' });
     return;
   }
 
-  data.admin!.passwordHash = await hashPassword(newPassword);
+  user.passwordHash = await hashPassword(newPassword);
   db.write(data);
-  db.logAudit('PASSWORD_CHANGED', `Administrator password changed`, ip);
+  db.logAudit('PASSWORD_CHANGED', `Password changed for user ${user.username}`, ip);
 
   res.json({ success: true, message: 'Password changed successfully.' });
 });
@@ -381,10 +468,16 @@ router.post('/admin/auth/regenerate-recovery-key', requireAdminAuth, async (req:
   const data = db.get();
   const ip = getClientIp(req);
 
+  const user = data.admins.find(a => a.id === req.admin!.adminId);
+  if (!user) {
+    res.status(404).json({ error: 'User account not found.' });
+    return;
+  }
+
   const rawRecoveryKey = generateRecoveryKey();
-  data.admin!.recoveryKeyHash = hashRecoveryKey(rawRecoveryKey);
+  user.recoveryKeyHash = hashRecoveryKey(rawRecoveryKey);
   db.write(data);
-  db.logAudit('RECOVERY_KEY_REGENERATED', `Security recovery key regenerated`, ip);
+  db.logAudit('RECOVERY_KEY_REGENERATED', `Security recovery key regenerated for ${user.username}`, ip);
 
   res.json({ success: true, recoveryKey: rawRecoveryKey });
 });
@@ -399,6 +492,11 @@ router.get('/admin/dashboard-stats', requireAdminAuth, (_req: AuthenticatedReque
   const totalMessages = data.messages.length;
   const unreadMessages = data.messages.filter(m => !m.read).length;
   const starredMessages = data.messages.filter(m => m.starred).length;
+  const totalAdmins = data.admins.length;
+
+  const sutantu = data.admins.find(
+    a => a.email.toLowerCase() === PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase() || a.id === PERMANENT_SUPER_ADMIN_ID
+  );
 
   res.json({
     metrics: {
@@ -408,7 +506,8 @@ router.get('/admin/dashboard-stats', requireAdminAuth, (_req: AuthenticatedReque
       totalMessages,
       unreadMessages,
       starredMessages,
-      lastLoginAt: data.admin?.lastLoginAt
+      totalAdmins,
+      lastLoginAt: sutantu?.lastLoginAt
     },
     recentAuditLogs: data.auditLogs.slice(0, 10),
     recentMessages: data.messages.slice(0, 5),
@@ -417,7 +516,199 @@ router.get('/admin/dashboard-stats', requireAdminAuth, (_req: AuthenticatedReque
 });
 
 /* -------------------------------------------------------------
- * 4. PROJECTS MANAGEMENT
+ * 4. RBAC: ADMIN USERS MANAGEMENT (Super Admin Only for modifications)
+ * ------------------------------------------------------------- */
+
+// GET /api/admin/users - List administrators
+router.get('/admin/users', requireAdminAuth, (_req: AuthenticatedRequest, res: Response) => {
+  const data = db.get();
+  // Strip passwordHash and recoveryKeyHash
+  const safeUsers = data.admins.map(u => ({
+    id: u.id,
+    username: u.username,
+    email: u.email,
+    displayName: u.displayName || u.username,
+    role: u.role,
+    isSuperAdmin: u.isSuperAdmin,
+    isActivated: u.isActivated,
+    status: u.status,
+    createdAt: u.createdAt,
+    lastLoginAt: u.lastLoginAt,
+    notes: u.notes
+  }));
+  res.json(safeUsers);
+});
+
+// POST /api/admin/users - Create new secondary administrator (Super Admin only)
+router.post('/admin/users', requireSuperAdmin, async (req: AuthenticatedRequest, res: Response) => {
+  const data = db.get();
+  const ip = getClientIp(req);
+  const { username, email, displayName, password, role, notes } = req.body;
+
+  if (!username || !email || !password) {
+    res.status(400).json({ error: 'Username, email, and password are required.' });
+    return;
+  }
+
+  const validRoles: AdminRole[] = ['admin', 'editor', 'viewer'];
+  const assignedRole: AdminRole = validRoles.includes(role) ? role : 'editor';
+
+  const cleanEmail = String(email).trim().toLowerCase();
+  const cleanUsername = String(username).trim().toLowerCase();
+
+  // Prevent duplicate username/email
+  const exists = data.admins.some(
+    a => a.email.toLowerCase() === cleanEmail || a.username.toLowerCase() === cleanUsername
+  );
+  if (exists) {
+    res.status(400).json({ error: 'An administrator with this email or username already exists.' });
+    return;
+  }
+
+  if (password.length < 8) {
+    res.status(400).json({ error: 'Password must be at least 8 characters long.' });
+    return;
+  }
+
+  const passwordHash = await hashPassword(password);
+  const rawRecoveryKey = generateRecoveryKey();
+  const recoveryKeyHash = hashRecoveryKey(rawRecoveryKey);
+
+  const newUser: AdminUser = {
+    id: `admin_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
+    username: cleanUsername,
+    email: cleanEmail,
+    displayName: displayName ? String(displayName).trim() : cleanUsername,
+    role: assignedRole,
+    isSuperAdmin: false,
+    isActivated: true,
+    passwordHash,
+    recoveryKeyHash,
+    createdAt: new Date().toISOString(),
+    status: 'active',
+    notes: notes ? String(notes).trim() : undefined
+  };
+
+  data.admins.push(newUser);
+  db.write(data);
+  db.logAudit('USER_CREATED', `Super Admin created new ${newUser.role}: "${newUser.displayName}" (${newUser.email})`, ip);
+
+  res.status(201).json({
+    success: true,
+    user: {
+      id: newUser.id,
+      username: newUser.username,
+      email: newUser.email,
+      displayName: newUser.displayName,
+      role: newUser.role,
+      isSuperAdmin: newUser.isSuperAdmin,
+      status: newUser.status,
+      createdAt: newUser.createdAt
+    },
+    recoveryKey: rawRecoveryKey
+  });
+});
+
+// PUT /api/admin/users/:id - Update administrator role/status (Super Admin only)
+router.put('/admin/users/:id', requireSuperAdmin, (req: AuthenticatedRequest, res: Response) => {
+  const data = db.get();
+  const ip = getClientIp(req);
+  const id = req.params.id;
+  const { role, status, displayName, notes } = req.body;
+
+  const user = data.admins.find(a => a.id === id);
+  if (!user) {
+    res.status(404).json({ error: 'Administrator account not found.' });
+    return;
+  }
+
+  // IMMUTABLE SUPER ADMIN PROTECTION: Sutantu Dutta
+  const isTargetSutantu = (
+    user.id === PERMANENT_SUPER_ADMIN_ID ||
+    user.email.toLowerCase() === PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase() ||
+    user.isSuperAdmin
+  );
+
+  if (isTargetSutantu) {
+    if (role && role !== 'superadmin') {
+      res.status(403).json({ 
+        error: 'Forbidden: Sutantu Dutta is the Permanent Super Admin. Super Admin role cannot be demoted or modified.' 
+      });
+      return;
+    }
+    if (status && status !== 'active') {
+      res.status(403).json({ 
+        error: 'Forbidden: Sutantu Dutta is the Permanent Super Admin and cannot be suspended or deactivated.' 
+      });
+      return;
+    }
+  }
+
+  if (displayName !== undefined) user.displayName = String(displayName).trim();
+  if (notes !== undefined) user.notes = String(notes).trim();
+
+  if (role && !isTargetSutantu) {
+    const validRoles: AdminRole[] = ['admin', 'editor', 'viewer'];
+    if (validRoles.includes(role)) {
+      user.role = role;
+    }
+  }
+
+  if (status && !isTargetSutantu) {
+    if (status === 'active' || status === 'suspended') {
+      user.status = status;
+    }
+  }
+
+  db.write(data);
+  db.logAudit('USER_UPDATED', `Updated administrator ${user.displayName || user.username} (${user.email})`, ip);
+
+  res.json({
+    id: user.id,
+    username: user.username,
+    email: user.email,
+    displayName: user.displayName,
+    role: user.role,
+    isSuperAdmin: user.isSuperAdmin,
+    status: user.status
+  });
+});
+
+// DELETE /api/admin/users/:id - Delete administrator account (Super Admin only)
+router.delete('/admin/users/:id', requireSuperAdmin, (req: AuthenticatedRequest, res: Response) => {
+  const data = db.get();
+  const ip = getClientIp(req);
+  const id = req.params.id;
+
+  const idx = data.admins.findIndex(a => a.id === id);
+  if (idx === -1) {
+    res.status(404).json({ error: 'Administrator account not found.' });
+    return;
+  }
+
+  const target = data.admins[idx];
+
+  // IMMUTABLE SUPER ADMIN PROTECTION: SUTANTU DUTTA CAN NEVER BE DELETED
+  if (
+    target.id === PERMANENT_SUPER_ADMIN_ID ||
+    target.email.toLowerCase() === PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase() ||
+    target.isSuperAdmin
+  ) {
+    res.status(403).json({
+      error: 'Action Rejected: Sutantu Dutta is the permanent, immutable Super Admin of this portfolio and can never be removed or deleted.'
+    });
+    return;
+  }
+
+  const [removed] = data.admins.splice(idx, 1);
+  db.write(data);
+  db.logAudit('USER_DELETED', `Deleted administrator "${removed.displayName || removed.username}" (${removed.email})`, ip);
+
+  res.json({ success: true, removed: { id: removed.id, email: removed.email, username: removed.username } });
+});
+
+/* -------------------------------------------------------------
+ * 5. PROJECTS MANAGEMENT (RBAC: Admin, Editor, Superadmin)
  * ------------------------------------------------------------- */
 
 router.get('/admin/projects', requireAdminAuth, (_req: AuthenticatedRequest, res: Response) => {
@@ -426,7 +717,7 @@ router.get('/admin/projects', requireAdminAuth, (_req: AuthenticatedRequest, res
   res.json(sorted);
 });
 
-router.post('/admin/projects', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.post('/admin/projects', requireRole(['admin', 'editor', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const { title, description, category, tech, link, codepen, github, image, featured } = req.body;
@@ -461,7 +752,7 @@ router.post('/admin/projects', requireAdminAuth, (req: AuthenticatedRequest, res
   res.status(201).json(newProject);
 });
 
-router.put('/admin/projects/:id', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.put('/admin/projects/:id', requireRole(['admin', 'editor', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const id = parseInt(req.params.id, 10);
@@ -495,7 +786,7 @@ router.put('/admin/projects/:id', requireAdminAuth, (req: AuthenticatedRequest, 
   res.json(data.projects[idx]);
 });
 
-router.delete('/admin/projects/:id', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.delete('/admin/projects/:id', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const id = parseInt(req.params.id, 10);
@@ -513,7 +804,7 @@ router.delete('/admin/projects/:id', requireAdminAuth, (req: AuthenticatedReques
   res.json({ success: true, removed });
 });
 
-router.post('/admin/projects/reorder', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.post('/admin/projects/reorder', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const { projectIds } = req.body;
@@ -537,7 +828,7 @@ router.post('/admin/projects/reorder', requireAdminAuth, (req: AuthenticatedRequ
 });
 
 /* -------------------------------------------------------------
- * 5. BLOG / ARTICLES MANAGEMENT
+ * 6. BLOG / ARTICLES MANAGEMENT (RBAC)
  * ------------------------------------------------------------- */
 
 router.get('/admin/blog', requireAdminAuth, (_req: AuthenticatedRequest, res: Response) => {
@@ -545,7 +836,7 @@ router.get('/admin/blog', requireAdminAuth, (_req: AuthenticatedRequest, res: Re
   res.json(data.blog);
 });
 
-router.post('/admin/blog', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.post('/admin/blog', requireRole(['admin', 'editor', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const { title, excerpt, content, category, readTime, image, published, date } = req.body;
@@ -578,7 +869,7 @@ router.post('/admin/blog', requireAdminAuth, (req: AuthenticatedRequest, res: Re
   res.status(201).json(newPost);
 });
 
-router.put('/admin/blog/:id', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.put('/admin/blog/:id', requireRole(['admin', 'editor', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const id = parseInt(req.params.id, 10);
@@ -610,7 +901,7 @@ router.put('/admin/blog/:id', requireAdminAuth, (req: AuthenticatedRequest, res:
   res.json(data.blog[idx]);
 });
 
-router.delete('/admin/blog/:id', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.delete('/admin/blog/:id', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const id = parseInt(req.params.id, 10);
@@ -629,7 +920,7 @@ router.delete('/admin/blog/:id', requireAdminAuth, (req: AuthenticatedRequest, r
 });
 
 /* -------------------------------------------------------------
- * 6. CONTACT MESSAGES INBOX
+ * 7. CONTACT MESSAGES INBOX (RBAC)
  * ------------------------------------------------------------- */
 
 router.get('/admin/messages', requireAdminAuth, (_req: AuthenticatedRequest, res: Response) => {
@@ -637,7 +928,7 @@ router.get('/admin/messages', requireAdminAuth, (_req: AuthenticatedRequest, res
   res.json(data.messages);
 });
 
-router.patch('/admin/messages/:id', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.patch('/admin/messages/:id', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const id = req.params.id;
   const { read, starred } = req.body;
@@ -655,7 +946,7 @@ router.patch('/admin/messages/:id', requireAdminAuth, (req: AuthenticatedRequest
   res.json(msg);
 });
 
-router.post('/admin/messages/mark-all-read', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.post('/admin/messages/mark-all-read', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
 
@@ -666,7 +957,7 @@ router.post('/admin/messages/mark-all-read', requireAdminAuth, (req: Authenticat
   res.json({ success: true, count: data.messages.length });
 });
 
-router.delete('/admin/messages/:id', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.delete('/admin/messages/:id', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const id = req.params.id;
@@ -685,7 +976,7 @@ router.delete('/admin/messages/:id', requireAdminAuth, (req: AuthenticatedReques
 });
 
 /* -------------------------------------------------------------
- * 7. SETTINGS & ANNOUNCEMENTS
+ * 8. SETTINGS & ANNOUNCEMENTS
  * ------------------------------------------------------------- */
 
 router.get('/admin/settings', requireAdminAuth, (_req: AuthenticatedRequest, res: Response) => {
@@ -693,7 +984,7 @@ router.get('/admin/settings', requireAdminAuth, (_req: AuthenticatedRequest, res
   res.json(data.settings);
 });
 
-router.put('/admin/settings', requireAdminAuth, (req: AuthenticatedRequest, res: Response) => {
+router.put('/admin/settings', requireRole(['admin', 'superadmin']), (req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   const ip = getClientIp(req);
   const updates: Partial<SiteSettings> = req.body;
@@ -714,12 +1005,23 @@ router.put('/admin/settings', requireAdminAuth, (req: AuthenticatedRequest, res:
 });
 
 /* -------------------------------------------------------------
- * 8. SECURITY AUDIT LOGS
+ * 9. SECURITY AUDIT LOGS
  * ------------------------------------------------------------- */
 
 router.get('/admin/audit-logs', requireAdminAuth, (_req: AuthenticatedRequest, res: Response) => {
   const data = db.get();
   res.json(data.auditLogs);
+});
+
+/* -------------------------------------------------------------
+ * 10. API 404 FALLBACK HANDLER (Never return HTML for /api)
+ * ------------------------------------------------------------- */
+
+router.use((_req: Request, res: Response) => {
+  res.status(404).json({
+    error: 'API endpoint not found',
+    message: 'The requested API route does not exist or has been relocated.'
+  });
 });
 
 export default router;

@@ -1,103 +1,67 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import ToolLogo from '../ui/ToolLogo';
 
 const TOOLS_DATA = [
   {
-    name: 'Adobe Express',
-    description: 'Quick graphic design and layout creation.',
-    slug: 'adobeexpress',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/30/Adobe_Express_2026_icon.svg',
-    hasText: false,
-    invert: false,
-  },
-  {
-    name: 'Claude',
-    description: 'AI assistant for advanced reasoning, research, and analysis.',
-    slug: 'claude',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg',
-    hasText: false,
-    invert: false,
-  },
-  {
-    name: 'Copilot',
+    name: 'Microsoft Copilot',
     description: 'AI-powered coding assistant and productivity companion.',
     slug: 'copilot',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/en/a/aa/Microsoft_Copilot_Icon.svg',
-    hasText: false,
-    invert: false,
-  },
-  {
-    name: 'CodePen',
-    description: 'Online code editor and front-end web development community.',
-    slug: 'codepen',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/32/CodePen_Logo.svg',
-    hasText: true,
-    invert: true,
-  },
-  
-  {
-    name: 'Todoist',
-    description: 'Task management app and to-do list organizer.',
-    slug: 'todoist',
-    logoUrl: 'https://cdn.simpleicons.org/todoist/E44332',
-    hasText: false,
-    invert: false,
-  },
-  {
-    name: 'ChatGPT',
-    description: 'AI assistant for coding, debugging, brainstorming, and productivity.',
-    slug: 'chatgpt',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-    hasText: false,
-    invert: false,
-  },
-  {
-    name: 'Google Gemini',
-    description: 'Advanced multimodal AI for reasoning, research, and creative workflows.',
-    slug: 'googlegemini',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg',
-    hasText: true,
-    invert: false,
   },
   {
     name: 'GitHub',
     description: 'Version control, collaboration, and open-source development.',
     slug: 'github',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg',
-    hasText: false,
-    invert: true,
   },
   {
     name: 'Vercel',
     description: 'Fast deployment and hosting for modern web applications.',
     slug: 'vercel',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5e/Vercel_logo_black.svg',
-    hasText: true,
-    invert: true,
   },
   {
-    name: 'Canva',
-    description: 'Design platform for graphics, presentations, and social media assets.',
-    slug: 'canva',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Canva_logo.svg',
-    hasText: true,
-    invert: false,
+    name: 'CodePen',
+    description: 'Online code editor and front-end web development community.',
+    slug: 'codepen',
+  },
+  {
+    name: 'Claude',
+    description: 'AI assistant for advanced reasoning, research, and analysis.',
+    slug: 'claude',
+  },
+  {
+    name: 'ChatGPT',
+    description: 'AI assistant for coding, debugging, brainstorming, and productivity.',
+    slug: 'chatgpt',
+  },
+  {
+    name: 'Google Gemini',
+    description: 'Advanced multimodal AI for reasoning, research, and creative workflows.',
+    slug: 'googlegemini',
   },
   {
     name: 'Google AI Studio',
     description: 'Platform for building and testing Gemini-powered AI applications.',
-    slug: 'google',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Google_AI_Studio_icon_%28May_2026%29.svg',
-    hasText: false,
-    invert: false,
+    slug: 'googleaistudio',
   },
   {
     name: 'Visual Studio Code',
     description: 'A powerful, extensible code editor for modern development workflows.',
     slug: 'visualstudiocode',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg',
-    hasText: false,
-    invert: false,
+  },
+  {
+    name: 'Canva',
+    description: 'Design platform for graphics, presentations, and social media assets.',
+    slug: 'canva',
+  },
+  {
+    name: 'Adobe Express',
+    description: 'Quick graphic design and layout creation.',
+    slug: 'adobeexpress',
+  },
+  {
+    name: 'Todoist',
+    description: 'Task management app and to-do list organizer.',
+    slug: 'todoist',
   },
 ];
 
@@ -106,8 +70,8 @@ export default function Tools() {
     <section id="tools" className="relative py-20 md:py-32 bg-bg-primary overflow-hidden border-t border-border">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent-primary/5 blur-[120px] rounded-full " />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-glow blur-[120px] rounded-full " />
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent-primary/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-glow blur-[120px] rounded-full" />
       </div>
 
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
@@ -129,33 +93,18 @@ export default function Tools() {
 
         {/* Tools Marquee Slider */}
         <div className="relative flex flex-col overflow-hidden py-10 -mx-6 lg:-mx-10 px-6 lg:px-10 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          
           <div className="flex animate-marquee gap-12 lg:gap-20 w-max hover:[animation-play-state:paused]">
             {[...TOOLS_DATA, ...TOOLS_DATA, ...TOOLS_DATA].map((tool, index) => (
               <div
                 key={`${tool.name}-${index}`}
-                className="group flex items-center gap-4 transition-all duration-300 hover:scale-105 opacity-70 hover:opacity-100 cursor-pointer flex-shrink-0"
+                className="group flex items-center gap-4 transition-all duration-300 hover:scale-105 opacity-80 hover:opacity-100 cursor-pointer flex-shrink-0"
               >
-                {tool.hasText ? (
-                  <img 
-                    src={tool.logoUrl} 
-                    alt={`${tool.name} logo`}
-                    className={`h-8 lg:h-10 w-auto object-contain drop-shadow-md group-hover:drop-shadow-lg transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
-                    loading="lazy"
-                  />
-                ) : (
-                  <>
-                    <img 
-                      src={tool.logoUrl} 
-                      alt={`${tool.name} logo`}
-                      className={`w-10 h-10 lg:w-12 lg:h-12 drop-shadow-md group-hover:drop-shadow-lg transition-all duration-300 ${tool.invert ? 'theme-invert' : ''}`}
-                      loading="lazy"
-                    />
-                    <span className="text-xl lg:text-2xl font-semibold text-text-secondary group-hover:text-text-primary transition-colors duration-300 whitespace-nowrap">
-                      {tool.name}
-                    </span>
-                  </>
-                )}
+                <div className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                  <ToolLogo slug={tool.slug} name={tool.name} className="w-10 h-10 lg:w-12 lg:h-12" />
+                </div>
+                <span className="text-xl lg:text-2xl font-semibold text-text-secondary group-hover:text-text-primary transition-colors duration-300 whitespace-nowrap">
+                  {tool.name}
+                </span>
               </div>
             ))}
           </div>
@@ -164,4 +113,3 @@ export default function Tools() {
     </section>
   );
 }
-

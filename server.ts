@@ -26,6 +26,17 @@ async function startServer() {
   // Mount API Router
   app.use('/api', apiRouter);
 
+  // Fallback 404 handler for API routes - NEVER fall through to HTML or Vite SPA
+  app.all('/api/*', (_req, res) => {
+    res.status(404).json({
+      error: 'API endpoint not found',
+      message: 'The requested backend API route does not exist.'
+    });
+  });
+
+  // Serve public static assets (logos, images, robots.txt)
+  app.use(express.static(path.resolve('./public')));
+
   // Serve static dist in production, or mount Vite middleware in development
   if (isProduction && fs.existsSync(path.resolve('./dist'))) {
     app.use(express.static(path.resolve('./dist')));

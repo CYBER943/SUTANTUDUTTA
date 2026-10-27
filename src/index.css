@@ -191,3 +191,14 @@ html {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+
+/* Theme inversion utility: inverts dark logos to white in dark mode, keeps them dark in light mode */
+.theme-invert {
+  filter: brightness(0) invert(1);
+  transition: filter 300ms ease;
+}
+.light .theme-invert,
+[data-theme="light"] .theme-invert {
+  filter: none;
+}
+

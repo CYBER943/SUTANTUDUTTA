@@ -26,6 +26,7 @@ import MessagesView from './views/MessagesView';
 import AnnouncementsView from './views/AnnouncementsView';
 import SettingsView from './views/SettingsView';
 import AuditLogsView from './views/AuditLogsView';
+import AdminsView from './views/AdminsView';
 
 interface AdminDashboardProps {
   currentAdmin: any;
@@ -34,7 +35,7 @@ interface AdminDashboardProps {
 }
 
 export default function AdminDashboard({ currentAdmin, onLogout, onNavigateToPublic }: AdminDashboardProps) {
-  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'blog' | 'messages' | 'announcements' | 'settings' | 'logs'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'projects' | 'blog' | 'messages' | 'announcements' | 'admins' | 'settings' | 'logs'>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -90,6 +91,7 @@ export default function AdminDashboard({ currentAdmin, onLogout, onNavigateToPub
     { id: 'blog', label: 'Articles', icon: FileText, count: blog.length },
     { id: 'messages', label: 'Messages', icon: Mail, unread: messages.filter(m => !m.read).length },
     { id: 'announcements', label: 'Broadcast & Status', icon: Megaphone },
+    { id: 'admins', label: 'Admin Accounts', icon: ShieldCheck },
     { id: 'settings', label: 'Settings & Security', icon: Settings },
     { id: 'logs', label: 'Audit Trail', icon: Clock }
   ];
@@ -274,6 +276,12 @@ export default function AdminDashboard({ currentAdmin, onLogout, onNavigateToPub
             <AnnouncementsView
               settings={settings}
               onRefresh={fetchAllData}
+            />
+          )}
+
+          {activeTab === 'admins' && (
+            <AdminsView
+              currentAdmin={currentAdmin}
             />
           )}
 

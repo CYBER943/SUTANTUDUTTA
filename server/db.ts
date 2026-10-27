@@ -71,18 +71,32 @@ export interface AuditLogItem {
   ip?: string;
 }
 
+export type AdminRole = 'superadmin' | 'admin' | 'editor' | 'viewer';
+
+export const PERMANENT_SUPER_ADMIN_EMAIL = 'sutantudutta@outlook.com';
+export const PERMANENT_SUPER_ADMIN_USERNAME = 'sutantudutta';
+export const PERMANENT_SUPER_ADMIN_NAME = 'Sutantu Dutta';
+export const PERMANENT_SUPER_ADMIN_ID = 'superadmin_sutantu_dutta';
+
 export interface AdminUser {
   id: string;
   username: string;
   email: string;
-  passwordHash: string;
-  recoveryKeyHash: string;
+  displayName: string;
+  role: AdminRole;
+  isSuperAdmin: boolean;
+  isActivated: boolean;
+  passwordHash?: string;
+  recoveryKeyHash?: string;
   createdAt: string;
   lastLoginAt?: string;
+  status: 'active' | 'suspended';
+  notes?: string;
 }
 
 export interface DatabaseSchema {
   admin: AdminUser | null;
+  admins: AdminUser[];
   settings: SiteSettings;
   projects: ProjectItem[];
   blog: BlogPostItem[];
@@ -96,6 +110,19 @@ const DB_FILE = path.join(DATA_DIR, 'portfolio-admin.json');
 // Default initial data matching Sutantu Dutta's existing portfolio
 const DEFAULT_DATA: DatabaseSchema = {
   admin: null,
+  admins: [
+    {
+      id: PERMANENT_SUPER_ADMIN_ID,
+      username: PERMANENT_SUPER_ADMIN_USERNAME,
+      email: PERMANENT_SUPER_ADMIN_EMAIL,
+      displayName: PERMANENT_SUPER_ADMIN_NAME,
+      role: 'superadmin',
+      isSuperAdmin: true,
+      isActivated: false,
+      status: 'active',
+      createdAt: new Date().toISOString()
+    }
+  ],
   settings: {
     name: "Sutantu Dutta",
     role: "AI DEVELOPER",
@@ -325,6 +352,52 @@ class Database {
           this.cache!.auditLogs = [];
           updated = true;
         }
+        if (!Array.isArray(this.cache!.admins)) {
+          this.cache!.admins = [];
+          updated = true;
+        }
+
+        // PERMANENT SUPER ADMIN: SUTANTU DUTTA
+        // Sutantu Dutta is permanently locked as the top-level Super Admin.
+        let sutantu = this.cache!.admins.find(
+          a => a.email.toLowerCase() === PERMANENT_SUPER_ADMIN_EMAIL.toLowerCase() || a.id === PERMANENT_SUPER_ADMIN_ID
+        );
+
+        if (!sutantu) {
+          sutantu = {
+            id: PERMANENT_SUPER_ADMIN_ID,
+            username: PERMANENT_SUPER_ADMIN_USERNAME,
+            email: PERMANENT_SUPER_ADMIN_EMAIL,
+            displayName: PERMANENT_SUPER_ADMIN_NAME,
+            role: 'superadmin',
+            isSuperAdmin: true,
+            isActivated: false,
+            status: 'active',
+            createdAt: new Date().toISOString()
+          };
+          this.cache!.admins.unshift(sutantu);
+          updated = true;
+        }
+
+        // Enforce immutable Super Admin invariants
+        if (sutantu.role !== 'superadmin' || !sutantu.isSuperAdmin || sutantu.status !== 'active') {
+          sutantu.role = 'superadmin';
+          sutantu.isSuperAdmin = true;
+          sutantu.status = 'active';
+          updated = true;
+        }
+
+        // Migrate passwordHash from legacy single admin field if present
+        if (this.cache!.admin && this.cache!.admin.passwordHash && !sutantu.passwordHash) {
+          sutantu.passwordHash = this.cache!.admin.passwordHash;
+          sutantu.recoveryKeyHash = this.cache!.admin.recoveryKeyHash;
+          sutantu.isActivated = true;
+          updated = true;
+        }
+
+        // Sync legacy admin pointer to Sutantu
+        this.cache!.admin = sutantu;
+
         if (updated) {
           this.write(this.cache!);
         }
